@@ -3,7 +3,7 @@ import type { DocumentAdapter } from './types';
 import type { Article } from './articles';
 import { ARTICLES } from './articles';
 import { generateMockSummary } from './summary';
-import { fancifyText } from './transforms';
+// import { fancifyText } from './transforms';
 import { loadArticle, saveArticle } from './storage';
 import { htmlToTiptapJson } from './htmlJsonConversion';
 import './PublisherPanel.css';
@@ -16,7 +16,7 @@ interface PublisherPanelProps {
 export function PublisherPanel({ adapter, hostLabel }: PublisherPanelProps) {
   const [savedAt, setSavedAt] = useState<string | null>(() => loadArticle()?.savedAt ?? null);
   const [status, setStatus] = useState('');
-  const [liveText, setLiveText] = useState('');
+  const [, setLiveText] = useState('');
 
   const [query, setQuery] = useState('');
   const [selectedArticles, setSelectedArticles] = useState<Article[]>([]);
@@ -92,23 +92,23 @@ export function PublisherPanel({ adapter, hostLabel }: PublisherPanelProps) {
     }
   }
 
-  async function handleFancify() {
-    try {
-      const selection = await adapter.getSelectionText();
-      if (!selection) {
-        setStatus('Select some text first.');
-        return;
-      }
-      await adapter.replaceSelection(fancifyText(selection));
-      setStatus(`Replaced "${selection}" with a fancy word.`);
-    } catch (err) {
-      setStatus(`Fancify failed: ${(err as Error).message}`);
-    }
-  }
+  // async function handleFancify() {
+  //   try {
+  //     const selection = await adapter.getSelectionText();
+  //     if (!selection) {
+  //       setStatus('Select some text first.');
+  //       return;
+  //     }
+  //     await adapter.replaceSelection(fancifyText(selection));
+  //     setStatus(`Replaced "${selection}" with a fancy word.`);
+  //   } catch (err) {
+  //     setStatus(`Fancify failed: ${(err as Error).message}`);
+  //   }
+  // }
 
   return (
     <div className="publisher-panel">
-      <h2>Fancy Editor ({hostLabel})</h2>
+      <h2>Publisher Plugin ({hostLabel})</h2>
 
       <section className="publisher-panel-section">
         <h3 className="publisher-panel-section-title">Article summary</h3>
@@ -164,9 +164,9 @@ export function PublisherPanel({ adapter, hostLabel }: PublisherPanelProps) {
 
       <section className="publisher-panel-section">
         <h3 className="publisher-panel-section-title">Document tools</h3>
-        <button type="button" onClick={handleFancify}>
+        {/* <button type="button" onClick={handleFancify}>
           Fancify selection
-        </button>
+        </button> */}
         <button type="button" onClick={handleSaveHtml}>
           Save article as HTML
         </button>
@@ -176,11 +176,11 @@ export function PublisherPanel({ adapter, hostLabel }: PublisherPanelProps) {
         {savedAt && <p className="publisher-panel-meta">Last saved: {new Date(savedAt).toLocaleString()}</p>}
         {status && <p className="publisher-panel-status">{status}</p>}
       </section>
-
+{/* 
       <div className="publisher-panel-preview">
         <p className="publisher-panel-preview-label">Live uppercase preview</p>
         <p className="publisher-panel-preview-text">{liveText ? liveText.toUpperCase() : '…'}</p>
-      </div>
+      </div> */}
     </div>
   );
 }

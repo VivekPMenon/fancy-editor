@@ -6,10 +6,12 @@ import { createTiptapAdapter } from './adapters/tiptapAdapter';
 import { EditorToolbar } from './EditorToolbar';
 import { ArticlesPanel } from './ArticlesPanel';
 
+const BLANK_CONTENT = '<p>Start writing your article here…</p>';
+
 export function FancyEditorTab() {
   const editor = useEditor({
     extensions: EDITOR_EXTENSIONS,
-    content: '<p>Start writing your article here…</p>',
+    content: BLANK_CONTENT,
   });
 
   // Memoized so the adapter's identity stays stable across re-renders;
@@ -30,6 +32,7 @@ export function FancyEditorTab() {
         <PublisherPanel adapter={adapter} hostLabel="Web" />
         <ArticlesPanel
           onSelectArticle={(json) => editor.chain().focus().setContent(json).run()}
+          onCreateNew={() => editor.chain().focus().setContent(BLANK_CONTENT).run()}
         />
       </div>
     </div>

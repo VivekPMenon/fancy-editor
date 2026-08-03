@@ -5,14 +5,25 @@ import './ArticlesPanel.css';
 
 interface ArticlesPanelProps {
   onSelectArticle: (json: JSONContent) => void;
+  onCreateNew: () => void;
 }
 
-export function ArticlesPanel({ onSelectArticle }: ArticlesPanelProps) {
+export function ArticlesPanel({ onSelectArticle, onCreateNew }: ArticlesPanelProps) {
   const [selectedId, setSelectedId] = useState<string | null>(null);
+
+  function handleCreateNew() {
+    setSelectedId(null);
+    onCreateNew();
+  }
 
   return (
     <div className="articles-panel">
-      <h2>Articles</h2>
+      <div className="articles-panel-header">
+        <h2>My Articles</h2>
+        <button type="button" className="articles-new-button" onClick={handleCreateNew}>
+          + New
+        </button>
+      </div>
       <ul className="articles-list">
         {MOCK_POSTS.map((post) => (
           <li key={post.id}>
