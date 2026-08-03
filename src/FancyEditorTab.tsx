@@ -4,6 +4,7 @@ import { EDITOR_EXTENSIONS } from './core/editorExtensions';
 import { PublisherPanel } from './core/PublisherPanel';
 import { createTiptapAdapter } from './adapters/tiptapAdapter';
 import { EditorToolbar } from './EditorToolbar';
+import { ArticlesPanel } from './ArticlesPanel';
 
 export function FancyEditorTab() {
   const editor = useEditor({
@@ -25,7 +26,12 @@ export function FancyEditorTab() {
         <EditorToolbar editor={editor} />
         <EditorContent className="tiptap-editor" editor={editor} />
       </div>
-      <PublisherPanel adapter={adapter} hostLabel="Web" />
+      <div className="app-right-rail">
+        <PublisherPanel adapter={adapter} hostLabel="Web" />
+        <ArticlesPanel
+          onSelectArticle={(json) => editor.chain().focus().setContent(json).run()}
+        />
+      </div>
     </div>
   );
 }

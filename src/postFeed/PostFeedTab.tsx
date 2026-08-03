@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import type { SyntheticEvent } from 'react';
-import { MOCK_POSTS, type FeedPost } from './mockPosts';
+import { MOCK_POSTS, type FeedPost } from '../core/mockPosts';
 import { tiptapJsonToHtml, tiptapJsonToPlainText } from '../core/htmlJsonConversion';
 import './PostFeedTab.css';
 

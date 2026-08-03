@@ -1,5 +1,5 @@
 import type { JSONContent } from '@tiptap/react';
-import { htmlToTiptapJson } from '../core/htmlJsonConversion';
+import { htmlToTiptapJson } from './htmlJsonConversion';
 
 export interface FeedPost {
   id: string;
@@ -26,7 +26,7 @@ const RAW_POSTS: RawFeedPost[] = [
     title: 'Global Supply Chains Show Signs of Stabilization',
     author: 'Priya Nair',
     publishedAt: '2026-07-28',
-    category: 'Trade',    
+    category: 'Trade',
     html: `<html>
 
 <head>

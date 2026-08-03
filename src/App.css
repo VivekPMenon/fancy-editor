@@ -71,6 +71,11 @@
   padding: 24px;
   overflow-y: auto;
   background-color: white;
+  /* Document content shouldn't inherit the 18px page-chrome base font from
+     :root — that's meant for UI text (buttons, panel labels), not authored
+     content. Headings inside .ProseMirror use browser-default em sizing, so
+     this also fixes their absolute size, not just body text. */
+  font-size: 16px;
 
   .ProseMirror {
     min-height: 100%;
@@ -102,9 +107,16 @@
   }
 }
 
-.app-layout .publisher-panel {
+.app-right-rail {
   width: 380px;
   flex-shrink: 0;
-  /* border-left: 1px solid var(--border); */
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  min-height: 0;
+  overflow-y: auto;
+}
+
+.app-layout .publisher-panel {
   background-color: white;
 }
