@@ -1,0 +1,176 @@
+.editor-toolbar-shell {
+  flex-shrink: 0;
+  background: white;
+  border-bottom: 1px solid #d7d7d7;
+}
+
+/* Cosmetic tab strip — only "Home" is wired up, the rest are inert, same as
+   a real ribbon has tabs you're not currently viewing. */
+.editor-toolbar-tabs {
+  display: flex;
+  gap: 2px;
+  padding: 6px 24px 0;
+}
+
+.editor-toolbar-tabs button {
+  font-size: 13px;
+  padding: 6px 12px;
+  border: none;
+  border-radius: 4px 4px 0 0;
+  background: transparent;
+  color: #444444;
+  cursor: default;
+  font-family: inherit;
+}
+
+.editor-toolbar-tabs button:not(:disabled) {
+  cursor: pointer;
+}
+
+.editor-toolbar-tabs button:disabled {
+  color: #919191;
+}
+
+.editor-toolbar-tabs button.active {
+  color: #e60000;
+  font-weight: 700;
+  background: #ffffff;
+  box-shadow: inset 0 -2px 0 #e60000;
+}
+
+.editor-toolbar {
+  display: flex;
+  align-items: stretch;
+  padding: 6px 24px;
+  background: #ffffff;
+  overflow-x: auto;
+}
+
+.editor-toolbar-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  gap: 4px;
+  padding: 2px 12px;
+  border-right: 1px solid #d7d7d7;
+}
+
+.editor-toolbar-group:last-child {
+  border-right: none;
+}
+
+.editor-toolbar-group-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+}
+
+/* Packs icon buttons into a two-row grid, filling column by column, the way
+   Word's ribbon groups pack their buttons instead of a single flat row. */
+.editor-toolbar-icon-grid {
+  display: grid;
+  grid-template-rows: auto;
+  grid-auto-flow: column;
+  grid-auto-columns: min-content;
+  gap: 2px;
+}
+
+.editor-toolbar-group-label {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #919191;
+  white-space: nowrap;
+}
+
+.editor-toolbar button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  font-size: 13px;
+  width: 26px;
+  height: 26px;
+  padding: 0;
+  border-radius: 4px;
+  border: 1px solid transparent;
+  background: transparent;
+  color: #000000;
+  cursor: pointer;
+  font-family: inherit;
+  white-space: nowrap;
+}
+
+/* Buttons that carry a text label (e.g. the Table row/col controls) need
+   their own width instead of the fixed icon-button square. */
+.editor-toolbar button:has(.editor-toolbar-button-label) {
+  width: auto;
+  padding: 0 8px;
+}
+
+.editor-toolbar button:hover {
+  background: #e6e6e6;
+}
+
+.editor-toolbar button.active {
+  background: #e60000;
+  color: #ffffff;
+}
+
+.editor-toolbar button svg {
+  width: 15px;
+  height: 15px;
+}
+
+.editor-toolbar-button-label {
+  font-size: 11px;
+}
+
+.editor-toolbar-select {
+  font-size: 12px;
+  height: 24px;
+  padding: 0 6px;
+  border-radius: 4px;
+  border: 1px solid #d7d7d7;
+  background: #ffffff;
+  color: #000000;
+  font-family: inherit;
+  max-width: 150px;
+}
+
+.editor-toolbar-color-button {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  width: 26px;
+  height: 26px;
+  border-radius: 4px;
+  cursor: pointer;
+  position: relative;
+}
+
+.editor-toolbar-color-button:hover {
+  background: #e6e6e6;
+}
+
+.editor-toolbar-color-button svg {
+  width: 13px;
+  height: 13px;
+}
+
+.editor-toolbar-color-swatch {
+  width: 16px;
+  height: 3px;
+  border-radius: 1px;
+}
+
+.editor-toolbar-color-button input[type='color'] {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
