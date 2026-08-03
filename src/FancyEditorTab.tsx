@@ -1,28 +1,13 @@
 import { useMemo } from 'react';
 import { useEditor, EditorContent } from '@tiptap/react';
-import StarterKit from '@tiptap/starter-kit';
-import { TableKit } from '@tiptap/extension-table';
-import { TextAlign } from '@tiptap/extension-text-align';
-import { TextStyle, FontSize } from '@tiptap/extension-text-style';
-import { Color } from '@tiptap/extension-color';
-import { FontFamily } from '@tiptap/extension-font-family';
-import { Youtube } from '@tiptap/extension-youtube';
+import { EDITOR_EXTENSIONS } from './core/editorExtensions';
 import { PublisherPanel } from './core/PublisherPanel';
 import { createTiptapAdapter } from './adapters/tiptapAdapter';
 import { EditorToolbar } from './EditorToolbar';
 
 export function FancyEditorTab() {
   const editor = useEditor({
-    extensions: [
-      StarterKit.configure({ link: { openOnClick: false } }),
-      TableKit.configure({ table: { resizable: true } }),
-      TextAlign.configure({ types: ['heading', 'paragraph'] }),
-      TextStyle,
-      FontSize,
-      Color,
-      FontFamily,
-      Youtube.configure({ width: 480, height: 270 }),
-    ],
+    extensions: EDITOR_EXTENSIONS,
     content: '<p>Start writing your article here…</p>',
   });
 

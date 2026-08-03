@@ -1,3 +1,5 @@
+import type { JSONContent } from '@tiptap/react';
+
 export interface DocumentAdapter {
   getContentHtml(): Promise<string>;
   getSelectionText(): Promise<string>;
@@ -10,5 +12,6 @@ export interface DocumentAdapter {
 
 export interface StoredArticle {
   html: string;
+  json: JSONContent;
   savedAt: string;
 }

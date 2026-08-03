@@ -51,8 +51,7 @@
 }
 
 /* News format — editorial list: no card box, divider between entries. */
-.feed-post-news {
-  padding: 20px 0;
+.feed-post-news {  
   border-bottom: 1px solid #d7d7d7;
 }
 
@@ -64,9 +63,7 @@
 /* Word format — bordered card, closer to a raw document preview. */
 .feed-post-word {
   background: #ffffff;
-  border: 1px solid #d7d7d7;
   border-radius: 6px;
-  padding: 20px 24px;
 }
 
 .feed-post-category {
@@ -210,4 +207,13 @@
   display: block;
   width: 100%;
   border: none;
+}
+
+.articles {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 20px;
+  border-radius: 6px;
+  background-color: white;
 }

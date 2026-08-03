@@ -1,9 +1,10 @@
+import type { JSONContent } from '@tiptap/react';
 import type { StoredArticle } from './types';
 
 const STORAGE_KEY = 'fancy-editor:article';
 
-export function saveArticle(html: string): StoredArticle {
-  const record: StoredArticle = { html, savedAt: new Date().toISOString() };
+export function saveArticle(html: string, json: JSONContent): StoredArticle {
+  const record: StoredArticle = { html, json, savedAt: new Date().toISOString() };
   localStorage.setItem(STORAGE_KEY, JSON.stringify(record));
   return record;
 }

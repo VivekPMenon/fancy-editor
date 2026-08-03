@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import type { SyntheticEvent } from 'react';
 import { MOCK_POSTS, type FeedPost } from './mockPosts';
+import { tiptapJsonToHtml, tiptapJsonToPlainText } from '../core/htmlJsonConversion';
 import './PostFeedTab.css';
 
 type FeedFormat = 'news' | 'word';
@@ -8,31 +9,9 @@ type FeedFormat = 'news' | 'word';
 const EXCERPT_LENGTH = 220;
 const WORD_FRAME_MIN_HEIGHT = 200;
 
-function stripHtml(html: string): string {
-  return html
-    .replace(/<[^>]+>/g, ' ')
-    .replace(/\s+/g, ' ')
-    .trim();
-}
-
 function estimateReadMinutes(plainText: string): number {
   const words = plainText.split(' ').filter(Boolean).length;
   return Math.max(1, Math.round(words / 200));
-}
-
-// "News format" strips Word's inline style/class attributes *and* any
-// <style>/<head>/<meta> elements, so our own CSS fully controls the look.
-// Dropping attributes alone isn't enough: a captured Word document carries a
-// full <style> block (h1, ol, .MsoNormal, …) and browsers apply <style> tags
-// globally regardless of where they end up in the DOM — leaving it in would
-// leak those bare-tag rules onto the whole app, not just this article.
-function sanitizeForNewsFormat(html: string): string {
-  const container = document.createElement('div');
-  container.innerHTML = html;
-  container.querySelectorAll('style, head, meta, title, link').forEach((el) => el.remove());
-  container.querySelectorAll('[style]').forEach((el) => el.removeAttribute('style'));
-  container.querySelectorAll('[class]').forEach((el) => el.removeAttribute('class'));
-  return container.innerHTML;
 }
 
 // "Word format" wants to preserve full fidelity, including that <style>
@@ -61,36 +40,38 @@ function WordFormatFrame({ html }: { html: string }) {
 
 function FeedPostCard({ post, format }: { post: FeedPost; format: FeedFormat }) {
   const [expanded, setExpanded] = useState(false);
-  const plainText = stripHtml(post.html);
+  const plainText = tiptapJsonToPlainText(post.json).replace(/\s+/g, ' ').trim();
   const excerpt = plainText.length > EXCERPT_LENGTH ? `${plainText.slice(0, EXCERPT_LENGTH)}…` : plainText;
 
   return (
-    <article className={`feed-post feed-post-${format}`}>
-      <span className="feed-post-category">{post.category}</span>
-      <button type="button" className="feed-post-title" onClick={() => setExpanded((e) => !e)}>
-        {post.title}
-      </button>
-      <p className="feed-post-meta">
-        {post.author} · {new Date(post.publishedAt).toLocaleDateString()} · {estimateReadMinutes(plainText)} min read
-      </p>
+    <div className='articles'>
+      <article className={`feed-post feed-post-${format}`}>
+        <span className="feed-post-category">{post.category}</span>
+        <button type="button" className="feed-post-title" onClick={() => setExpanded((e) => !e)}>
+          {post.title}
+        </button>
+        <p className="feed-post-meta">
+          {post.author} · {new Date(post.publishedAt).toLocaleDateString()} · {estimateReadMinutes(plainText)} min read
+        </p>
 
-      {expanded ? (
-        format === 'word' ? (
-          <WordFormatFrame html={post.html} />
+        {expanded ? (
+          format === 'word' ? (
+            <WordFormatFrame html={post.html} />
+          ) : (
+            <div
+              className="feed-post-body feed-post-body-news"
+              dangerouslySetInnerHTML={{ __html: tiptapJsonToHtml(post.json) }}
+            />
+          )
         ) : (
-          <div
-            className="feed-post-body feed-post-body-news"
-            dangerouslySetInnerHTML={{ __html: sanitizeForNewsFormat(post.html) }}
-          />
-        )
-      ) : (
-        <p className="feed-post-excerpt">{excerpt}</p>
-      )}
+          <p className="feed-post-excerpt">{excerpt}</p>
+        )}
 
-      <button type="button" className="feed-post-toggle" onClick={() => setExpanded((e) => !e)}>
-        {expanded ? 'Show less' : 'Show more'}
-      </button>
-    </article>
+        <button type="button" className="feed-post-toggle" onClick={() => setExpanded((e) => !e)}>
+          {expanded ? 'Show less' : 'Show more'}
+        </button>
+      </article>
+    </div>
   );
 }
 

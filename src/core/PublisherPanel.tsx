@@ -5,6 +5,7 @@ import { ARTICLES } from './articles';
 import { generateMockSummary } from './summary';
 import { fancifyText } from './transforms';
 import { loadArticle, saveArticle } from './storage';
+import { htmlToTiptapJson } from './htmlJsonConversion';
 import './PublisherPanel.css';
 
 interface PublisherPanelProps {
@@ -55,16 +56,36 @@ export function PublisherPanel({ adapter, hostLabel }: PublisherPanelProps) {
     }
   }
 
-  async function handleSave() {
+  async function saveCurrentArticle() {
+    const html = await adapter.getContentHtml();
+    const json = htmlToTiptapJson(html);
+    const record = saveArticle(html, json);
+    setSavedAt(record.savedAt);
+    return { html, json };
+  }
+
+  async function handleSaveHtml() {
     try {
-      const html = await adapter.getContentHtml();
-      const record = saveArticle(html);
-      setSavedAt(record.savedAt);
+      const { html } = await saveCurrentArticle();
       try {
         await navigator.clipboard.writeText(html);
-        setStatus(`Saved ${html.length} chars of HTML and copied to clipboard.`);
+        setStatus(`Saved and copied ${html.length} chars of HTML to clipboard.`);
       } catch {
-        setStatus(`Saved ${html.length} chars of HTML (clipboard copy failed — copy it manually instead).`);
+        setStatus(`Saved ${html.length} chars of HTML — clipboard copy failed, copy manually instead.`);
+      }
+    } catch (err) {
+      setStatus(`Save failed: ${(err as Error).message}`);
+    }
+  }
+
+  async function handleSaveJson() {
+    try {
+      const { html, json } = await saveCurrentArticle();
+      try {
+        await navigator.clipboard.writeText(JSON.stringify(json, null, 2));
+        setStatus(`Saved (from ${html.length} chars of HTML) and copied JSON to clipboard.`);
+      } catch {
+        setStatus('Saved, but JSON clipboard copy failed — copy manually instead.');
       }
     } catch (err) {
       setStatus(`Save failed: ${(err as Error).message}`);
@@ -146,8 +167,11 @@ export function PublisherPanel({ adapter, hostLabel }: PublisherPanelProps) {
         <button type="button" onClick={handleFancify}>
           Fancify selection
         </button>
-        <button type="button" onClick={handleSave}>
+        <button type="button" onClick={handleSaveHtml}>
           Save article as HTML
+        </button>
+        <button type="button" onClick={handleSaveJson}>
+          Save article as JSON
         </button>
         {savedAt && <p className="publisher-panel-meta">Last saved: {new Date(savedAt).toLocaleString()}</p>}
         {status && <p className="publisher-panel-status">{status}</p>}
