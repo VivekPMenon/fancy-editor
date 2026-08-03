@@ -37,6 +37,8 @@ const FONT_FAMILIES = [
   { label: 'Verdana', value: 'Verdana' },
 ];
 
+const FONT_SIZES = ['8', '9', '10', '10.5', '11', '12', '14', '16', '18', '20', '22', '24', '26', '28', '36', '48', '72'];
+
 // Cosmetic only — this POC implements the Home tab; the rest are inert, same
 // as a real ribbon has tabs you're not currently on.
 const RIBBON_TABS = ['File', 'Home', 'Insert', 'Draw', 'Design', 'Layout', 'References', 'Review', 'View'];
@@ -86,23 +88,19 @@ export function EditorToolbar({ editor }: EditorToolbarProps) {
 
   const headingValue = ([1, 2, 3] as const).find((level) => editor.isActive('heading', { level }));
 
-  function handleHeadingChange(value: string) {
-    if (value === 'paragraph') {
-      editor.chain().focus().setParagraph().run();
-    } else {
-      editor
-        .chain()
-        .focus()
-        .setHeading({ level: Number(value) as 1 | 2 | 3 })
-        .run();
-    }
-  }
-
   function handleFontFamilyChange(value: string) {
     if (!value) {
       editor.chain().focus().unsetFontFamily().run();
     } else {
       editor.chain().focus().setFontFamily(value).run();
+    }
+  }
+
+  function handleFontSizeChange(value: string) {
+    if (!value) {
+      editor.chain().focus().unsetFontSize().run();
+    } else {
+      editor.chain().focus().setFontSize(`${value}px`).run();
     }
   }
 
@@ -153,18 +151,33 @@ export function EditorToolbar({ editor }: EditorToolbarProps) {
         </ToolbarGroup>
 
         <ToolbarGroup label="Font">
-          <select
-            className="editor-toolbar-select"
-            title="Font family"
-            value={editor.getAttributes('textStyle').fontFamily ?? ''}
-            onChange={(event) => handleFontFamilyChange(event.target.value)}
-          >
-            {FONT_FAMILIES.map((font) => (
-              <option key={font.label} value={font.value}>
-                {font.label}
-              </option>
-            ))}
-          </select>
+          <div className="editor-toolbar-font-row">
+            <select
+              className="editor-toolbar-select editor-toolbar-select-family"
+              title="Font family"
+              value={editor.getAttributes('textStyle').fontFamily ?? ''}
+              onChange={(event) => handleFontFamilyChange(event.target.value)}
+            >
+              {FONT_FAMILIES.map((font) => (
+                <option key={font.label} value={font.value}>
+                  {font.label}
+                </option>
+              ))}
+            </select>
+            <select
+              className="editor-toolbar-select editor-toolbar-select-size"
+              title="Font size"
+              value={editor.getAttributes('textStyle').fontSize?.replace('px', '') ?? '18'}
+              onChange={(event) => handleFontSizeChange(event.target.value)}
+            >
+              <option value="">--</option>
+              {FONT_SIZES.map((size) => (
+                <option key={size} value={size}>
+                  {size}
+                </option>
+              ))}
+            </select>
+          </div>
           {/* <div className="editor-toolbar-icon-grid">
             <ToolbarButton
               icon={cilBold}
@@ -250,17 +263,40 @@ export function EditorToolbar({ editor }: EditorToolbarProps) {
         </ToolbarGroup>
 
         <ToolbarGroup label="Styles">
-          <select
-            className="editor-toolbar-select"
-            title="Paragraph style"
-            value={headingValue ? String(headingValue) : 'paragraph'}
-            onChange={(event) => handleHeadingChange(event.target.value)}
-          >
-            <option value="paragraph">Normal</option>
-            <option value="1">Heading 1</option>
-            <option value="2">Heading 2</option>
-            <option value="3">Heading 3</option>
-          </select>
+          <div className="editor-toolbar-styles-gallery">
+            <button
+              type="button"
+              className={`editor-toolbar-style-preview ${!headingValue ? 'active' : ''}`}
+              title="Normal"
+              onClick={() => editor.chain().focus().setParagraph().run()}
+            >
+              Normal
+            </button>
+            <button
+              type="button"
+              className={`editor-toolbar-style-preview editor-toolbar-style-h1 ${headingValue === 1 ? 'active' : ''}`}
+              title="Heading 1"
+              onClick={() => editor.chain().focus().setHeading({ level: 1 }).run()}
+            >
+              Heading 1
+            </button>
+            <button
+              type="button"
+              className={`editor-toolbar-style-preview editor-toolbar-style-h2 ${headingValue === 2 ? 'active' : ''}`}
+              title="Heading 2"
+              onClick={() => editor.chain().focus().setHeading({ level: 2 }).run()}
+            >
+              Heading 2
+            </button>
+            <button
+              type="button"
+              className={`editor-toolbar-style-preview editor-toolbar-style-h3 ${headingValue === 3 ? 'active' : ''}`}
+              title="Heading 3"
+              onClick={() => editor.chain().focus().setHeading({ level: 3 }).run()}
+            >
+              Heading 3
+            </button>
+          </div>
         </ToolbarGroup>
 
         <ToolbarGroup label="Insert">

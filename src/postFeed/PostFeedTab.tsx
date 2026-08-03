@@ -1,10 +1,12 @@
 import { useState } from 'react';
+import type { SyntheticEvent } from 'react';
 import { MOCK_POSTS, type FeedPost } from './mockPosts';
 import './PostFeedTab.css';
 
 type FeedFormat = 'news' | 'word';
 
 const EXCERPT_LENGTH = 220;
+const WORD_FRAME_MIN_HEIGHT = 200;
 
 function stripHtml(html: string): string {
   return html
@@ -18,14 +20,43 @@ function estimateReadMinutes(plainText: string): number {
   return Math.max(1, Math.round(words / 200));
 }
 
-// "News format" strips Word's inline style/class attributes so our own CSS
-// fully controls the look, instead of whatever Word happened to embed.
+// "News format" strips Word's inline style/class attributes *and* any
+// <style>/<head>/<meta> elements, so our own CSS fully controls the look.
+// Dropping attributes alone isn't enough: a captured Word document carries a
+// full <style> block (h1, ol, .MsoNormal, …) and browsers apply <style> tags
+// globally regardless of where they end up in the DOM — leaving it in would
+// leak those bare-tag rules onto the whole app, not just this article.
 function sanitizeForNewsFormat(html: string): string {
   const container = document.createElement('div');
   container.innerHTML = html;
+  container.querySelectorAll('style, head, meta, title, link').forEach((el) => el.remove());
   container.querySelectorAll('[style]').forEach((el) => el.removeAttribute('style'));
   container.querySelectorAll('[class]').forEach((el) => el.removeAttribute('class'));
   return container.innerHTML;
+}
+
+// "Word format" wants to preserve full fidelity, including that <style>
+// block — so instead of injecting it into the page, render the captured
+// document inside an isolated iframe where its stylesheet can't leak out.
+function WordFormatFrame({ html }: { html: string }) {
+  const [height, setHeight] = useState(WORD_FRAME_MIN_HEIGHT);
+
+  function handleLoad(event: SyntheticEvent<HTMLIFrameElement>) {
+    const doc = event.currentTarget.contentDocument;
+    if (doc?.body) {
+      setHeight(Math.max(WORD_FRAME_MIN_HEIGHT, doc.body.scrollHeight + 24));
+    }
+  }
+
+  return (
+    <iframe
+      className="feed-post-frame"
+      title="Captured Word HTML"
+      srcDoc={html}
+      style={{ height }}
+      onLoad={handleLoad}
+    />
+  );
 }
 
 function FeedPostCard({ post, format }: { post: FeedPost; format: FeedFormat }) {
@@ -44,10 +75,14 @@ function FeedPostCard({ post, format }: { post: FeedPost; format: FeedFormat }) 
       </p>
 
       {expanded ? (
-        <div
-          className={`feed-post-body feed-post-body-${format}`}
-          dangerouslySetInnerHTML={{ __html: format === 'news' ? sanitizeForNewsFormat(post.html) : post.html }}
-        />
+        format === 'word' ? (
+          <WordFormatFrame html={post.html} />
+        ) : (
+          <div
+            className="feed-post-body feed-post-body-news"
+            dangerouslySetInnerHTML={{ __html: sanitizeForNewsFormat(post.html) }}
+          />
+        )
       ) : (
         <p className="feed-post-excerpt">{excerpt}</p>
       )}

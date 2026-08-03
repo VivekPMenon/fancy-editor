@@ -203,5 +203,11 @@
   margin: 18px 0 10px;
 }
 
-/* Word format — nothing extra beyond the shared baseline, so Word's own
-   inline styles/classes (colors, fonts, spacing) show through as captured. */
+/* Word format — rendered in an isolated iframe (see WordFormatFrame), so the
+   captured document's own <style> block applies without leaking onto the
+   rest of the app. */
+.feed-post-frame {
+  display: block;
+  width: 100%;
+  border: none;
+}
