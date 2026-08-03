@@ -8,16 +8,45 @@
 
 .app-header {
   flex-shrink: 0;
-  padding: 16px 24px;
-  /* border-bottom: 3px solid var(--accent); */
+  padding: 0 24px;
   text-align: left;
 }
 
-.app-header-title {
-  font-size: 20px;
-  font-weight: 700;
-  letter-spacing: 0.02em;
-  color: var(--text-h);
+.app-tabs {
+  display: flex;
+  gap: 24px;
+}
+
+.app-tabs button {
+  font-size: 15px;
+  font-weight: 600;
+  padding: 14px 2px;
+  border: none;
+  border-bottom: 3px solid transparent;
+  background: transparent;
+  color: #444444;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.app-tabs button:hover {
+  color: #000000;
+}
+
+.app-tabs button.active {
+  color: #e60000;
+  border-bottom-color: #e60000;
+}
+
+.app-tab-panel {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+}
+
+.app-tab-panel-hidden {
+  display: none;
 }
 
 .app-layout {

@@ -4,11 +4,11 @@ import { CIcon } from '@coreui/icons-react';
 import {
   cilActionUndo,
   cilActionRedo,
-  cilBold,
-  cilItalic,
-  cilUnderline,
-  cilStrikethrough,
-  cilFont,
+  // cilBold,
+  // cilItalic,
+  // cilUnderline,
+  // cilStrikethrough,
+  // cilFont,
   cilAlignLeft,
   cilAlignCenter,
   cilAlignRight,
@@ -126,7 +126,7 @@ export function EditorToolbar({ editor }: EditorToolbarProps) {
     editor.chain().focus().setYoutubeVideo({ src: url }).run();
   }
 
-  const currentColor = editor.getAttributes('textStyle').color || '#000000';
+  // const currentColor = editor.getAttributes('textStyle').color || '#000000';
 
   return (
     <div className="editor-toolbar-shell">
@@ -165,7 +165,7 @@ export function EditorToolbar({ editor }: EditorToolbarProps) {
               </option>
             ))}
           </select>
-          <div className="editor-toolbar-icon-grid">
+          {/* <div className="editor-toolbar-icon-grid">
             <ToolbarButton
               icon={cilBold}
               title="Bold"
@@ -199,7 +199,7 @@ export function EditorToolbar({ editor }: EditorToolbarProps) {
                 onChange={(event) => editor.chain().focus().setColor(event.target.value).run()}
               />
             </label>
-          </div>
+          </div> */}
         </ToolbarGroup>
 
         <ToolbarGroup label="Paragraph">

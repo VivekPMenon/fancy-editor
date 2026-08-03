@@ -1,51 +1,36 @@
-import { useMemo } from 'react';
-import { useEditor, EditorContent } from '@tiptap/react';
-import StarterKit from '@tiptap/starter-kit';
-import { TableKit } from '@tiptap/extension-table';
-import { TextAlign } from '@tiptap/extension-text-align';
-import { TextStyle } from '@tiptap/extension-text-style';
-import { Color } from '@tiptap/extension-color';
-import { FontFamily } from '@tiptap/extension-font-family';
-import { Youtube } from '@tiptap/extension-youtube';
-import { PublisherPanel } from './core/PublisherPanel';
-import { createTiptapAdapter } from './adapters/tiptapAdapter';
-import { EditorToolbar } from './EditorToolbar';
+import { useState } from 'react';
+import { FancyEditorTab } from './FancyEditorTab';
+import { PostFeedTab } from './postFeed/PostFeedTab';
 import './App.css';
 
+type Tab = 'editor' | 'feed';
+
 function App() {
-  const editor = useEditor({
-    extensions: [
-      StarterKit.configure({ link: { openOnClick: false } }),
-      TableKit.configure({ table: { resizable: true } }),
-      TextAlign.configure({ types: ['heading', 'paragraph'] }),
-      TextStyle,
-      Color,
-      FontFamily,
-      Youtube.configure({ width: 480, height: 270 }),
-    ],
-    content: '<p>Start writing your article here…</p>',
-  });
-
-  // Memoized so the adapter's identity stays stable across re-renders;
-  // PublisherPanel resubscribes to onContentChange whenever it changes.
-  const adapter = useMemo(() => (editor ? createTiptapAdapter(editor) : null), [editor]);
-
-  if (!editor || !adapter) {
-    return null;
-  }
+  const [activeTab, setActiveTab] = useState<Tab>('editor');
 
   return (
     <div className="app-shell">
       <header className="app-header">
-        <span className="app-header-title">Fancy Editor</span>
+        <nav className="app-tabs">
+          <button
+            type="button"
+            className={activeTab === 'editor' ? 'active' : ''}
+            onClick={() => setActiveTab('editor')}
+          >
+            Fancy Editor
+          </button>
+          <button type="button" className={activeTab === 'feed' ? 'active' : ''} onClick={() => setActiveTab('feed')}>
+            Post Feed
+          </button>
+        </nav>
       </header>
-      <div className="app-layout">
-        <div className="tiptap-editor-column">
-          <EditorToolbar editor={editor} />
-          <EditorContent className="tiptap-editor" editor={editor} />
-        </div>
-        <PublisherPanel adapter={adapter} hostLabel="Web" />
+
+      {/* The editor tab stays mounted (just hidden) when inactive, so the
+          Tiptap document and PublisherPanel state survive switching tabs. */}
+      <div className={activeTab === 'editor' ? 'app-tab-panel' : 'app-tab-panel app-tab-panel-hidden'}>
+        <FancyEditorTab />
       </div>
+      {activeTab === 'feed' && <PostFeedTab />}
     </div>
   );
 }

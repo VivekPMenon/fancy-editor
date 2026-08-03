@@ -60,7 +60,12 @@ export function PublisherPanel({ adapter, hostLabel }: PublisherPanelProps) {
       const html = await adapter.getContentHtml();
       const record = saveArticle(html);
       setSavedAt(record.savedAt);
-      setStatus(`Saved ${html.length} chars of HTML.`);
+      try {
+        await navigator.clipboard.writeText(html);
+        setStatus(`Saved ${html.length} chars of HTML and copied to clipboard.`);
+      } catch {
+        setStatus(`Saved ${html.length} chars of HTML (clipboard copy failed — copy it manually instead).`);
+      }
     } catch (err) {
       setStatus(`Save failed: ${(err as Error).message}`);
     }
