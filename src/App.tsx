@@ -37,7 +37,7 @@ function App() {
   return (
     <div className="app-shell">
       <header className="app-header">
-        <span className="app-header-title">Publisher Plus</span>
+        <span className="app-header-title">Fancy Editor</span>
       </header>
       <div className="app-layout">
         <div className="tiptap-editor-column">

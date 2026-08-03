@@ -82,7 +82,7 @@ export function PublisherPanel({ adapter, hostLabel }: PublisherPanelProps) {
 
   return (
     <div className="publisher-panel">
-      <h2>Publisher Plus ({hostLabel})</h2>
+      <h2>Fancy Editor ({hostLabel})</h2>
 
       <section className="publisher-panel-section">
         <h3 className="publisher-panel-section-title">Article summary</h3>

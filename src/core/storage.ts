@@ -1,6 +1,6 @@
 import type { StoredArticle } from './types';
 
-const STORAGE_KEY = 'publisher-plus:article';
+const STORAGE_KEY = 'fancy-editor:article';
 
 export function saveArticle(html: string): StoredArticle {
   const record: StoredArticle = { html, savedAt: new Date().toISOString() };

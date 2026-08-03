@@ -8,10 +8,10 @@
 
   <Id>22bfd06b-d861-4913-a437-dcccd5481828</Id>
   <Version>1.0.0.0</Version>
-  <ProviderName>Publisher Plus POC</ProviderName>
+  <ProviderName>Fancy Editor POC</ProviderName>
   <DefaultLocale>en-US</DefaultLocale>
-  <DisplayName DefaultValue="Publisher Plus" />
-  <Description DefaultValue="Publisher Plus authoring panel POC" />
+  <DisplayName DefaultValue="Fancy Editor" />
+  <Description DefaultValue="Fancy Editor authoring panel POC" />
   <IconUrl DefaultValue="https://localhost:3000/src/word-addin/icon-64.png" />
   <HighResolutionIconUrl DefaultValue="https://localhost:3000/src/word-addin/icon-80.png" />
   <SupportUrl DefaultValue="https://localhost:3000" />
@@ -89,13 +89,13 @@
         <bt:Url id="Taskpane.Url" DefaultValue="https://localhost:3000/src/word-addin/taskpane.html" />
       </bt:Urls>
       <bt:ShortStrings>
-        <bt:String id="GetStarted.Title" DefaultValue="Publisher Plus is loaded" />
-        <bt:String id="PublisherPlus.GroupLabel" DefaultValue="Publisher Plus" />
+        <bt:String id="GetStarted.Title" DefaultValue="Fancy Editor is loaded" />
+        <bt:String id="PublisherPlus.GroupLabel" DefaultValue="Fancy Editor" />
         <bt:String id="PublisherPlus.ButtonLabel" DefaultValue="Open Panel" />
       </bt:ShortStrings>
       <bt:LongStrings>
-        <bt:String id="GetStarted.Description" DefaultValue="Open the Publisher Plus panel to save your article and try the fancify action." />
-        <bt:String id="PublisherPlus.ButtonDescription" DefaultValue="Opens the Publisher Plus authoring panel." />
+        <bt:String id="GetStarted.Description" DefaultValue="Open the Fancy Editor panel to save your article and try the fancify action." />
+        <bt:String id="PublisherPlus.ButtonDescription" DefaultValue="Opens the Fancy Editor authoring panel." />
       </bt:LongStrings>
     </Resources>
   </VersionOverrides>
