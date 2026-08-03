@@ -1,5 +1,5 @@
 import type { JSONContent } from '@tiptap/react';
-import type { StoredArticle } from './types';
+import type { StoredArticle } from '../../core/types';
 
 const STORAGE_KEY = 'fancy-editor:article';
 

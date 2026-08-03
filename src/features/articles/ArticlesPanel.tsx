@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import type { JSONContent } from '@tiptap/react';
-import { MOCK_POSTS } from './core/mockPosts';
+import { MOCK_POSTS } from '../../core/mockPosts';
 import './ArticlesPanel.css';
 
 interface ArticlesPanelProps {

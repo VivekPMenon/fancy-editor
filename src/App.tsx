@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { FancyEditorTab } from './FancyEditorTab';
-import { PostFeedTab } from './postFeed/PostFeedTab';
+import { FancyEditorTab } from './features/fancy-editor/FancyEditorTab';
+import { PostFeedTab } from './features/post-feed/PostFeedTab';
 import './App.css';
 
 type Tab = 'editor' | 'feed';

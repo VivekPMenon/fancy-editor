@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
-import type { DocumentAdapter } from './types';
+import type { DocumentAdapter } from '../../core/types';
 import type { Article } from './articles';
 import { ARTICLES } from './articles';
 import { generateMockSummary } from './summary';
 // import { fancifyText } from './transforms';
 import { loadArticle, saveArticle } from './storage';
-import { htmlToTiptapJson } from './htmlJsonConversion';
+import { htmlToTiptapJson } from '../../core/htmlJsonConversion';
 import './PublisherPanel.css';
 
 interface PublisherPanelProps {
@@ -176,7 +176,7 @@ export function PublisherPanel({ adapter, hostLabel }: PublisherPanelProps) {
         {savedAt && <p className="publisher-panel-meta">Last saved: {new Date(savedAt).toLocaleString()}</p>}
         {status && <p className="publisher-panel-status">{status}</p>}
       </section>
-{/* 
+{/*
       <div className="publisher-panel-preview">
         <p className="publisher-panel-preview-label">Live uppercase preview</p>
         <p className="publisher-panel-preview-text">{liveText ? liveText.toUpperCase() : '…'}</p>

@@ -1,6 +1,6 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
-import { PublisherPanel } from '../core/PublisherPanel';
+import { PublisherPanel } from '../features/publisher-panel/PublisherPanel';
 import { officeAdapter } from '../adapters/officeAdapter';
 import './taskpane.css';
 

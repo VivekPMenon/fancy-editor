@@ -1,10 +1,10 @@
 import { useMemo } from 'react';
 import { useEditor, EditorContent } from '@tiptap/react';
-import { EDITOR_EXTENSIONS } from './core/editorExtensions';
-import { PublisherPanel } from './core/PublisherPanel';
-import { createTiptapAdapter } from './adapters/tiptapAdapter';
-import { EditorToolbar } from './EditorToolbar';
-import { ArticlesPanel } from './ArticlesPanel';
+import { EDITOR_EXTENSIONS } from '../../core/editorExtensions';
+import { PublisherPanel } from '../publisher-panel/PublisherPanel';
+import { createTiptapAdapter } from '../../adapters/tiptapAdapter';
+import { EditorToolbar } from '../editor-toolbar/EditorToolbar';
+import { ArticlesPanel } from '../articles/ArticlesPanel';
 
 const BLANK_CONTENT = '<p>Start writing your article here…</p>';
 
