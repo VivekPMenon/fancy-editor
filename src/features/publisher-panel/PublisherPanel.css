@@ -20,12 +20,12 @@
   flex-direction: column;
   gap: 8px;
   padding-bottom: 16px;
-  border-bottom: 1px solid #d7d7d7;
 }
 
 .publisher-panel-section:last-of-type {
   border-bottom: none;
   padding-bottom: 0;
+  border-top: 1px solid #d7d7d7;
 }
 
 .publisher-panel-section-title {
@@ -35,6 +35,152 @@
   letter-spacing: 0.06em;
   color: #444444;
   margin: 0;
+}
+
+/* AI Tagging / Identified Entities */
+
+.publisher-panel-section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.publisher-panel-live-indicator {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #1e9e5a;
+  animation: publisher-panel-pulse 2s infinite;
+}
+
+@keyframes publisher-panel-pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(30, 158, 90, 0.45);
+  }
+  70% {
+    box-shadow: 0 0 0 6px rgba(30, 158, 90, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(30, 158, 90, 0);
+  }
+}
+
+.publisher-panel-empty-hint {
+  font-size: 12px;
+  color: #919191;
+  font-style: italic;
+  margin: 0;
+}
+
+.publisher-panel-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.publisher-panel-tag {
+  font-size: 12px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba(230, 0, 0, 0.08);
+  color: #b30000;
+  border: 1px solid rgba(230, 0, 0, 0.18);
+}
+
+.publisher-panel-entities {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.publisher-panel-entity-card {
+  border: 1px solid #d7d7d7;
+  border-radius: 8px;
+  padding: 10px 12px;
+  background: #ffffff;
+}
+
+.publisher-panel-entity-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.publisher-panel-entity-symbol {
+  font-size: 13px;
+  font-weight: 700;
+  color: #000000;
+  letter-spacing: 0.02em;
+}
+
+.publisher-panel-entity-suffix {
+  font-size: 11px;
+  font-weight: 500;
+  color: #919191;
+}
+
+.publisher-panel-entity-rating {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 999px;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  white-space: nowrap;
+}
+
+.publisher-panel-entity-rating--buy {
+  background: rgba(30, 158, 90, 0.12);
+  color: #1e7e34;
+}
+
+.publisher-panel-entity-rating--neutral {
+  background: rgba(255, 180, 0, 0.15);
+  color: #8a5a00;
+}
+
+.publisher-panel-entity-rating--sell {
+  background: rgba(230, 0, 0, 0.1);
+  color: #b30000;
+}
+
+.publisher-panel-entity-name {
+  font-size: 12px;
+  color: #444444;
+  margin: 4px 0 8px;
+}
+
+.publisher-panel-entity-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.publisher-panel-entity-target {
+  font-size: 12px;
+  color: #000000;
+  font-weight: 500;
+}
+
+.publisher-panel-entity-check {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: rgba(30, 158, 90, 0.15);
+  color: #1e7e34;
+  font-size: 10px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
 }
 
 .publisher-panel button {
