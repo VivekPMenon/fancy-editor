@@ -12,10 +12,9 @@ import './PublisherPanel.css';
 
 interface PublisherPanelProps {
   adapter: DocumentAdapter;
-  hostLabel: string;
 }
 
-export function PublisherPanel({ adapter, hostLabel }: PublisherPanelProps) {
+export function PublisherPanel({ adapter }: PublisherPanelProps) {
   const [savedAt, setSavedAt] = useState<string | null>(() => loadArticle()?.savedAt ?? null);
   const [status, setStatus] = useState('');
   const [warnings, setWarnings] = useState<string[]>([]);
@@ -128,9 +127,7 @@ export function PublisherPanel({ adapter, hostLabel }: PublisherPanelProps) {
   // }
 
   return (
-    <div className="publisher-panel">
-      <h2>Publisher Plugin ({hostLabel})</h2>
-
+    <>
       <section className="publisher-panel-section">
         <div className="publisher-panel-section-header">
           <h3 className="publisher-panel-section-title">AI Tagging</h3>
@@ -266,6 +263,6 @@ export function PublisherPanel({ adapter, hostLabel }: PublisherPanelProps) {
         <p className="publisher-panel-preview-label">Live uppercase preview</p>
         <p className="publisher-panel-preview-text">{liveText ? liveText.toUpperCase() : '…'}</p>
       </div> */}
-    </div>
+    </>
   );
 }

@@ -6,6 +6,8 @@ export interface DocumentAdapter {
   replaceSelection(text: string): Promise<void>;
   /** Inserts formatted HTML (headings, lists, bold, etc.) at the current cursor/selection. */
   insertHtml(html: string): Promise<void>;
+  /** Replaces the entire document content — used by "My Articles" to load a stored article. */
+  setContentHtml(html: string): Promise<void>;
   /** Subscribes to the document's plain-text content as it changes. Returns an unsubscribe function. */
   onContentChange(callback: (text: string) => void): () => void;
   /** Pre-save validation warnings (host-specific — e.g. Word floating images that getContentHtml can't capture). */

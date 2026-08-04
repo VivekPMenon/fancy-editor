@@ -20,6 +20,10 @@ export function createTiptapAdapter(editor: Editor): DocumentAdapter {
       editor.chain().focus().deleteSelection().insertContent(html).run();
     },
 
+    async setContentHtml(html) {
+      editor.chain().focus().setContent(html).run();
+    },
+
     onContentChange(callback) {
       const handler = () => callback(editor.getText());
       handler();

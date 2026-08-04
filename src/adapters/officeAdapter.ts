@@ -69,6 +69,16 @@ export const officeAdapter: DocumentAdapter = {
     });
   },
 
+  async setContentHtml(html) {
+    return Word.run(async (context) => {
+      // Body.insertHtml with `replace` swaps out the entire body content in
+      // one call — this is how "My Articles" loads a stored article (and
+      // proves the stored JSON round-trips through HTML back into Word).
+      context.document.body.insertHtml(html, Word.InsertLocation.replace);
+      await context.sync();
+    });
+  },
+
   async getContentWarnings() {
     return Word.run(async (context) => {
       const shapes = context.document.body.shapes;

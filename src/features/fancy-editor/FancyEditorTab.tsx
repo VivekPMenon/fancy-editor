@@ -1,17 +1,15 @@
 import { useMemo } from 'react';
 import { useEditor, EditorContent } from '@tiptap/react';
 import { EDITOR_EXTENSIONS } from '../../core/tiptap-utils/editorExtensions';
-import { PublisherPanel } from '../publisher-panel/PublisherPanel';
+import { PublisherPlugin } from '../publisher-panel/PublisherPlugin';
 import { createTiptapAdapter } from '../../adapters/tiptapAdapter';
 import { EditorToolbar } from '../editor-toolbar/EditorToolbar';
-import { ArticlesPanel } from '../articles/ArticlesPanel';
-
-const BLANK_CONTENT = '<p>Start writing your article here…</p>';
+import { BLANK_ARTICLE_HTML } from '../articles/ArticlesPanel';
 
 export function FancyEditorTab() {
   const editor = useEditor({
     extensions: EDITOR_EXTENSIONS,
-    content: BLANK_CONTENT,
+    content: BLANK_ARTICLE_HTML,
   });
 
   // Memoized so the adapter's identity stays stable across re-renders;
@@ -29,11 +27,7 @@ export function FancyEditorTab() {
         <EditorContent className="tiptap-editor" editor={editor} />
       </div>
       <div className="app-right-rail">
-        <PublisherPanel adapter={adapter} hostLabel="Web" />
-        <ArticlesPanel
-          onSelectArticle={(json) => editor.chain().focus().setContent(json).run()}
-          onCreateNew={() => editor.chain().focus().setContent(BLANK_CONTENT).run()}
-        />
+        <PublisherPlugin adapter={adapter} hostLabel="Web" />
       </div>
     </div>
   );

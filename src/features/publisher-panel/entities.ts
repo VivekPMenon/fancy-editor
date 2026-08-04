@@ -8,7 +8,7 @@ export interface EntityInfo {
 
 const ENTITY_DB: EntityInfo[] = [
   { symbol: 'AAPL', exchangeSuffix: 'US', name: 'Apple Inc', rating: 'Neutral', priceTarget: 'PT 296.00 USD' },
-  // { symbol: 'MSFT', exchangeSuffix: 'US', name: 'Microsoft Corp', rating: 'Buy', priceTarget: 'PT 520.00 USD' },
+  { symbol: 'MSFT', exchangeSuffix: 'US', name: 'Microsoft Corp', rating: 'Buy', priceTarget: 'PT 520.00 USD' },
   // { symbol: 'META', exchangeSuffix: 'US', name: 'Meta Platforms Inc', rating: 'Buy', priceTarget: 'PT 715.00 USD' },
 ];
 

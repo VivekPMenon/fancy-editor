@@ -1,0 +1,31 @@
+.publisher-plugin-tabs {
+  display: flex;
+  gap: 16px;
+  border-bottom: 1px solid #d7d7d7;
+  margin-top: -4px;
+}
+
+.publisher-plugin-tabs .publisher-plugin-tab {
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid transparent;
+  border-radius: 0;
+  padding: 0 2px 8px;
+  font-size: 12px;
+  font-weight: 600;  
+  letter-spacing: 0.05em;
+  color: #919191;
+  cursor: pointer;
+  transition: color 0.15s, border-color 0.15s;
+  width: 100%;
+}
+
+.publisher-plugin-tabs .publisher-plugin-tab:hover {
+  border-color: transparent;
+  color: #444444;
+}
+
+.publisher-plugin-tabs .publisher-plugin-tab.active {
+  color: #e60000;
+  border-bottom-color: #e60000;
+}
