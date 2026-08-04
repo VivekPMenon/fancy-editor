@@ -196,6 +196,174 @@ using its native highlight + comment features (which arguably reads more
 
 ---
 
+## 8. Video embeds: Word exports a linked thumbnail, not a video
+
+**Limitation:** "Insert Online Video" in Word doesn't export a real embed at
+all — no `<iframe>`, no video element. It exports a clickable static
+thumbnail: `<a href="https://www.youtube.com/embed/{id}?feature=oembed">`
+wrapping a base64 poster `<img>` (confirmed against a real captured
+`sample-3.html`/`sample-3.json` pair). Before this fix, that pattern parsed
+into a plain `image` node — the link, and the fact that it was ever a video,
+were both silently dropped; only a static 200-300KB thumbnail survived.
+
+**Workaround:** preprocess the captured HTML before parsing: detect the
+`youtube(-nocookie)?.com/embed/{id}` link pattern and rewrite it to
+`<div data-youtube-video><iframe src="https://www.youtube.com/embed/{id}">`
+— the exact shape Tiptap's already-installed `Youtube` extension's
+`parseHTML` matches (verified against its source). That produces a real
+`youtube` node instead of a flattened image, which plays as a genuine iframe
+both in the live editor and in Post Feed's News format (same JSON → HTML
+render path, confirmed `dangerouslySetInnerHTML` doesn't strip iframes).
+
+**Extra code:** new file
+[`wordVideoEmbed.ts`](../src/core/tiptap-utils/wordVideoEmbed.ts)
+(`resolveWordVideoEmbeds()`, ~30 lines), wired into
+[`htmlJsonConversion.ts`](../src/core/tiptap-utils/htmlJsonConversion.ts)
+ahead of the existing `juice()` step. No new dependency — reuses the
+`Youtube` extension that was already in `EDITOR_EXTENSIONS` but unused.
+
+**Known caveat:** there's no semantic "this is a video" marker anywhere in
+Word's export — detection is a pattern-match on the embed link's `/embed/
+{id}` shape, not a documented contract. Word generates that shape
+deterministically for YouTube (it resolves the thumbnail via YouTube's
+oEmbed API), so it's reliable in practice, but it is a heuristic, not an
+official API guarantee. Scoped to YouTube only for now — same "visual/
+functional fidelity over full generality" tradeoff as the list-indentation
+scope decision (§4).
+
+**Open question — enterprise/custom video providers (e.g. Brightcove):**
+real deployments may embed video via a same-origin/custom player URL
+instead of a YouTube link — inserted through Word's "From a Video Embed
+Code" flow rather than oEmbed autodetect. The swap-the-link-for-an-iframe
+*mechanism* should generalize (just point the regex/iframe `src` at the
+provider's own URL shape instead of youtube.com), but it's **unverified**:
+we don't yet know whether Word's export preserves a usable link/URL for
+that flow the same way, or whether it rasterizes to a flat, unlinked image
+with nothing recoverable. Needs a real captured sample to confirm before
+building — blocked on internal network access, to be tested later.
+
+---
+
+## 9. Icons render as broken images; Shapes can't be captured at all
+
+Two more "Insert" gallery items tested against a real captured
+`sample-4.html`, alongside the "Online Picture" case which already works
+today with no changes needed (it's just a normal inline image).
+
+**Icons — fixed.** Word's "Insert Icons" pictures came through as clean
+inlined base64 (they're genuine `InlinePicture` objects, so the existing
+capture pipeline already reached them) — but they rendered as broken images.
+Root cause: `getBase64ImageSrc()` returns raw base64 with no format
+indicator, so we always labeled it `image/png`. Decoding an icon's bytes
+showed it's actually SVG markup (`<svg overflow="hidden" viewBox=...>`), and
+a browser's `<img>` decoder trusts the data URI's *declared* MIME type over
+the actual bytes — labeling SVG content as PNG means it fails to decode.
+
+**Fix:** `isSvgBase64()` in
+[`officeAdapter.ts`](../src/adapters/officeAdapter.ts) decodes a short
+prefix of each image's base64 (just enough to see past any XML prologue,
+cheap regardless of the full image size) and checks for an `<svg`/`<?xml`
+opening tag, picking `image/svg+xml` instead of `image/png` when it matches.
+~15 lines, no new dependency (`atob` is a browser/WebView2 built-in).
+
+**Shapes — genuine caveat, not fixable, not a dealbreaker.** Word's HTML
+export has zero vector/shape semantics: it fabricates an HTML
+`<table cellpadding="0" cellspacing="0" align="left">` mockup, slicing the
+shape into raster image fragments positioned by table cells to visually
+approximate the original — no `<v:shape>`/VML, no shape-type hint of any
+kind survives. Worse, even that raster fallback is incomplete: one of the
+shape's own image fragments in the sample still has the broken, unfixable
+`~WRS{GUID}_files/...` path (§2's limitation) — confirming it's a genuine
+`Word.Shape`, not an `InlinePicture`, so there's no byte-extraction path
+even in principle, not just a parsing gap.
+
+**Workarounds considered:**
+- **Author-side (recommended, no code):** ask authors to right-click the
+  shape → *Save as Picture*, then re-insert it as a picture. That converts
+  it to a true `InlinePicture`, which the existing pipeline already handles
+  fully. Cheapest fix by far — it's a one-time authoring habit, not
+  engineering work.
+- **Detection/warning (not implemented):** we can't detect "this table is
+  secretly a shape" from the HTML — the fallback table has no signature
+  distinguishing it from a real content table someone typed. But we don't
+  need HTML for that: `context.document.body.shapes` (already loaded by the
+  floating-image warning in §2) returns every shape regardless of type.
+  Extending the existing `shape.type === Word.ShapeType.picture` filter to
+  also include `geometricShape`/`group`/`textBox`/`canvas` would let
+  `getContentWarnings()` flag shapes the same way it already flags floating
+  images — a few lines, reusing code that's already there. Worth doing if
+  shapes turn out to be common in real documents; skipped for now since it's
+  a caveat, not a blocker.
+- **Reconstruction (ruled out):** no path exists to recover real shape
+  geometry/fill/type from the HTML export — same category decision as
+  ruling out semantic list reconstruction (§4).
+
+---
+
+## 10. Direction change: paste-from-Word replaces the live add-in
+
+**Decision:** we're dropping the live Word task-pane add-in (`Word.run()`,
+the manifest, `WordApi`/`WordApiDesktop` requirement sets) as the authoring
+surface. Every unfixable limitation in this document (§2 floating images,
+§9b shapes) — and every workaround that needed live Office.js access
+(§7 flagged-term scanning) — exists specifically because the add-in edits an
+*open* Word document in real time. None of that risk applies to a one-time
+import: someone pastes Word content into Tiptap once, then edits entirely in
+Tiptap from then on. Tiptap becomes the only editor; Word becomes an input
+format, not a live-connected host.
+
+**Gap this exposed:** the HTML→JSON preprocessing built for the add-in
+(§3 juice for heading styles, §8 video embeds) was only ever wired into
+`htmlToTiptapJson()` — the explicit "Save article as HTML/JSON" and
+"load a saved article" paths. Pasting Word content directly into the live
+Tiptap editor bypassed all of it: Tiptap's default paste handling parses
+clipboard HTML straight into the schema with no preprocessing, so pasted
+headings would lose their color/font and pasted videos would flatten to a
+plain image, exactly like the add-in did before those fixes.
+
+**Fix:** a new extension,
+[`wordPasteExtension.ts`](../src/core/tiptap-utils/wordPasteExtension.ts),
+using Tiptap's `transformPastedHTML` hook (any extension can define one;
+Tiptap chains them before parsing pasted HTML into the document). It runs
+the same `resolveWordVideoEmbeds()` + `juice()` steps already used for
+saved articles, so paste and import are now on equal footing. ~10 lines, no
+new dependency. Everything schema-level (indentation, flagged-term
+highlighting, base64 images) already applied to pasted content automatically
+— those aren't tied to `htmlToTiptapJson()` specifically, they're just part
+of the editor's schema, active regardless of how content enters it.
+
+**Known gap — floating shapes can silently kill an entire paste — confirmed,
+unfixable.** Tested live: copying a selection that included a floating shape
+(an arrow) and a comment anchor caused the *whole* paste to lose all
+formatting — no headings, no bold/italic, no table structure, nothing —
+with zero console errors. Traced the cause in `prosemirror-view`'s own
+source (`parseFromClipboard`, `dist/index.js`): it only calls our
+`transformPastedHTML` hook when the clipboard actually has an `html` string;
+if `html` is empty, it takes the plain-text path entirely instead
+(`asText = !!text && (plainText || inCode || !html)`). So the browser
+received *no* `text/html` at all for that paste — Word failed to populate
+it, most likely because the selection contained a floating shape (the same
+object type with no byte-extraction API, §2/§9b). This isn't scoped to just
+losing the shape — it silently degrades the entire copied selection's
+formatting, which is a bigger blast radius than §2/§9b described for the
+add-in. No code-level fix is possible: if the clipboard never had HTML,
+there's nothing to transform. Practical mitigation for authors: paste in
+smaller sections, and avoid including floating shapes/comments in a
+copied selection when formatting matters.
+
+**Known gap — images on paste — likely unfixable:** separately from the
+above, Word's clipboard HTML (when it *is* present) commonly references
+images via a local `file://...` path rather than embedding them, and
+browsers block web pages from reading `file://` URLs for security. Same
+category as the shape gap above — a hard clipboard-security limitation, not
+something our code can work around. Worth testing directly: copy a
+paragraph with an inline image (no floating shapes nearby) and paste it —
+if the image is missing, that confirms this; if Word happens to inline it as
+base64 instead, it'll work through the same `allowBase64: true` path already
+in place for saved articles.
+
+---
+
 ## Running summary (for the deck)
 
 | # | Issue | Root cause | Fixable in our code? | Extra effort |
@@ -207,11 +375,30 @@ using its native highlight + comment features (which arguably reads more
 | 5 | Base64 images dropped | Library default (`allowBase64: false`) | Yes | 1 line |
 | 6 | `&nbsp;` in excerpts | Naive regex strip, no entity decoding | Yes | refactor, no new code |
 | 7 | Flagged-term highlighting | Word has no decoration/overlay concept — any highlight is a real saved edit | Yes, but different mechanism per host | ~55 lines web (live) + ~20 lines Word (one-shot scan, native highlight+comment) |
+| 8 | Video embeds flattened to a static thumbnail | Word's HTML export has no real embed, just a linked poster image | Yes for YouTube (pattern-match); **unverified for enterprise/custom players** | ~30 lines, no new dependency |
+| 9a | Icons render as broken images | Base64 payload is SVG, mislabeled `image/png` | Yes | ~15 lines |
+| 9b | Shapes can't be captured | Word's export has no vector/shape semantics — `Word.Shape` has no byte-extraction API | **No — same as §2** | Author workaround only (Save as Picture); optional warning reuses §2's code |
+| 10a | Paste-from-Word bypassed all fixes above | Tiptap's default paste path skips our HTML preprocessing entirely | Yes | ~10 lines, reuses existing code |
+| 10b | Floating shape in selection kills entire paste's formatting | Word fails to populate clipboard `text/html` at all — confirmed in prosemirror-view source | **No — same as §2/§9b** | Author workaround only (paste smaller sections, avoid shapes) |
 
-**Bottom line for the team:** every gap so far has a workaround *except*
-floating/anchored images, which is a genuine Office.js platform limitation
-with no API-level fix — the only mitigation is pre-save detection +
-warning (desktop Word only) and an authoring-guidelines ask (always use
-inline images). Everything else costs real but modest extra code
-(roughly 100 lines total across the POC so far) plus one new dependency
-(`juice`).
+**Direction change (§10):** we're dropping the live Word add-in as the
+authoring surface — every unfixable limitation above (§2, §9b) and the
+heaviest workaround (§7's live scan) exist *because* it edits an open Word
+document live. Tiptap becomes the only editor; Word becomes an import
+format via copy-paste, not a connected host. That's a net simplification:
+no manifest, no `WordApi`/`WordApiDesktop` requirement-set management, no
+Office.js runtime risk — those go away entirely, not just get mitigated.
+
+**Bottom line for the team:** with the add-in gone, shapes follow us into
+the paste world too, and worse than expected — a floating shape anywhere in
+a copied selection can silently blank out formatting for the *whole* paste,
+confirmed live (§10b), not just fail to render itself (§2/§9b). Practical
+guidance for authors: paste in smaller sections and keep floating
+shapes/comments out of the selection when formatting matters. Images on
+paste (§10) are a separate, still-unverified risk in the same category.
+Everything else in this doc costs real but modest extra code (roughly 155
+lines total across the POC) plus one new dependency (`juice`) — and now
+applies uniformly whether content arrives via paste or a loaded saved
+article. Video embeds work end-to-end for YouTube; an enterprise player
+(e.g. Brightcove) is designed but not yet verified — pending access to test
+internally.

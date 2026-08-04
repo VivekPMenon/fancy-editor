@@ -2,6 +2,7 @@ import juice from 'juice';
 import { generateHTML, generateJSON } from '@tiptap/html';
 import type { JSONContent } from '@tiptap/react';
 import { EDITOR_EXTENSIONS } from './editorExtensions';
+import { resolveWordVideoEmbeds } from './wordVideoEmbed';
 
 // Converts captured HTML (e.g. Word's `body.getHtml()` output) into the same
 // ProseMirror JSON schema the live Tiptap editor produces via `getJSON()`.
@@ -16,7 +17,7 @@ import { EDITOR_EXTENSIONS } from './editorExtensions';
 // real CSS cascade and inlines the result onto each matching element first,
 // so that formatting has something for parseHTML to actually find.
 export function htmlToTiptapJson(html: string): JSONContent {
-  const resolvedHtml = juice(html);
+  const resolvedHtml = juice(resolveWordVideoEmbeds(html));
   return generateJSON(resolvedHtml, EDITOR_EXTENSIONS);
 }
 

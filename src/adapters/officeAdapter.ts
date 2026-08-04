@@ -5,6 +5,24 @@ import { FLAGGED_TERMS } from '../core/flaggedTerms';
 // document body on a short interval as a pragmatic stand-in for "live" updates.
 const POLL_INTERVAL_MS = 400;
 
+// getBase64ImageSrc() returns raw base64 with no format indicator, so we
+// always assumed PNG — wrong for "Insert Icons" pictures, which are SVG
+// markup underneath (confirmed by decoding one: it starts with "<svg ...").
+// Labeling SVG bytes as "image/png" produces a data URI the <img> decoder
+// can't parse (declared MIME wins over sniffing), so the icon never
+// renders. Decoding a short prefix to check for an SVG opening tag before
+// picking the MIME type fixes that.
+function isSvgBase64(base64: string): boolean {
+  try {
+    // atob() needs a multiple of 4 characters; 200 is plenty to see past
+    // any XML prologue regardless of the full image's size.
+    const prefix = atob(base64.slice(0, 200 - (200 % 4)));
+    return /^\s*(<\?xml|<svg)/i.test(prefix);
+  } catch {
+    return false;
+  }
+}
+
 // `body.getHtml()` references images via a path like
 // "~WRS{...}_files/image001.jpg" — a leftover from Word's old "Web Page,
 // Filtered" export convention that assumes a companion _files folder Word
@@ -20,7 +38,8 @@ function inlineImageSources(html: string, base64Images: string[]): string {
   container.querySelectorAll('img').forEach((img, index) => {
     const base64 = base64Images[index];
     if (base64) {
-      img.src = `data:image/png;base64,${base64}`;
+      const mimeType = isSvgBase64(base64) ? 'image/svg+xml' : 'image/png';
+      img.src = `data:${mimeType};base64,${base64}`;
     }
   });
   return container.innerHTML;
