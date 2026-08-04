@@ -27,7 +27,7 @@ export function PublisherPlugin({ adapter, hostLabel }: PublisherPluginProps) {
           className={`publisher-plugin-tab ${activeTab === 'tools' ? 'active' : ''}`}
           onClick={() => setActiveTab('tools')}
         >
-          Article Tools
+          Toolbar
         </button>
         <button
           type="button"
