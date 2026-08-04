@@ -32,5 +32,10 @@ export function createTiptapAdapter(editor: Editor): DocumentAdapter {
       // extension only supports simple inline images.
       return [];
     },
+
+    async highlightFlaggedTerms() {
+      // Already highlighted live by the FlaggedTerms decoration plugin — nothing to do.
+      return 0;
+    },
   };
 }

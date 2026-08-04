@@ -155,6 +155,47 @@ are already decoded to real characters by the time HTML becomes JSON.
 
 ---
 
+## 7. Flagged-term highlighting: live on web, one-shot scan on Word
+
+**What we built:** a hardcoded compliance-style term list
+([`core/flaggedTerms.ts`](../src/core/flaggedTerms.ts): "guarantee",
+"insider", "confidential", "stupid") flagged wherever it appears, with a
+comment explaining why. Demonstrates that the panel isn't limited to plain
+buttons/text — it can annotate content inline with real styling, in both
+hosts, off a single shared rule list.
+
+**Web (Tiptap):** a custom ProseMirror decoration plugin
+([`flaggedTermsExtension.ts`](../src/core/tiptap-utils/flaggedTermsExtension.ts))
+highlights matches live, on every keystroke, with a wavy red underline +
+yellow background + a small ⚠ indicator carrying the comment as a tooltip.
+Decorations are render-only — nothing is written into the document JSON, so
+flags never get saved/exported. ~55 lines, no new dependency (`@tiptap/pm`,
+ProseMirror's package, ships as part of Tiptap already).
+
+**Word:** no decoration-layer concept exists in Word's object model, so
+there's no way to get the same "live, non-destructive" behavior — any
+highlighting or commenting is a real, saved edit to the document. Building
+it as a live-as-you-type feature would mean re-running search + re-applying
+highlight color + re-inserting comments on every keystroke, which would
+spam duplicate comments and thrash formatting. Instead this is a one-shot
+"Scan for flagged terms" button: it calls `body.search()` per term, sets
+`range.font.highlightColor` (native Word highlight, `WordApi 1.1`), and adds
+a native Word review comment via `range.insertComment()` (`WordApi 1.4` —
+manifest bumped from 1.3 to 1.4 for this). ~20 lines in
+[`officeAdapter.ts`](../src/adapters/officeAdapter.ts).
+
+**Known gap:** clicking "Scan for flagged terms" more than once inserts
+duplicate comments — there's no dedup check against existing comments. Fine
+for a POC demo, would need addressing for real use.
+
+**Cost / takeaway for the deck:** same rule list drives both hosts, but the
+*mechanism* is fundamentally different per host — Tiptap gets a cheap,
+non-destructive live overlay; Word gets a heavier, explicit, saved action
+using its native highlight + comment features (which arguably reads more
+"native" to a Word user, at the cost of not being live).
+
+---
+
 ## Running summary (for the deck)
 
 | # | Issue | Root cause | Fixable in our code? | Extra effort |
@@ -165,6 +206,7 @@ are already decoded to real characters by the time HTML becomes JSON.
 | 4 | List indentation lost | No official Tiptap extension for margin/indent | Yes (custom extension) | ~30 lines, fully custom |
 | 5 | Base64 images dropped | Library default (`allowBase64: false`) | Yes | 1 line |
 | 6 | `&nbsp;` in excerpts | Naive regex strip, no entity decoding | Yes | refactor, no new code |
+| 7 | Flagged-term highlighting | Word has no decoration/overlay concept — any highlight is a real saved edit | Yes, but different mechanism per host | ~55 lines web (live) + ~20 lines Word (one-shot scan, native highlight+comment) |
 
 **Bottom line for the team:** every gap so far has a workaround *except*
 floating/anchored images, which is a genuine Office.js platform limitation

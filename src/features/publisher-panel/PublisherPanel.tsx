@@ -100,6 +100,19 @@ export function PublisherPanel({ adapter, hostLabel }: PublisherPanelProps) {
     }
   }
 
+  async function handleScanFlaggedTerms() {
+    try {
+      const count = await adapter.highlightFlaggedTerms();
+      setStatus(
+        count > 0
+          ? `Flagged ${count} term${count === 1 ? '' : 's'} — highlighted and commented in the document.`
+          : 'No flagged terms found.',
+      );
+    } catch (err) {
+      setStatus(`Scan failed: ${(err as Error).message}`);
+    }
+  }
+
   // async function handleFancify() {
   //   try {
   //     const selection = await adapter.getSelectionText();
@@ -234,6 +247,9 @@ export function PublisherPanel({ adapter, hostLabel }: PublisherPanelProps) {
         </button>
         <button type="button" onClick={handleSaveJson}>
           Save article as JSON
+        </button>
+        <button type="button" onClick={handleScanFlaggedTerms}>
+          Scan for flagged terms
         </button>
         {savedAt && <p className="publisher-panel-meta">Last saved: {new Date(savedAt).toLocaleString()}</p>}
         {status && <p className="publisher-panel-status">{status}</p>}

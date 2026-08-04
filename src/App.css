@@ -105,6 +105,24 @@
   .ProseMirror a {
     color: var(--accent);
   }
+
+  .flagged-term {
+    background-color: rgba(255, 214, 0, 0.35);
+    text-decoration: underline;
+    text-decoration-color: #e60000;
+    text-decoration-style: wavy;
+    text-underline-offset: 3px;
+    cursor: help;
+  }
+
+  .flagged-term-indicator {
+    display: inline-block;
+    font-size: 11px;
+    color: #b30000;
+    cursor: help;
+    margin-left: 1px;
+    vertical-align: super;
+  }
 }
 
 .app-right-rail {

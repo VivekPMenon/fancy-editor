@@ -7,6 +7,7 @@ import { FontFamily } from '@tiptap/extension-font-family';
 import { Youtube } from '@tiptap/extension-youtube';
 import { Image } from '@tiptap/extension-image';
 import { Indent } from './indentExtension';
+import { FlaggedTerms } from './flaggedTermsExtension';
 
 // Single source of truth for the editor's schema, shared by the live Tiptap
 // editor (FancyEditorTab) and the HTML<->JSON conversion utilities. They
@@ -31,4 +32,5 @@ export const EDITOR_EXTENSIONS = [
   // are, once inlineImageSources() patches them in.
   Image.configure({ allowBase64: true }),
   Indent.configure({ types: ['paragraph', 'heading'] }),
+  FlaggedTerms,
 ];

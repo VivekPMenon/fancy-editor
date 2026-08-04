@@ -1,4 +1,5 @@
 import type { DocumentAdapter } from '../core/types';
+import { FLAGGED_TERMS } from '../core/flaggedTerms';
 
 // Word's JS API has no per-keystroke content-changed event, so we poll the
 // document body on a short interval as a pragmatic stand-in for "live" updates.
@@ -94,6 +95,31 @@ export const officeAdapter: DocumentAdapter = {
         const label = shape.altTextDescription?.trim() || shape.name || `image ${index + 1}`;
         return `Floating image ${index + 1} of ${floatingImages.length} ("${label}") won't be captured — select it and use Picture Format → Wrap Text → In Line with Text, then save again.`;
       });
+    });
+  },
+
+  async highlightFlaggedTerms() {
+    return Word.run(async (context) => {
+      let totalFound = 0;
+
+      // No decoration-layer equivalent in Word, so this is a one-shot scan
+      // rather than something we could run live on every keystroke — running
+      // search+highlight+insertComment per keystroke would spam duplicate
+      // comments and thrash document formatting.
+      for (const { term, comment } of FLAGGED_TERMS) {
+        const results = context.document.body.search(term, { matchCase: false, matchWholeWord: true });
+        results.load('items');
+        await context.sync();
+
+        results.items.forEach((range) => {
+          range.font.highlightColor = 'Yellow';
+          range.insertComment(comment);
+        });
+        totalFound += results.items.length;
+        await context.sync();
+      }
+
+      return totalFound;
     });
   },
 
