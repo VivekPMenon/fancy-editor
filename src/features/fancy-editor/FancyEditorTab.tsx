@@ -4,6 +4,7 @@ import { EDITOR_EXTENSIONS } from '../../core/tiptap-utils/editorExtensions';
 import { PublisherPlugin } from '../publisher-panel/PublisherPlugin';
 import { createTiptapAdapter } from '../../adapters/tiptapAdapter';
 import { EditorToolbar } from '../editor-toolbar/EditorToolbar';
+import { EditorContextMenu } from '../editor-toolbar/EditorContextMenu';
 import { BLANK_ARTICLE_HTML } from '../articles/ArticlesPanel';
 
 export function FancyEditorTab() {
@@ -25,6 +26,7 @@ export function FancyEditorTab() {
       <div className="tiptap-editor-column">
         <EditorToolbar editor={editor} />
         <EditorContent className="tiptap-editor" editor={editor} />
+        <EditorContextMenu editor={editor} />
       </div>
       <div className="app-right-rail">
         <PublisherPlugin adapter={adapter} hostLabel="Web" />
