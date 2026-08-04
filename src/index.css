@@ -56,7 +56,13 @@
   margin: 0 auto;
   text-align: center;
   border-inline: 1px solid var(--border);
-  min-height: 100svh;
+  /* A hard height cap, not min-height — the inner flex:1/min-height:0 chain
+     (.app-shell, .app-tab-panel, .tiptap-editor, .post-feed, …) only clips
+     and scrolls internally if this outermost ancestor actually stops
+     growing at the viewport edge. min-height let the whole page grow past
+     it instead, pushing the scrollbar out to the body. */
+  height: 100svh;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
   box-sizing: border-box;

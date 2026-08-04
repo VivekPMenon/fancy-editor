@@ -17,10 +17,10 @@ function App() {
             className={activeTab === 'editor' ? 'active' : ''}
             onClick={() => setActiveTab('editor')}
           >
-            Fancy Editor
+          Article Editor
           </button>
           <button type="button" className={activeTab === 'feed' ? 'active' : ''} onClick={() => setActiveTab('feed')}>
-            Post Feed
+          Article Feed
           </button>
         </nav>
       </header>
