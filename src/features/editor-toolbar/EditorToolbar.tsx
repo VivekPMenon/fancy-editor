@@ -34,15 +34,13 @@ import {
   TextLineSpacingRegular,
   PaintBucketRegular,
   BorderAllRegular,
-  AddRegular,
-  DeleteRegular,
   ChevronDown12Regular,
   type FluentIcon,
-  Table32Light,
   Video32Light,
   Link32Light,
 } from '@fluentui/react-icons';
 import { ubsFluentTheme } from './ubsFluentTheme';
+import { TableInsertPopover } from './TableInsertPopover';
 import './EditorToolbar.css';
 
 interface EditorToolbarProps {
@@ -430,52 +428,12 @@ export function EditorToolbar({ editor }: EditorToolbarProps) {
 
           <RibbonGroup label="Insert">
             <Toolbar size="small" className="editor-toolbar-row">
-              <RibbonButton
-                icon={Table32Light}
-                title="Insert table"
-                onClick={() => editor.chain().focus().insertTable({ rows: 3, cols: 3, withHeaderRow: true }).run()}
-              />
+              <TableInsertPopover editor={editor} />
               <RibbonButton icon={Link32Light} title="Insert link" onClick={handleLink} />
               <RibbonButton icon={Video32Light} title="Insert video" onClick={handleVideo} />
             </Toolbar>
           </RibbonGroup>
 
-          {editor.isActive('table') && (
-            <RibbonGroup label="Table">
-              <Toolbar size="small" className="editor-toolbar-row">
-                <Tooltip content="Add row" relationship="label" withArrow>
-                  <ToolbarButton
-                    icon={<AddRegular />}
-                    appearance="subtle"
-                    className="editor-toolbar-labeled-button"
-                    onClick={() => editor.chain().focus().addRowAfter().run()}
-                  >
-                    Row
-                  </ToolbarButton>
-                </Tooltip>
-                <Tooltip content="Add column" relationship="label" withArrow>
-                  <ToolbarButton
-                    icon={<AddRegular />}
-                    appearance="subtle"
-                    className="editor-toolbar-labeled-button"
-                    onClick={() => editor.chain().focus().addColumnAfter().run()}
-                  >
-                    Col
-                  </ToolbarButton>
-                </Tooltip>
-                <Tooltip content="Delete table" relationship="label" withArrow>
-                  <ToolbarButton
-                    icon={<DeleteRegular />}
-                    appearance="subtle"
-                    className="editor-toolbar-labeled-button"
-                    onClick={() => editor.chain().focus().deleteTable().run()}
-                  >
-                    Table
-                  </ToolbarButton>
-                </Tooltip>
-              </Toolbar>
-            </RibbonGroup>
-          )}
         </div>
       </div>
     </FluentProvider>
