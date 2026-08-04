@@ -5,7 +5,7 @@ import { ARTICLES } from './articles';
 import { generateMockSummary } from './summary';
 // import { fancifyText } from './transforms';
 import { loadArticle, saveArticle } from './storage';
-import { htmlToTiptapJson } from '../../core/htmlJsonConversion';
+import { htmlToTiptapJson } from '../../core/tiptap-utils/htmlJsonConversion';
 import './PublisherPanel.css';
 
 interface PublisherPanelProps {

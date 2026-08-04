@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 import { useEditor, EditorContent } from '@tiptap/react';
-import { EDITOR_EXTENSIONS } from '../../core/editorExtensions';
+import { EDITOR_EXTENSIONS } from '../../core/tiptap-utils/editorExtensions';
 import { PublisherPanel } from '../publisher-panel/PublisherPanel';
 import { createTiptapAdapter } from '../../adapters/tiptapAdapter';
 import { EditorToolbar } from '../editor-toolbar/EditorToolbar';

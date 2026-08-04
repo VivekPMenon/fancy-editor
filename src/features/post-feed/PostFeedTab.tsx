@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import type { SyntheticEvent } from 'react';
 import { MOCK_POSTS, type FeedPost } from '../../core/mockPosts';
-import { tiptapJsonToHtml, tiptapJsonToPlainText } from '../../core/htmlJsonConversion';
+import { tiptapJsonToHtml, tiptapJsonToPlainText } from '../../core/tiptap-utils/htmlJsonConversion';
 import './PostFeedTab.css';
 
 type FeedFormat = 'news' | 'word';

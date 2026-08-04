@@ -1,5 +1,5 @@
 import type { JSONContent } from '@tiptap/react';
-import { htmlToTiptapJson } from './htmlJsonConversion';
+import { htmlToTiptapJson } from './tiptap-utils/htmlJsonConversion';
 
 export interface FeedPost {
   id: string;
