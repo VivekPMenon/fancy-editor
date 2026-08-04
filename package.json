@@ -12,6 +12,8 @@
   "dependencies": {
     "@coreui/icons": "^3.1.0",
     "@coreui/icons-react": "^2.3.0",
+    "@fluentui/react-components": "^9.74.5",
+    "@fluentui/react-icons": "^2.0.334",
     "@tiptap/extension-color": "^3.29.2",
     "@tiptap/extension-font-family": "^3.29.2",
     "@tiptap/extension-image": "^3.29.2",

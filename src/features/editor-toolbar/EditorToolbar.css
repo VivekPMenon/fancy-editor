@@ -1,3 +1,10 @@
+/* FluentProvider needs to exist for theming/context, but shouldn't introduce
+   an extra layout box — .tiptap-editor-column expects EditorToolbar's root
+   to behave like a normal flex child. */
+.editor-toolbar-fluent-root {
+  display: contents;
+}
+
 .editor-toolbar-shell {
   flex-shrink: 0;
   background: white;
@@ -41,7 +48,7 @@
 .editor-toolbar {
   display: flex;
   align-items: stretch;
-  padding: 6px 24px;
+  padding: 5px 0px;
   background: #ffffff;
   overflow-x: auto;
 }
@@ -67,16 +74,6 @@
   gap: 3px;
 }
 
-/* Packs icon buttons into a two-row grid, filling column by column, the way
-   Word's ribbon groups pack their buttons instead of a single flat row. */
-.editor-toolbar-icon-grid {
-  display: grid;
-  grid-template-rows: auto;
-  grid-auto-flow: column;
-  grid-auto-columns: min-content;
-  gap: 2px;
-}
-
 .editor-toolbar-group-label {
   font-size: 10px;
   text-transform: uppercase;
@@ -85,52 +82,90 @@
   white-space: nowrap;
 }
 
-.editor-toolbar button {
+/* One packed row of controls — used both as a plain flex row (font-size row
+   mixing <select>s with a Fluent Toolbar) and as the className on a Fluent
+   <Toolbar> itself (Fluent already renders that as a flex container, so this
+   mostly just strips its default padding/gap down to Word's tight spacing). */
+.editor-toolbar-row {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  padding: 0 !important;
+  min-height: 0 !important;
+}
+
+/* Fluent's ToolbarButton defaults to a larger touch-friendly size; Word's
+   ribbon buttons are small, dense, and square. Re-skinning here rather than
+   fighting Fluent's size tokens keeps every button (wired or disabled)
+   visually consistent. */
+.editor-toolbar-shell button {
+  font-family: inherit;
+}
+
+.editor-toolbar-shell .editor-toolbar-row button {
+  /* flex: 0 0 auto is the actual fix — Toolbar's row is a flex container,
+     and without pinning flex-grow/shrink, a plain width (even !important)
+     can still get overridden by flex's own size distribution. That's what
+     was making the checked/active button (Bold, in testing) stretch wide
+     while its icon stayed put on the left instead of staying centered. */
+  flex: 0 0 auto !important;
+  min-width: 30px !important;
+  width: 30px !important;
+  height: 30px !important;
+  padding: 0 !important;
+  border-radius: 4px !important;
+  color: #000000;
+}
+
+.editor-toolbar-shell .editor-toolbar-row .editor-toolbar-labeled-button {
+  /* Table row/col/delete buttons carry a text label alongside the icon and
+     need their own width instead of the fixed icon-button square. */
+  width: auto !important;
+  padding: 0 8px !important;
+  gap: 4px;
+}
+
+.editor-toolbar-shell .editor-toolbar-row button svg {
+  width: 19px;
+  height: 19px;
+}
+
+.editor-toolbar-shell .editor-toolbar-row button:hover:not(:disabled) {
+  background: #e6e6e6 !important;
+}
+
+/* Active/checked uses the same treatment as hover — a solid red fill read
+   as "error/danger" here rather than "selected". */
+.editor-toolbar-shell .editor-toolbar-row button.editor-toolbar-active {
+  background: #e6e6e6 !important;
+  color: #000000 !important;
+}
+
+.editor-toolbar-shell .editor-toolbar-row button.editor-toolbar-active:hover {
+  background: #d7d7d7 !important;
+}
+
+.editor-toolbar-shell .editor-toolbar-row button:disabled {
+  opacity: 0.35;
+}
+
+/* Icon + small decorative chevron, for controls that look like a
+   split-button/dropdown in Word. The whole button is one click target. */
+.editor-toolbar-split-icon {
   display: inline-flex;
   align-items: center;
-  justify-content: center;
-  gap: 4px;
-  font-size: 13px;
-  width: 26px;
-  height: 26px;
-  padding: 0;
-  border-radius: 4px;
-  border: 1px solid transparent;
-  background: transparent;
-  color: #000000;
-  cursor: pointer;
-  font-family: inherit;
-  white-space: nowrap;
+  gap: 1px;
 }
 
-/* Buttons that carry a text label (e.g. the Table row/col controls) need
-   their own width instead of the fixed icon-button square. */
-.editor-toolbar button:has(.editor-toolbar-button-label) {
-  width: auto;
-  padding: 0 8px;
-}
-
-.editor-toolbar button:hover {
-  background: #e6e6e6;
-}
-
-.editor-toolbar button.active {
-  background: #e60000;
-  color: #ffffff;
-}
-
-.editor-toolbar button svg {
-  width: 15px;
-  height: 15px;
-}
-
-.editor-toolbar-button-label {
-  font-size: 11px;
+.editor-toolbar-split-chevron {
+  width: 9px !important;
+  height: 9px !important;
+  opacity: 0.6;
 }
 
 .editor-toolbar-select {
   font-size: 12px;
-  height: 24px;
+  height: 26px;
   padding: 0 6px;
   border-radius: 4px;
   border: 1px solid #d7d7d7;
@@ -138,11 +173,6 @@
   color: #000000;
   font-family: inherit;
   max-width: 150px;
-}
-
-.editor-toolbar-font-row {
-  display: flex;
-  gap: 4px;
 }
 
 .editor-toolbar-select-family {
@@ -162,7 +192,7 @@
 }
 
 /* Scoped under .editor-toolbar-styles-gallery so these win over the generic
-   `.editor-toolbar button` sizing rule (26x26px icon buttons) — a plain
+   `.editor-toolbar-shell .editor-toolbar-row button` sizing rule — a plain
    `.editor-toolbar-style-preview` class selector alone loses that specificity
    fight, which is what caused the buttons to collapse and overlap. */
 .editor-toolbar-styles-gallery .editor-toolbar-style-preview {
@@ -207,14 +237,41 @@
   font-weight: 700;
 }
 
+.editor-toolbar-styles-gallery .editor-toolbar-style-h4 {
+  font-size: 13px;
+  font-weight: 700;
+  font-style: italic;
+}
+
+.editor-toolbar-styles-gallery .editor-toolbar-style-more {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 52px;
+  padding: 0;
+  border-radius: 4px;
+  border: 1px solid #d7d7d7;
+  background: #ffffff;
+  color: #919191;
+  cursor: default;
+  opacity: 0.6;
+}
+
+.editor-toolbar-styles-gallery .editor-toolbar-style-more svg {
+  width: 12px;
+  height: 12px;
+}
+
 .editor-toolbar-color-button {
   display: inline-flex;
+  flex: 0 0 auto;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 2px;
-  width: 26px;
-  height: 26px;
+  width: 30px;
+  height: 30px;
   border-radius: 4px;
   cursor: pointer;
   position: relative;
@@ -225,12 +282,12 @@
 }
 
 .editor-toolbar-color-button svg {
-  width: 13px;
-  height: 13px;
+  width: 17px;
+  height: 17px;
 }
 
 .editor-toolbar-color-swatch {
-  width: 16px;
+  width: 18px;
   height: 3px;
   border-radius: 1px;
 }
