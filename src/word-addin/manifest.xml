@@ -27,6 +27,9 @@
   <Requirements>
     <Sets>
       <Set Name="WordApi" MinVersion="1.3" />
+      <!-- Needed for body.shapes (floating-image detection in officeAdapter's
+           getContentWarnings) — desktop-only, no Word Online support. -->
+      <Set Name="WordApiDesktop" MinVersion="1.2" />
     </Sets>
   </Requirements>
 

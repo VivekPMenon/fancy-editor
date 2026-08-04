@@ -182,6 +182,23 @@
   margin: 0;
 }
 
+.publisher-panel-warnings {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.publisher-panel-warnings li {
+  font-size: 13px;
+  color: #8a5a00;
+  background: rgba(255, 180, 0, 0.1);
+  border-radius: 5px;
+  padding: 6px 8px;
+}
+
 /* Live preview */
 
 .publisher-panel-preview {

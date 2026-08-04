@@ -68,6 +68,35 @@ export const officeAdapter: DocumentAdapter = {
     });
   },
 
+  async getContentWarnings() {
+    return Word.run(async (context) => {
+      const shapes = context.document.body.shapes;
+      shapes.load('items');
+      await context.sync();
+
+      shapes.items.forEach((shape) => shape.load(['type', 'name', 'altTextDescription', 'textWrap/type']));
+      await context.sync();
+
+      // Floating/anchored pictures are Word.Shape objects, not
+      // InlinePicture — body.inlinePictures never sees them, so
+      // getContentHtml() can't capture their bytes (Shape has no
+      // getBase64ImageSrc()-equivalent at all). Word's JS API doesn't expose
+      // a page number for a shape, so alt text / shape name / ordinal
+      // position is the best available way to point the user at which one.
+      // body.shapes holds every picture-type shape regardless of wrap —
+      // inline pictures show up here too, so textWrap.type (not collection
+      // membership) is what actually distinguishes floating from inline.
+      const floatingImages = shapes.items.filter(
+        (shape) => shape.type === Word.ShapeType.picture && shape.textWrap.type !== Word.ShapeTextWrapType.inline,
+      );
+
+      return floatingImages.map((shape, index) => {
+        const label = shape.altTextDescription?.trim() || shape.name || `image ${index + 1}`;
+        return `Floating image ${index + 1} of ${floatingImages.length} ("${label}") won't be captured — select it and use Picture Format → Wrap Text → In Line with Text, then save again.`;
+      });
+    });
+  },
+
   onContentChange(callback) {
     let lastText: string | null = null;
 

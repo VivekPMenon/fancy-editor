@@ -26,5 +26,11 @@ export function createTiptapAdapter(editor: Editor): DocumentAdapter {
       editor.on('update', handler);
       return () => editor.off('update', handler);
     },
+
+    async getContentWarnings() {
+      // No floating-image concept on the web/Tiptap side — our Image
+      // extension only supports simple inline images.
+      return [];
+    },
   };
 }

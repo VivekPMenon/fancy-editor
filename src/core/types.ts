@@ -8,6 +8,8 @@ export interface DocumentAdapter {
   insertHtml(html: string): Promise<void>;
   /** Subscribes to the document's plain-text content as it changes. Returns an unsubscribe function. */
   onContentChange(callback: (text: string) => void): () => void;
+  /** Pre-save validation warnings (host-specific — e.g. Word floating images that getContentHtml can't capture). */
+  getContentWarnings(): Promise<string[]>;
 }
 
 export interface StoredArticle {

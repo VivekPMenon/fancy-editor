@@ -16,6 +16,7 @@ interface PublisherPanelProps {
 export function PublisherPanel({ adapter, hostLabel }: PublisherPanelProps) {
   const [savedAt, setSavedAt] = useState<string | null>(() => loadArticle()?.savedAt ?? null);
   const [status, setStatus] = useState('');
+  const [warnings, setWarnings] = useState<string[]>([]);
   const [, setLiveText] = useState('');
 
   const [query, setQuery] = useState('');
@@ -57,6 +58,8 @@ export function PublisherPanel({ adapter, hostLabel }: PublisherPanelProps) {
   }
 
   async function saveCurrentArticle() {
+    const contentWarnings = await adapter.getContentWarnings();
+    setWarnings(contentWarnings);
     const html = await adapter.getContentHtml();
     const json = htmlToTiptapJson(html);
     const record = saveArticle(html, json);
@@ -175,6 +178,13 @@ export function PublisherPanel({ adapter, hostLabel }: PublisherPanelProps) {
         </button>
         {savedAt && <p className="publisher-panel-meta">Last saved: {new Date(savedAt).toLocaleString()}</p>}
         {status && <p className="publisher-panel-status">{status}</p>}
+        {warnings.length > 0 && (
+          <ul className="publisher-panel-warnings">
+            {warnings.map((warning) => (
+              <li key={warning}>⚠ {warning}</li>
+            ))}
+          </ul>
+        )}
       </section>
 {/*
       <div className="publisher-panel-preview">
