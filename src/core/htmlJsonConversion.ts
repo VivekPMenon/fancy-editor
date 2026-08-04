@@ -1,3 +1,4 @@
+import juice from 'juice';
 import { generateHTML, generateJSON } from '@tiptap/html';
 import type { JSONContent } from '@tiptap/react';
 import { EDITOR_EXTENSIONS } from './editorExtensions';
@@ -7,8 +8,16 @@ import { EDITOR_EXTENSIONS } from './editorExtensions';
 // This is also what normalizes it: anything outside EDITOR_EXTENSIONS'
 // node/mark types (Mso classes, stray <style> blocks, font-face rules, …)
 // simply can't be represented and gets dropped during parsing.
+//
+// Word often expresses formatting (esp. heading color/font-size/font-family)
+// as a <style> block rule (e.g. `h1 { color: ... }`) rather than an inline
+// style on the element — and Tiptap's parseHTML only ever reads an element's
+// own inline `style` attribute, never the stylesheet. juice() resolves the
+// real CSS cascade and inlines the result onto each matching element first,
+// so that formatting has something for parseHTML to actually find.
 export function htmlToTiptapJson(html: string): JSONContent {
-  return generateJSON(html, EDITOR_EXTENSIONS);
+  const resolvedHtml = juice(html);
+  return generateJSON(resolvedHtml, EDITOR_EXTENSIONS);
 }
 
 // Renders normalized Tiptap JSON back to clean HTML, driven entirely by our

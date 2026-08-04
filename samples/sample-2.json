@@ -1,0 +1,2343 @@
+{
+  "type": "doc",
+  "content": [
+    {
+      "type": "heading",
+      "attrs": {
+        "textAlign": null,
+        "fontSize": "24.0pt",
+        "color": "",
+        "fontFamily": "'Calibri',sans-serif",
+        "level": 1
+      },
+      "content": [
+        {
+          "type": "text",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "",
+                "color": "#C00000",
+                "fontFamily": ""
+              }
+            },
+            {
+              "type": "bold"
+            }
+          ],
+          "text": "Sample Document"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attrs": {
+        "textAlign": null,
+        "fontSize": "11.0pt",
+        "color": "",
+        "fontFamily": "'Calibri',sans-serif"
+      },
+      "content": [
+        {
+          "type": "text",
+          "text": "This document was created using accessibility techniques for headings, lists, image alternate text, tables, and columns. It should be completely accessible using assistive technologies such as screen readers."
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "attrs": {
+        "textAlign": null,
+        "fontSize": "18.0pt",
+        "color": "",
+        "fontFamily": "'Calibri',sans-serif",
+        "level": 2
+      },
+      "content": [
+        {
+          "type": "text",
+          "marks": [
+            {
+              "type": "bold"
+            }
+          ],
+          "text": "Headings"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attrs": {
+        "textAlign": null,
+        "fontSize": "11.0pt",
+        "color": "",
+        "fontFamily": "'Calibri',sans-serif"
+      },
+      "content": [
+        {
+          "type": "text",
+          "text": "There are eight section headings in this document. At the beginning, \"Sample Document\" is a level 1 heading. The main section headings, such as \"Headings\" and \"Lists\" are level 2 headings. The Tables section contains two sub-headings, \"Simple Table\" and \"Complex Table,\" which are both level 3 headings."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attrs": {
+        "textAlign": null,
+        "fontSize": "18.0pt",
+        "color": "",
+        "fontFamily": "'Calibri',sans-serif"
+      },
+      "content": [
+        {
+          "type": "text",
+          "marks": [
+            {
+              "type": "bold"
+            }
+          ],
+          "text": "Lists"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attrs": {
+        "textAlign": null,
+        "fontSize": "11.0pt",
+        "color": "",
+        "fontFamily": "'Calibri',sans-serif"
+      },
+      "content": [
+        {
+          "type": "text",
+          "text": "The following outline of the sections of this "
+        },
+        {
+          "type": "text",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "",
+                "color": "#4F81BD",
+                "fontFamily": ""
+              }
+            },
+            {
+              "type": "italic"
+            }
+          ],
+          "text": "document is an ordered (numbered"
+        },
+        {
+          "type": "text",
+          "text": ") list with six items. The fifth item, \"Tables,\" contains a nested unordered (bulleted) list with two items."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attrs": {
+        "textAlign": null,
+        "fontSize": "11.0pt",
+        "color": "",
+        "fontFamily": "'Calibri',sans-serif"
+      },
+      "content": [
+        {
+          "type": "text",
+          "text": "1."
+        },
+        {
+          "type": "text",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "7pt",
+                "color": "",
+                "fontFamily": "\"Times New Roman\""
+              }
+            }
+          ],
+          "text": "       "
+        },
+        {
+          "type": "text",
+          "text": "Headings"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attrs": {
+        "textAlign": null,
+        "fontSize": "11.0pt",
+        "color": "",
+        "fontFamily": "'Calibri',sans-serif"
+      },
+      "content": [
+        {
+          "type": "text",
+          "text": "2."
+        },
+        {
+          "type": "text",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "7pt",
+                "color": "",
+                "fontFamily": "\"Times New Roman\""
+              }
+            }
+          ],
+          "text": "       "
+        },
+        {
+          "type": "text",
+          "text": "Lists"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attrs": {
+        "textAlign": null,
+        "fontSize": "11.0pt",
+        "color": "",
+        "fontFamily": "'Calibri',sans-serif"
+      },
+      "content": [
+        {
+          "type": "text",
+          "text": "3."
+        },
+        {
+          "type": "text",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "7pt",
+                "color": "",
+                "fontFamily": "\"Times New Roman\""
+              }
+            }
+          ],
+          "text": "       "
+        },
+        {
+          "type": "text",
+          "text": "Links"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attrs": {
+        "textAlign": null,
+        "fontSize": "11.0pt",
+        "color": "",
+        "fontFamily": "'Calibri',sans-serif"
+      },
+      "content": [
+        {
+          "type": "text",
+          "text": "4."
+        },
+        {
+          "type": "text",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "7pt",
+                "color": "",
+                "fontFamily": "\"Times New Roman\""
+              }
+            }
+          ],
+          "text": "       "
+        },
+        {
+          "type": "text",
+          "text": "Images"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attrs": {
+        "textAlign": null,
+        "fontSize": "11.0pt",
+        "color": "",
+        "fontFamily": "'Calibri',sans-serif"
+      },
+      "content": [
+        {
+          "type": "text",
+          "text": "5."
+        },
+        {
+          "type": "text",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "7pt",
+                "color": "",
+                "fontFamily": "\"Times New Roman\""
+              }
+            }
+          ],
+          "text": "       "
+        },
+        {
+          "type": "text",
+          "text": "Tables"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attrs": {
+        "textAlign": null,
+        "fontSize": "11.0pt",
+        "color": "",
+        "fontFamily": "'Calibri',sans-serif"
+      },
+      "content": [
+        {
+          "type": "text",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "7pt",
+                "color": "",
+                "fontFamily": "\"Times New Roman\""
+              }
+            }
+          ],
+          "text": "                                 "
+        },
+        {
+          "type": "text",
+          "text": "I."
+        },
+        {
+          "type": "text",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "7pt",
+                "color": "",
+                "fontFamily": "\"Times New Roman\""
+              }
+            }
+          ],
+          "text": "            "
+        },
+        {
+          "type": "text",
+          "text": "Simple Tables"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attrs": {
+        "textAlign": null,
+        "fontSize": "11.0pt",
+        "color": "",
+        "fontFamily": "'Calibri',sans-serif"
+      },
+      "content": [
+        {
+          "type": "text",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "7pt",
+                "color": "",
+                "fontFamily": "\"Times New Roman\""
+              }
+            }
+          ],
+          "text": "                               "
+        },
+        {
+          "type": "text",
+          "text": "II."
+        },
+        {
+          "type": "text",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "7pt",
+                "color": "",
+                "fontFamily": "\"Times New Roman\""
+              }
+            }
+          ],
+          "text": "            "
+        },
+        {
+          "type": "text",
+          "text": "Complex Tables"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attrs": {
+        "textAlign": null,
+        "fontSize": "11.0pt",
+        "color": "",
+        "fontFamily": "'Calibri',sans-serif"
+      },
+      "content": [
+        {
+          "type": "text",
+          "text": "6."
+        },
+        {
+          "type": "text",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "7pt",
+                "color": "",
+                "fontFamily": "\"Times New Roman\""
+              }
+            }
+          ],
+          "text": "       "
+        },
+        {
+          "type": "text",
+          "text": "Columns"
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "attrs": {
+        "textAlign": null,
+        "fontSize": "18.0pt",
+        "color": "",
+        "fontFamily": "'Calibri',sans-serif",
+        "level": 2
+      },
+      "content": [
+        {
+          "type": "text",
+          "marks": [
+            {
+              "type": "bold"
+            }
+          ],
+          "text": "Links"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attrs": {
+        "textAlign": null,
+        "fontSize": "11.0pt",
+        "color": "",
+        "fontFamily": "'Calibri',sans-serif"
+      },
+      "content": [
+        {
+          "type": "text",
+          "text": "In web documents, links can point different locations on the page, different pages, or even downloadable documents, such as Word documents or PDFs:"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attrs": {
+        "textAlign": null,
+        "fontSize": "11.0pt",
+        "color": "",
+        "fontFamily": "'Calibri',sans-serif"
+      },
+      "content": [
+        {
+          "type": "text",
+          "marks": [
+            {
+              "type": "link",
+              "attrs": {
+                "href": "#_top",
+                "target": "_blank",
+                "rel": "noopener noreferrer nofollow",
+                "class": null,
+                "title": null
+              }
+            }
+          ],
+          "text": "Top of this Page"
+        },
+        {
+          "type": "hardBreak"
+        },
+        {
+          "type": "text",
+          "marks": [
+            {
+              "type": "link",
+              "attrs": {
+                "href": "http://www.dhs.state.il.us/page.aspx?item=67072",
+                "target": "_blank",
+                "rel": "noopener noreferrer nofollow",
+                "class": null,
+                "title": null
+              }
+            }
+          ],
+          "text": "Sample Document"
+        },
+        {
+          "type": "hardBreak"
+        },
+        {
+          "type": "text",
+          "marks": [
+            {
+              "type": "link",
+              "attrs": {
+                "href": "http://www.dhs.state.il.us/OneNetLibrary/27897/documents/Initiatives/IITAA/Sample-Document.docx",
+                "target": "_blank",
+                "rel": "noopener noreferrer nofollow",
+                "class": null,
+                "title": null
+              }
+            }
+          ],
+          "text": "Sample Document (docx)"
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "attrs": {
+        "textAlign": null,
+        "fontSize": "18.0pt",
+        "color": "",
+        "fontFamily": "'Calibri',sans-serif",
+        "level": 2
+      },
+      "content": [
+        {
+          "type": "text",
+          "marks": [
+            {
+              "type": "bold"
+            }
+          ],
+          "text": "Images"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attrs": {
+        "textAlign": null,
+        "fontSize": "11.0pt",
+        "color": "",
+        "fontFamily": "'Calibri',sans-serif"
+      }
+    },
+    {
+      "type": "image",
+      "attrs": {
+        "src": "~WRS%7bD45F3D4F-1947-428A-9F16-0C27627F0E54%7d_files/image001.gif",
+        "alt": "Web Access Symbol",
+        "title": null,
+        "width": 141,
+        "height": 131
+      }
+    },
+    {
+      "type": "paragraph",
+      "attrs": {
+        "textAlign": null,
+        "fontSize": null,
+        "color": null,
+        "fontFamily": null
+      },
+      "content": [
+        {
+          "type": "text",
+          "text": "Documents may contain images. For example, there is an image of the web accessibility symbol to the left of this paragraph. Its alternate text is \"Web Access Symbol\"."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attrs": {
+        "textAlign": null,
+        "fontSize": "11.0pt",
+        "color": "",
+        "fontFamily": "'Calibri',sans-serif"
+      },
+      "content": [
+        {
+          "type": "text",
+          "text": "Alt text should communicate what an image means, not how it looks."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attrs": {
+        "textAlign": null,
+        "fontSize": null,
+        "color": null,
+        "fontFamily": null
+      },
+      "content": [
+        {
+          "type": "hardBreak"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attrs": {
+        "textAlign": null,
+        "fontSize": "11.0pt",
+        "color": "",
+        "fontFamily": "'Calibri',sans-serif"
+      },
+      "content": [
+        {
+          "type": "text",
+          "text": " "
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attrs": {
+        "textAlign": null,
+        "fontSize": "11.0pt",
+        "color": "",
+        "fontFamily": "'Calibri',sans-serif"
+      }
+    },
+    {
+      "type": "image",
+      "attrs": {
+        "src": "~WRS%7bD45F3D4F-1947-428A-9F16-0C27627F0E54%7d_files/image002.png",
+        "alt": "Chart of Screen Reader Market Share.\n(Unfortunately, there isn't a way in Word or PDF to include rich formatting, such as a table, in alternate text.)",
+        "title": null,
+        "width": 284,
+        "height": 140
+      }
+    },
+    {
+      "type": "paragraph",
+      "attrs": {
+        "textAlign": null,
+        "fontSize": null,
+        "color": null,
+        "fontFamily": null
+      },
+      "content": [
+        {
+          "type": "text",
+          "text": "Some images, such as charts or graphs, require long descriptions, but not all document types allow that. In web pages, long descriptions may be provided in several ways: on the page below the image, via a link below the image, or via a link on the image."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attrs": {
+        "textAlign": null,
+        "fontSize": "11.0pt",
+        "color": "",
+        "fontFamily": "'Calibri',sans-serif"
+      },
+      "content": [
+        {
+          "type": "text",
+          "text": " "
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "attrs": {
+        "textAlign": null,
+        "fontSize": "18.0pt",
+        "color": "",
+        "fontFamily": "'Calibri',sans-serif",
+        "level": 2
+      },
+      "content": [
+        {
+          "type": "text",
+          "marks": [
+            {
+              "type": "bold"
+            }
+          ],
+          "text": "Tables"
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "attrs": {
+        "textAlign": null,
+        "fontSize": "14.0pt",
+        "color": "",
+        "fontFamily": "'Calibri',sans-serif",
+        "level": 3
+      },
+      "content": [
+        {
+          "type": "text",
+          "marks": [
+            {
+              "type": "bold"
+            }
+          ],
+          "text": "Simple Tables"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attrs": {
+        "textAlign": null,
+        "fontSize": "11.0pt",
+        "color": "",
+        "fontFamily": "'Calibri',sans-serif"
+      },
+      "content": [
+        {
+          "type": "text",
+          "text": "Simple tables have a uniform number of columns and rows, without any merged cells:"
+        }
+      ]
+    },
+    {
+      "type": "table",
+      "content": [
+        {
+          "type": "tableRow",
+          "content": [
+            {
+              "type": "tableCell",
+              "attrs": {
+                "colspan": 1,
+                "rowspan": 1,
+                "colwidth": null,
+                "align": null
+              },
+              "content": [
+                {
+                  "type": "paragraph",
+                  "attrs": {
+                    "textAlign": null,
+                    "fontSize": "11.0pt",
+                    "color": "",
+                    "fontFamily": "'Calibri',sans-serif"
+                  },
+                  "content": [
+                    {
+                      "type": "text",
+                      "marks": [
+                        {
+                          "type": "bold"
+                        }
+                      ],
+                      "text": "Screen Reader"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "tableCell",
+              "attrs": {
+                "colspan": 1,
+                "rowspan": 1,
+                "colwidth": null,
+                "align": null
+              },
+              "content": [
+                {
+                  "type": "paragraph",
+                  "attrs": {
+                    "textAlign": null,
+                    "fontSize": "11.0pt",
+                    "color": "",
+                    "fontFamily": "'Calibri',sans-serif"
+                  },
+                  "content": [
+                    {
+                      "type": "text",
+                      "marks": [
+                        {
+                          "type": "bold"
+                        }
+                      ],
+                      "text": "Responses"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "tableCell",
+              "attrs": {
+                "colspan": 1,
+                "rowspan": 1,
+                "colwidth": null,
+                "align": null
+              },
+              "content": [
+                {
+                  "type": "paragraph",
+                  "attrs": {
+                    "textAlign": null,
+                    "fontSize": "11.0pt",
+                    "color": "",
+                    "fontFamily": "'Calibri',sans-serif"
+                  },
+                  "content": [
+                    {
+                      "type": "text",
+                      "marks": [
+                        {
+                          "type": "bold"
+                        }
+                      ],
+                      "text": "Share"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "tableRow",
+          "content": [
+            {
+              "type": "tableCell",
+              "attrs": {
+                "colspan": 1,
+                "rowspan": 1,
+                "colwidth": null,
+                "align": null
+              },
+              "content": [
+                {
+                  "type": "paragraph",
+                  "attrs": {
+                    "textAlign": null,
+                    "fontSize": "11.0pt",
+                    "color": "",
+                    "fontFamily": "'Calibri',sans-serif"
+                  },
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "JAWS"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "tableCell",
+              "attrs": {
+                "colspan": 1,
+                "rowspan": 1,
+                "colwidth": null,
+                "align": null
+              },
+              "content": [
+                {
+                  "type": "paragraph",
+                  "attrs": {
+                    "textAlign": null,
+                    "fontSize": "11.0pt",
+                    "color": "",
+                    "fontFamily": "'Calibri',sans-serif"
+                  },
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "853"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "tableCell",
+              "attrs": {
+                "colspan": 1,
+                "rowspan": 1,
+                "colwidth": null,
+                "align": null
+              },
+              "content": [
+                {
+                  "type": "paragraph",
+                  "attrs": {
+                    "textAlign": null,
+                    "fontSize": "11.0pt",
+                    "color": "",
+                    "fontFamily": "'Calibri',sans-serif"
+                  },
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "49%"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "tableRow",
+          "content": [
+            {
+              "type": "tableCell",
+              "attrs": {
+                "colspan": 1,
+                "rowspan": 1,
+                "colwidth": null,
+                "align": null
+              },
+              "content": [
+                {
+                  "type": "paragraph",
+                  "attrs": {
+                    "textAlign": null,
+                    "fontSize": "11.0pt",
+                    "color": "",
+                    "fontFamily": "'Calibri',sans-serif"
+                  },
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "NVDA"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "tableCell",
+              "attrs": {
+                "colspan": 1,
+                "rowspan": 1,
+                "colwidth": null,
+                "align": null
+              },
+              "content": [
+                {
+                  "type": "paragraph",
+                  "attrs": {
+                    "textAlign": null,
+                    "fontSize": "11.0pt",
+                    "color": "",
+                    "fontFamily": "'Calibri',sans-serif"
+                  },
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "238"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "tableCell",
+              "attrs": {
+                "colspan": 1,
+                "rowspan": 1,
+                "colwidth": null,
+                "align": null
+              },
+              "content": [
+                {
+                  "type": "paragraph",
+                  "attrs": {
+                    "textAlign": null,
+                    "fontSize": "11.0pt",
+                    "color": "",
+                    "fontFamily": "'Calibri',sans-serif"
+                  },
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "14%"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "tableRow",
+          "content": [
+            {
+              "type": "tableCell",
+              "attrs": {
+                "colspan": 1,
+                "rowspan": 1,
+                "colwidth": null,
+                "align": null
+              },
+              "content": [
+                {
+                  "type": "paragraph",
+                  "attrs": {
+                    "textAlign": null,
+                    "fontSize": "11.0pt",
+                    "color": "",
+                    "fontFamily": "'Calibri',sans-serif"
+                  },
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "Window-Eyes"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "tableCell",
+              "attrs": {
+                "colspan": 1,
+                "rowspan": 1,
+                "colwidth": null,
+                "align": null
+              },
+              "content": [
+                {
+                  "type": "paragraph",
+                  "attrs": {
+                    "textAlign": null,
+                    "fontSize": "11.0pt",
+                    "color": "",
+                    "fontFamily": "'Calibri',sans-serif"
+                  },
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "214"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "tableCell",
+              "attrs": {
+                "colspan": 1,
+                "rowspan": 1,
+                "colwidth": null,
+                "align": null
+              },
+              "content": [
+                {
+                  "type": "paragraph",
+                  "attrs": {
+                    "textAlign": null,
+                    "fontSize": "11.0pt",
+                    "color": "",
+                    "fontFamily": "'Calibri',sans-serif"
+                  },
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "12%"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "tableRow",
+          "content": [
+            {
+              "type": "tableCell",
+              "attrs": {
+                "colspan": 1,
+                "rowspan": 1,
+                "colwidth": null,
+                "align": null
+              },
+              "content": [
+                {
+                  "type": "paragraph",
+                  "attrs": {
+                    "textAlign": null,
+                    "fontSize": "11.0pt",
+                    "color": "",
+                    "fontFamily": "'Calibri',sans-serif"
+                  },
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "System Access"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "tableCell",
+              "attrs": {
+                "colspan": 1,
+                "rowspan": 1,
+                "colwidth": null,
+                "align": null
+              },
+              "content": [
+                {
+                  "type": "paragraph",
+                  "attrs": {
+                    "textAlign": null,
+                    "fontSize": "11.0pt",
+                    "color": "",
+                    "fontFamily": "'Calibri',sans-serif"
+                  },
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "181"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "tableCell",
+              "attrs": {
+                "colspan": 1,
+                "rowspan": 1,
+                "colwidth": null,
+                "align": null
+              },
+              "content": [
+                {
+                  "type": "paragraph",
+                  "attrs": {
+                    "textAlign": null,
+                    "fontSize": "11.0pt",
+                    "color": "",
+                    "fontFamily": "'Calibri',sans-serif"
+                  },
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "10%"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "tableRow",
+          "content": [
+            {
+              "type": "tableCell",
+              "attrs": {
+                "colspan": 1,
+                "rowspan": 1,
+                "colwidth": null,
+                "align": null
+              },
+              "content": [
+                {
+                  "type": "paragraph",
+                  "attrs": {
+                    "textAlign": null,
+                    "fontSize": "11.0pt",
+                    "color": "",
+                    "fontFamily": "'Calibri',sans-serif"
+                  },
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "VoiceOver"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "tableCell",
+              "attrs": {
+                "colspan": 1,
+                "rowspan": 1,
+                "colwidth": null,
+                "align": null
+              },
+              "content": [
+                {
+                  "type": "paragraph",
+                  "attrs": {
+                    "textAlign": null,
+                    "fontSize": "11.0pt",
+                    "color": "",
+                    "fontFamily": "'Calibri',sans-serif"
+                  },
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "159"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "tableCell",
+              "attrs": {
+                "colspan": 1,
+                "rowspan": 1,
+                "colwidth": null,
+                "align": null
+              },
+              "content": [
+                {
+                  "type": "paragraph",
+                  "attrs": {
+                    "textAlign": null,
+                    "fontSize": "11.0pt",
+                    "color": "",
+                    "fontFamily": "'Calibri',sans-serif"
+                  },
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "9%"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attrs": {
+        "textAlign": null,
+        "fontSize": "11.0pt",
+        "color": "",
+        "fontFamily": "'Calibri',sans-serif"
+      },
+      "content": [
+        {
+          "type": "text",
+          "text": " "
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "attrs": {
+        "textAlign": null,
+        "fontSize": "14.0pt",
+        "color": "",
+        "fontFamily": "'Calibri',sans-serif",
+        "level": 3
+      },
+      "content": [
+        {
+          "type": "text",
+          "marks": [
+            {
+              "type": "bold"
+            }
+          ],
+          "text": "Complex Tables"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attrs": {
+        "textAlign": null,
+        "fontSize": "11.0pt",
+        "color": "",
+        "fontFamily": "'Calibri',sans-serif"
+      },
+      "content": [
+        {
+          "type": "text",
+          "text": "The following is a complex table, using merged cells as headers for sections within the table. This can't be made accessible in all types of documents:"
+        }
+      ]
+    },
+    {
+      "type": "table",
+      "content": [
+        {
+          "type": "tableRow",
+          "content": [
+            {
+              "type": "tableCell",
+              "attrs": {
+                "colspan": 1,
+                "rowspan": 1,
+                "colwidth": null,
+                "align": null
+              },
+              "content": [
+                {
+                  "type": "paragraph",
+                  "attrs": {
+                    "textAlign": null,
+                    "fontSize": "11.0pt",
+                    "color": "",
+                    "fontFamily": "'Calibri',sans-serif"
+                  },
+                  "content": [
+                    {
+                      "type": "text",
+                      "marks": [
+                        {
+                          "type": "bold"
+                        }
+                      ],
+                      "text": " "
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "tableCell",
+              "attrs": {
+                "colspan": 2,
+                "rowspan": 1,
+                "colwidth": null,
+                "align": null
+              },
+              "content": [
+                {
+                  "type": "paragraph",
+                  "attrs": {
+                    "textAlign": null,
+                    "fontSize": "11.0pt",
+                    "color": "",
+                    "fontFamily": "'Calibri',sans-serif"
+                  },
+                  "content": [
+                    {
+                      "type": "text",
+                      "marks": [
+                        {
+                          "type": "bold"
+                        }
+                      ],
+                      "text": "May 2012"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "tableCell",
+              "attrs": {
+                "colspan": 2,
+                "rowspan": 1,
+                "colwidth": null,
+                "align": null
+              },
+              "content": [
+                {
+                  "type": "paragraph",
+                  "attrs": {
+                    "textAlign": null,
+                    "fontSize": "11.0pt",
+                    "color": "",
+                    "fontFamily": "'Calibri',sans-serif"
+                  },
+                  "content": [
+                    {
+                      "type": "text",
+                      "marks": [
+                        {
+                          "type": "bold"
+                        }
+                      ],
+                      "text": " September 2010"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "tableRow",
+          "content": [
+            {
+              "type": "tableCell",
+              "attrs": {
+                "colspan": 1,
+                "rowspan": 1,
+                "colwidth": null,
+                "align": null
+              },
+              "content": [
+                {
+                  "type": "paragraph",
+                  "attrs": {
+                    "textAlign": null,
+                    "fontSize": "11.0pt",
+                    "color": "",
+                    "fontFamily": "'Calibri',sans-serif"
+                  },
+                  "content": [
+                    {
+                      "type": "text",
+                      "marks": [
+                        {
+                          "type": "bold"
+                        }
+                      ],
+                      "text": "Screen Reader"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "tableCell",
+              "attrs": {
+                "colspan": 1,
+                "rowspan": 1,
+                "colwidth": null,
+                "align": null
+              },
+              "content": [
+                {
+                  "type": "paragraph",
+                  "attrs": {
+                    "textAlign": null,
+                    "fontSize": "11.0pt",
+                    "color": "",
+                    "fontFamily": "'Calibri',sans-serif"
+                  },
+                  "content": [
+                    {
+                      "type": "text",
+                      "marks": [
+                        {
+                          "type": "bold"
+                        }
+                      ],
+                      "text": "Responses"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "tableCell",
+              "attrs": {
+                "colspan": 1,
+                "rowspan": 1,
+                "colwidth": null,
+                "align": null
+              },
+              "content": [
+                {
+                  "type": "paragraph",
+                  "attrs": {
+                    "textAlign": null,
+                    "fontSize": "11.0pt",
+                    "color": "",
+                    "fontFamily": "'Calibri',sans-serif"
+                  },
+                  "content": [
+                    {
+                      "type": "text",
+                      "marks": [
+                        {
+                          "type": "bold"
+                        }
+                      ],
+                      "text": "Share"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "tableCell",
+              "attrs": {
+                "colspan": 1,
+                "rowspan": 1,
+                "colwidth": null,
+                "align": null
+              },
+              "content": [
+                {
+                  "type": "paragraph",
+                  "attrs": {
+                    "textAlign": null,
+                    "fontSize": "11.0pt",
+                    "color": "",
+                    "fontFamily": "'Calibri',sans-serif"
+                  },
+                  "content": [
+                    {
+                      "type": "text",
+                      "marks": [
+                        {
+                          "type": "bold"
+                        }
+                      ],
+                      "text": "Responses"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "tableCell",
+              "attrs": {
+                "colspan": 1,
+                "rowspan": 1,
+                "colwidth": null,
+                "align": null
+              },
+              "content": [
+                {
+                  "type": "paragraph",
+                  "attrs": {
+                    "textAlign": null,
+                    "fontSize": "11.0pt",
+                    "color": "",
+                    "fontFamily": "'Calibri',sans-serif"
+                  },
+                  "content": [
+                    {
+                      "type": "text",
+                      "marks": [
+                        {
+                          "type": "bold"
+                        }
+                      ],
+                      "text": "Share"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "tableRow",
+          "content": [
+            {
+              "type": "tableCell",
+              "attrs": {
+                "colspan": 1,
+                "rowspan": 1,
+                "colwidth": null,
+                "align": null
+              },
+              "content": [
+                {
+                  "type": "paragraph",
+                  "attrs": {
+                    "textAlign": null,
+                    "fontSize": "11.0pt",
+                    "color": "",
+                    "fontFamily": "'Calibri',sans-serif"
+                  },
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "JAWS"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "tableCell",
+              "attrs": {
+                "colspan": 1,
+                "rowspan": 1,
+                "colwidth": null,
+                "align": null
+              },
+              "content": [
+                {
+                  "type": "paragraph",
+                  "attrs": {
+                    "textAlign": null,
+                    "fontSize": "11.0pt",
+                    "color": "",
+                    "fontFamily": "'Calibri',sans-serif"
+                  },
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "853"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "tableCell",
+              "attrs": {
+                "colspan": 1,
+                "rowspan": 1,
+                "colwidth": null,
+                "align": null
+              },
+              "content": [
+                {
+                  "type": "paragraph",
+                  "attrs": {
+                    "textAlign": null,
+                    "fontSize": "11.0pt",
+                    "color": "",
+                    "fontFamily": "'Calibri',sans-serif"
+                  },
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "49%"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "tableCell",
+              "attrs": {
+                "colspan": 1,
+                "rowspan": 1,
+                "colwidth": null,
+                "align": null
+              },
+              "content": [
+                {
+                  "type": "paragraph",
+                  "attrs": {
+                    "textAlign": null,
+                    "fontSize": "11.0pt",
+                    "color": "",
+                    "fontFamily": "'Calibri',sans-serif"
+                  },
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "727"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "tableCell",
+              "attrs": {
+                "colspan": 1,
+                "rowspan": 1,
+                "colwidth": null,
+                "align": null
+              },
+              "content": [
+                {
+                  "type": "paragraph",
+                  "attrs": {
+                    "textAlign": null,
+                    "fontSize": "11.0pt",
+                    "color": "",
+                    "fontFamily": "'Calibri',sans-serif"
+                  },
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "59%"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "tableRow",
+          "content": [
+            {
+              "type": "tableCell",
+              "attrs": {
+                "colspan": 1,
+                "rowspan": 1,
+                "colwidth": null,
+                "align": null
+              },
+              "content": [
+                {
+                  "type": "paragraph",
+                  "attrs": {
+                    "textAlign": null,
+                    "fontSize": "11.0pt",
+                    "color": "",
+                    "fontFamily": "'Calibri',sans-serif"
+                  },
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "NVDA"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "tableCell",
+              "attrs": {
+                "colspan": 1,
+                "rowspan": 1,
+                "colwidth": null,
+                "align": null
+              },
+              "content": [
+                {
+                  "type": "paragraph",
+                  "attrs": {
+                    "textAlign": null,
+                    "fontSize": "11.0pt",
+                    "color": "",
+                    "fontFamily": "'Calibri',sans-serif"
+                  },
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "238"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "tableCell",
+              "attrs": {
+                "colspan": 1,
+                "rowspan": 1,
+                "colwidth": null,
+                "align": null
+              },
+              "content": [
+                {
+                  "type": "paragraph",
+                  "attrs": {
+                    "textAlign": null,
+                    "fontSize": "11.0pt",
+                    "color": "",
+                    "fontFamily": "'Calibri',sans-serif"
+                  },
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "14%"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "tableCell",
+              "attrs": {
+                "colspan": 1,
+                "rowspan": 1,
+                "colwidth": null,
+                "align": null
+              },
+              "content": [
+                {
+                  "type": "paragraph",
+                  "attrs": {
+                    "textAlign": null,
+                    "fontSize": "11.0pt",
+                    "color": "",
+                    "fontFamily": "'Calibri',sans-serif"
+                  },
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "105"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "tableCell",
+              "attrs": {
+                "colspan": 1,
+                "rowspan": 1,
+                "colwidth": null,
+                "align": null
+              },
+              "content": [
+                {
+                  "type": "paragraph",
+                  "attrs": {
+                    "textAlign": null,
+                    "fontSize": "11.0pt",
+                    "color": "",
+                    "fontFamily": "'Calibri',sans-serif"
+                  },
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "9%"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "tableRow",
+          "content": [
+            {
+              "type": "tableCell",
+              "attrs": {
+                "colspan": 1,
+                "rowspan": 1,
+                "colwidth": null,
+                "align": null
+              },
+              "content": [
+                {
+                  "type": "paragraph",
+                  "attrs": {
+                    "textAlign": null,
+                    "fontSize": "11.0pt",
+                    "color": "",
+                    "fontFamily": "'Calibri',sans-serif"
+                  },
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "Window-Eyes"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "tableCell",
+              "attrs": {
+                "colspan": 1,
+                "rowspan": 1,
+                "colwidth": null,
+                "align": null
+              },
+              "content": [
+                {
+                  "type": "paragraph",
+                  "attrs": {
+                    "textAlign": null,
+                    "fontSize": "11.0pt",
+                    "color": "",
+                    "fontFamily": "'Calibri',sans-serif"
+                  },
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "214"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "tableCell",
+              "attrs": {
+                "colspan": 1,
+                "rowspan": 1,
+                "colwidth": null,
+                "align": null
+              },
+              "content": [
+                {
+                  "type": "paragraph",
+                  "attrs": {
+                    "textAlign": null,
+                    "fontSize": "11.0pt",
+                    "color": "",
+                    "fontFamily": "'Calibri',sans-serif"
+                  },
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "12%"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "tableCell",
+              "attrs": {
+                "colspan": 1,
+                "rowspan": 1,
+                "colwidth": null,
+                "align": null
+              },
+              "content": [
+                {
+                  "type": "paragraph",
+                  "attrs": {
+                    "textAlign": null,
+                    "fontSize": "11.0pt",
+                    "color": "",
+                    "fontFamily": "'Calibri',sans-serif"
+                  },
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "138"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "tableCell",
+              "attrs": {
+                "colspan": 1,
+                "rowspan": 1,
+                "colwidth": null,
+                "align": null
+              },
+              "content": [
+                {
+                  "type": "paragraph",
+                  "attrs": {
+                    "textAlign": null,
+                    "fontSize": "11.0pt",
+                    "color": "",
+                    "fontFamily": "'Calibri',sans-serif"
+                  },
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "11%"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "tableRow",
+          "content": [
+            {
+              "type": "tableCell",
+              "attrs": {
+                "colspan": 1,
+                "rowspan": 1,
+                "colwidth": null,
+                "align": null
+              },
+              "content": [
+                {
+                  "type": "paragraph",
+                  "attrs": {
+                    "textAlign": null,
+                    "fontSize": "11.0pt",
+                    "color": "",
+                    "fontFamily": "'Calibri',sans-serif"
+                  },
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "System Access"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "tableCell",
+              "attrs": {
+                "colspan": 1,
+                "rowspan": 1,
+                "colwidth": null,
+                "align": null
+              },
+              "content": [
+                {
+                  "type": "paragraph",
+                  "attrs": {
+                    "textAlign": null,
+                    "fontSize": "11.0pt",
+                    "color": "",
+                    "fontFamily": "'Calibri',sans-serif"
+                  },
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "181"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "tableCell",
+              "attrs": {
+                "colspan": 1,
+                "rowspan": 1,
+                "colwidth": null,
+                "align": null
+              },
+              "content": [
+                {
+                  "type": "paragraph",
+                  "attrs": {
+                    "textAlign": null,
+                    "fontSize": "11.0pt",
+                    "color": "",
+                    "fontFamily": "'Calibri',sans-serif"
+                  },
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "10%"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "tableCell",
+              "attrs": {
+                "colspan": 1,
+                "rowspan": 1,
+                "colwidth": null,
+                "align": null
+              },
+              "content": [
+                {
+                  "type": "paragraph",
+                  "attrs": {
+                    "textAlign": null,
+                    "fontSize": "11.0pt",
+                    "color": "",
+                    "fontFamily": "'Calibri',sans-serif"
+                  },
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "58"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "tableCell",
+              "attrs": {
+                "colspan": 1,
+                "rowspan": 1,
+                "colwidth": null,
+                "align": null
+              },
+              "content": [
+                {
+                  "type": "paragraph",
+                  "attrs": {
+                    "textAlign": null,
+                    "fontSize": "11.0pt",
+                    "color": "",
+                    "fontFamily": "'Calibri',sans-serif"
+                  },
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "5%"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "tableRow",
+          "content": [
+            {
+              "type": "tableCell",
+              "attrs": {
+                "colspan": 1,
+                "rowspan": 1,
+                "colwidth": null,
+                "align": null
+              },
+              "content": [
+                {
+                  "type": "paragraph",
+                  "attrs": {
+                    "textAlign": null,
+                    "fontSize": "11.0pt",
+                    "color": "",
+                    "fontFamily": "'Calibri',sans-serif"
+                  },
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "VoiceOver"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "tableCell",
+              "attrs": {
+                "colspan": 1,
+                "rowspan": 1,
+                "colwidth": null,
+                "align": null
+              },
+              "content": [
+                {
+                  "type": "paragraph",
+                  "attrs": {
+                    "textAlign": null,
+                    "fontSize": "11.0pt",
+                    "color": "",
+                    "fontFamily": "'Calibri',sans-serif"
+                  },
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "159"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "tableCell",
+              "attrs": {
+                "colspan": 1,
+                "rowspan": 1,
+                "colwidth": null,
+                "align": null
+              },
+              "content": [
+                {
+                  "type": "paragraph",
+                  "attrs": {
+                    "textAlign": null,
+                    "fontSize": "11.0pt",
+                    "color": "",
+                    "fontFamily": "'Calibri',sans-serif"
+                  },
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "9%"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "tableCell",
+              "attrs": {
+                "colspan": 1,
+                "rowspan": 1,
+                "colwidth": null,
+                "align": null
+              },
+              "content": [
+                {
+                  "type": "paragraph",
+                  "attrs": {
+                    "textAlign": null,
+                    "fontSize": "11.0pt",
+                    "color": "",
+                    "fontFamily": "'Calibri',sans-serif"
+                  },
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "120"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "tableCell",
+              "attrs": {
+                "colspan": 1,
+                "rowspan": 1,
+                "colwidth": null,
+                "align": null
+              },
+              "content": [
+                {
+                  "type": "paragraph",
+                  "attrs": {
+                    "textAlign": null,
+                    "fontSize": "11.0pt",
+                    "color": "",
+                    "fontFamily": "'Calibri',sans-serif"
+                  },
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "10%"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attrs": {
+        "textAlign": null,
+        "fontSize": "11.0pt",
+        "color": "",
+        "fontFamily": "'Calibri',sans-serif"
+      },
+      "content": [
+        {
+          "type": "text",
+          "text": " "
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "attrs": {
+        "textAlign": null,
+        "fontSize": "18.0pt",
+        "color": "",
+        "fontFamily": "'Calibri',sans-serif",
+        "level": 2
+      },
+      "content": [
+        {
+          "type": "text",
+          "marks": [
+            {
+              "type": "bold"
+            }
+          ],
+          "text": "Columns"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attrs": {
+        "textAlign": null,
+        "fontSize": null,
+        "color": null,
+        "fontFamily": null
+      },
+      "content": [
+        {
+          "type": "hardBreak",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "11.0pt",
+                "color": "",
+                "fontFamily": "\"Calibri\",sans-serif"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attrs": {
+        "textAlign": null,
+        "fontSize": "11.0pt",
+        "color": "",
+        "fontFamily": "'Calibri',sans-serif"
+      },
+      "content": [
+        {
+          "type": "text",
+          "text": "This is an example of columns. With columns, the page is split into two or more horizontal sections. Unlike tables, in which you usually read across a row and then down to the next, in columns, you read down a column and then across to the next."
+        },
+        {
+          "type": "hardBreak"
+        },
+        {
+          "type": "text",
+          "text": "When columns are not created correctly, screen readers may run lines together, reading the first line of the first column, then the first line of the second column, then the second line of the first column, and so on. Obviously, that is not accessible."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attrs": {
+        "textAlign": null,
+        "fontSize": "11.0pt",
+        "color": "",
+        "fontFamily": "'Calibri',sans-serif"
+      },
+      "content": [
+        {
+          "type": "text",
+          "text": " "
+        }
+      ]
+    }
+  ]
+}
