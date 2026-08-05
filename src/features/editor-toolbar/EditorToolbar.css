@@ -373,3 +373,29 @@
   cursor: default;
   opacity: 0.6;
 }
+
+/* Small option-list popover — Change Case, Sort, Line spacing. */
+.ribbon-options-popover {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 6px;
+  min-width: 170px;
+}
+
+.ribbon-options-item {
+  width: 100%;
+  text-align: left;
+  font-size: 13px;
+  padding: 7px 8px;
+  border: none;
+  border-radius: 4px;
+  background: transparent;
+  color: #000000;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.ribbon-options-item:hover {
+  background: #e6e6e6;
+}

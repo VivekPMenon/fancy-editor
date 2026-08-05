@@ -41,6 +41,8 @@ import {
 } from '@fluentui/react-icons';
 import { ubsFluentTheme } from './ubsFluentTheme';
 import { TableInsertPopover } from './TableInsertPopover';
+import { RibbonOptionsPopover } from './RibbonOptionsPopover';
+import { changeSelectionCase, sortSelection } from './textTransformCommands';
 import './EditorToolbar.css';
 
 interface EditorToolbarProps {
@@ -157,9 +159,20 @@ export function EditorToolbar({ editor }: EditorToolbarProps) {
     };
   }, [editor]);
 
+  const [showMarks, setShowMarks] = useState(false);
+
   const headingValue = ([1, 2, 3, 4] as const).find((level) => editor.isActive('heading', { level }));
+  const activeBlockType = headingValue ? 'heading' : 'paragraph';
   const currentFontSize = Number(editor.getAttributes('textStyle').fontSize?.replace('px', '')) || 18;
   const currentColor = editor.getAttributes('textStyle').color || '#000000';
+  const currentHighlight = editor.getAttributes('highlight').color || '#ffff00';
+  const currentShading = editor.getAttributes(activeBlockType).shading || '#ffffff';
+
+  function handleToggleShowMarks() {
+    const next = !showMarks;
+    setShowMarks(next);
+    editor.view.dom.classList.toggle('show-formatting-marks', next);
+  }
 
   function handleFontFamilyChange(value: string) {
     if (!value) {
@@ -278,7 +291,16 @@ export function EditorToolbar({ editor }: EditorToolbarProps) {
               <Toolbar size="small" className="editor-toolbar-row">
                 <RibbonButton icon={FontIncreaseRegular} title="Grow font" onClick={handleGrowFont} />
                 <RibbonButton icon={FontDecreaseRegular} title="Shrink font" onClick={handleShrinkFont} />
-                <RibbonButton icon={TextCaseUppercaseRegular} dropdown title="Change case" disabled />
+                <RibbonOptionsPopover
+                  icon={TextCaseUppercaseRegular}
+                  title="Change case"
+                  options={[
+                    { label: 'Sentence case.', onClick: () => changeSelectionCase(editor, 'sentence') },
+                    { label: 'lowercase', onClick: () => changeSelectionCase(editor, 'lower') },
+                    { label: 'UPPERCASE', onClick: () => changeSelectionCase(editor, 'upper') },
+                    { label: 'Capitalize Each Word', onClick: () => changeSelectionCase(editor, 'title') },
+                  ]}
+                />
                 <RibbonButton icon={EraserRegular} title="Clear formatting" onClick={handleClearFormatting} />
               </Toolbar>
             </div>
@@ -308,10 +330,31 @@ export function EditorToolbar({ editor }: EditorToolbarProps) {
                 checked={editor.isActive('strike')}
                 onClick={() => editor.chain().focus().toggleStrike().run()}
               />
-              <RibbonButton icon={TextSubscriptRegular} title="Subscript" disabled />
-              <RibbonButton icon={TextSuperscriptRegular} title="Superscript" disabled />
+              <RibbonToggle
+                icon={TextSubscriptRegular}
+                title="Subscript"
+                checked={editor.isActive('subscript')}
+                onClick={() => editor.chain().focus().toggleSubscript().run()}
+              />
+              <RibbonToggle
+                icon={TextSuperscriptRegular}
+                title="Superscript"
+                checked={editor.isActive('superscript')}
+                onClick={() => editor.chain().focus().toggleSuperscript().run()}
+              />
+              {/* WordArt-style outline/shadow/glow/reflection — a large preset
+                  gallery with little payoff for a business-document editor;
+                  left out of scope rather than half-built. */}
               <RibbonButton icon={TextEffectsRegular} dropdown title="Text effects" disabled />
-              <RibbonButton icon={HighlightRegular} dropdown title="Text highlight color" disabled />
+              <label className="editor-toolbar-color-button" title="Text highlight color">
+                <HighlightRegular />
+                <span className="editor-toolbar-color-swatch" style={{ backgroundColor: currentHighlight }} />
+                <input
+                  type="color"
+                  value={currentHighlight}
+                  onChange={(event) => editor.chain().focus().setHighlight({ color: event.target.value }).run()}
+                />
+              </label>
               <label className="editor-toolbar-color-button" title="Font color">
                 <TextColorRegular />
                 <span className="editor-toolbar-color-swatch" style={{ backgroundColor: currentColor }} />
@@ -321,7 +364,12 @@ export function EditorToolbar({ editor }: EditorToolbarProps) {
                   onChange={(event) => editor.chain().focus().setColor(event.target.value).run()}
                 />
               </label>
-              <RibbonButton icon={TextFieldRegular} title="Enclose characters" disabled />
+              <RibbonToggle
+                icon={TextFieldRegular}
+                title="Enclose characters"
+                checked={editor.isActive('encloseCharacters')}
+                onClick={() => editor.chain().focus().toggleEncloseCharacters().run()}
+              />
             </Toolbar>
           </RibbonGroup>
 
@@ -341,7 +389,18 @@ export function EditorToolbar({ editor }: EditorToolbarProps) {
                 checked={editor.isActive('orderedList')}
                 onClick={() => editor.chain().focus().toggleOrderedList().run()}
               />
-              <RibbonButton icon={TextBulletListTreeRegular} dropdown title="Multilevel list" disabled />
+              {/* Word's true multilevel list assigns a distinct numbering
+                  style per depth (1, a, i…) — simplified here to the same
+                  ordered-list toggle as Numbering, with depth-based
+                  numbering styles applied globally via CSS (nesting itself
+                  already works via Tab/Shift-Tab, see indentExtension.ts). */}
+              <RibbonToggle
+                icon={TextBulletListTreeRegular}
+                dropdown
+                title="Multilevel list"
+                checked={editor.isActive('orderedList')}
+                onClick={() => editor.chain().focus().toggleOrderedList().run()}
+              />
               <RibbonButton
                 icon={TextIndentDecreaseRegular}
                 title="Decrease indent"
@@ -352,8 +411,20 @@ export function EditorToolbar({ editor }: EditorToolbarProps) {
                 title="Increase indent"
                 onClick={() => editor.chain().focus().indent().run()}
               />
-              <RibbonButton icon={ArrowSortRegular} title="Sort" disabled />
-              <RibbonButton icon={TextParagraphRegular} title="Show/hide formatting marks" disabled />
+              <RibbonOptionsPopover
+                icon={ArrowSortRegular}
+                title="Sort"
+                options={[
+                  { label: 'Ascending (A to Z)', onClick: () => sortSelection(editor, 'asc') },
+                  { label: 'Descending (Z to A)', onClick: () => sortSelection(editor, 'desc') },
+                ]}
+              />
+              <RibbonToggle
+                icon={TextParagraphRegular}
+                title="Show/hide formatting marks"
+                checked={showMarks}
+                onClick={handleToggleShowMarks}
+              />
             </Toolbar>
             <Toolbar size="small" className="editor-toolbar-row">
               <RibbonToggle
@@ -380,9 +451,35 @@ export function EditorToolbar({ editor }: EditorToolbarProps) {
                 checked={editor.isActive({ textAlign: 'justify' })}
                 onClick={() => editor.chain().focus().setTextAlign('justify').run()}
               />
-              <RibbonButton icon={TextLineSpacingRegular} dropdown title="Line and paragraph spacing" disabled />
-              <RibbonButton icon={PaintBucketRegular} dropdown title="Shading" disabled />
-              <RibbonButton icon={BorderAllRegular} dropdown title="Borders" disabled />
+              <RibbonOptionsPopover
+                icon={TextLineSpacingRegular}
+                title="Line and paragraph spacing"
+                options={[
+                  { label: '1.0', onClick: () => editor.chain().focus().setLineHeight('1').run() },
+                  { label: '1.15', onClick: () => editor.chain().focus().setLineHeight('1.15').run() },
+                  { label: '1.5', onClick: () => editor.chain().focus().setLineHeight('1.5').run() },
+                  { label: '2.0', onClick: () => editor.chain().focus().setLineHeight('2').run() },
+                  { label: 'Remove custom spacing', onClick: () => editor.chain().focus().unsetLineHeight().run() },
+                ]}
+              />
+              <label className="editor-toolbar-color-button" title="Shading">
+                <PaintBucketRegular />
+                <span className="editor-toolbar-color-swatch" style={{ backgroundColor: currentShading }} />
+                <input
+                  type="color"
+                  value={currentShading}
+                  onChange={(event) => editor.chain().focus().setShading(event.target.value).run()}
+                />
+              </label>
+              {/* Simplified to a single uniform border toggle rather than
+                  Word's full per-side style/width/color control. */}
+              <RibbonToggle
+                icon={BorderAllRegular}
+                dropdown
+                title="Borders"
+                checked={!!editor.getAttributes(activeBlockType).border}
+                onClick={() => editor.chain().focus().toggleParagraphBorder().run()}
+              />
             </Toolbar>
           </RibbonGroup>
 

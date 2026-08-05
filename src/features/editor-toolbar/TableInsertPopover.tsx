@@ -26,10 +26,14 @@ export function TableInsertPopover({ editor }: { editor: Editor }) {
   const [open, setOpen] = useState(false);
   const [hover, setHover] = useState<HoverCell | null>(null);
 
-  function insertTable(rows: number, cols: number) {
-    editor.chain().focus().insertTable({ rows, cols, withHeaderRow: true }).run();
+  function close() {
     setOpen(false);
     setHover(null);
+  }
+
+  function insertTable(rows: number, cols: number) {
+    editor.chain().focus().insertTable({ rows, cols, withHeaderRow: true }).run();
+    close();
   }
 
   function handleInsertTableDialog() {
@@ -44,6 +48,31 @@ export function TableInsertPopover({ editor }: { editor: Editor }) {
     const rows = Math.max(1, Math.round(Number(rowsInput)) || 3);
     const cols = Math.max(1, Math.round(Number(colsInput)) || 3);
     insertTable(rows, cols);
+  }
+
+  // Builds table HTML directly and feeds it through the normal HTML->schema
+  // parser instead of manually walking positions after insertTable() — far
+  // simpler than hand-computing where each cell landed.
+  function handleConvertTextToTable() {
+    const { from, to } = editor.state.selection;
+    if (from === to) {
+      window.alert('Select some text first — one row per line, cells separated by tabs or commas.');
+      return;
+    }
+    const text = editor.state.doc.textBetween(from, to, '\n');
+    const rows = text
+      .split('\n')
+      .map((line) => line.split(/\t|,/).map((cell) => cell.trim()))
+      .filter((row) => row.some(Boolean));
+    if (rows.length === 0) {
+      return;
+    }
+    const cols = Math.max(...rows.map((row) => row.length));
+    const html = `<table><tbody>${rows
+      .map((row) => `<tr>${Array.from({ length: cols }, (_, i) => `<td>${row[i] ?? ''}</td>`).join('')}</tr>`)
+      .join('')}</tbody></table>`;
+    editor.chain().focus().deleteSelection().insertContent(html).run();
+    close();
   }
 
   return (
@@ -92,21 +121,30 @@ export function TableInsertPopover({ editor }: { editor: Editor }) {
             <DrawTextRegular /> Draw Table
           </button>
         </Tooltip>
-        <Tooltip content={NOT_IMPLEMENTED} relationship="label" withArrow>
-          <button type="button" className="table-insert-menu-item" disabled>
-            <TableSwitchRegular /> Convert Text to Table…
-          </button>
-        </Tooltip>
+        <button type="button" className="table-insert-menu-item" onClick={handleConvertTextToTable}>
+          <TableSwitchRegular /> Convert Text to Table…
+        </button>
         <Tooltip content={NOT_IMPLEMENTED} relationship="label" withArrow>
           <button type="button" className="table-insert-menu-item" disabled>
             <TableRegular /> Excel Spreadsheet
           </button>
         </Tooltip>
-        <Tooltip content={NOT_IMPLEMENTED} relationship="label" withArrow>
-          <button type="button" className="table-insert-menu-item" disabled>
-            <TableStackAboveRegular /> Quick Tables
-          </button>
-        </Tooltip>
+        <div className="table-insert-divider" />
+        <p className="table-insert-popover-label">Quick Tables</p>
+        <button
+          type="button"
+          className="table-insert-menu-item"
+          onClick={() => insertTable(3, 3)}
+        >
+          <TableStackAboveRegular /> Simple 3×3
+        </button>
+        <button
+          type="button"
+          className="table-insert-menu-item"
+          onClick={() => insertTable(5, 2)}
+        >
+          <TableStackAboveRegular /> Two Columns, 5 Rows
+        </button>
       </PopoverSurface>
     </Popover>
   );

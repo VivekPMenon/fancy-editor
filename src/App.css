@@ -106,6 +106,35 @@
     color: var(--accent);
   }
 
+  /* Word's "Multilevel list" assigns a distinct numbering style per nesting
+     depth — simplified here to a CSS cycle rather than per-level style
+     configuration; nesting itself already works via Tab/Shift-Tab. */
+  .ProseMirror ol {
+    list-style-type: decimal;
+  }
+
+  .ProseMirror ol ol {
+    list-style-type: lower-alpha;
+  }
+
+  .ProseMirror ol ol ol {
+    list-style-type: lower-roman;
+  }
+
+  /* "Show/hide formatting marks" — toggled by adding this class directly to
+     editor.view.dom (which *is* the .ProseMirror element). Simplified to
+     paragraph-end pilcrows only; space/tab marks aren't rendered. */
+  .ProseMirror.show-formatting-marks p::after,
+  .ProseMirror.show-formatting-marks h1::after,
+  .ProseMirror.show-formatting-marks h2::after,
+  .ProseMirror.show-formatting-marks h3::after,
+  .ProseMirror.show-formatting-marks h4::after,
+  .ProseMirror.show-formatting-marks li::after {
+    content: '¶';
+    color: #919191;
+    margin-left: 4px;
+  }
+
   .flagged-term {
     background-color: rgba(255, 214, 0, 0.35);
     text-decoration: underline;

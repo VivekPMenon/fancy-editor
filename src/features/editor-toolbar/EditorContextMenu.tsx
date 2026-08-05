@@ -12,6 +12,10 @@ import {
   LinkRegular,
   TextFontRegular,
   TextParagraphRegular,
+  TableInsertRowRegular,
+  TableInsertColumnRegular,
+  TableDeleteRowRegular,
+  TableDeleteColumnRegular,
 } from '@fluentui/react-icons';
 import { ubsFluentTheme } from './ubsFluentTheme';
 import './EditorContextMenu.css';
@@ -158,6 +162,40 @@ export function EditorContextMenu({ editor }: { editor: Editor }) {
         <button type="button" className="editor-context-menu-item" onClick={() => run(handlePaste)}>
           <ClipboardPasteRegular /> Paste
         </button>
+
+        {editor.isActive('table') && (
+          <>
+            <div className="editor-context-menu-divider" />
+            <button
+              type="button"
+              className="editor-context-menu-item"
+              onClick={() => run(() => editor.chain().focus().addRowAfter().run())}
+            >
+              <TableInsertRowRegular /> Insert Row
+            </button>
+            <button
+              type="button"
+              className="editor-context-menu-item"
+              onClick={() => run(() => editor.chain().focus().addColumnAfter().run())}
+            >
+              <TableInsertColumnRegular /> Insert Column
+            </button>
+            <button
+              type="button"
+              className="editor-context-menu-item"
+              onClick={() => run(() => editor.chain().focus().deleteRow().run())}
+            >
+              <TableDeleteRowRegular /> Delete Row
+            </button>
+            <button
+              type="button"
+              className="editor-context-menu-item"
+              onClick={() => run(() => editor.chain().focus().deleteColumn().run())}
+            >
+              <TableDeleteColumnRegular /> Delete Column
+            </button>
+          </>
+        )}
 
         <div className="editor-context-menu-divider" />
 

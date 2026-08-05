@@ -6,9 +6,14 @@ import { Color } from '@tiptap/extension-color';
 import { FontFamily } from '@tiptap/extension-font-family';
 import { Youtube } from '@tiptap/extension-youtube';
 import { Image } from '@tiptap/extension-image';
+import { Subscript } from '@tiptap/extension-subscript';
+import { Superscript } from '@tiptap/extension-superscript';
+import { Highlight } from '@tiptap/extension-highlight';
 import { Indent } from './indentExtension';
 import { FlaggedTerms } from './flaggedTermsExtension';
 import { WordPaste } from './wordPasteExtension';
+import { ParagraphStyle } from './paragraphStyleExtension';
+import { EncloseCharacters } from './encloseCharactersExtension';
 
 // Single source of truth for the editor's schema, shared by the live Tiptap
 // editor (FancyEditorTab) and the HTML<->JSON conversion utilities. They
@@ -35,4 +40,11 @@ export const EDITOR_EXTENSIONS = [
   Indent.configure({ types: ['paragraph', 'heading'] }),
   FlaggedTerms,
   WordPaste,
+  Subscript,
+  Superscript,
+  // multicolor: true — without it, Highlight only supports a single default
+  // yellow, ignoring whatever color the toolbar picker sends.
+  Highlight.configure({ multicolor: true }),
+  ParagraphStyle.configure({ types: ['paragraph', 'heading'] }),
+  EncloseCharacters,
 ];

@@ -16,7 +16,6 @@
 
 .editor-context-menu-quick-format {
   display: flex;
-  justify-content: center;
   gap: 4px;
   padding: 4px 0 8px;
 }
