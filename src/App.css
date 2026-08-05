@@ -82,6 +82,41 @@
     outline: none;
   }
 
+  /* Baseline paragraph/heading/list spacing — the global `p { margin: 0; }`
+     reset in index.css (meant for UI chrome, not document content) was
+     leaving every block flush against the next with no gap at all, and
+     h3-h6/lists/blockquotes have no global rule either way. Post Feed's
+     .feed-post-body already solves this locally; .ProseMirror needed the
+     same treatment. */
+  .ProseMirror p,
+  .ProseMirror ul,
+  .ProseMirror ol,
+  .ProseMirror blockquote {
+    margin: 0 0 10px;
+  }
+
+  .ProseMirror h1,
+  .ProseMirror h2,
+  .ProseMirror h3,
+  .ProseMirror h4,
+  .ProseMirror h5,
+  .ProseMirror h6 {
+    margin: 20px 0 10px;
+  }
+
+  .ProseMirror ul,
+  .ProseMirror ol {
+    padding-left: 22px;
+  }
+
+  .ProseMirror li {
+    margin-bottom: 4px;
+  }
+
+  .ProseMirror > *:first-child {
+    margin-top: 0;
+  }
+
   .ProseMirror table {
     border-collapse: collapse;
     table-layout: fixed;
