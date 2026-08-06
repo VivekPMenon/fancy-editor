@@ -106,11 +106,12 @@ indent. Tiptap has no built-in extension that captures `margin-left`/
 `text-indent` at all (verified — no such attribute exists on the stock
 paragraph/heading nodes).
 
-**Scope decision:** we are **not** attempting semantic list reconstruction
-(inferring real `<ol>/<li>` structure from the fake numbering) — out of
-scope for this POC. We only preserve the *visual* indentation.
+**Original scope decision (superseded, see below):** we initially decided
+**not** to attempt semantic list reconstruction (inferring real `<ol>/<li>`
+structure from the fake numbering) — out of scope for the POC, visual
+indentation only.
 
-**Workaround:** wrote a custom Tiptap extension from scratch
+**Visual-only workaround:** wrote a custom Tiptap extension from scratch
 (`Indent`) that adds `marginLeft`/`textIndent` as global attributes on
 paragraph/heading nodes, parsing and re-rendering the inline CSS.
 
@@ -118,25 +119,52 @@ paragraph/heading nodes, parsing and re-rendering the inline CSS.
 [`indentExtension.ts`](../src/core/tiptap-utils/indentExtension.ts),
 ~30 lines, entirely custom (no library covers this).
 
-**Known gap:** because we scoped out semantic reconstruction, content
-edited in the web/Tiptap app will never have "real" numbered lists coming
-from a Word doc — just correctly-indented paragraphs that visually look
-like a list but aren't structurally one (e.g. can't be re-numbered
-automatically, screen readers won't announce them as a list). **This is
-concretely visible in daily editing, not just a fidelity nitpick:** pressing
-Enter at the end of one of these fake list "items" doesn't continue the
-numbering/bullet, because Tiptap has no list node there to continue — it's
-plain paragraph text that happens to start with "1.".
-
 **Confirmed (2026-08-05):** checked all four of our own captured samples —
 zero instances of real `<ol>/<li>`, and zero instances of Word's `mso-list`
 CSS metadata (`mso-list: l0 level1 lfo1`) either, the semantic hint some
 Word export paths *do* carry and which a reconstruction feature would
 ideally key off instead of pure text-pattern matching. Not present via the
-`body.getHtml()`/Office.js capture path we use — reconstruction would have
-to rely on a text-pattern heuristic (leading "1."/bullet character +
-`margin-left`/`text-indent` shape) with no more reliable signal available.
-Reaffirming the scope decision above: not building this for the POC.
+`body.getHtml()`/Office.js capture path we use.
+
+**Reversed (2026-08-06) — semantic reconstruction built after all.** The
+visual-only gap turned out to be more than a fidelity nitpick: pressing
+Enter at the end of one of these fake list "items" didn't continue the
+numbering/bullet, because there was no list node there to continue — just a
+plain paragraph that happens to start with "1.". That's directly visible in
+the "paste from Word, keep editing" pitch this project is now built around,
+so it was worth the investment.
+
+**How it works:** [`wordListReconstruction.ts`](../src/core/tiptap-utils/wordListReconstruction.ts)
+walks the DOM after `juice()` has resolved styles, detects Word's
+`MsoListParagraph*` paragraph shape (marker character/number + a run of
+non-breaking-space padding simulating a tab, per Word's own convention),
+and rebuilds real nested `<ol>`/`<ul>`/`<li>` from consecutive runs of them —
+inferring nesting depth from `margin-left` (Word indents ~0.5in per level)
+and bullet-vs-ordered from the marker token itself (digit/letter/roman +
+punctuation → ordered; a bare symbol, or `Symbol`/`Wingdings` font-family →
+bullet). Inline formatting inside each item (bold, color, links, …) is
+preserved via `Range.extractContents()` rather than rebuilt from scratch.
+Verified against real captured markup from `sample-1.html`/`sample-4.html`
+in an isolated jsdom test — correct nesting, correct ordered/bullet
+detection, formatting preserved, non-list paragraphs left untouched.
+
+**Extra code:** new file
+[`wordListReconstruction.ts`](../src/core/tiptap-utils/wordListReconstruction.ts)
+(~180 lines), plus a small shared
+[`wordHtmlPreprocessing.ts`](../src/core/tiptap-utils/wordHtmlPreprocessing.ts)
+so the same fix applies uniformly on save/load *and* on paste — no new
+dependency.
+
+**Still a heuristic, not a documented contract** — same caveat as the
+video-embed and icon-MIME fixes elsewhere in this doc: Word gives no
+semantic "this is a list" marker to key off (confirmed above), so this is
+pattern-matching on export shape, not a guarantee. Known simplifications:
+nesting depth is inferred from indent amount in fixed ~0.5in steps (an
+unusual per-document indent scale could misjudge levels), and a marker-type
+change at the *same* indent level (bullets switching to numbers without an
+indent change) isn't specially handled — accepted as edge cases for a
+first pass, consistent with "further iterations" being expected rather than
+chasing full Word parity in one pass.
 
 ---
 
@@ -385,7 +413,7 @@ in place for saved articles.
 | 1 | Images missing from exported HTML | Word export references internal-only file paths | Yes | ~25 lines |
 | 2 | Floating images can't be captured at all | `Word.Shape` has no byte-extraction API — Office.js gap | **No — warn only** | ~40 lines + desktop-only requirement |
 | 3 | Heading color/font lost | Style-based (not inline) formatting; Tiptap doesn't cascade CSS | Yes | ~10 lines + 1 dependency |
-| 4 | List indentation lost | No official Tiptap extension for margin/indent | Yes (custom extension) | ~30 lines, fully custom |
+| 4 | Lists were visual-only, not real `<ol>/<li>` — couldn't continue on Enter | No official Tiptap extension for margin/indent; Word gives no semantic list marker to reconstruct from | Yes — reversed course and built real reconstruction (2026-08-06) | ~30 lines (visual) + ~180 lines (semantic reconstruction, heuristic-based) |
 | 5 | Base64 images dropped | Library default (`allowBase64: false`) | Yes | 1 line |
 | 6 | `&nbsp;` in excerpts | Naive regex strip, no entity decoding | Yes | refactor, no new code |
 | 7 | Flagged-term highlighting | Word has no decoration/overlay concept — any highlight is a real saved edit | Yes, but different mechanism per host | ~55 lines web (live) + ~20 lines Word (one-shot scan, native highlight+comment) |

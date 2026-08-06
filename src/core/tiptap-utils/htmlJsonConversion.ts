@@ -1,8 +1,7 @@
-import juice from 'juice';
 import { generateHTML, generateJSON } from '@tiptap/html';
 import type { JSONContent } from '@tiptap/react';
 import { EDITOR_EXTENSIONS } from './editorExtensions';
-import { resolveWordVideoEmbeds } from './wordVideoEmbed';
+import { preprocessWordHtml } from './wordHtmlPreprocessing';
 
 // Converts captured HTML (e.g. Word's `body.getHtml()` output) into the same
 // ProseMirror JSON schema the live Tiptap editor produces via `getJSON()`.
@@ -10,14 +9,13 @@ import { resolveWordVideoEmbeds } from './wordVideoEmbed';
 // node/mark types (Mso classes, stray <style> blocks, font-face rules, …)
 // simply can't be represented and gets dropped during parsing.
 //
-// Word often expresses formatting (esp. heading color/font-size/font-family)
-// as a <style> block rule (e.g. `h1 { color: ... }`) rather than an inline
-// style on the element — and Tiptap's parseHTML only ever reads an element's
-// own inline `style` attribute, never the stylesheet. juice() resolves the
-// real CSS cascade and inlines the result onto each matching element first,
-// so that formatting has something for parseHTML to actually find.
+// preprocessWordHtml resolves the CSS cascade Word expresses via stylesheet
+// classes (Tiptap's parseHTML only ever reads inline styles), rewrites
+// linked-thumbnail video markup into a real embed, and reconstructs real
+// <ol>/<ul>/<li> from Word's fake numbered/bulleted paragraphs — all things
+// Tiptap's parser can't see or do on its own.
 export function htmlToTiptapJson(html: string): JSONContent {
-  const resolvedHtml = juice(resolveWordVideoEmbeds(html));
+  const resolvedHtml = preprocessWordHtml(html);
   return generateJSON(resolvedHtml, EDITOR_EXTENSIONS);
 }
 
