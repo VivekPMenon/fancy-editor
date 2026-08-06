@@ -122,7 +122,21 @@ paragraph/heading nodes, parsing and re-rendering the inline CSS.
 edited in the web/Tiptap app will never have "real" numbered lists coming
 from a Word doc — just correctly-indented paragraphs that visually look
 like a list but aren't structurally one (e.g. can't be re-numbered
-automatically, screen readers won't announce them as a list).
+automatically, screen readers won't announce them as a list). **This is
+concretely visible in daily editing, not just a fidelity nitpick:** pressing
+Enter at the end of one of these fake list "items" doesn't continue the
+numbering/bullet, because Tiptap has no list node there to continue — it's
+plain paragraph text that happens to start with "1.".
+
+**Confirmed (2026-08-05):** checked all four of our own captured samples —
+zero instances of real `<ol>/<li>`, and zero instances of Word's `mso-list`
+CSS metadata (`mso-list: l0 level1 lfo1`) either, the semantic hint some
+Word export paths *do* carry and which a reconstruction feature would
+ideally key off instead of pure text-pattern matching. Not present via the
+`body.getHtml()`/Office.js capture path we use — reconstruction would have
+to rely on a text-pattern heuristic (leading "1."/bullet character +
+`margin-left`/`text-indent` shape) with no more reliable signal available.
+Reaffirming the scope decision above: not building this for the POC.
 
 ---
 

@@ -11,24 +11,24 @@ export interface FeedPost {
   json: JSONContent;
 }
 
-type RawFeedPost = Omit<FeedPost, 'json'>;
-
 // Placeholder bodies below approximate what Word's `getHtml()` export tends to
 // produce (headings, bold/italic/underline, lists, tables, links). Once
 // you've used "Save article as HTML" and copied real captured HTML, replace
-// the `html` field of an entry with the pasted content to see how it renders.
-// `json` is derived from `html` below rather than hand-written — it's what
-// News format renders and what the JSON would look like fed back into the
-// editor, normalized to whatever EDITOR_EXTENSIONS' schema can represent.
-const RAW_POSTS: RawFeedPost[] = [
-  {
-    id: 'post-1',
-    title: 'Global Supply Chains Show Signs of Stabilization',
-    author: 'Priya Nair',
-    publishedAt: '2026-07-28',
-    category: 'Trade',
-    html: `
-<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+// a post's html constant below with the pasted content to see how it renders.
+//
+// `json` is our single source of truth for rendering a post — Post Feed's News
+// format renders straight from it (tiptapJsonToHtml), and "My Articles" loads
+// it directly into the editor via DocumentAdapter.setContentJson. `html` stays
+// around purely as a backup and for Post Feed's Word format, which
+// deliberately renders the raw captured markup as-is.
+//
+// Each post's `json` is computed from its own `html` constant right below —
+// a fixture-authoring convenience (keeps the two in sync without duplicating
+// content by hand) rather than hand-written, but every post object here
+// genuinely carries both fields, not just html with json bolted on
+// afterward.
+
+const post1Html = `<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
 <meta name="Generator" content="Microsoft Word 15 (filtered)">
 <style>
 <!--
@@ -1938,16 +1938,9 @@ the current position after reading the note.</p>
 </div>
 
 </div>
-`,
-  },
-  {
-    id: 'post-2',
-    title: 'Renewable Energy Investment Hits Record High',
-    author: 'Daniel Osei',
-    publishedAt: '2026-07-25',
-    category: 'Energy',
-    html: `
+`;
 
+const post2Html = `
 
 <meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
 <meta name="Generator" content="Microsoft Word 15 (filtered)">
@@ -2551,16 +2544,9 @@ not accessible.</p>
 
 
 
-`,
-  },
-  {
-    id: 'post-3',
-    title: 'Central Banks Signal Cautious Approach to Rate Cuts',
-    author: 'Marta Kowalski',
-    publishedAt: '2026-07-21',
-    category: 'Rates',
-    html: `
-      <html>
+`;
+
+const post3Html = `      <html>
 
 <head>
 <meta http-equiv=Content-Type content="text/html; charset=windows-1252">
@@ -2689,16 +2675,9 @@ so we know what we are dealing with</p>
 
 </html>
 
-    `,
-  },
-  {
-    id: 'post-4',
-    title: 'Custom Made Word Document to test varioud features',
-    author: 'Kenji Watanabe',
-    publishedAt: '2026-07-18',
-    category: 'Policy',
-    html: `
+`;
 
+const post4Html = `
 
 
 
@@ -3011,7 +2990,51 @@ packages</u></p>
 
 
 
-`,
+`;
+
+const post5Html = `      <h2>Semiconductor Demand Rebounds on AI Infrastructure Buildout</h2>
+      <p>Chipmakers report <strong>improving order books</strong> as hyperscalers ramp capital expenditure on data center capacity.</p>
+      <p>Foundry utilization rates are back above 90% for advanced nodes, with lead times <em>stretching into 2027</em> for the most in-demand packaging technologies.</p>
+      <blockquote>"We're seeing the strongest bookings visibility in three years," one industry executive noted on a recent earnings call.</blockquote>
+      <p>Capital spending guidance was raised across the sector for the third consecutive quarter.</p>
+`;
+
+export const MOCK_POSTS: FeedPost[] = [
+  {
+    id: 'post-1',
+    title: 'Global Supply Chains Show Signs of Stabilization',
+    author: 'Priya Nair',
+    publishedAt: '2026-07-28',
+    category: 'Trade',
+    html: post1Html,
+    json: htmlToTiptapJson(post1Html),
+  },
+  {
+    id: 'post-2',
+    title: 'Renewable Energy Investment Hits Record High',
+    author: 'Daniel Osei',
+    publishedAt: '2026-07-25',
+    category: 'Energy',
+    html: post2Html,
+    json: htmlToTiptapJson(post2Html),
+  },
+  {
+    id: 'post-3',
+    title: 'Central Banks Signal Cautious Approach to Rate Cuts',
+    author: 'Marta Kowalski',
+    publishedAt: '2026-07-21',
+    category: 'Rates',
+    html: post3Html,
+    json: htmlToTiptapJson(post3Html),
+  },
+  {
+    id: 'post-4',
+    title: 'Custom Made Word Document to test varioud features',
+    author: 'Kenji Watanabe',
+    publishedAt: '2026-07-18',
+    category: 'Policy',
+    html: post4Html,
+    json: htmlToTiptapJson(post4Html),
   },
   {
     id: 'post-5',
@@ -3019,17 +3042,7 @@ packages</u></p>
     author: 'Sofia Bianchi',
     publishedAt: '2026-07-14',
     category: 'Technology',
-    html: `
-      <h2>Semiconductor Demand Rebounds on AI Infrastructure Buildout</h2>
-      <p>Chipmakers report <strong>improving order books</strong> as hyperscalers ramp capital expenditure on data center capacity.</p>
-      <p>Foundry utilization rates are back above 90% for advanced nodes, with lead times <em>stretching into 2027</em> for the most in-demand packaging technologies.</p>
-      <blockquote>"We're seeing the strongest bookings visibility in three years," one industry executive noted on a recent earnings call.</blockquote>
-      <p>Capital spending guidance was raised across the sector for the third consecutive quarter.</p>
-    `,
+    html: post5Html,
+    json: htmlToTiptapJson(post5Html),
   },
 ];
-
-export const MOCK_POSTS: FeedPost[] = RAW_POSTS.map((post) => ({
-  ...post,
-  json: htmlToTiptapJson(post.html),
-}));

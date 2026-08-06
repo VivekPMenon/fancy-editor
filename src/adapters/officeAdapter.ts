@@ -1,5 +1,6 @@
 import type { DocumentAdapter } from '../core/types';
 import { FLAGGED_TERMS } from '../core/flaggedTerms';
+import { tiptapJsonToHtml } from '../core/tiptap-utils/htmlJsonConversion';
 
 // Word's JS API has no per-keystroke content-changed event, so we poll the
 // document body on a short interval as a pragmatic stand-in for "live" updates.
@@ -43,6 +44,15 @@ function inlineImageSources(html: string, base64Images: string[]): string {
     }
   });
   return container.innerHTML;
+}
+
+// Shared by setContentHtml and setContentJson — Body.insertHtml with
+// `replace` swaps out the entire body content in one call.
+function replaceBodyHtml(html: string): Promise<void> {
+  return Word.run(async (context) => {
+    context.document.body.insertHtml(html, Word.InsertLocation.replace);
+    await context.sync();
+  });
 }
 
 export const officeAdapter: DocumentAdapter = {
@@ -89,13 +99,15 @@ export const officeAdapter: DocumentAdapter = {
   },
 
   async setContentHtml(html) {
-    return Word.run(async (context) => {
-      // Body.insertHtml with `replace` swaps out the entire body content in
-      // one call — this is how "My Articles" loads a stored article (and
-      // proves the stored JSON round-trips through HTML back into Word).
-      context.document.body.insertHtml(html, Word.InsertLocation.replace);
-      await context.sync();
-    });
+    return replaceBodyHtml(html);
+  },
+
+  async setContentJson(json) {
+    // Word has no JSON concept — this is the one adapter where "prefer
+    // JSON" still means converting, but that conversion lives here rather
+    // than in every caller. Proves the stored JSON (our source of truth)
+    // round-trips through HTML back into Word.
+    return replaceBodyHtml(tiptapJsonToHtml(json));
   },
 
   async getContentWarnings() {

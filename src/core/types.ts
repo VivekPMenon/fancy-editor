@@ -6,8 +6,17 @@ export interface DocumentAdapter {
   replaceSelection(text: string): Promise<void>;
   /** Inserts formatted HTML (headings, lists, bold, etc.) at the current cursor/selection. */
   insertHtml(html: string): Promise<void>;
-  /** Replaces the entire document content — used by "My Articles" to load a stored article. */
+  /** Replaces the entire document content — used to start a blank article. */
   setContentHtml(html: string): Promise<void>;
+  /**
+   * Replaces the entire document content from Tiptap JSON — our source of
+   * truth for a stored article. Prefer this over setContentHtml(json→html)
+   * when loading a stored article: on Tiptap, it skips an unnecessary
+   * HTML round-trip; on Word, which has no JSON concept, it still converts
+   * internally, but that conversion is the adapter's concern, not the
+   * caller's.
+   */
+  setContentJson(json: JSONContent): Promise<void>;
   /** Subscribes to the document's plain-text content as it changes. Returns an unsubscribe function. */
   onContentChange(callback: (text: string) => void): () => void;
   /** Pre-save validation warnings (host-specific — e.g. Word floating images that getContentHtml can't capture). */

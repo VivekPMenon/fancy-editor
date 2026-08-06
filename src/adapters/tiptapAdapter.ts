@@ -24,6 +24,12 @@ export function createTiptapAdapter(editor: Editor): DocumentAdapter {
       editor.chain().focus().setContent(html).run();
     },
 
+    async setContentJson(json) {
+      // Tiptap consumes JSON natively — no HTML round-trip needed here,
+      // unlike setContentHtml.
+      editor.chain().focus().setContent(json).run();
+    },
+
     onContentChange(callback) {
       const handler = () => callback(editor.getText());
       handler();

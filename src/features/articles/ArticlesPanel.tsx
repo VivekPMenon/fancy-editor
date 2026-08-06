@@ -2,7 +2,6 @@ import { useState } from 'react';
 import type { JSONContent } from '@tiptap/react';
 import type { DocumentAdapter } from '../../core/types';
 import { MOCK_POSTS } from '../../core/mockPosts';
-import { tiptapJsonToHtml } from '../../core/tiptap-utils/htmlJsonConversion';
 import './ArticlesPanel.css';
 
 export const BLANK_ARTICLE_HTML = '<p>Start writing your article here…</p>';
@@ -21,10 +20,10 @@ export function ArticlesPanel({ adapter }: ArticlesPanelProps) {
 
   function handleSelectArticle(id: string, json: JSONContent) {
     setSelectedId(id);
-    // Proves the stored Tiptap JSON — our source of truth — round-trips
-    // through HTML and still renders correctly once fed into the host
-    // document, not just back into a Tiptap editor.
-    void adapter.setContentHtml(tiptapJsonToHtml(json));
+    // JSON is the source of truth — setContentJson lets each adapter decide
+    // how to consume it (Tiptap natively, Word by converting internally)
+    // instead of always pre-converting to HTML here.
+    void adapter.setContentJson(json);
   }
 
   return (
