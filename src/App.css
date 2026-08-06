@@ -125,6 +125,40 @@
     font-weight: 600;
   }
 
+  /* Image resize handles — Tiptap's ResizableNodeView wires these up fully
+     functional (drag to resize) but ships them completely unstyled: a bare
+     0-size <div>, invisible and with no clickable area, on purpose (it
+     expects the consumer to style them). The image extension's simplified
+     `resize` config option doesn't expose a className passthrough for this,
+     but every element still gets an unconditional data-resize-* attribute
+     regardless, which is what this targets. */
+  [data-resize-handle] {
+    width: 10px;
+    height: 10px;
+    margin: -5px;
+    background: #e60000;
+    border: 1.5px solid #ffffff;
+    border-radius: 50%;
+    box-shadow: rgba(0, 0, 0, 0.25) 0 0 0 1px;
+    opacity: 0;
+    transition: opacity 0.1s;
+    z-index: 5;
+  }
+
+  [data-resize-wrapper]:hover [data-resize-handle] {
+    opacity: 1;
+  }
+
+  [data-resize-handle='top-left'],
+  [data-resize-handle='bottom-right'] {
+    cursor: nwse-resize;
+  }
+
+  [data-resize-handle='top-right'],
+  [data-resize-handle='bottom-left'] {
+    cursor: nesw-resize;
+  }
+
   .ProseMirror table {
     border-collapse: collapse;
     table-layout: fixed;

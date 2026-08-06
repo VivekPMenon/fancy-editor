@@ -202,6 +202,25 @@ export function EditorToolbar({ editor }: EditorToolbarProps) {
     editor.chain().focus().unsetAllMarks().clearNodes().run();
   }
 
+  // Align left/center/right double as image alignment when an image is
+  // selected — text alignment doesn't apply to a block-level image (there's
+  // no paragraph there to carry it), so the same three buttons drive
+  // whichever is actually selected instead of needing separate controls.
+  function isAlignActive(align: 'left' | 'center' | 'right') {
+    if (editor.isActive('image')) {
+      return editor.getAttributes('image').align === align;
+    }
+    return editor.isActive({ textAlign: align });
+  }
+
+  function handleAlign(align: 'left' | 'center' | 'right') {
+    if (editor.isActive('image')) {
+      editor.chain().focus().setImageAlign(align).run();
+    } else {
+      editor.chain().focus().setTextAlign(align).run();
+    }
+  }
+
   function handleCut() {
     editor.view.dom.focus();
     document.execCommand('cut');
@@ -430,20 +449,20 @@ export function EditorToolbar({ editor }: EditorToolbarProps) {
               <RibbonToggle
                 icon={TextAlignLeftRegular}
                 title="Align left"
-                checked={editor.isActive({ textAlign: 'left' })}
-                onClick={() => editor.chain().focus().setTextAlign('left').run()}
+                checked={isAlignActive('left')}
+                onClick={() => handleAlign('left')}
               />
               <RibbonToggle
                 icon={TextAlignCenterRegular}
                 title="Align center"
-                checked={editor.isActive({ textAlign: 'center' })}
-                onClick={() => editor.chain().focus().setTextAlign('center').run()}
+                checked={isAlignActive('center')}
+                onClick={() => handleAlign('center')}
               />
               <RibbonToggle
                 icon={TextAlignRightRegular}
                 title="Align right"
-                checked={editor.isActive({ textAlign: 'right' })}
-                onClick={() => editor.chain().focus().setTextAlign('right').run()}
+                checked={isAlignActive('right')}
+                onClick={() => handleAlign('right')}
               />
               <RibbonToggle
                 icon={TextAlignJustifyRegular}

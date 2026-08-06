@@ -17,6 +17,8 @@ import { EncloseCharacters } from './encloseCharactersExtension';
 import { SlashCommand } from './slashCommandExtension';
 import { MentionExtension } from './mentionExtension';
 import { TickerCard } from './tickerCardExtension';
+import { ImageAlignment } from './imageAlignmentExtension';
+import { ImageSpacing } from './imageSpacingExtension';
 
 // Single source of truth for the editor's schema, shared by the live Tiptap
 // editor (FancyEditorTab) and the HTML<->JSON conversion utilities. They
@@ -36,10 +38,24 @@ export const EDITOR_EXTENSIONS = [
   Color.configure({ types: ['textStyle', 'heading', 'paragraph'] }),
   FontFamily.configure({ types: ['textStyle', 'heading', 'paragraph'] }),
   Youtube.configure({ width: 480, height: 270 }),
-  // allowBase64 defaults to false, which silently drops <img src="data:...">
-  // tags during generateJSON parsing — exactly what Word's captured images
-  // are, once inlineImageSources() patches them in.
-  Image.configure({ allowBase64: true }),
+  Image.configure({
+    // allowBase64 defaults to false, which silently drops <img src="data:...">
+    // tags during generateJSON parsing — exactly what Word's captured images
+    // are, once inlineImageSources() patches them in.
+    allowBase64: true,
+    // Built into the official extension itself (just disabled by default) —
+    // no third-party package or custom node view needed. Locks aspect ratio
+    // so corner-dragging can't produce a squashed/stretched image.
+    resize: {
+      enabled: true,
+      directions: ['top-left', 'top-right', 'bottom-left', 'bottom-right'],
+      minWidth: 40,
+      minHeight: 40,
+      alwaysPreserveAspectRatio: true,
+    },
+  }),
+  ImageAlignment,
+  ImageSpacing,
   Indent.configure({ types: ['paragraph', 'heading'] }),
   FlaggedTerms,
   WordPaste,

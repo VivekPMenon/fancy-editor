@@ -406,6 +406,84 @@ in place for saved articles.
 
 ---
 
+## 11. Centered/right-aligned standalone images lost their alignment
+
+**Limitation:** Word expresses a centered or right-aligned standalone image
+by putting `align="center"`/`style="text-align:center"` on the *paragraph*
+wrapping the image, not on the `<img>` itself. Our `Image` node is
+block-level (`inline: false`, the extension's default — we never override
+it), so it can't legally sit inside a `paragraph` node (a paragraph's
+content model only allows inline content). Tiptap's parser hoists the image
+out as its own sibling block, and the wrapping paragraph — the only thing
+carrying the alignment — has nowhere to survive. Net effect: an image the
+author deliberately centered in Word always renders left-aligned once
+converted, with the alignment silently dropped, not just visually
+approximated.
+
+**Fix:** two-part, same pattern as most fixes in this doc:
+1. [`wordImageAlignment.ts`](../src/core/tiptap-utils/wordImageAlignment.ts)
+   — preprocessing step that finds paragraphs whose only real content is a
+   single image, and transfers the paragraph's alignment onto the `<img>`
+   itself (as a `data-align` attribute) before parsing, since the paragraph
+   won't survive to carry it.
+2. [`imageAlignmentExtension.ts`](../src/core/tiptap-utils/imageAlignmentExtension.ts)
+   — gives the `Image` node its own `align` attribute (reads `data-align`,
+   renders as `display: block; margin-left/right: auto/0`).
+
+**Extra code:** ~75 lines total across both files, no new dependency.
+Verified against real captured markup from `sample-2.html` (the "Web Access
+Symbol" image) in an isolated jsdom test — alignment correctly transfers
+onto the image; a plain paragraph of body text sitting next to it is
+correctly left untouched.
+
+**Scope:** deliberately narrow — only fires when the image is the
+paragraph's *only* meaningful content (Word's own convention for a
+centered/right-aligned standalone image). An image sitting inline alongside
+real text is left alone on purpose: "align this whole paragraph" and "align
+this one inline image within a paragraph of text" aren't the same thing,
+and Word doesn't give us enough signal to safely guess the latter.
+
+---
+
+## 12. Editing-time image gaps: no align control, no room to type next to one
+
+**Limitation:** §11 fixed alignment surviving *import* — but there was no
+way to *set* it while actively editing, and separately, block-level images
+(ours are, by the `@tiptap/extension-image` default) have no text content
+of their own. If there's no paragraph immediately before/after an image,
+there's nowhere for a typed character — including a plain space — to go.
+Tiptap's bundled `Gapcursor` (on by default via StarterKit) lets you
+*navigate* a cursor next to an atom node like an image, but a gap-cursor
+position isn't inside any text-containing node, so typing does nothing
+there. Word-imported images routinely land with no such gap on either side.
+
+**Fix, two parts:**
+1. [`imageAlignmentExtension.ts`](../src/core/tiptap-utils/imageAlignmentExtension.ts)
+   gained a `setImageAlign` command (§11 only had the attribute/rendering
+   side). The toolbar's existing Align Left/Center/Right buttons now double
+   as image alignment: they check `editor.isActive('image')` and call
+   `setImageAlign` instead of `setTextAlign` when an image is selected — no
+   separate UI needed, since text-align and image-align are mutually
+   exclusive by definition (an image doesn't have the paragraph a text
+   alignment would apply to).
+2. New [`imageSpacingExtension.ts`](../src/core/tiptap-utils/imageSpacingExtension.ts)
+   — a ProseMirror `appendTransaction` plugin that runs on every document
+   change: any top-level image missing a text-block sibling on either side
+   gets an empty paragraph inserted there automatically, so a place to type
+   always exists.
+
+**Extra code:** ~70 lines across both files, no new dependency (Gapcursor
+was already active; this builds on top of it rather than needing it
+configured differently).
+
+**Scope:** `imageSpacingExtension.ts` only inspects *top-level* document
+children — the case that actually occurs (Word's standalone images are
+direct body children). An image nested inside a list item or table cell
+wouldn't get this treatment, but that's not a shape Word's export produces
+for a standalone image.
+
+---
+
 ## Running summary (for the deck)
 
 | # | Issue | Root cause | Fixable in our code? | Extra effort |
@@ -422,6 +500,8 @@ in place for saved articles.
 | 9b | Shapes can't be captured | Word's export has no vector/shape semantics — `Word.Shape` has no byte-extraction API | **No — same as §2** | Author workaround only (Save as Picture); optional warning reuses §2's code |
 | 10a | Paste-from-Word bypassed all fixes above | Tiptap's default paste path skips our HTML preprocessing entirely | Yes | ~10 lines, reuses existing code |
 | 10b | Floating shape in selection kills entire paste's formatting | Word fails to populate clipboard `text/html` at all — confirmed in prosemirror-view source | **No — same as §2/§9b** | Author workaround only (paste smaller sections, avoid shapes) |
+| 11 | Centered/right-aligned standalone images lost their alignment | Alignment lives on the wrapping paragraph, not the image; our Image node is block-level so it can't inherit it | Yes | ~75 lines, no new dependency |
+| 12 | Couldn't set image alignment while editing; couldn't type a space next to an image | No editing-time command existed for §11's attribute; block-level image has no text content, so no paragraph nearby means nowhere to type | Yes | ~70 lines, no new dependency |
 
 **Direction change (§10):** we're dropping the live Word add-in as the
 authoring surface — every unfixable limitation above (§2, §9b) and the
