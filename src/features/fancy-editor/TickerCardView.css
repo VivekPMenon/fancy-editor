@@ -1,0 +1,141 @@
+.ticker-card-view {
+  display: inline-block;
+  min-width: 220px;
+  max-width: 280px;
+  margin: 8px 0;
+  padding: 10px 12px;
+  border: 1px solid #d7d7d7;
+  border-radius: 8px;
+  background: #ffffff;
+  font-family: system-ui, 'Segoe UI', Roboto, sans-serif;
+  font-size: 13px;
+  box-shadow: rgba(0, 0, 0, 0.06) 0 1px 3px;
+}
+
+.ticker-card-view.selected {
+  border-color: #e60000;
+  box-shadow: rgba(230, 0, 0, 0.15) 0 0 0 2px;
+}
+
+.ticker-card-view-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.ticker-card-view-symbol-select {
+  font-size: 13px;
+  font-weight: 700;
+  border: 1px solid #d7d7d7;
+  border-radius: 4px;
+  padding: 2px 4px;
+  background: #ffffff;
+  color: #000000;
+  font-family: inherit;
+}
+
+.ticker-card-view-rating {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 999px;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.ticker-card-view-rating--buy {
+  background: rgba(30, 158, 90, 0.12);
+  color: #1e7e34;
+}
+
+.ticker-card-view-rating--neutral {
+  background: rgba(255, 180, 0, 0.15);
+  color: #8a5a00;
+}
+
+.ticker-card-view-rating--sell {
+  background: rgba(230, 0, 0, 0.1);
+  color: #b30000;
+}
+
+.ticker-card-view-refresh {
+  margin-left: auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  border: none;
+  border-radius: 4px;
+  background: transparent;
+  color: #444444;
+  cursor: pointer;
+}
+
+.ticker-card-view-refresh:hover {
+  background: #e6e6e6;
+}
+
+.ticker-card-view-refresh svg {
+  width: 14px;
+  height: 14px;
+}
+
+.ticker-card-view-name {
+  margin: 6px 0 8px;
+  color: #444444;
+}
+
+.ticker-card-view-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  font-weight: 600;
+}
+
+.ticker-card-view-live {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  color: #1e7e34;
+  font-size: 12px;
+}
+
+.ticker-card-view-live-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #1e9e5a;
+  animation: ticker-card-pulse 2s infinite;
+}
+
+@keyframes ticker-card-pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(30, 158, 90, 0.45);
+  }
+  70% {
+    box-shadow: 0 0 0 5px rgba(30, 158, 90, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(30, 158, 90, 0);
+  }
+}
+
+.ticker-card-view-updated {
+  margin: 4px 0 0;
+  font-size: 11px;
+  color: #919191;
+}
+
+/* Static fallback used outside the live editor (Post Feed News format, raw
+   HTML export) — the interactive NodeView only exists in Tiptap itself. */
+.ticker-card-static {
+  display: inline-block;
+  padding: 6px 12px;
+  border: 1px solid #d7d7d7;
+  border-radius: 8px;
+  background: #f5f5f5;
+  font-weight: 600;
+}

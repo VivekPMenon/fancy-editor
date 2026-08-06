@@ -117,6 +117,14 @@
     margin-top: 0;
   }
 
+  .mention-chip {
+    background: rgba(230, 0, 0, 0.08);
+    color: #e60000;
+    border-radius: 4px;
+    padding: 1px 4px;
+    font-weight: 600;
+  }
+
   .ProseMirror table {
     border-collapse: collapse;
     table-layout: fixed;

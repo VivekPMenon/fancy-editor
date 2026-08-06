@@ -1,0 +1,71 @@
+.mention-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  width: 220px;
+  max-height: 280px;
+  overflow-y: auto;
+  padding: 6px;
+  border-radius: 8px;
+  border: 1px solid #d7d7d7;
+  background: #ffffff;
+  box-shadow: rgba(0, 0, 0, 0.18) 0 8px 24px;
+  font-family: system-ui, 'Segoe UI', Roboto, sans-serif;
+}
+
+.mention-list-empty {
+  margin: 0;
+  padding: 10px 8px;
+  font-size: 13px;
+  color: #919191;
+}
+
+.mention-list-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  text-align: left;
+  padding: 6px 8px;
+  border: none;
+  border-radius: 5px;
+  background: transparent;
+  color: #000000;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.mention-list-item.active {
+  background: rgba(230, 0, 0, 0.08);
+}
+
+.mention-list-item-avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #e60000;
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.mention-list-item-text {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  overflow: hidden;
+}
+
+.mention-list-item-name {
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.mention-list-item-role {
+  font-size: 11px;
+  color: #919191;
+}

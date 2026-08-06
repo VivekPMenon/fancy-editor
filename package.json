@@ -18,6 +18,7 @@
     "@tiptap/extension-font-family": "^3.29.2",
     "@tiptap/extension-highlight": "^3.29.2",
     "@tiptap/extension-image": "^3.29.2",
+    "@tiptap/extension-mention": "^3.29.2",
     "@tiptap/extension-subscript": "^3.29.2",
     "@tiptap/extension-superscript": "^3.29.2",
     "@tiptap/extension-table": "^3.29.2",
@@ -28,6 +29,7 @@
     "@tiptap/pm": "^3.29.2",
     "@tiptap/react": "^3.29.2",
     "@tiptap/starter-kit": "^3.29.2",
+    "@tiptap/suggestion": "^3.29.2",
     "juice": "^12.1.1",
     "react": "^19.2.8",
     "react-dom": "^19.2.8"

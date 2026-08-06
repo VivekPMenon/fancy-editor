@@ -14,6 +14,9 @@ import { FlaggedTerms } from './flaggedTermsExtension';
 import { WordPaste } from './wordPasteExtension';
 import { ParagraphStyle } from './paragraphStyleExtension';
 import { EncloseCharacters } from './encloseCharactersExtension';
+import { SlashCommand } from './slashCommandExtension';
+import { MentionExtension } from './mentionExtension';
+import { TickerCard } from './tickerCardExtension';
 
 // Single source of truth for the editor's schema, shared by the live Tiptap
 // editor (FancyEditorTab) and the HTML<->JSON conversion utilities. They
@@ -47,4 +50,7 @@ export const EDITOR_EXTENSIONS = [
   Highlight.configure({ multicolor: true }),
   ParagraphStyle.configure({ types: ['paragraph', 'heading'] }),
   EncloseCharacters,
+  SlashCommand,
+  MentionExtension,
+  TickerCard,
 ];
