@@ -185,6 +185,29 @@
   color: #e60000;
 }
 
+/* Mirrors the live editor's image-alignment attribute (data-align, set by
+   imageAlignmentExtension.ts) — this static render has no resize wrapper
+   around the <img>, so plain margin:auto on the element itself works
+   directly (no flex-shrink-wrap fight like the editor has, see App.css's
+   [data-resize-container] rules for that case). */
+.feed-post-body img[data-align='center'] {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.feed-post-body img[data-align='right'] {
+  display: block;
+  margin-left: auto;
+  margin-right: 0;
+}
+
+.feed-post-body img[data-align='left'] {
+  display: block;
+  margin-left: 0;
+  margin-right: auto;
+}
+
 /* News format — inline styles/classes were stripped, so this fully controls
    the look: editorial serif body copy, generous spacing. */
 .feed-post-body-news {

@@ -159,6 +159,32 @@
     cursor: nesw-resize;
   }
 
+  /* imageAlignmentExtension's margin-left/right:auto (applied to the <img>
+     itself) only works when the image's containing block is wider than the
+     image, so the auto margins have somewhere to shift it. That's true for
+     static rendering (Post Feed, raw HTML export), but the live editor's
+     resize wrapper is a flex item that shrinks to exactly the image's own
+     size — zero extra space, so margin:auto has nothing to distribute and
+     left/center/right all look identical. Fixing this means moving
+     alignment to the *outer* flex container's justify-content instead, kept
+     separate from the wrapper so resize-handle positioning (which anchors
+     to the wrapper's own edges) isn't affected. */
+  [data-resize-container] {
+    width: 100%;
+  }
+
+  [data-resize-container]:has(img[data-align='center']) {
+    justify-content: center;
+  }
+
+  [data-resize-container]:has(img[data-align='right']) {
+    justify-content: flex-end;
+  }
+
+  [data-resize-container]:has(img[data-align='left']) {
+    justify-content: flex-start;
+  }
+
   .ProseMirror table {
     border-collapse: collapse;
     table-layout: fixed;

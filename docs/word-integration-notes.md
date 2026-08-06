@@ -427,8 +427,9 @@ approximated.
    itself (as a `data-align` attribute) before parsing, since the paragraph
    won't survive to carry it.
 2. [`imageAlignmentExtension.ts`](../src/core/tiptap-utils/imageAlignmentExtension.ts)
-   — gives the `Image` node its own `align` attribute (reads `data-align`,
-   renders as `display: block; margin-left/right: auto/0`).
+   — gives the `Image` node its own `align` attribute (reads/writes
+   `data-align`; see §13c for why this renders as a bare attribute rather
+   than an inline `style`, and where the actual CSS lives).
 
 **Extra code:** ~75 lines total across both files, no new dependency.
 Verified against real captured markup from `sample-2.html` (the "Web Access
@@ -484,6 +485,131 @@ for a standalone image.
 
 ---
 
+## 13. Image resize, and a resize-vs-alignment CSS conflict it created
+
+**Feature:** users can now drag-resize an inline image directly in the
+editor. This is a built-in `@tiptap/extension-image` capability
+(`resize: {...}`), just off by default — no third-party package or custom
+node view needed:
+
+```ts
+Image.configure({
+  allowBase64: true,
+  resize: {
+    enabled: true,
+    directions: ['top-left', 'top-right', 'bottom-left', 'bottom-right'],
+    minWidth: 40,
+    minHeight: 40,
+    alwaysPreserveAspectRatio: true,
+  },
+}),
+```
+
+**Gap found immediately after enabling it:** the resize handles were
+present in the DOM (confirmed by reading `@tiptap/core`'s actual
+`ResizableNodeView` source) but invisible and unclickable — Tiptap wires up
+the drag behavior fully but ships the handles as bare, 0-size, unstyled
+`<div>`s by design, expecting the consumer to style them. The simplified
+`Image.configure({ resize: ... })` surface doesn't even expose a
+`className`/`createCustomHandle` passthrough for this — but every handle
+still gets an unconditional `data-resize-handle="<direction>"` attribute
+(plus `data-resize-wrapper`/`data-resize-container` on its ancestors)
+regardless, which is what the fix targets. Pure CSS in
+[`App.css`](../src/App.css) — round red dot, hidden until the wrapper is
+hovered, direction-aware resize cursor — no source/config change needed.
+
+**Second gap, found right after that:** enabling resize silently broke §12's
+image-alignment buttons — clicking Left/Center/Right on a selected image did
+nothing. Root cause: our alignment CSS applies `margin-left/right: auto` to
+the `<img>` itself, which only shifts the image if its containing block is
+*wider* than the image. That's true for static rendering (Post Feed, raw
+HTML export), but `ResizableNodeView`'s wrapper (`[data-resize-wrapper]`) is
+a flex item that shrinks to exactly the image's own size once resize is on —
+zero extra width, so the auto-margin trick has nothing to distribute and all
+three alignments render identically.
+
+**Fix:** move alignment to the *outer* `[data-resize-container]` element's
+`justify-content` instead, forcing it to `width: 100%` and using CSS
+`:has()` to key off the image's own `data-align` attribute — deliberately
+left the `[data-resize-wrapper]` itself untouched, since widening it too
+would throw off where the resize handles anchor (they position relative to
+the wrapper's own edges, not the container's).
+
+```css
+[data-resize-container] {
+  width: 100%;
+}
+
+[data-resize-container]:has(img[data-align='center']) {
+  justify-content: center;
+}
+
+[data-resize-container]:has(img[data-align='right']) {
+  justify-content: flex-end;
+}
+
+[data-resize-container]:has(img[data-align='left']) {
+  justify-content: flex-start;
+}
+```
+
+**Extra code:** ~50 lines of CSS total (handle styling + this), no new
+dependency, no change to `imageAlignmentExtension.ts`/`setImageAlign` itself
+— the attribute and command from §12 were already correct, only the
+*rendering* of that attribute needed a second rule once resize was in play.
+
+**Scope/caveat:** this is a good concrete example of two independently-fine
+features interacting in a non-obvious way once combined — worth calling out
+in the deck as a real "gotcha" we hit and root-caused via reading Tiptap's
+actual compiled source rather than guessing. `:has()` requires a reasonably
+modern browser (Chrome/Edge 105+, Safari 15.4+, Firefox 121+) — fine for an
+internal tool, worth a footnote if the audience asks about browser support.
+
+**13c — a third bug in the same chain: resizing an aligned image snapped
+it back to full size the instant the handle was released.** Drag itself
+worked (visibly grows/shrinks) but the moment `mouseup` fired, the image
+reverted to its natural size. Root cause, confirmed by reading
+`@tiptap/extension-image`'s actual compiled source: on every attribute
+update, its resize node view resyncs the `<img>` element's HTML attributes
+from scratch — and for the `style` attribute specifically, that's a
+wholesale `el.setAttribute('style', ...)`, not a merge. `width`/`height`
+are special-cased and skipped in that resync (they're applied imperatively
+via `el.style.width/height` during drag, deliberately kept out of the
+attribute system), but nothing else is. Since §11/§12's alignment fix
+rendered `align` as an inline `style` (`margin-left/right: auto`), *any*
+node attribute update — including the drag's own `onCommit`, which persists
+the final width/height as node attrs to make the resize stick — triggered
+that resync and clobbered the very `style` attribute holding the
+just-imperatively-set width/height. Resize and alignment weren't just
+visually conflicting (§13b) — combined, they were mutually destructive.
+
+**Fix:** [`imageAlignmentExtension.ts`](../src/core/tiptap-utils/imageAlignmentExtension.ts)
+no longer renders a `style` attribute at all — only `data-align`. Since that
+key isn't a wholesale-overwrite target the way `style` is, it survives the
+resize resync untouched, and so does whatever `el.style.width/height` the
+drag set. The actual centering CSS moved out of the attribute system
+entirely, into two stylesheets covering the two shapes it needs to handle:
+[`App.css`](../src/App.css)'s `[data-resize-container]:has(...)`
+(§13b — the live editor, always resize-wrapped) and a new
+[`PostFeedTab.css`](../src/features/post-feed/PostFeedTab.css) rule,
+`.feed-post-body img[data-align=...]`, for the plain exported-HTML case
+(News format) where there's no resize wrapper and ordinary margin:auto on
+the `<img>` itself works fine.
+
+**Extra code:** ~25 lines of CSS moved/added, ~15 lines removed from
+`imageAlignmentExtension.ts` (net roughly neutral). No new dependency.
+
+**Scope/caveat:** any *other* consumer of `tiptapJsonToHtml`'s raw output
+(if one gets added later, beyond News format) will need this same CSS rule
+included to keep image alignment visible — it's no longer self-contained
+in the HTML string the way the old inline `style` was. Worth a line in the
+deck: portability was traded for correctness here, and it's a trade an
+inline-style approach can't avoid once resize is in the picture at all —
+this isn't specific to our extension, it's how Tiptap's own resize node
+view resyncs attributes.
+
+---
+
 ## Running summary (for the deck)
 
 | # | Issue | Root cause | Fixable in our code? | Extra effort |
@@ -502,6 +628,9 @@ for a standalone image.
 | 10b | Floating shape in selection kills entire paste's formatting | Word fails to populate clipboard `text/html` at all — confirmed in prosemirror-view source | **No — same as §2/§9b** | Author workaround only (paste smaller sections, avoid shapes) |
 | 11 | Centered/right-aligned standalone images lost their alignment | Alignment lives on the wrapping paragraph, not the image; our Image node is block-level so it can't inherit it | Yes | ~75 lines, no new dependency |
 | 12 | Couldn't set image alignment while editing; couldn't type a space next to an image | No editing-time command existed for §11's attribute; block-level image has no text content, so no paragraph nearby means nowhere to type | Yes | ~70 lines, no new dependency |
+| 13a | Resize handles present but invisible/unclickable | `ResizableNodeView` ships handles unstyled by design; simplified `Image.configure({resize})` surface has no className passthrough | Yes | ~20 lines CSS |
+| 13b | Enabling resize silently broke image alignment | Margin-auto alignment needs a wider containing block; resize wrapper is a flex item that shrinks to the image's exact size | Yes | ~30 lines CSS |
+| 13c | Resizing an aligned image snapped back to full size on mouse-up | Resize node view wholesale-overwrites the `style` attribute on every attr update; alignment's inline `style` collided with resize's own imperative width/height | Yes | moved ~25 lines CSS out of the attribute system, net neutral |
 
 **Direction change (§10):** we're dropping the live Word add-in as the
 authoring surface — every unfixable limitation above (§2, §9b) and the
