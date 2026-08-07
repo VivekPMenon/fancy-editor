@@ -208,6 +208,19 @@
   margin-right: auto;
 }
 
+/* Real floating/wrapped images (Word's Wrap Text = Square/Tight/etc) — no
+   resize wrapper exists here, so plain CSS float on the <img> itself works
+   directly and lets surrounding paragraph text wrap around it. */
+.feed-post-body img[data-align='float-left'] {
+  float: left;
+  margin: 4px 16px 12px 0;
+}
+
+.feed-post-body img[data-align='float-right'] {
+  float: right;
+  margin: 4px 0 12px 16px;
+}
+
 /* News format — inline styles/classes were stripped, so this fully controls
    the look: editorial serif body copy, generous spacing. */
 .feed-post-body-news {

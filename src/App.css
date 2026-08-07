@@ -68,9 +68,12 @@
 
 .tiptap-editor {
   flex: 1;
-  padding: 24px;
   overflow-y: auto;
-  background-color: white;
+  /* Gray "canvas" surrounding the page, like Word's own editing surface —
+     the actual document is the white .ProseMirror rectangle centered inside
+     it below, not this whole scroll area. */
+  background-color: #f5f5f5;
+  padding: 32px 24px;
   /* Document content shouldn't inherit the 18px page-chrome base font from
      :root — that's meant for UI text (buttons, panel labels), not authored
      content. Headings inside .ProseMirror use browser-default em sizing, so
@@ -78,7 +81,15 @@
   font-size: 16px;
 
   .ProseMirror {
-    min-height: 100%;
+    /* Roughly a US Letter page width at typical zoom — narrower than the
+       full editor column so it reads as a page, not a full-bleed textarea. */
+    max-width: 850px;
+    min-height: calc(100% - 64px);
+    margin: 0 auto;
+    padding: 56px 64px;
+    background-color: #ffffff;
+    border-radius: 2px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
     outline: none;
   }
 
@@ -159,16 +170,16 @@
     cursor: nesw-resize;
   }
 
-  /* imageAlignmentExtension's margin-left/right:auto (applied to the <img>
-     itself) only works when the image's containing block is wider than the
-     image, so the auto margins have somewhere to shift it. That's true for
-     static rendering (Post Feed, raw HTML export), but the live editor's
-     resize wrapper is a flex item that shrinks to exactly the image's own
-     size — zero extra space, so margin:auto has nothing to distribute and
-     left/center/right all look identical. Fixing this means moving
-     alignment to the *outer* flex container's justify-content instead, kept
-     separate from the wrapper so resize-handle positioning (which anchors
-     to the wrapper's own edges) isn't affected. */
+  /* A plain margin-auto on the <img> only works when its containing block
+     is wider than the image, so the auto margins have somewhere to shift
+     it. That's true for static rendering (Post Feed, raw HTML export — see
+     PostFeedTab.css), but the live editor's resize wrapper is a flex item
+     that shrinks to exactly the image's own size — zero extra space, so
+     margin:auto has nothing to distribute and left/center/right all look
+     identical. So in the live editor, alignment instead moves to the
+     *outer* flex container's justify-content, kept separate from the
+     wrapper so resize-handle positioning (which anchors to the wrapper's
+     own edges) isn't affected. */
   [data-resize-container] {
     width: 100%;
   }
@@ -183,6 +194,26 @@
 
   [data-resize-container]:has(img[data-align='left']) {
     justify-content: flex-start;
+  }
+
+  /* Real floating/wrapped images (Word's Wrap Text = Square/Tight/etc, as
+     opposed to the simple non-wrapping alignment above) — CSS float, not
+     justify-content, since the point is for surrounding paragraph text to
+     flow around the image rather than just position it. Floating a flex
+     item's own container is unaffected by its *internal* flex layout (the
+     wrapper/handles), so this is safe alongside the rules above; width
+     must go back to auto here since a 100%-wide floated box would leave no
+     room for anything to wrap into. */
+  [data-resize-container]:has(img[data-align='float-left']) {
+    float: left;
+    width: auto;
+    margin: 4px 16px 12px 0;
+  }
+
+  [data-resize-container]:has(img[data-align='float-right']) {
+    float: right;
+    width: auto;
+    margin: 4px 0 12px 16px;
   }
 
   .ProseMirror table {

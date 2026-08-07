@@ -28,6 +28,13 @@ trip per save, scales with image count).
 
 ## 2. Floating/anchored images: genuinely unsupported, no workaround exists
 
+> **Scope note (added after §10/§14):** this finding is specifically about
+> the live Word add-in path (`Word.Shape` via Office.js), which we've since
+> retired as an authoring surface (§10). It does **not** describe the
+> paste/import path's floating-image situation — see §14, where the same
+> real-world problem turns out to be fixable once content only ever arrives
+> via HTML rather than a live Office.js connection.
+
 **Limitation:** Word has two kinds of pictures:
 - **Inline** pictures → `Word.InlinePicture`, supports `getBase64ImageSrc()`.
 - **Floating/anchored** pictures (text wrap = Square/Tight/Through/Behind/
@@ -610,6 +617,92 @@ view resyncs attributes.
 
 ---
 
+## 14. Floating/wrapped images: revisited for the paste/import path — turns out fixable
+
+**Background:** §2 concluded floating images were a hard, unfixable gap —
+but that finding was about `Word.Shape` via the live Office.js add-in,
+which no longer exists as an authoring path (§10). Once everything only
+ever arrives as HTML (paste or a saved file), the question is different:
+does Word's HTML actually carry the wrap/position info at all? Answered by
+inspecting a real "Save As Web Page" export containing two genuinely
+floating images (`samples/saved-from-word/Sample-floating.htm`) — one a
+native embedded Excel chart (`Insert → Chart`, wrap = Square, sharing its
+paragraph with body text), one a plain picture with wrap = Square as its
+paragraph's only content.
+
+**What the real markup showed:** Word wraps every floating image in a VML
+block (`<v:shape>…</v:shape>`, plus an `<o:OLEObject>` for the chart case)
+guarded by IE-only conditional-comment syntax (`<!--[if gte vml 1]>…
+<![endif]-->`). Any non-IE parser — every real browser today, and our own
+DOM-based preprocessing — treats that whole block as one long HTML comment
+and never sees it at all. What *does* survive, wrapped in a
+"downlevel-revealed" conditional comment (`<![if !vml]>…<![endif]>`, no
+leading `--`, parsed as two separate bogus-comment nodes with a live
+element in between) is a plain fallback `<img>` — critically, carrying a
+legacy `align="left"`/`"right"` attribute, the same attribute a browser's
+own default stylesheet maps straight to `float: left`/`float: right`. So
+the wrap direction isn't lost in Word's export at all; it's sitting in
+plain sight on the fallback image, just not read into our schema before
+now.
+
+The chart case additionally confirms something worth its own callout:
+**Word does export a raster snapshot for native embedded charts** (a
+`.gif` here) alongside the VML, going through the exact same `<img>`
+fallback path as a real picture — meaning charts are a §1-style fix
+(normalize/inline the src), not a §2-style dead end. Directly relevant
+since Tiptap Pro's own [feature support matrix](https://tiptap.dev/docs/conversion/getting-started/feature-support-matrix)
+lists "Shapes, SmartArt, WordArt" — charts included — as **not converted,
+not extracted at all** during DOCX import. Their native OOXML parser drops
+charts outright; our HTML-based approach recovers at least the visual
+snapshot.
+
+**Fix:** [`wordImageAlignment.ts`](../src/core/tiptap-utils/wordImageAlignment.ts)
+extended (not replaced — §11's non-wrapping paragraph-alignment case is
+still handled by the same file) to also read the fallback `<img>`'s own
+`align` attribute, writing `data-align="float-left"`/`"float-right"` (a
+value distinct from §11's plain `left`/`center`/`right`, since one means
+"position" and the other means "wrap text around this"). Our `Image` node
+is block-level and can't sit as literal inline content next to a
+paragraph's text the way Word's DOM does, so when the image shares its
+paragraph with other real content, it gets hoisted out to a sibling
+positioned immediately before that paragraph — the text then becomes an
+ordinary sibling paragraph, and CSS float still pulls it around the
+hoisted image on render, since float affects subsequent flow content
+regardless of "logical" paragraph ownership. (Comment nodes — the VML
+block and the two bogus-comment markers — are deliberately excluded from
+the "does this paragraph have other content" check; `Node.textContent` on
+a Comment still returns its full text, which would otherwise make every
+floating image look non-empty even when it's genuinely alone in its
+paragraph.) `imageAlignmentExtension.ts` needed no changes — it already
+renders whatever string `data-align` holds generically. New CSS in
+[`App.css`](../src/App.css) (`float` on `[data-resize-container]`, width
+reset to `auto` since a 100%-wide floated box leaves nothing to wrap into)
+and [`PostFeedTab.css`](../src/features/post-feed/PostFeedTab.css) (plain
+`float` on the `<img>`, no resize wrapper to work around there).
+
+**Verified** against the real captured markup in an isolated jsdom test —
+both the shared-paragraph chart and the alone-in-its-paragraph picture
+resolve correctly (hoist only happens for the former; both end up with the
+right `data-align`), before wiring into the app. Typecheck and dev-server
+checks clean.
+
+**Extra code:** ~45 lines net across `wordImageAlignment.ts` (rewritten
+with the same file, not a new one) and CSS. No new dependency.
+
+**Caveat, flagged but not yet closed:** this was verified against a "Save
+As Web Page" export, not an actual live clipboard copy-paste — the two
+Word export paths can differ (Save-As always externalizes images to a
+`_files` folder; clipboard paste more commonly inlines base64 directly),
+and `wordPasteExtension.ts`'s `transformPastedHTML` only ever sees the
+clipboard path at runtime. The VML/downlevel-comment structure documented
+here is a stable, long-standing Word HTML convention independent of export
+path, so it's a reasonable bet clipboard paste carries the same
+`align="left"`/`"right"` fallback — but it's a bet, not yet confirmed
+against real pasted markup the way §11's fix was. Worth a live paste test
+before this goes in the deck as fully verified.
+
+---
+
 ## Running summary (for the deck)
 
 | # | Issue | Root cause | Fixable in our code? | Extra effort |
@@ -631,6 +724,7 @@ view resyncs attributes.
 | 13a | Resize handles present but invisible/unclickable | `ResizableNodeView` ships handles unstyled by design; simplified `Image.configure({resize})` surface has no className passthrough | Yes | ~20 lines CSS |
 | 13b | Enabling resize silently broke image alignment | Margin-auto alignment needs a wider containing block; resize wrapper is a flex item that shrinks to the image's exact size | Yes | ~30 lines CSS |
 | 13c | Resizing an aligned image snapped back to full size on mouse-up | Resize node view wholesale-overwrites the `style` attribute on every attr update; alignment's inline `style` collided with resize's own imperative width/height | Yes | moved ~25 lines CSS out of the attribute system, net neutral |
+| 14 | Floating/wrapped images (revisited, paste/import path): §2 called this a dead end — turns out it isn't | §2 was about `Word.Shape`/Office.js, now retired; via HTML the wrap direction survives as a plain `align=` on Word's own `<img>` fallback | Yes — reversed course again (like §4) | ~45 lines, verified via real captured markup; **live-paste still unconfirmed** |
 
 **Direction change (§10):** we're dropping the live Word add-in as the
 authoring surface — every unfixable limitation above (§2, §9b) and the
