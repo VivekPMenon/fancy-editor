@@ -106,13 +106,66 @@
     margin: 0 0 10px;
   }
 
+  /* Same float-clearing reasoning as headings/tables below — a blockquote
+     is a visually distinct block (border, indent) that shouldn't render
+     squeezed inside a leftover float's wrap zone either. Deliberately NOT
+     applied to plain p/ul/ol above — those are exactly what SHOULD keep
+     wrapping around a float across multiple paragraphs, matching how Word
+     itself flows body text past an anchored image. */
+  .ProseMirror blockquote {
+    clear: both;
+  }
+
+  /* Headings previously had no font-size of their own here, on the (wrong)
+     assumption they'd fall back to the browser's own default sizing —
+     instead they were inheriting index.css's *page-chrome* `h1 { font-size:
+     56px; ... }` (meant for this app's own marketing-style headings, not
+     document content), since that rule is unscoped and nothing here
+     overrode font-size to stop it winning. Confirmed directly: a real
+     imported document's level-1 heading rendered at a jarring 56px.
+     Explicit sizes here fix that AND fix the earlier "cramped" margin
+     complaint at the same time — the 16px bottom margin now reads
+     correctly proportioned against text of the size it's actually meant
+     for, not the accidental 56px it was fighting before. */
   .ProseMirror h1,
   .ProseMirror h2,
   .ProseMirror h3,
   .ProseMirror h4,
   .ProseMirror h5,
   .ProseMirror h6 {
-    margin: 20px 0 10px;
+    margin: 20px 0 16px;
+    font-family: inherit;
+    font-weight: 600;
+    color: inherit;
+    /* Floats don't stop affecting layout after "one paragraph" — without an
+       explicit clear, a heading many blocks after a floated image can still
+       get pulled up into its wrap zone (confirmed: a real multi-section
+       document's "Tables"/"Simple Tables" headings, several paragraphs
+       after a floated chart, rendered inside the float's wrap area instead
+       of starting a fresh line below it). A new section heading should
+       always start clean regardless of a leftover float above it — Word's
+       own layout effectively behaves this way too, even though it isn't
+       using CSS float at all under the hood. */
+    clear: both;
+  }
+
+  .ProseMirror h1 {
+    font-size: 28px;
+  }
+  .ProseMirror h2 {
+    font-size: 24px;
+  }
+  .ProseMirror h3 {
+    font-size: 20px;
+  }
+  .ProseMirror h4 {
+    font-size: 18px;
+  }
+  .ProseMirror h5 {
+    font-size: 16px;
+  }
+  .ProseMirror h6 {
+    font-size: 14px;
   }
 
   .ProseMirror ul,
@@ -170,6 +223,21 @@
     cursor: nesw-resize;
   }
 
+  /* No width constraint existed anywhere on an image or its resize
+     wrapper/container — only the page itself (.ProseMirror) caps at
+     850px. A document whose declared image width leaves little or no
+     margin against the page's available content width (max-width minus
+     padding) had nothing stopping it from visually overflowing the page
+     edge — confirmed live with a real imported photo. Capping the <img>
+     itself is enough: the wrapper has no width of its own (just wraps the
+     image tightly) and the floated/flex container already shrinks to fit
+     its content, so both follow the image's constrained size
+     automatically. */
+  [data-resize-wrapper] img {
+    max-width: 100%;
+    height: auto;
+  }
+
   /* A plain margin-auto on the <img> only works when its containing block
      is wider than the image, so the auto margins have somewhere to shift
      it. That's true for static rendering (Post Feed, raw HTML export — see
@@ -221,6 +289,10 @@
     table-layout: fixed;
     width: 100%;
     margin: 12px 0;
+    /* Same reasoning as headings above — a table shouldn't render inside a
+       leftover float's wrap zone either, and table-layout:fixed at 100%
+       width would look especially broken half-squeezed next to a float. */
+    clear: both;
   }
 
   .ProseMirror th,

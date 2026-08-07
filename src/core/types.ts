@@ -28,6 +28,16 @@ export interface DocumentAdapter {
    * applies a real highlight color and inserts a native Word comment per match.
    */
   highlightFlaggedTerms(): Promise<number>;
+  /**
+   * Word-only, experimental: raw OOXML capture via Body.getOoxml(), kept
+   * alongside getContentHtml() so the two can be compared side by side
+   * while an OOXML->Tiptap-JSON parser is prototyped (see
+   * docs/word-integration-notes.md). Optional — omitted entirely on the
+   * Tiptap adapter rather than a no-op, since it has no OOXML concept at
+   * all. Not yet wired into save/load; this only surfaces the raw XML for
+   * inspection.
+   */
+  getContentOoxml?(): Promise<string>;
 }
 
 export interface StoredArticle {

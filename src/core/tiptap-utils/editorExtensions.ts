@@ -19,6 +19,7 @@ import { MentionExtension } from './mentionExtension';
 import { TickerCard } from './tickerCardExtension';
 import { ImageAlignment } from './imageAlignmentExtension';
 import { ImageSpacing } from './imageSpacingExtension';
+import { ColumnLayout } from './columnLayoutExtension';
 
 // Single source of truth for the editor's schema, shared by the live Tiptap
 // editor (FancyEditorTab) and the HTML<->JSON conversion utilities. They
@@ -56,6 +57,7 @@ export const EDITOR_EXTENSIONS = [
   }),
   ImageAlignment,
   ImageSpacing,
+  ColumnLayout,
   Indent.configure({ types: ['paragraph', 'heading'] }),
   FlaggedTerms,
   WordPaste,

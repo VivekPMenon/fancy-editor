@@ -199,6 +199,28 @@
   border-color: rgba(230, 0, 0, 0.4);
 }
 
+.publisher-panel-capture-mode {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 8px;
+}
+
+.publisher-panel-capture-mode-label {
+  font-size: 12px;
+  color: #444444;
+}
+
+.publisher-panel-capture-mode button {
+  font-size: 12px;
+  padding: 4px 8px;
+}
+
+.publisher-panel-capture-mode button.active {
+  background: #e60000;
+  color: #ffffff;
+}
+
 .publisher-panel-meta,
 .publisher-panel-status {
   font-size: 13px;

@@ -110,6 +110,20 @@ export const officeAdapter: DocumentAdapter = {
     return replaceBodyHtml(tiptapJsonToHtml(json));
   },
 
+  async getContentOoxml() {
+    return Word.run(async (context) => {
+      const ooxmlResult = context.document.body.getOoxml();
+      await context.sync();
+      return ooxmlResult.value;
+    });
+    // Deliberately no try/catch here — known, undocumented failure modes
+    // exist (office-js#998: fails on documents with multiple large
+    // layered/floating images; #5394: unexplained GeneralException on some
+    // documents). Letting it throw and surfacing the real error in the UI
+    // is the point while this is still being evaluated against real
+    // documents, not something to paper over yet.
+  },
+
   async getContentWarnings() {
     return Word.run(async (context) => {
       const shapes = context.document.body.shapes;

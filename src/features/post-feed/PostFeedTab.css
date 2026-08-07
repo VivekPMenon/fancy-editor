@@ -145,6 +145,33 @@
 .feed-post-body h2,
 .feed-post-body h3 {
   margin: 0 0 10px;
+  /* Same "no font-size of its own" gap the live editor had (App.css) —
+     without one, this falls through to index.css's unscoped page-chrome
+     `h1 { font-size: 56px; ... }` (meant for this app's own marketing
+     headings, not document content). Confirmed live: a real imported
+     document's h1 rendering way oversized here too, same as it did in the
+     editor before that fix — this stylesheet just never got the matching
+     one. .feed-post-body-news's h1/h2/h3 override (below) only changes
+     font-family/margin, not font-size, so fixing it here covers that
+     format too rather than needing a second copy of the same fix. */
+  font-size: 28px;
+  font-weight: 700;
+  color: inherit;
+  /* Same float-clearing fix as the live editor (App.css) — CSS float
+     doesn't stop affecting layout after "one paragraph," it pulls in
+     every subsequent block until something clears it. This is a separate
+     stylesheet from the editor's, so the earlier fix there didn't cover
+     this rendering path — confirmed live: the exact same "Tables"/"Simple
+     Tables" headings wrapping into a floated image's zone here too. */
+  clear: both;
+}
+
+.feed-post-body h2 {
+  font-size: 24px;
+}
+
+.feed-post-body h3 {
+  font-size: 20px;
 }
 
 .feed-post-body p {
@@ -162,12 +189,14 @@
   padding-left: 14px;
   border-left: 3px solid #d7d7d7;
   color: #444444;
+  clear: both;
 }
 
 .feed-post-body table {
   border-collapse: collapse;
   width: 100%;
   margin: 0 0 10px;
+  clear: both;
 }
 
 .feed-post-body th,
@@ -183,6 +212,14 @@
 
 .feed-post-body a {
   color: #e60000;
+}
+
+/* Same gap the live editor had (see App.css's [data-resize-wrapper] img
+   rule) — a document's declared image width has nothing capping it
+   against the post body's actual available width otherwise. */
+.feed-post-body img {
+  max-width: 100%;
+  height: auto;
 }
 
 /* Mirrors the live editor's image-alignment attribute (data-align, set by
