@@ -80,6 +80,14 @@
   background: #e6e6e6;
 }
 
+.editor-context-menu-item.active {
+  background: #e6e6e6;
+}
+
+.editor-context-menu-item.active svg {
+  color: #e60000;
+}
+
 .editor-context-menu-item:disabled {
   color: #919191;
   cursor: default;

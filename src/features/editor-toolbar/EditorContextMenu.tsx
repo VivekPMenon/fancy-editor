@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import type { Editor } from '@tiptap/react';
 import { FluentProvider, Tooltip } from '@fluentui/react-components';
@@ -16,6 +16,9 @@ import {
   TableInsertColumnRegular,
   TableDeleteRowRegular,
   TableDeleteColumnRegular,
+  TextAlignLeftRegular,
+  TextAlignRightRegular,
+  DismissRegular,
 } from '@fluentui/react-icons';
 import { ubsFluentTheme } from './ubsFluentTheme';
 import './EditorContextMenu.css';
@@ -29,6 +32,7 @@ interface MenuPosition {
 
 export function EditorContextMenu({ editor }: { editor: Editor }) {
   const [position, setPosition] = useState<MenuPosition | null>(null);
+  const menuRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const dom = editor.view.dom;
@@ -63,14 +67,26 @@ export function EditorContextMenu({ editor }: { editor: Editor }) {
     function close() {
       setPosition(null);
     }
+    // Only close on a mousedown *outside* the menu — closing unconditionally
+    // (any mousedown, anywhere) meant a mousedown on the menu's own buttons
+    // closed (and unmounted) the menu before the subsequent `click` event —
+    // the one that actually runs the button's onClick — ever got to fire on
+    // it, since mousedown fires first. Every item in this menu was silently
+    // non-functional for that reason, not just the wrap-text ones.
+    function closeIfOutside(event: MouseEvent) {
+      if (menuRef.current && event.target instanceof Node && menuRef.current.contains(event.target)) {
+        return;
+      }
+      close();
+    }
     // Capture phase + a microtask delay isn't needed here: this listener is
     // attached on the render *after* the menu opens, so the contextmenu
     // click that opened it has already finished bubbling.
-    window.addEventListener('mousedown', close);
+    window.addEventListener('mousedown', closeIfOutside);
     window.addEventListener('scroll', close, true);
     window.addEventListener('keydown', closeOnEscape);
     return () => {
-      window.removeEventListener('mousedown', close);
+      window.removeEventListener('mousedown', closeIfOutside);
       window.removeEventListener('scroll', close, true);
       window.removeEventListener('keydown', closeOnEscape);
     };
@@ -123,7 +139,12 @@ export function EditorContextMenu({ editor }: { editor: Editor }) {
 
   return createPortal(
     <FluentProvider theme={ubsFluentTheme} className="editor-context-menu-fluent-root">
-      <div className="editor-context-menu" style={{ left: position.x, top: position.y }} onContextMenu={(e) => e.preventDefault()}>
+      <div
+        ref={menuRef}
+        className="editor-context-menu"
+        style={{ left: position.x, top: position.y }}
+        onContextMenu={(e) => e.preventDefault()}
+      >
         <div className="editor-context-menu-quick-format">
           <button
             type="button"
@@ -193,6 +214,39 @@ export function EditorContextMenu({ editor }: { editor: Editor }) {
               onClick={() => run(() => editor.chain().focus().deleteColumn().run())}
             >
               <TableDeleteColumnRegular /> Delete Column
+            </button>
+          </>
+        )}
+
+        {editor.isActive('image') && (
+          <>
+            <div className="editor-context-menu-divider" />
+            {/* Real text-wrap (Word's "Wrap Text" = Square/Tight) — distinct
+                from the toolbar's plain Align Left/Center/Right, which only
+                position the image as its own block with no wrap. Word's
+                clipboard/import path already produces this state (§14/§15);
+                this is the same attribute, just settable directly while
+                authoring instead of only arriving via paste. */}
+            <button
+              type="button"
+              className={`editor-context-menu-item${editor.isActive('image', { align: 'float-left' }) ? ' active' : ''}`}
+              onClick={() => run(() => editor.chain().focus().setImageAlign('float-left').run())}
+            >
+              <TextAlignLeftRegular /> Wrap text: left
+            </button>
+            <button
+              type="button"
+              className={`editor-context-menu-item${editor.isActive('image', { align: 'float-right' }) ? ' active' : ''}`}
+              onClick={() => run(() => editor.chain().focus().setImageAlign('float-right').run())}
+            >
+              <TextAlignRightRegular /> Wrap text: right
+            </button>
+            <button
+              type="button"
+              className="editor-context-menu-item"
+              onClick={() => run(() => editor.chain().focus().setImageAlign(null).run())}
+            >
+              <DismissRegular /> Remove text wrap
             </button>
           </>
         )}

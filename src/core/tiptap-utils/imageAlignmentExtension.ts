@@ -1,9 +1,17 @@
 import { Extension } from '@tiptap/core';
 
+// 'left'/'center'/'right' position the image as its own block (no text
+// wrap — same as Word's simple, non-wrapping picture alignment, §11/§12).
+// 'float-left'/'float-right' are real text-wrap (Word's Wrap Text =
+// Square/Tight, §14/§15) — previously only ever set by Word-paste
+// preprocessing (wordImageAlignment.ts), now also available as a live
+// editing command, see EditorContextMenu.tsx's "Wrap Text" section.
+export type ImageAlign = 'left' | 'center' | 'right' | 'float-left' | 'float-right';
+
 declare module '@tiptap/core' {
   interface Commands<ReturnType> {
     imageAlignment: {
-      setImageAlign: (align: 'left' | 'center' | 'right') => ReturnType;
+      setImageAlign: (align: ImageAlign | null) => ReturnType;
     };
   }
 }
@@ -37,7 +45,7 @@ export const ImageAlignment = Extension.create({
   addCommands() {
     return {
       setImageAlign:
-        (align: 'left' | 'center' | 'right') =>
+        (align: ImageAlign | null) =>
         ({ commands }) =>
           commands.updateAttributes('image', { align }),
     };
