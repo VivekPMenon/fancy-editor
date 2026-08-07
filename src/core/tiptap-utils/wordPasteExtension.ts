@@ -22,14 +22,25 @@ const MAX_IMAGES_TO_UPGRADE = 5;
 // preprocessWordHtml() steps here keeps paste and "load a saved article" on
 // equal footing.
 //
-// Known gap: if the copied selection contains a floating shape (or a
-// comment anchor), Word can fail to populate `text/html` on the clipboard
-// at all — confirmed by tracing prosemirror-view's paste handling: with no
-// html string, it takes the plain-text path and never calls this hook, so
-// the *entire* paste silently loses all formatting, not just the shape.
-// There's no code-level fix — same root limitation as officeAdapter's Shape
-// gap (§2/§9b in docs/word-integration-notes.md), just hit via the clipboard
-// instead of Office.js. See docs/word-integration-notes.md §10 for details.
+// Known gap: if the copied selection contains a genuine drawn/vector Shape
+// (text box, freeform shape, WordArt — a real Shape, not a floating
+// *picture*) or a comment anchor, Word can fail to populate `text/html` on
+// the clipboard at all — confirmed by tracing prosemirror-view's paste
+// handling: with no html string, it takes the plain-text path and never
+// calls this hook, so the *entire* paste silently loses all formatting, not
+// just the shape. No code-level fix for that. See docs/word-integration-
+// notes.md §10b.
+//
+// Important distinction, since it wasn't always this precise: this is NOT
+// the same thing as a floating/anchored *picture* (Square/Tight text wrap —
+// including the chart this file's RTF handling upgrades below). Those
+// populate `text/html` completely fine, with a usable `align="left"/"right"`
+// fallback and real RTF picture data alongside it — see §14. §10b's finding
+// was originally attributed to "floating shape" broadly, by analogy to
+// officeAdapter's Word.Shape gap (§2/§9b), before floating pictures had
+// actually been tested on the clipboard path; now that they have (§14), the
+// remaining gap here is narrower than first stated — genuine non-picture
+// Shapes and comment anchors specifically, not floating images in general.
 export const WordPaste = Extension.create({
   name: 'wordPaste',
   transformPastedHTML(html) {

@@ -381,35 +381,45 @@ highlighting, base64 images) already applied to pasted content automatically
 — those aren't tied to `htmlToTiptapJson()` specifically, they're just part
 of the editor's schema, active regardless of how content enters it.
 
-**Known gap — floating shapes can silently kill an entire paste — confirmed,
-unfixable.** Tested live: copying a selection that included a floating shape
-(an arrow) and a comment anchor caused the *whole* paste to lose all
+**Known gap — genuine non-picture Shapes (and comment anchors) can silently
+kill an entire paste — confirmed, unfixable.** Tested live: copying a
+selection that included a *drawn* Shape (an arrow — a real vector shape, not
+a picture) and a comment anchor caused the *whole* paste to lose all
 formatting — no headings, no bold/italic, no table structure, nothing —
 with zero console errors. Traced the cause in `prosemirror-view`'s own
 source (`parseFromClipboard`, `dist/index.js`): it only calls our
 `transformPastedHTML` hook when the clipboard actually has an `html` string;
 if `html` is empty, it takes the plain-text path entirely instead
 (`asText = !!text && (plainText || inCode || !html)`). So the browser
-received *no* `text/html` at all for that paste — Word failed to populate
-it, most likely because the selection contained a floating shape (the same
-object type with no byte-extraction API, §2/§9b). This isn't scoped to just
-losing the shape — it silently degrades the entire copied selection's
-formatting, which is a bigger blast radius than §2/§9b described for the
-add-in. No code-level fix is possible: if the clipboard never had HTML,
-there's nothing to transform. Practical mitigation for authors: paste in
-smaller sections, and avoid including floating shapes/comments in a
-copied selection when formatting matters.
+received *no* `text/html` at all for that paste — Word failed to populate it.
 
-**Known gap — images on paste — likely unfixable:** separately from the
-above, Word's clipboard HTML (when it *is* present) commonly references
-images via a local `file://...` path rather than embedding them, and
-browsers block web pages from reading `file://` URLs for security. Same
-category as the shape gap above — a hard clipboard-security limitation, not
-something our code can work around. Worth testing directly: copy a
-paragraph with an inline image (no floating shapes nearby) and paste it —
-if the image is missing, that confirms this; if Word happens to inline it as
-base64 instead, it'll work through the same `allowBase64: true` path already
-in place for saved articles.
+**Correction, since this was originally stated too broadly:** this was
+first attributed to "floating shapes" generally, by analogy to
+officeAdapter's `Word.Shape` gap (§2/§9b) — but that conflated genuine
+drawn Shapes with floating *pictures*, which are a different thing. §14
+later tested floating pictures (including an embedded chart) specifically
+on the clipboard path and found they populate `text/html` completely fine
+— align info, real image bytes, all of it. So this gap is narrower than
+first described: it's specific to actual vector Shapes (arrows, text boxes,
+WordArt) and comment anchors, not floating/anchored pictures in general.
+Still no code-level fix possible for the narrower case — if the clipboard
+never had HTML, there's nothing to transform. Practical mitigation for
+authors: paste in smaller sections, and avoid including drawn shapes or
+comments in a copied selection when formatting matters.
+
+**Correction — "images on paste" was never actually tested when this was
+first written, and turned out not to be a gap at all.** Originally
+speculated here as "likely unfixable" by analogy to Save-As-HTML's `file://`
+references (§1) — but that assumption was never verified against a real
+paste, and it was wrong. Since verified extensively (§14, §15): Word's
+*clipboard* HTML embeds images as base64 directly (unlike Save-As-HTML,
+which externalizes them to a `_files` folder) — they come through
+`allowBase64: true` with no extra work needed. Leaving this note in place
+as a reminder of the broader pattern: Save-As-HTML and live clipboard paste
+are two different Word export paths that can behave differently, so an
+assumption verified against one isn't automatically safe to apply to the
+other — several fixes in this doc (§14 especially) exist because that
+distinction wasn't always obvious upfront.
 
 ---
 
@@ -689,17 +699,108 @@ checks clean.
 **Extra code:** ~45 lines net across `wordImageAlignment.ts` (rewritten
 with the same file, not a new one) and CSS. No new dependency.
 
-**Caveat, flagged but not yet closed:** this was verified against a "Save
-As Web Page" export, not an actual live clipboard copy-paste — the two
-Word export paths can differ (Save-As always externalizes images to a
-`_files` folder; clipboard paste more commonly inlines base64 directly),
-and `wordPasteExtension.ts`'s `transformPastedHTML` only ever sees the
-clipboard path at runtime. The VML/downlevel-comment structure documented
-here is a stable, long-standing Word HTML convention independent of export
-path, so it's a reasonable bet clipboard paste carries the same
-`align="left"`/`"right"` fallback — but it's a bet, not yet confirmed
-against real pasted markup the way §11's fix was. Worth a live paste test
-before this goes in the deck as fully verified.
+**Update — live-paste caveat closed.** This was originally verified only
+against a "Save As Web Page" export, not an actual clipboard copy-paste,
+with an open question about whether the two paths agree. Since confirmed
+live: pasting a real floating/wrapped image directly into the editor
+produces correctly-floated output, same as the Save-As-HTML test predicted.
+The VML/downlevel-comment convention this fix relies on is shared by both
+Word export paths.
+
+---
+
+## 15. Pasted image quality: Word's HTML gives a legacy low-res fallback; RTF has the real thing
+
+**Limitation, found while checking §14's chart example up close:** the
+chart image floated correctly after §14, but looked visibly blurry.
+Decoded the actual embedded file directly (its base64 payload's own magic
+bytes, independent of whatever the browser's data URI claimed): it's a
+`GIF89a`, natively **430×216px**, 256-color-palette — a decades-old,
+low-fidelity fallback format. Worse, our `Image` node was displaying it
+*larger* than that (rendering it at whatever taller `height` Word's
+fallback `<img>` tag declared, reflecting how big the chart looked in the
+original document layout, not the asset's real resolution) — compounding
+an already-soft source with unnecessary upscaling. Root cause: Word's
+`<v:imagedata>` inside the VML block references a real vector EMF, but (per
+§14) no modern browser or clipboard consumer ever sees that block at all —
+every fallback path, on both Save-As-HTML and live clipboard paste,
+downgrades to this same old GIF. Cross-checked against TinyMCE's own
+PowerPaste docs — they describe the identical ceiling ("image quality
+depends on what the source application provides in its clipboard
+representation") and specifically flag charts as a weak spot, so this
+isn't something our HTML-reading approach was doing wrong relative to a
+commercial equivalent.
+
+**The fix — read `text/rtf` too, not just `text/html`:** Word's clipboard
+populates multiple independent formats simultaneously (confirmed directly
+via a `clipboardData.items` listener: `text/plain`, `text/html`,
+`text/rtf` all present at once for the same copy). `text/rtf` represents
+an embedded picture completely differently — inline as a `{\pict ...}`
+group containing the picture's *actual file bytes*, spelled out as hex
+digits, tagged with its real format (`\pngblip`/`\jpegblip`). Decoding that
+hex directly for the same chart produced a **102KB JPEG** — genuinely valid
+(verified its magic bytes: `FF D8 FF E0`), enormously higher-fidelity than
+the ~460-byte GIF the HTML path offered. This is the same class of fix
+CKEditor ships for the same reason
+([ckeditor5#18363](https://github.com/ckeditor/ckeditor5/pull/18363)).
+
+**Implementation:**
+1. [`wordRtfImage.ts`](../src/core/tiptap-utils/wordRtfImage.ts) — a small
+   RTF `\pict` parser. Skips past a tag's dimension/cache-id control words
+   (including a nested `{\*\blipuid ...}` destination group, confirmed
+   necessary against real captured RTF — a naive "skip words then read hex"
+   scan undercounts without it), reads the contiguous hex run that follows,
+   and hex-decodes it back into real image bytes. Only `\pngblip`/
+   `\jpegblip` are extracted — `\wmetafile`/`\emfblip` are vector formats
+   with no browser-native renderer.
+2. [`wordPasteExtension.ts`](../src/core/tiptap-utils/wordPasteExtension.ts)
+   gained a second ProseMirror plugin, `handlePaste`. Confirmed via reading
+   `prosemirror-view`'s own `doPaste` source that `handlePaste` runs
+   *after* `transformPastedHTML` has already parsed the HTML into a slice —
+   so every other Word fix (lists, alignment, spacing) has already applied
+   by the time this runs; it only ever touches `src`. When it finds usable
+   RTF pictures, it rebuilds the pasted slice with the image's `src`
+   swapped to the best RTF-decoded picture (as a base64 data URL — kept
+   portable through localStorage save and Post Feed rendering, deliberately
+   not a `blob:` URL, which wouldn't survive a reload).
+3. **Multi-image correlation:** RTF has no shared ID linking a `\pict`
+   group back to a specific HTML `<img>`, so with more than one image in a
+   paste, matching relies on two heuristics confirmed against real
+   captures: (a) real full-fidelity renditions run far bigger than the
+   small cached icon/thumbnail pictures Word embeds alongside them (a
+   ~277-byte "icon" showed up consistently regardless of what was actually
+   copied), so the *N* largest RTF pictures are taken as the real
+   candidates; (b) both clipboard formats serialize the same selection in
+   the same reading order, so those survivors are re-sorted back into
+   document order and paired 1:1, in order, with the image nodes in the
+   pasted slice (also walked in document order). Verified standalone
+   against a synthetic interleaved-candidates scenario before wiring in.
+   Capped at 5 images per paste (`MAX_IMAGES_TO_UPGRADE`) — a safety valve,
+   not a hard technical limit, since more images means more that could go
+   wrong in that correlation. If there are more images than usable RTF
+   pictures, or the image count exceeds the cap, every image is left
+   exactly as the HTML fragment already resolved it — this only ever makes
+   quality *better*, never worse, by design (falls through to the
+   unmodified paste on any ambiguity or error).
+
+**Extra code:** ~90 lines net (`wordRtfImage.ts` new; `wordPasteExtension.ts`
+extended) — no new dependency.
+
+**Verified:** RTF hex-parsing logic tested against real captured payload
+fragments (magic bytes, byte counts, and exact trailing bytes all
+confirmed correct via an isolated Node script) before wiring in. End-to-end
+tested live: single-image paste (confirmed visually sharper — "yeah its
+crisp") and multi-image paste (confirmed the safety gate correctly declines
+when correlation would be ambiguous, e.g. more images than confidently
+matchable RTF pictures).
+
+**Caveat:** the size-based correlation is a heuristic, not a structural
+guarantee of the RTF format — it assumes each real image contributes one
+dominant large-byte picture, which held in every capture tested here but
+isn't something the format enforces. Fine for this POC's use (a handful of
+images per article); would need a sturdier correlation approach (e.g.
+matching by shape ID within the RTF's own object structure, not yet
+attempted) before relying on it for arbitrary documents at scale.
 
 ---
 
@@ -718,13 +819,14 @@ before this goes in the deck as fully verified.
 | 9a | Icons render as broken images | Base64 payload is SVG, mislabeled `image/png` | Yes | ~15 lines |
 | 9b | Shapes can't be captured | Word's export has no vector/shape semantics — `Word.Shape` has no byte-extraction API | **No — same as §2** | Author workaround only (Save as Picture); optional warning reuses §2's code |
 | 10a | Paste-from-Word bypassed all fixes above | Tiptap's default paste path skips our HTML preprocessing entirely | Yes | ~10 lines, reuses existing code |
-| 10b | Floating shape in selection kills entire paste's formatting | Word fails to populate clipboard `text/html` at all — confirmed in prosemirror-view source | **No — same as §2/§9b** | Author workaround only (paste smaller sections, avoid shapes) |
+| 10b | Genuine non-picture Shape (or comment anchor) in selection kills entire paste's formatting — narrower than first stated, see §14 | Word fails to populate clipboard `text/html` at all for these — confirmed in prosemirror-view source; floating *pictures* were later confirmed NOT to have this problem (§14) | **No** | Author workaround only (paste smaller sections, avoid drawn shapes/comments) |
 | 11 | Centered/right-aligned standalone images lost their alignment | Alignment lives on the wrapping paragraph, not the image; our Image node is block-level so it can't inherit it | Yes | ~75 lines, no new dependency |
 | 12 | Couldn't set image alignment while editing; couldn't type a space next to an image | No editing-time command existed for §11's attribute; block-level image has no text content, so no paragraph nearby means nowhere to type | Yes | ~70 lines, no new dependency |
 | 13a | Resize handles present but invisible/unclickable | `ResizableNodeView` ships handles unstyled by design; simplified `Image.configure({resize})` surface has no className passthrough | Yes | ~20 lines CSS |
 | 13b | Enabling resize silently broke image alignment | Margin-auto alignment needs a wider containing block; resize wrapper is a flex item that shrinks to the image's exact size | Yes | ~30 lines CSS |
 | 13c | Resizing an aligned image snapped back to full size on mouse-up | Resize node view wholesale-overwrites the `style` attribute on every attr update; alignment's inline `style` collided with resize's own imperative width/height | Yes | moved ~25 lines CSS out of the attribute system, net neutral |
-| 14 | Floating/wrapped images (revisited, paste/import path): §2 called this a dead end — turns out it isn't | §2 was about `Word.Shape`/Office.js, now retired; via HTML the wrap direction survives as a plain `align=` on Word's own `<img>` fallback | Yes — reversed course again (like §4) | ~45 lines, verified via real captured markup; **live-paste still unconfirmed** |
+| 14 | Floating/wrapped images (revisited, paste/import path): §2 called this a dead end — turns out it isn't | §2 was about `Word.Shape`/Office.js, now retired; via HTML the wrap direction survives as a plain `align=` on Word's own `<img>` fallback | Yes — reversed course again (like §4) | ~45 lines, verified via real captured markup and live paste |
+| 15 | Pasted images (esp. charts/OLE objects) looked blurry — worse than the source | HTML's `<img>` fallback is a legacy low-res format (confirmed: 430×216px GIF for one real chart); `text/rtf`, read separately, carries the real embedded bytes (confirmed: a 102KB JPEG for the same chart) | Yes | ~90 lines, no new dependency; heuristic-based multi-image correlation, capped at 5 |
 
 **Direction change (§10):** we're dropping the live Word add-in as the
 authoring surface — every unfixable limitation above (§2, §9b) and the
@@ -734,14 +836,17 @@ format via copy-paste, not a connected host. That's a net simplification:
 no manifest, no `WordApi`/`WordApiDesktop` requirement-set management, no
 Office.js runtime risk — those go away entirely, not just get mitigated.
 
-**Bottom line for the team:** with the add-in gone, shapes follow us into
-the paste world too, and worse than expected — a floating shape anywhere in
-a copied selection can silently blank out formatting for the *whole* paste,
-confirmed live (§10b), not just fail to render itself (§2/§9b). Practical
-guidance for authors: paste in smaller sections and keep floating
-shapes/comments out of the selection when formatting matters. Images on
-paste (§10) are a separate, still-unverified risk in the same category.
-Everything else in this doc costs real but modest extra code (roughly 155
+**Bottom line for the team:** with the add-in gone, genuine drawn Shapes
+(and comment anchors) follow us into the paste world too, and worse than
+expected — a Shape anywhere in a copied selection can silently blank out
+formatting for the *whole* paste, confirmed live (§10b), not just fail to
+render itself (§2/§9b). Practical guidance for authors: paste in smaller
+sections and keep drawn shapes/comments out of the selection when
+formatting matters. **This is specifically about genuine vector Shapes —
+floating/anchored pictures are a different case, and are fully handled**
+(§14 for correct positioning, §15 for full-fidelity image quality via
+`text/rtf`, both confirmed against live paste, not just Save-As-HTML).
+Everything else in this doc costs real but modest extra code (roughly 250
 lines total across the POC) plus one new dependency (`juice`) — and now
 applies uniformly whether content arrives via paste or a loaded saved
 article. Video embeds work end-to-end for YouTube; an enterprise player
