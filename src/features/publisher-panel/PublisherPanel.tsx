@@ -5,7 +5,7 @@ import { ARTICLES } from './articles';
 import { generateMockSummary } from './summary';
 // import { fancifyText } from './transforms';
 import { detectEntities } from './entities';
-import { AI_TAGS } from './tags';
+import { detectTags } from './tags';
 import { convertOoxmlStringToTiptapJson } from '../../core/tiptap-utils/ooxml/ooxmlToTiptapJson';
 import { publishArticleToFeed } from '../../core/articleStore';
 import './PublisherPanel.css';
@@ -39,7 +39,7 @@ export function PublisherPanel({ adapter }: PublisherPanelProps) {
   useEffect(() => adapter.onContentChange(setLiveText), [adapter]);
 
   const identifiedEntities = useMemo(() => detectEntities(liveText), [liveText]);
-  const aiTags = useMemo(() => (liveText.trim() ? AI_TAGS : []), [liveText]);
+  const aiTags = useMemo(() => detectTags(liveText), [liveText]);
 
   const suggestions = query.trim()
     ? ARTICLES.filter(

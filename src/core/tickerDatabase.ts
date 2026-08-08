@@ -12,7 +12,9 @@ export interface TickerInfo {
 // consistent, same reasoning as core/flaggedTerms.ts.
 export const TICKER_DATABASE: TickerInfo[] = [
   { symbol: 'AAPL', exchangeSuffix: 'US', name: 'Apple Inc', rating: 'Neutral', priceTarget: 'PT 296.00 USD' },
-  // { symbol: 'MSFT', exchangeSuffix: 'US', name: 'Microsoft Corp', rating: 'Buy', priceTarget: 'PT 520.00 USD' },
+  { symbol: 'MSFT', exchangeSuffix: 'US', name: 'Microsoft Corp', rating: 'Buy', priceTarget: 'PT 520.00 USD' },
+  // META left out on purpose: "meta" is too common a substring (metadata,
+  // meta-analysis, …) for the simple includes check to match cleanly.
   // { symbol: 'META', exchangeSuffix: 'US', name: 'Meta Platforms Inc', rating: 'Buy', priceTarget: 'PT 715.00 USD' },
 ];
 
