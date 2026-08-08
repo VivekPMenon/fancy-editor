@@ -31,6 +31,16 @@ interface ListParagraphInfo {
   level: number;
   ordered: boolean;
   contentFragment: DocumentFragment;
+  // The paragraph's own font-size/family/color, applied to the <li> so the
+  // list marker (which inherits its font from the <li>, not the item's
+  // inner content) matches the item text — same point-size but a different
+  // typeface on the marker still reads as a size mismatch, so family
+  // matters as much as size. The inner content also keeps all of this via
+  // preserveParagraphTextStyle's span, so the text stays correct even if
+  // the <li>-level styling ever fails to round-trip.
+  fontSize?: string;
+  fontFamily?: string;
+  color?: string;
 }
 
 function inchesFromCss(value: string): number {
@@ -119,13 +129,42 @@ function analyzeListParagraph(p: Element): ListParagraphInfo | null {
   range.setEndAfter(p.lastChild);
   const contentFragment = range.extractContents();
   removeEmptySpans(contentFragment);
+  preserveParagraphTextStyle(p, contentFragment);
 
   return {
     element: p,
     level: levelFromIndent(p),
     ordered: !isBulletToken(marker, markerFontFamily),
     contentFragment,
+    fontSize: p.style.fontSize || undefined,
+    fontFamily: p.style.fontFamily || undefined,
+    color: p.style.color || undefined,
   };
+}
+
+// Word puts a list paragraph's font-size (and font-family/color) at the
+// paragraph level — after juice() inlines the MsoListParagraph* class rule,
+// it lands on the <p>'s own style. But only the paragraph's *inner* content
+// gets hoisted into the reconstructed <li>; the <p> itself is discarded, so
+// that paragraph-level styling would be lost (non-list paragraphs keep it
+// because their <p> survives as a real paragraph node). This re-applies it
+// by wrapping the extracted content in a span carrying those properties.
+// Any inner span with its own font-size still wins for its own text — the
+// wrapper is only a fallback for content that had none of its own.
+function preserveParagraphTextStyle(p: HTMLElement, fragment: DocumentFragment): void {
+  const props: string[] = [];
+  if (p.style.fontSize) props.push(`font-size:${p.style.fontSize}`);
+  if (p.style.fontFamily) props.push(`font-family:${p.style.fontFamily}`);
+  if (p.style.color) props.push(`color:${p.style.color}`);
+  if (props.length === 0 || fragment.childNodes.length === 0) {
+    return;
+  }
+  const wrapper = document.createElement('span');
+  wrapper.setAttribute('style', props.join(';'));
+  while (fragment.firstChild) {
+    wrapper.appendChild(fragment.firstChild);
+  }
+  fragment.appendChild(wrapper);
 }
 
 // extractContents() clones whatever ancestor spans structurally wrapped the
@@ -166,6 +205,15 @@ function buildListTree(runInfos: ListParagraphInfo[]): HTMLElement {
     }
 
     const li = document.createElement('li');
+    if (info.fontSize) {
+      li.style.fontSize = info.fontSize;
+    }
+    if (info.fontFamily) {
+      li.style.fontFamily = info.fontFamily;
+    }
+    if (info.color) {
+      li.style.color = info.color;
+    }
     li.appendChild(info.contentFragment);
     stack[stack.length - 1].listEl.appendChild(li);
     lastLiByLevel.set(stack[stack.length - 1].level, li);

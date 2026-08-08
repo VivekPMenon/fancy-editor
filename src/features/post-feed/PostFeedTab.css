@@ -184,6 +184,13 @@
   padding-left: 22px;
 }
 
+/* Same as the editor (App.css): each <li>'s wrapping <p> otherwise carries
+   the full paragraph bottom-margin, making list items read looser than
+   Word's — zero it so item spacing stays tight. */
+.feed-post-body li p {
+  margin-bottom: 0;
+}
+
 .feed-post-body blockquote {
   margin: 0 0 10px;
   padding-left: 14px;

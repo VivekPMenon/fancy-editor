@@ -35,9 +35,23 @@ export const EDITOR_EXTENSIONS = [
   // font-size; font-family }` stylesheet rules, resolved onto the element by
   // juice() in htmlToTiptapJson) has a node attribute to land in, not just
   // character-run marks.
-  FontSize.configure({ types: ['textStyle', 'heading', 'paragraph'] }),
-  Color.configure({ types: ['textStyle', 'heading', 'paragraph'] }),
-  FontFamily.configure({ types: ['textStyle', 'heading', 'paragraph'] }),
+  // 'listItem' included so a list item's font-size can live on the <li>
+  // itself — that's the only element the list marker (1., 2., •) inherits
+  // its own size from. Without it, pasted list text carries the font-size
+  // on its inner paragraph while the marker stays at the editor's base
+  // size, and the two visibly mismatch (CSS can't make a marker read a
+  // descendant's font-size). wordListReconstruction puts the size on the
+  // <li> for exactly this.
+  // 'listItem' included on all three so a list item's font-size, family AND
+  // color can live on the <li> itself — that's the only element the list
+  // marker (1., 2., •) inherits its own font from. Font-size alone isn't
+  // enough: with the family left on the item's inner content, the marker
+  // renders in the editor's default typeface while the text is in the
+  // pasted font, and the two read as different sizes even at the same pt.
+  // wordListReconstruction puts all three on the <li> for exactly this.
+  FontSize.configure({ types: ['textStyle', 'heading', 'paragraph', 'listItem'] }),
+  Color.configure({ types: ['textStyle', 'heading', 'paragraph', 'listItem'] }),
+  FontFamily.configure({ types: ['textStyle', 'heading', 'paragraph', 'listItem'] }),
   Youtube.configure({ width: 480, height: 270 }),
   Image.configure({
     // allowBase64 defaults to false, which silently drops <img src="data:...">

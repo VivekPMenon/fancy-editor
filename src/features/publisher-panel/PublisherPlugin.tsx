@@ -17,7 +17,7 @@ export function PublisherPlugin({ adapter, hostLabel }: PublisherPluginProps) {
 
   return (
     <div className="publisher-panel">
-      <h2>Publisher Plugin ({hostLabel})</h2>
+      <h2>My Custom Plugin ({hostLabel})</h2>
 
       <div className="publisher-plugin-tabs" role="tablist">
         <button

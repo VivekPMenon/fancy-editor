@@ -177,6 +177,14 @@
     margin-bottom: 4px;
   }
 
+  /* Tiptap wraps each <li>'s content in a <p>, which otherwise inherits the
+     full 10px paragraph bottom-margin above — that stacks with the li's own
+     spacing and makes list items read far looser than Word's. Zero it out
+     so item spacing is just the li's 4px. */
+  .ProseMirror li p {
+    margin-bottom: 0;
+  }
+
   .ProseMirror > *:first-child {
     margin-top: 0;
   }

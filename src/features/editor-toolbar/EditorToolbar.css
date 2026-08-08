@@ -8,7 +8,9 @@
 .editor-toolbar-shell {
   flex-shrink: 0;
   background: white;
-  border-bottom: 1px solid #d7d7d7;
+  border-radius: 8px;
+  margin-bottom: 8px;
+  /* border-bottom: 1px solid #d7d7d7; */
 }
 
 /* Cosmetic tab strip — only "Home" is wired up, the rest are inert, same as
@@ -50,6 +52,7 @@
   align-items: stretch;
   padding: 5px 0px;
   background: #ffffff;
+  border-radius: 8px;
   overflow-x: auto;
 }
 
