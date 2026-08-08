@@ -4,33 +4,37 @@ import type { Article } from './articles';
 import { ARTICLES } from './articles';
 import { generateMockSummary } from './summary';
 // import { fancifyText } from './transforms';
-import { loadArticle, saveArticle } from './storage';
 import { detectEntities } from './entities';
 import { AI_TAGS } from './tags';
-import { htmlToTiptapJson } from '../../core/tiptap-utils/htmlJsonConversion';
 import { convertOoxmlStringToTiptapJson } from '../../core/tiptap-utils/ooxml/ooxmlToTiptapJson';
+import { publishArticleToFeed } from '../../core/articleStore';
 import './PublisherPanel.css';
 
 interface PublisherPanelProps {
   adapter: DocumentAdapter;
 }
 
+// Word exposes getOoxml(); the Tiptap web adapter doesn't. That single
+// capability is the host discriminator — Word gets the Data Format choice
+// (publish to clipboard as HTML / OOXML / JSON), web just publishes the
+// edited article straight into the in-memory feed.
+type DataFormat = 'html' | 'ooxml' | 'json';
+
 export function PublisherPanel({ adapter }: PublisherPanelProps) {
-  const [savedAt, setSavedAt] = useState<string | null>(() => loadArticle()?.savedAt ?? null);
+  const isWordHost = Boolean(adapter.getContentOoxml);
+
   const [status, setStatus] = useState('');
   const [warnings, setWarnings] = useState<string[]>([]);
   const [liveText, setLiveText] = useState('');
+  const [lastPublishedAt, setLastPublishedAt] = useState<string | null>(null);
 
   const [query, setQuery] = useState('');
   const [selectedArticles, setSelectedArticles] = useState<Article[]>([]);
   const [summaryMessage, setSummaryMessage] = useState('');
 
-  // Word-only — lets us capture via getHtml() (existing pipeline) or
-  // getOoxml() (experimental) from the same panel, so the two can be
-  // compared side by side while an OOXML->JSON parser is prototyped. Only
-  // meaningful when the adapter actually implements getContentOoxml — on
-  // the Tiptap web adapter, the toggle itself doesn't render at all.
-  const [captureMode, setCaptureMode] = useState<'html' | 'ooxml'>('html');
+  // Word host only: JSON (default) publishes via the OOXML->Tiptap-JSON
+  // route, HTML via getHtml(), OOXML as the raw captured XML.
+  const [dataFormat, setDataFormat] = useState<DataFormat>('json');
 
   useEffect(() => adapter.onContentChange(setLiveText), [adapter]);
 
@@ -69,89 +73,72 @@ export function PublisherPanel({ adapter }: PublisherPanelProps) {
     }
   }
 
-  async function saveCurrentArticle() {
-    const contentWarnings = await adapter.getContentWarnings();
-    setWarnings(contentWarnings);
+  // Word: capture the document in the selected Data Format and copy it to
+  // the clipboard — JSON goes through the OOXML->Tiptap-JSON converter,
+  // HTML through getHtml(), OOXML is the raw captured flat-OPC XML.
+  async function publishFromWord() {
+    if (dataFormat === 'html') {
+      // The floating-image warning only applies to the HTML path — getHtml()
+      // genuinely can't capture a floating image's bytes. The OOXML path
+      // (JSON/OOXML formats) does capture them, so those don't warn.
+      setWarnings(await adapter.getContentWarnings());
+      const html = await adapter.getContentHtml();
+      await copyToClipboard(html, `Published — copied ${html.length} chars of HTML to clipboard.`);
+      return;
+    }
+
+    setWarnings([]);
+
+    // OOXML and JSON both start from getOoxml(); if Word itself fails to
+    // produce it (office-js#998/#5394), surface that plainly.
+    const ooxml = await adapter.getContentOoxml!();
+    if (dataFormat === 'ooxml') {
+      await copyToClipboard(ooxml, `Published — copied ${ooxml.length} chars of raw OOXML to clipboard.`);
+      return;
+    }
+
+    const json = convertOoxmlStringToTiptapJson(ooxml);
+    const blockCount = json.content?.length ?? 0;
+    await copyToClipboard(
+      JSON.stringify(json, null, 2),
+      `Published — converted OOXML to Tiptap JSON (${blockCount} blocks) and copied to clipboard.`,
+    );
+  }
+
+  // Web: push the editor's current content straight into the in-memory feed
+  // (updating the loaded article, or creating a new one) so the Article Feed
+  // reflects the edit. No clipboard, no format choice — the web editor is
+  // already Tiptap JSON.
+  async function publishFromWeb() {
+    const json = adapter.getContentJson ? await adapter.getContentJson() : undefined;
+    if (!json) {
+      setStatus('Publish is only available in the web editor for now.');
+      return;
+    }
     const html = await adapter.getContentHtml();
-    const json = htmlToTiptapJson(html);
-    const record = saveArticle(html, json);
-    setSavedAt(record.savedAt);
-    return { html, json };
+    const post = publishArticleToFeed(json, html);
+    setStatus(`Published "${post.title}" to the Article Feed.`);
   }
 
-  async function handleSaveHtml() {
+  async function copyToClipboard(text: string, successMessage: string) {
     try {
-      const { html } = await saveCurrentArticle();
-      try {
-        await navigator.clipboard.writeText(html);
-        setStatus(`Saved and copied ${html.length} chars of HTML to clipboard.`);
-      } catch {
-        setStatus(`Saved ${html.length} chars of HTML — clipboard copy failed, copy manually instead.`);
-      }
-    } catch (err) {
-      setStatus(`Save failed: ${(err as Error).message}`);
+      await navigator.clipboard.writeText(text);
+      setStatus(successMessage);
+    } catch {
+      setStatus('Published, but copying to the clipboard failed — try again or copy manually.');
     }
   }
 
-  async function handleSaveJson() {
+  async function handlePublish() {
     try {
-      const { html, json } = await saveCurrentArticle();
-      try {
-        await navigator.clipboard.writeText(JSON.stringify(json, null, 2));
-        setStatus(`Saved (from ${html.length} chars of HTML) and copied JSON to clipboard.`);
-      } catch {
-        setStatus('Saved, but JSON clipboard copy failed — copy manually instead.');
+      if (isWordHost) {
+        await publishFromWord();
+      } else {
+        await publishFromWeb();
       }
+      setLastPublishedAt(new Date().toISOString());
     } catch (err) {
-      setStatus(`Save failed: ${(err as Error).message}`);
-    }
-  }
-
-  async function handleCaptureOoxml() {
-    if (!adapter.getContentOoxml) {
-      return;
-    }
-    try {
-      const ooxml = await adapter.getContentOoxml();
-      try {
-        await navigator.clipboard.writeText(ooxml);
-        setStatus(`Captured ${ooxml.length} chars of OOXML and copied to clipboard.`);
-      } catch {
-        setStatus(`Captured ${ooxml.length} chars of OOXML — clipboard copy failed, copy manually instead.`);
-      }
-    } catch (err) {
-      // Deliberately not swallowed/simplified — office-js#998/#5394 are
-      // real, undocumented failure modes for getOoxml() (e.g. documents
-      // with multiple large floating images); seeing the actual error here
-      // is the point while this is still being evaluated.
-      setStatus(`OOXML capture failed: ${(err as Error).message}`);
-    }
-  }
-
-  async function handleCaptureOoxmlAsJson() {
-    if (!adapter.getContentOoxml) {
-      return;
-    }
-    try {
-      const ooxml = await adapter.getContentOoxml();
-      // Deliberately separate try/catch from the getOoxml() call above —
-      // want to tell "Word failed to produce OOXML at all" apart from
-      // "our own parser choked on it" while this is still being verified
-      // against real documents beyond sample-1.xml.
-      try {
-        const json = convertOoxmlStringToTiptapJson(ooxml);
-        const blockCount = json.content?.length ?? 0;
-        try {
-          await navigator.clipboard.writeText(JSON.stringify(json, null, 2));
-          setStatus(`Converted OOXML to Tiptap JSON (${blockCount} top-level blocks) and copied to clipboard.`);
-        } catch {
-          setStatus(`Converted OOXML to Tiptap JSON (${blockCount} top-level blocks) — clipboard copy failed, copy manually instead.`);
-        }
-      } catch (parseErr) {
-        setStatus(`OOXML captured (${ooxml.length} chars), but our parser failed on it: ${(parseErr as Error).message}`);
-      }
-    } catch (err) {
-      setStatus(`OOXML capture failed: ${(err as Error).message}`);
+      setStatus(`Publish failed: ${(err as Error).message}`);
     }
   }
 
@@ -292,51 +279,37 @@ export function PublisherPanel({ adapter }: PublisherPanelProps) {
 
       <section className="publisher-panel-section">
         <h3 className="publisher-panel-section-title">Document tools</h3>
-        {/* <button type="button" onClick={handleFancify}>
-          Fancify selection
-        </button> */}
-        {adapter.getContentOoxml && (
-          <div className="publisher-panel-capture-mode">
-            <span className="publisher-panel-capture-mode-label">Capture via:</span>
-            <button
-              type="button"
-              className={captureMode === 'html' ? 'active' : ''}
-              onClick={() => setCaptureMode('html')}
-            >
-              getHtml()
-            </button>
-            <button
-              type="button"
-              className={captureMode === 'ooxml' ? 'active' : ''}
-              onClick={() => setCaptureMode('ooxml')}
-            >
-              getOoxml()
-            </button>
+
+        {isWordHost && (
+          <div className="publisher-panel-data-format">
+            <span className="publisher-panel-data-format-label">Data Format</span>
+            <div className="publisher-panel-segment" role="radiogroup" aria-label="Data Format">
+              {(['html', 'json', 'ooxml'] as const).map((format) => (
+                <button
+                  key={format}
+                  type="button"
+                  role="radio"
+                  aria-checked={dataFormat === format}
+                  className={dataFormat === format ? 'active' : ''}
+                  onClick={() => setDataFormat(format)}
+                >
+                  {format.toUpperCase()}
+                </button>
+              ))}
+            </div>
           </div>
         )}
-        {captureMode === 'html' || !adapter.getContentOoxml ? (
-          <>
-            <button type="button" onClick={handleSaveHtml}>
-              Save article as HTML
-            </button>
-            <button type="button" onClick={handleSaveJson}>
-              Save article as JSON
-            </button>
-          </>
-        ) : (
-          <>
-            <button type="button" onClick={handleCaptureOoxml}>
-              Capture raw OOXML (experimental)
-            </button>
-            <button type="button" onClick={handleCaptureOoxmlAsJson}>
-              Capture + convert to Tiptap JSON (experimental)
-            </button>
-          </>
-        )}
+
+        <button type="button" className="publisher-panel-publish" onClick={handlePublish}>
+          Publish Article
+        </button>
+
         <button type="button" onClick={handleScanFlaggedTerms}>
           Scan for flagged terms
         </button>
-        {savedAt && <p className="publisher-panel-meta">Last saved: {new Date(savedAt).toLocaleString()}</p>}
+        {lastPublishedAt && (
+          <p className="publisher-panel-meta">Last published: {new Date(lastPublishedAt).toLocaleString()}</p>
+        )}
         {status && <p className="publisher-panel-status">{status}</p>}
         {warnings.length > 0 && (
           <ul className="publisher-panel-warnings">

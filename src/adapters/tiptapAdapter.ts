@@ -43,6 +43,10 @@ export function createTiptapAdapter(editor: Editor): DocumentAdapter {
       return [];
     },
 
+    async getContentJson() {
+      return editor.getJSON();
+    },
+
     async highlightFlaggedTerms() {
       // Already highlighted live by the FlaggedTerms decoration plugin — nothing to do.
       return 0;

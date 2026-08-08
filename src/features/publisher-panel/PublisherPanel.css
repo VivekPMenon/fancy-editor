@@ -199,26 +199,58 @@
   border-color: rgba(230, 0, 0, 0.4);
 }
 
-.publisher-panel-capture-mode {
+.publisher-panel-data-format {
   display: flex;
-  align-items: center;
+  flex-direction: column;
   gap: 6px;
-  margin-bottom: 8px;
+  margin-bottom: 4px;
 }
 
-.publisher-panel-capture-mode-label {
+.publisher-panel-data-format-label {
   font-size: 12px;
+  font-weight: 600;
   color: #444444;
 }
 
-.publisher-panel-capture-mode button {
-  font-size: 12px;
-  padding: 4px 8px;
+.publisher-panel-segment {
+  display: flex;
+  border: 1px solid var(--border, #d7d7d7);
+  border-radius: 6px;
+  overflow: hidden;
 }
 
-.publisher-panel-capture-mode button.active {
-  background: #e60000;
-  color: #ffffff;
+.publisher-panel-segment button {
+  flex: 1;
+  font-size: 12px;
+  font-weight: 500;
+  padding: 6px 8px;
+  border: none;
+  border-radius: 0;
+  border-right: 1px solid var(--border, #d7d7d7);
+  background: transparent;
+  color: #6b6b6b;
+  transition: background 0.15s, color 0.15s;
+}
+
+.publisher-panel-segment button:last-child {
+  border-right: none;
+}
+
+.publisher-panel-segment button:hover:not(.active) {
+  background: #f0f0f0;
+}
+
+/* Neutral "selected" state — reads as a setting, not an action button.
+   Deliberately no brand red here: the red belongs to the Publish Article
+   CTA below, and a red-filled segment competes with it for attention. */
+.publisher-panel-segment button.active {
+  background: #e6e6e6;
+  color: #1a1a1a;
+  font-weight: 700;
+}
+
+.publisher-panel-publish {
+  font-weight: 600;
 }
 
 .publisher-panel-meta,

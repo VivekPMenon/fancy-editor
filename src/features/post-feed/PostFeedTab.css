@@ -110,7 +110,7 @@
 }
 
 .feed-post-excerpt {
-  font-size: 14px;
+  font-size: 16px;
   line-height: 1.5;
   color: #444444;
   margin: 0;
@@ -135,7 +135,7 @@
 /* Shared structural baseline for the rendered HTML body — applies to both
    formats as a fallback for tags without their own overrides below. */
 .feed-post-body {
-  font-size: 14px;
+  font-size: 16px;
   line-height: 1.6;
   color: #000000;
   text-align: left;

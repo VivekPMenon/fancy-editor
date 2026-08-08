@@ -22,6 +22,14 @@ export interface DocumentAdapter {
   /** Pre-save validation warnings (host-specific — e.g. Word floating images that getContentHtml can't capture). */
   getContentWarnings(): Promise<string[]>;
   /**
+   * Web/Tiptap-only: the editor's current content as Tiptap JSON, straight
+   * from the editor (no HTML round-trip). Used by the web "Publish Article"
+   * flow to push the exact edited content into the in-memory feed. Optional
+   * — Word has no native JSON representation, and its publish path goes
+   * through OOXML instead, so the Word adapter omits it.
+   */
+  getContentJson?(): Promise<JSONContent>;
+  /**
    * Scans for the hardcoded flagged-term list (core/flaggedTerms.ts) and highlights matches.
    * On Tiptap, highlighting is already live via a decoration plugin, so this is a no-op that
    * returns 0. On Word, there's no decoration-layer equivalent, so this does a one-shot scan:
