@@ -72,7 +72,12 @@ export const EDITOR_EXTENSIONS = [
   ImageAlignment,
   ImageSpacing,
   ColumnLayout,
-  Indent.configure({ types: ['paragraph', 'heading'] }),
+  // bulletList/orderedList included so a whole-list selection can be shifted
+  // right as a block (margin-left) when Tab can't nest it — selecting a list
+  // that includes its first item has no preceding sibling to nest under, so
+  // ProseMirror's sinkListItem refuses; the Indent extension falls back to
+  // this block shift there, matching how Tab moves a whole selected paragraph.
+  Indent.configure({ types: ['paragraph', 'heading', 'bulletList', 'orderedList'] }),
   FlaggedTerms,
   WordPaste,
   Subscript,

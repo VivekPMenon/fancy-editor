@@ -70,6 +70,41 @@ function levelFromIndent(el: HTMLElement): number {
   return Math.max(0, Math.round(inchesFromCss(el.style.marginLeft) / 0.5));
 }
 
+// A live Word *clipboard* copy encodes list nesting authoritatively in a
+// non-standard `mso-list: lN levelM lfoK` declaration (levelM is 1-indexed),
+// and frequently leaves margin-left uniform across every level — so
+// levelFromIndent alone reads such a list as flat (confirmed: the exact
+// "Simple/Complex Tables" sub-items collapsing into their parent's numbering
+// on paste). Save-As-HTML strips mso-list and encodes the level via
+// margin-left instead, so this returns null there and we fall back.
+//
+// The CSSOM drops unknown properties, so `element.style` never exposes
+// mso-list — this reads the raw style attribute string, which browsers keep
+// verbatim (the same approach CKEditor/TinyMCE use for Word list levels).
+function levelFromMsoList(el: HTMLElement): number | null {
+  const match = /mso-list:\s*l\d+\s+level(\d+)/i.exec(el.getAttribute('style') || '');
+  return match ? Math.max(0, Number(match[1]) - 1) : null;
+}
+
+// Prefer the explicit mso-list level (clipboard); fall back to margin-left
+// (Save-As-HTML). Within a single Word list every item uses the same scheme,
+// so mixing the two zero-points across items doesn't arise, and buildListTree
+// only cares about *relative* levels anyway.
+function detectLevel(el: HTMLElement): number {
+  return levelFromMsoList(el) ?? levelFromIndent(el);
+}
+
+// A paragraph is part of a Word list if it carries a MsoListParagraph* class,
+// a hanging indent (negative text-indent), OR an mso-list marker — the last
+// catches live clipboard copies whose list items don't always get the class.
+function isListParagraphCandidate(el: HTMLElement): boolean {
+  return (
+    LIST_PARAGRAPH_CLASS.test(el.className) ||
+    parseFloat(el.style.textIndent || '0') < 0 ||
+    /mso-list:/i.test(el.getAttribute('style') || '')
+  );
+}
+
 function isBulletToken(token: string, fontFamilyHint: string): boolean {
   if (/symbol|wingdings/i.test(fontFamilyHint)) {
     return true;
@@ -92,8 +127,7 @@ function analyzeListParagraph(p: Element): ListParagraphInfo | null {
   if (!(p instanceof HTMLElement)) {
     return null;
   }
-  const isCandidate = LIST_PARAGRAPH_CLASS.test(p.className) || parseFloat(p.style.textIndent || '0') < 0;
-  if (!isCandidate) {
+  if (!isListParagraphCandidate(p)) {
     return null;
   }
 
@@ -133,7 +167,7 @@ function analyzeListParagraph(p: Element): ListParagraphInfo | null {
 
   return {
     element: p,
-    level: levelFromIndent(p),
+    level: detectLevel(p),
     ordered: !isBulletToken(marker, markerFontFamily),
     contentFragment,
     fontSize: p.style.fontSize || undefined,
@@ -223,7 +257,7 @@ function buildListTree(runInfos: ListParagraphInfo[]): HTMLElement {
 }
 
 export function reconstructWordLists(html: string): string {
-  if (!html.includes('MsoListParagraph') && !html.includes('text-indent:-')) {
+  if (!html.includes('MsoListParagraph') && !html.includes('text-indent:-') && !html.includes('mso-list:')) {
     return html;
   }
 
@@ -235,8 +269,7 @@ export function reconstructWordLists(html: string): string {
   // elsewhere in the document from being merged together.
   const candidateParents = new Set<Element>();
   container.querySelectorAll('p').forEach((p) => {
-    const isCandidate = LIST_PARAGRAPH_CLASS.test(p.className) || parseFloat((p as HTMLElement).style.textIndent || '0') < 0;
-    if (isCandidate && p.parentElement) {
+    if (p instanceof HTMLElement && isListParagraphCandidate(p) && p.parentElement) {
       candidateParents.add(p.parentElement);
     }
   });

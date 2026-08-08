@@ -146,8 +146,10 @@ walks the DOM after `juice()` has resolved styles, detects Word's
 `MsoListParagraph*` paragraph shape (marker character/number + a run of
 non-breaking-space padding simulating a tab, per Word's own convention),
 and rebuilds real nested `<ol>`/`<ul>`/`<li>` from consecutive runs of them —
-inferring nesting depth from `margin-left` (Word indents ~0.5in per level)
-and bullet-vs-ordered from the marker token itself (digit/letter/roman +
+inferring nesting depth from Word's `mso-list: lN levelM lfoK` marker when
+present (the authoritative level signal, 1-indexed — see the 2026-08-08 note
+below), falling back to `margin-left` (Word indents ~0.5in per level) when
+it isn't, and bullet-vs-ordered from the marker token itself (digit/letter/roman +
 punctuation → ordered; a bare symbol, or `Symbol`/`Wingdings` font-family →
 bullet). Inline formatting inside each item (bold, color, links, …) is
 preserved via `Range.extractContents()` rather than rebuilt from scratch.
@@ -172,6 +174,40 @@ change at the *same* indent level (bullets switching to numbers without an
 indent change) isn't specially handled — accepted as edge cases for a
 first pass, consistent with "further iterations" being expected rather than
 chasing full Word parity in one pass.
+
+**Nesting collapsed on *paste* — `mso-list` level detection added
+(2026-08-08).** The margin-left-only depth inference (above) worked on our
+Save-As-HTML samples but flattened nested lists pasted from a live Word
+**clipboard** copy — sub-items ("Simple Tables"/"Complex Tables") collapsed
+into their parent's numbering. Root cause, reproduced end-to-end in an
+isolated jsdom + full-schema test: a clipboard copy encodes nesting in the
+`mso-list: lN levelM lfoK` marker (the same metadata the 2026-08-05 note
+found *absent* from the `body.getHtml()` capture path) and frequently leaves
+`margin-left` **uniform** across every level — so margin-based inference
+reads it as flat. Save-As-HTML is the opposite: it strips `mso-list` and
+varies `margin-left` per level. Fix: read `levelM` from the raw `style`
+attribute (the CSSOM drops the unknown `mso-list` property, but
+`getAttribute('style')` keeps it verbatim — the same technique CKEditor /
+TinyMCE use), preferring it and falling back to `margin-left`. Both capture
+paths now nest correctly; verified `juice()` preserves the property through
+its round-trip. This narrows the earlier "unusual indent scale could misjudge
+levels" caveat: it only applies to Save-As-HTML now, since the clipboard path
+carries an exact level.
+
+**Tab behavior on lists (2026-08-08).** Tiptap ships no indent extension, so
+Tab handling is entirely ours ([`indentExtension.ts`](../src/core/tiptap-utils/indentExtension.ts)).
+Two Word-parity gaps surfaced and were fixed: (1) Tab moved focus *out of the
+editor* on a paragraph selection or a list's first item — the built-in
+`sinkListItem` returns false when it can't nest (first item has no preceding
+sibling), and that false let the bare Tab key hit the browser's focus
+navigation. We now handle Tab ourselves and always swallow it in editable
+content. (2) Selecting a whole list and pressing Tab did nothing (same
+first-item `sinkListItem` refusal). Word shifts the whole list a level;
+ProseMirror can't nest a first item, so we fall back to a block `margin-left`
+shift on the list node itself (`bulletList`/`orderedList` added to the Indent
+extension's types), matching how Tab moves a whole selected paragraph.
+Collapsed cursor → first-line `text-indent`; range selection → whole-block
+`margin-left`; list → nest, else block-shift.
 
 ---
 
