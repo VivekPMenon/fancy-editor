@@ -445,6 +445,12 @@ export function convertOoxmlToTiptapJson(pkg: OoxmlPackage): JSONContent {
       // content WAS the image(s) — no other text — is dropped rather than
       // also emitted as a redundant empty paragraph right next to them.
 
+      const sectPrEl = pPr && firstTag(OOXML_NS.w, 'sectPr', pPr);
+      // A paragraph whose ONLY pPr content is a section-break marker — no
+      // text, no images, not a column-break split — is pure structure, not
+      // visible content, and shouldn't render as a stray blank paragraph.
+      const isBareSectionMarker = Boolean(sectPrEl) && nodes.length === 1 && !nodes[0].content && !hasImages;
+
       if (membership) {
         sectionBlocks.push(...ctx.pendingImages);
         // A column break inside a list-item paragraph isn't a realistic
@@ -462,12 +468,11 @@ export function convertOoxmlToTiptapJson(pkg: OoxmlPackage): JSONContent {
         // hasImages/nodes[0].content, same check as before), or a column
         // break split it into more than one segment, in which case all of
         // them are kept rather than arbitrarily dropping one.
-        if (nodes.length > 1 || !hasImages || nodes[0].content) {
+        if (!isBareSectionMarker && (nodes.length > 1 || !hasImages || nodes[0].content)) {
           sectionBlocks.push(...nodes);
         }
       }
 
-      const sectPrEl = pPr && firstTag(OOXML_NS.w, 'sectPr', pPr);
       if (sectPrEl) {
         flushSection(sectionColumnCount(sectPrEl));
       }
