@@ -184,6 +184,23 @@
   padding-left: 22px;
 }
 
+/* Fallback numbering cycle for editor-authored lists (which carry no
+   explicit list-style-type) — mirrors the editor's App.css so the same list
+   reads identically in both places. Imported Word lists set an inline
+   list-style-type (listStyleExtension.ts) that overrides this and matches the
+   source document's own markers (I/II, a/b, …). */
+.feed-post-body ol {
+  list-style-type: decimal;
+}
+
+.feed-post-body ol ol {
+  list-style-type: lower-alpha;
+}
+
+.feed-post-body ol ol ol {
+  list-style-type: lower-roman;
+}
+
 /* Same as the editor (App.css): each <li>'s wrapping <p> otherwise carries
    the full paragraph bottom-margin, making list items read looser than
    Word's — zero it so item spacing stays tight. */

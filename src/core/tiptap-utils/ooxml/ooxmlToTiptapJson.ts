@@ -1,7 +1,7 @@
 import type { JSONContent } from '@tiptap/react';
 import { OOXML_NS, parseFlatOpcPackage, type OoxmlPackage } from './flatOpcPackage';
 import { parseNumbering, type NumberingResolver } from './numbering';
-import { parseStyles, type StylesResolver } from './styles';
+import { parseStyles, halfPointsToPt, type StylesResolver } from './styles';
 
 function tag(namespaceURI: string, localName: string, root: Element): Element[] {
   return Array.from(root.getElementsByTagNameNS(namespaceURI, localName));
@@ -24,6 +24,19 @@ function isEl(node: Element, ns: string, localName: string): boolean {
 
 const ORDERED_FORMATS = new Set(['decimal', 'upperRoman', 'lowerRoman', 'upperLetter', 'lowerLetter']);
 
+// Word's numFmt values -> the equivalent CSS list-style-type, so an imported
+// list renders the same markers (I/II, a/b, …) the document used instead of
+// falling back to a generic cycle. Formats with no clean CSS analogue are
+// left off and fall back to the default.
+const NUMFMT_TO_CSS: Record<string, string> = {
+  decimal: 'decimal',
+  decimalZero: 'decimal-leading-zero',
+  upperRoman: 'upper-roman',
+  lowerRoman: 'lower-roman',
+  upperLetter: 'upper-alpha',
+  lowerLetter: 'lower-alpha',
+};
+
 // Internal-only sentinel node type, never actually emitted in the final
 // JSON — convertParagraph splits on it (see there) to turn a
 // <w:br w:type="column"/> into a real paragraph/heading boundary instead
@@ -37,6 +50,7 @@ interface RunMarks {
   underline?: boolean;
   strike?: boolean;
   color?: string;
+  fontSize?: string;
   highlight?: string;
   vertAlign?: 'subscript' | 'superscript';
   linkHref?: string;
@@ -48,7 +62,15 @@ function marksFromRunMarks(m: RunMarks): NonNullable<JSONContent['marks']> {
   if (m.italic) marks.push({ type: 'italic' });
   if (m.underline) marks.push({ type: 'underline' });
   if (m.strike) marks.push({ type: 'strike' });
-  if (m.color) marks.push({ type: 'textStyle', attrs: { color: m.color } });
+  // color and fontSize both live on the textStyle mark — a run can't carry
+  // two textStyle marks (same-type marks don't coexist in ProseMirror), so
+  // they must be merged into one set of attrs.
+  if (m.color || m.fontSize) {
+    marks.push({
+      type: 'textStyle',
+      attrs: { ...(m.color ? { color: m.color } : {}), ...(m.fontSize ? { fontSize: m.fontSize } : {}) },
+    });
+  }
   if (m.highlight) marks.push({ type: 'highlight', attrs: { color: m.highlight } });
   if (m.vertAlign === 'subscript') marks.push({ type: 'subscript' });
   if (m.vertAlign === 'superscript') marks.push({ type: 'superscript' });
@@ -73,8 +95,12 @@ function runMarksFromRPr(rPr: Element | undefined, inherited: RunMarks): RunMark
   }
   const vertAlignEl = firstTag(OOXML_NS.w, 'vertAlign', rPr);
   const vertAlignVal = vertAlignEl ? wAttr(vertAlignEl, 'val') : null;
+  const szEl = firstTag(OOXML_NS.w, 'sz', rPr);
   return {
     ...inherited,
+    // Run-level size wins over whatever the paragraph seeded (docDefaults /
+    // style default), matching Word's rPr-overrides-default cascade.
+    fontSize: (szEl ? halfPointsToPt(wAttr(szEl, 'val')) : undefined) ?? inherited.fontSize,
     bold: firstTag(OOXML_NS.w, 'b', rPr) ? wAttr(firstTag(OOXML_NS.w, 'b', rPr)!, 'val') !== '0' : inherited.bold,
     italic: firstTag(OOXML_NS.w, 'i', rPr) ? wAttr(firstTag(OOXML_NS.w, 'i', rPr)!, 'val') !== '0' : inherited.italic,
     underline: firstTag(OOXML_NS.w, 'u', rPr) ? wAttr(firstTag(OOXML_NS.w, 'u', rPr)!, 'val') !== 'none' : inherited.underline,
@@ -131,14 +157,17 @@ function convertRun(runEl: Element, inheritedMarks: RunMarks, ctx: ConvertContex
 // as plain unlinked text — a real, documented gap, not silently wrong.
 function convertParagraphInlineContent(pEl: Element, ctx: ConvertContext): JSONContent[] {
   const nodes: JSONContent[] = [];
+  // Seed every run with the paragraph's default size (if any) so runs with no
+  // explicit <w:sz> still carry the body size; a run's own size overrides it.
+  const baseMarks: RunMarks = ctx.currentParagraphFontSize ? { fontSize: ctx.currentParagraphFontSize } : {};
   for (const child of Array.from(pEl.children)) {
     if (isEl(child, OOXML_NS.w, 'r')) {
-      nodes.push(...convertRun(child, {}, ctx));
+      nodes.push(...convertRun(child, { ...baseMarks }, ctx));
     } else if (isEl(child, OOXML_NS.w, 'hyperlink')) {
       const rId = child.getAttributeNS(OOXML_NS.r, 'id') ?? child.getAttribute('r:id');
       const href = rId ? ctx.pkg.resolveRelationship('/word/document.xml', rId) : undefined;
       for (const runEl of tag(OOXML_NS.w, 'r', child)) {
-        nodes.push(...convertRun(runEl, href ? { linkHref: href } : {}, ctx));
+        nodes.push(...convertRun(runEl, { ...baseMarks, ...(href ? { linkHref: href } : {}) }, ctx));
       }
     }
   }
@@ -149,6 +178,8 @@ interface ListMembership {
   numId: string;
   ilvl: number;
   ordered: boolean;
+  // CSS list-style-type for this level's numFmt (ordered lists only).
+  listStyleType?: string;
 }
 
 function listMembershipFor(pPr: Element | undefined, numbering: NumberingResolver): ListMembership | undefined {
@@ -164,7 +195,13 @@ function listMembershipFor(pPr: Element | undefined, numbering: NumberingResolve
     return undefined;
   }
   const format = numbering.getLevelFormat(numId, ilvl);
-  return { numId, ilvl, ordered: format ? ORDERED_FORMATS.has(format) : true };
+  const ordered = format ? ORDERED_FORMATS.has(format) : true;
+  return {
+    numId,
+    ilvl,
+    ordered,
+    listStyleType: ordered && format ? NUMFMT_TO_CSS[format] : undefined,
+  };
 }
 
 interface ConvertContext {
@@ -188,6 +225,12 @@ interface ConvertContext {
   // anchor's own position/wrap data (inferFloatFromAnchor), which takes
   // priority.
   currentParagraphJc?: 'center' | 'right';
+  // The size a run should default to when it carries no explicit <w:sz> — the
+  // document's docDefaults size, seeded per (non-heading) paragraph so body
+  // text renders at the source document's point size instead of the editor's
+  // 16px base. Headings leave this unset so they keep their heading-level +
+  // CSS sizing (App.css / PostFeedTab.css), same as before.
+  currentParagraphFontSize?: string;
 }
 
 // Returns an array, not a single node — usually length 1, but a
@@ -204,8 +247,12 @@ function convertParagraph(pEl: Element, ctx: ConvertContext): JSONContent[] {
   const textAlign = jc === 'center' || jc === 'right' || jc === 'both' ? (jc === 'both' ? 'justify' : jc) : undefined;
 
   ctx.currentParagraphJc = jc === 'center' || jc === 'right' ? jc : undefined;
+  // Headings size themselves via their level + CSS; only body paragraphs
+  // inherit the document default size.
+  ctx.currentParagraphFontSize = headingLevel ? undefined : ctx.styles.defaultFontSize;
   const content = convertParagraphInlineContent(pEl, ctx);
   ctx.currentParagraphJc = undefined;
+  ctx.currentParagraphFontSize = undefined;
 
   const segments: JSONContent[][] = [[]];
   for (const node of content) {
@@ -334,8 +381,29 @@ function convertTable(tblEl: Element, ctx: ConvertContext): JSONContent {
 // by ilvl — same shape of algorithm as wordListReconstruction.ts's
 // buildListTree, but driven by real numId/ilvl/format instead of guessing
 // from indentation.
+// Finds the font-size of the first text run in a (list-item) paragraph — the
+// size to hoist onto the <li> so its marker matches the item text.
+function firstTextStyleFontSize(node: JSONContent): string | undefined {
+  if (node.type === 'text') {
+    const textStyle = node.marks?.find((mark) => mark.type === 'textStyle');
+    const size = textStyle?.attrs?.fontSize;
+    return typeof size === 'string' ? size : undefined;
+  }
+  for (const child of node.content ?? []) {
+    const found = firstTextStyleFontSize(child);
+    if (found) {
+      return found;
+    }
+  }
+  return undefined;
+}
+
 function buildListNode(paragraphs: { node: JSONContent; membership: ListMembership }[]): JSONContent {
-  const root: JSONContent = { type: paragraphs[0].membership.ordered ? 'orderedList' : 'bulletList', content: [] };
+  // Type/style are corrected from the first item actually placed in each list
+  // (below) — Word can switch bullet<->number or change numFmt between
+  // levels, and a list's format is that of the items it *directly* holds, not
+  // the parent paragraph that spawned it.
+  const root: JSONContent = { type: 'orderedList', content: [] };
   const stack: { ilvl: number; list: JSONContent }[] = [{ ilvl: -1, list: root }];
 
   for (const { node, membership } of paragraphs) {
@@ -343,10 +411,25 @@ function buildListNode(paragraphs: { node: JSONContent; membership: ListMembersh
       stack.pop();
     }
     const parentList = stack[stack.length - 1].list;
+    if (!parentList.content || parentList.content.length === 0) {
+      parentList.type = membership.ordered ? 'orderedList' : 'bulletList';
+      if (membership.listStyleType) {
+        parentList.attrs = { ...(parentList.attrs ?? {}), listStyleType: membership.listStyleType };
+      }
+    }
     const listItem: JSONContent = { type: 'listItem', content: [node] };
+    // Put the item's own font-size on the <li> too, not just its inner text —
+    // the list marker (1., I., •) inherits its size from the <li> element, so
+    // without this the number/bullet renders at the editor's base size while
+    // the text sits at the document's, and the two visibly mismatch. Same
+    // reasoning the paste path already applies in wordListReconstruction.
+    const itemFontSize = firstTextStyleFontSize(node);
+    if (itemFontSize) {
+      listItem.attrs = { ...(listItem.attrs ?? {}), fontSize: itemFontSize };
+    }
     (parentList.content ??= []).push(listItem);
 
-    const childList: JSONContent = { type: membership.ordered ? 'orderedList' : 'bulletList', content: [] };
+    const childList: JSONContent = { type: 'orderedList', content: [] };
     // Lazily attach — only actually appended to the item if a deeper-level
     // paragraph shows up next; an empty trailing list looks wrong.
     stack.push({ ilvl: membership.ilvl, list: childList });

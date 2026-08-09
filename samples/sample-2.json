@@ -2,861 +2,3124 @@
   "type": "doc",
   "content": [
     {
+      "type": "paragraph",
+      "content": [
+        {
+          "type": "text",
+          "text": "Word Feature Showcase — OOXML Test Document",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "type": "text",
+          "text": "A structured sample exercising Word toolbar features for OOXML-to-JSON conversion testing",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "type": "text",
+          "text": "Prepared by Vivek Menon · Version 1.0 · For add-in POC validation",
+          "marks": [
+            {
+              "type": "italic"
+            },
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "10pt"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
       "type": "heading",
       "attrs": {
-        "textAlign": null,
-        "fontSize": "24.0pt",
-        "color": "",
-        "fontFamily": "'Calibri',sans-serif",
-        "marginLeft": "0in",
-        "textIndent": null,
-        "lineHeight": "115%",
-        "shading": null,
-        "border": null,
         "level": 1
       },
       "content": [
         {
           "type": "text",
-          "marks": [
-            {
-              "type": "textStyle",
-              "attrs": {
-                "fontSize": "",
-                "color": "#C00000",
-                "fontFamily": ""
-              }
-            },
-            {
-              "type": "bold"
-            }
-          ],
-          "text": "Sample Document"
+          "text": "Table of Contents"
         }
       ]
     },
     {
       "type": "paragraph",
-      "attrs": {
-        "textAlign": null,
-        "fontSize": "11.0pt",
-        "color": "",
-        "fontFamily": "'Calibri',sans-serif",
-        "marginLeft": "0in",
-        "textIndent": null,
-        "lineHeight": "115%",
-        "shading": null,
-        "border": null
-      },
       "content": [
         {
           "type": "text",
-          "text": "This document was created using accessibility techniques for headings, lists, image alternate text, tables, and columns. It should be completely accessible using assistive technologies such as screen readers."
+          "text": "Table of Contents",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "text": "1",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "type": "text",
+          "text": "1. Heading Levels and Built-in Paragraph Styles",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "text": "3",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "type": "text",
+          "text": "1.1 Heading 2 Example",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "text": "3",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "type": "text",
+          "text": "1.1.1 Heading 3 Example",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "text": "3",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "type": "text",
+          "text": "1.2 Other Built-in Styles",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "text": "3",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "type": "text",
+          "text": "2. Character Formatting",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "text": "3",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "type": "text",
+          "text": "3. Alignment, Indentation and Spacing",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "text": "4",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "type": "text",
+          "text": "4. Lists",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "text": "5",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "type": "text",
+          "text": "4.1 Bulleted List",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "text": "5",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "type": "text",
+          "text": "4.2 Numbered List",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "text": "5",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "type": "text",
+          "text": "4.3 Multilevel List",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "text": "5",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "type": "text",
+          "text": "5. Tables",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "text": "5",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "type": "text",
+          "text": "5.1 Styled Table with Header Row",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "text": "5",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "type": "text",
+          "text": "5.2 Plain Table with Merged Cells and Manual Shading",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "text": "6",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "type": "text",
+          "text": "6. Links, Bookmarks and Fields",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "text": "6",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "type": "text",
+          "text": "6.1 Hyperlinks",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "text": "6",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "type": "text",
+          "text": "6.2 Bookmarks",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "text": "6",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "type": "text",
+          "text": "6.3 Fields",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "text": "6",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "type": "text",
+          "text": "7. Footnotes and Endnotes",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "text": "7",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "type": "text",
+          "text": "8. Pictures, Icons and Special Characters",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "text": "7",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "type": "text",
+          "text": "8.1 Inline Picture",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "text": "7",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "type": "text",
+          "text": "8.2 Symbols and Special Characters",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "text": "7",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "type": "text",
+          "text": "9. Page Layout Elements",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "text": "8",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "type": "text",
+          "text": "9.1 Manual Breaks",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "text": "8",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "type": "text",
+          "text": "9.2 Borders and Shading",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "text": "9",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "type": "text",
+          "text": "9.3 Tab Stops",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "text": "9",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "type": "text",
+          "text": "9.4 Section and Column Layout",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "text": "9",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "type": "text",
+          "text": "10. Review Features",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "text": "9",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "type": "text",
+          "text": "10.1 Comments",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "text": "9",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "type": "text",
+          "text": "10.2 Content Controls",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "text": "9",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "type": "text",
+          "text": "11. Tracked Changes",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "text": "9",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "paragraph"
+    },
+    {
+      "type": "paragraph"
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "type": "hardBreak"
         }
       ]
     },
     {
       "type": "heading",
       "attrs": {
-        "textAlign": null,
-        "fontSize": "18.0pt",
-        "color": "",
-        "fontFamily": "'Calibri',sans-serif",
-        "marginLeft": "0in",
-        "textIndent": null,
-        "lineHeight": "115%",
-        "shading": null,
-        "border": null,
+        "level": 1
+      },
+      "content": [
+        {
+          "type": "text",
+          "text": "1. Heading Levels and Built-in Paragraph Styles"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "type": "text",
+          "text": "This section demonstrates the built-in style hierarchy. Each heading below uses a genuine Word heading style, so it appears in the Table of Contents and in the document navigation pane.",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "attrs": {
         "level": 2
       },
       "content": [
         {
           "type": "text",
-          "marks": [
-            {
-              "type": "bold"
-            }
-          ],
-          "text": "Headings"
+          "text": "1.1 Heading 2 Example"
         }
       ]
     },
     {
       "type": "paragraph",
-      "attrs": {
-        "textAlign": null,
-        "fontSize": "11.0pt",
-        "color": "",
-        "fontFamily": "'Calibri',sans-serif",
-        "marginLeft": "0in",
-        "textIndent": null,
-        "lineHeight": "115%",
-        "shading": null,
-        "border": null
-      },
       "content": [
         {
           "type": "text",
-          "text": "There are eight section headings in this document. At the beginning, \"Sample Document\" is a level 1 heading. The main section headings, such as \"Headings\" and \"Lists\" are level 2 headings. The Tables section contains two sub-headings, \"Simple Table\" and \"Complex Table,\" which are both level 3 headings."
-        }
-      ]
-    },
-    {
-      "type": "paragraph",
-      "attrs": {
-        "textAlign": null,
-        "fontSize": "18.0pt",
-        "color": "",
-        "fontFamily": "'Calibri',sans-serif",
-        "marginLeft": "0in",
-        "textIndent": null,
-        "lineHeight": "115%",
-        "shading": null,
-        "border": null
-      },
-      "content": [
-        {
-          "type": "text",
-          "marks": [
-            {
-              "type": "bold"
-            }
-          ],
-          "text": "Lists"
-        }
-      ]
-    },
-    {
-      "type": "paragraph",
-      "attrs": {
-        "textAlign": null,
-        "fontSize": "11.0pt",
-        "color": "",
-        "fontFamily": "'Calibri',sans-serif",
-        "marginLeft": "0in",
-        "textIndent": null,
-        "lineHeight": "115%",
-        "shading": null,
-        "border": null
-      },
-      "content": [
-        {
-          "type": "text",
-          "text": "The following outline of the sections of this "
-        },
-        {
-          "type": "text",
+          "text": "This paragraph sits under a Heading 2. It has two sentences and uses the default body font at 12 points.",
           "marks": [
             {
               "type": "textStyle",
               "attrs": {
-                "fontSize": "",
-                "color": "#4F81BD",
-                "fontFamily": ""
+                "fontSize": "12pt"
               }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "attrs": {
+        "level": 3
+      },
+      "content": [
+        {
+          "type": "text",
+          "text": "1.1.1 Heading 3 Example"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "type": "text",
+          "text": "This paragraph sits under a Heading 3 and is left aligned by default.",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "attrs": {
+        "level": 4
+      },
+      "content": [
+        {
+          "type": "text",
+          "text": "Heading 4 Example"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "type": "text",
+          "text": "Heading 4 through Heading 6 are typically excluded from a three-level table of contents.",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "attrs": {
+        "level": 5
+      },
+      "content": [
+        {
+          "type": "text",
+          "text": "Heading 5 Example"
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "attrs": {
+        "level": 6
+      },
+      "content": [
+        {
+          "type": "text",
+          "text": "Heading 6 Example"
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "attrs": {
+        "level": 2
+      },
+      "content": [
+        {
+          "type": "text",
+          "text": "1.2 Other Built-in Styles"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "type": "text",
+          "text": "The paragraphs below use Quote, Intense Quote, and No Spacing styles respectively.",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "type": "text",
+          "text": "A quote style paragraph renders with distinct indentation and italics in most themes.",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "type": "text",
+          "text": "An intense quote is visually stronger, usually with rules above and below it.",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "type": "text",
+          "text": "This paragraph uses the No Spacing style, which removes space before and after.",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "type": "text",
+          "text": "This is a caption style paragraph, normally used beneath a figure or table.",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "attrs": {
+        "level": 1
+      },
+      "content": [
+        {
+          "type": "text",
+          "text": "2. Character Formatting"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "type": "text",
+          "text": "This section exercises inline run properties. Each labelled item below carries a different set of run-level attributes, so a run-splitting parser should produce one distinct run per item.",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "type": "text",
+          "text": "Bold text.",
+          "marks": [
+            {
+              "type": "bold"
+            },
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "text": " ",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "text": "Italic text.",
+          "marks": [
+            {
+              "type": "italic"
+            },
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "text": " ",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "text": "Underlined text.",
+          "marks": [
+            {
+              "type": "underline"
+            },
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "text": " ",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "text": "Bold italic underlined text.",
+          "marks": [
+            {
+              "type": "bold"
             },
             {
               "type": "italic"
+            },
+            {
+              "type": "underline"
+            },
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
             }
-          ],
-          "text": "document is an ordered (numbered"
-        },
-        {
-          "type": "text",
-          "text": ") list with six items. The fifth item, \"Tables,\" contains a nested unordered (bulleted) list with two items."
+          ]
         }
       ]
     },
     {
       "type": "paragraph",
-      "attrs": {
-        "textAlign": null,
-        "fontSize": "11.0pt",
-        "color": "",
-        "fontFamily": "'Calibri',sans-serif",
-        "marginLeft": "0.5in",
-        "textIndent": "-0.25in",
-        "lineHeight": "115%",
-        "shading": null,
-        "border": null
-      },
       "content": [
         {
           "type": "text",
-          "text": "1."
+          "text": "Double underline.",
+          "marks": [
+            {
+              "type": "underline"
+            },
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
         },
         {
           "type": "text",
+          "text": " ",
           "marks": [
             {
               "type": "textStyle",
               "attrs": {
-                "fontSize": "7pt",
-                "color": "",
-                "fontFamily": "\"Times New Roman\""
+                "fontSize": "12pt"
               }
             }
-          ],
-          "text": "       "
+          ]
         },
         {
           "type": "text",
-          "text": "Headings"
+          "text": "Dotted underline.",
+          "marks": [
+            {
+              "type": "underline"
+            },
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "text": " ",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "text": "Wavy underline.",
+          "marks": [
+            {
+              "type": "underline"
+            },
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "text": " ",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "text": "Strikethrough text.",
+          "marks": [
+            {
+              "type": "strike"
+            },
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "text": " ",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "text": "Double strikethrough.",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
         }
       ]
     },
     {
       "type": "paragraph",
-      "attrs": {
-        "textAlign": null,
-        "fontSize": "11.0pt",
-        "color": "",
-        "fontFamily": "'Calibri',sans-serif",
-        "marginLeft": "0.5in",
-        "textIndent": "-0.25in",
-        "lineHeight": "115%",
-        "shading": null,
-        "border": null
-      },
       "content": [
         {
           "type": "text",
-          "text": "2."
-        },
-        {
-          "type": "text",
+          "text": "Superscript in E = mc",
           "marks": [
             {
               "type": "textStyle",
               "attrs": {
-                "fontSize": "7pt",
-                "color": "",
-                "fontFamily": "\"Times New Roman\""
+                "fontSize": "12pt"
               }
             }
-          ],
-          "text": "       "
+          ]
         },
         {
           "type": "text",
-          "text": "Lists"
+          "text": "2",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            },
+            {
+              "type": "superscript"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "text": ", subscript in H",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "text": "2",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            },
+            {
+              "type": "subscript"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "text": "O, plus ",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "text": "small caps",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "text": " and a hidden-style variant.",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
         }
       ]
     },
     {
       "type": "paragraph",
-      "attrs": {
-        "textAlign": null,
-        "fontSize": "11.0pt",
-        "color": "",
-        "fontFamily": "'Calibri',sans-serif",
-        "marginLeft": "0.5in",
-        "textIndent": "-0.25in",
-        "lineHeight": "115%",
-        "shading": null,
-        "border": null
-      },
       "content": [
         {
           "type": "text",
-          "text": "3."
-        },
-        {
-          "type": "text",
+          "text": "Red text",
           "marks": [
             {
               "type": "textStyle",
               "attrs": {
-                "fontSize": "7pt",
-                "color": "",
-                "fontFamily": "\"Times New Roman\""
+                "color": "#C00000",
+                "fontSize": "12pt"
               }
             }
-          ],
-          "text": "       "
+          ]
         },
         {
           "type": "text",
-          "text": "Links"
+          "text": ", ",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "text": "blue text",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "color": "#0070C0",
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "text": ", ",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "text": "green text",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "color": "#00B050",
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "text": ", and text with ",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "text": "a yellow highlight",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "text": ", ",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "text": "a green highlight",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "text": ", and ",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "text": "a turquoise highlight",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "text": ".",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
         }
       ]
     },
     {
       "type": "paragraph",
-      "attrs": {
-        "textAlign": null,
-        "fontSize": "11.0pt",
-        "color": "",
-        "fontFamily": "'Calibri',sans-serif",
-        "marginLeft": "0.5in",
-        "textIndent": "-0.25in",
-        "lineHeight": "115%",
-        "shading": null,
-        "border": null
-      },
       "content": [
         {
           "type": "text",
-          "text": "4."
-        },
-        {
-          "type": "text",
+          "text": "Eight point text",
           "marks": [
             {
               "type": "textStyle",
               "attrs": {
-                "fontSize": "7pt",
-                "color": "",
-                "fontFamily": "\"Times New Roman\""
+                "fontSize": "8pt"
               }
             }
-          ],
-          "text": "       "
+          ]
         },
         {
           "type": "text",
-          "text": "Images"
-        }
-      ]
-    },
-    {
-      "type": "paragraph",
-      "attrs": {
-        "textAlign": null,
-        "fontSize": "11.0pt",
-        "color": "",
-        "fontFamily": "'Calibri',sans-serif",
-        "marginLeft": "0.5in",
-        "textIndent": "-0.25in",
-        "lineHeight": "115%",
-        "shading": null,
-        "border": null
-      },
-      "content": [
-        {
-          "type": "text",
-          "text": "5."
-        },
-        {
-          "type": "text",
+          "text": ", ",
           "marks": [
             {
               "type": "textStyle",
               "attrs": {
-                "fontSize": "7pt",
-                "color": "",
-                "fontFamily": "\"Times New Roman\""
+                "fontSize": "12pt"
               }
             }
-          ],
-          "text": "       "
+          ]
         },
         {
           "type": "text",
-          "text": "Tables"
-        }
-      ]
-    },
-    {
-      "type": "paragraph",
-      "attrs": {
-        "textAlign": null,
-        "fontSize": "11.0pt",
-        "color": "",
-        "fontFamily": "'Calibri',sans-serif",
-        "marginLeft": "1in",
-        "textIndent": "-1in",
-        "lineHeight": "115%",
-        "shading": null,
-        "border": null
-      },
-      "content": [
-        {
-          "type": "text",
+          "text": "fourteen point text",
           "marks": [
             {
               "type": "textStyle",
               "attrs": {
-                "fontSize": "7pt",
-                "color": "",
-                "fontFamily": "\"Times New Roman\""
+                "fontSize": "14pt"
               }
             }
-          ],
-          "text": "                                 "
+          ]
         },
         {
           "type": "text",
-          "text": "I."
-        },
-        {
-          "type": "text",
+          "text": ", ",
           "marks": [
             {
               "type": "textStyle",
               "attrs": {
-                "fontSize": "7pt",
-                "color": "",
-                "fontFamily": "\"Times New Roman\""
+                "fontSize": "12pt"
               }
             }
-          ],
-          "text": "            "
+          ]
         },
         {
           "type": "text",
-          "text": "Simple Tables"
-        }
-      ]
-    },
-    {
-      "type": "paragraph",
-      "attrs": {
-        "textAlign": null,
-        "fontSize": "11.0pt",
-        "color": "",
-        "fontFamily": "'Calibri',sans-serif",
-        "marginLeft": "1in",
-        "textIndent": "-1in",
-        "lineHeight": "115%",
-        "shading": null,
-        "border": null
-      },
-      "content": [
-        {
-          "type": "text",
+          "text": "twenty point text",
           "marks": [
             {
               "type": "textStyle",
               "attrs": {
-                "fontSize": "7pt",
-                "color": "",
-                "fontFamily": "\"Times New Roman\""
+                "fontSize": "20pt"
               }
             }
-          ],
-          "text": "                               "
+          ]
         },
         {
           "type": "text",
-          "text": "II."
-        },
-        {
-          "type": "text",
+          "text": ", ",
           "marks": [
             {
               "type": "textStyle",
               "attrs": {
-                "fontSize": "7pt",
-                "color": "",
-                "fontFamily": "\"Times New Roman\""
+                "fontSize": "12pt"
               }
             }
-          ],
-          "text": "            "
+          ]
         },
         {
           "type": "text",
-          "text": "Complex Tables"
-        }
-      ]
-    },
-    {
-      "type": "paragraph",
-      "attrs": {
-        "textAlign": null,
-        "fontSize": "11.0pt",
-        "color": "",
-        "fontFamily": "'Calibri',sans-serif",
-        "marginLeft": "0.5in",
-        "textIndent": "-0.25in",
-        "lineHeight": "115%",
-        "shading": null,
-        "border": null
-      },
-      "content": [
-        {
-          "type": "text",
-          "text": "6."
-        },
-        {
-          "type": "text",
+          "text": "Times New Roman",
           "marks": [
             {
               "type": "textStyle",
               "attrs": {
-                "fontSize": "7pt",
-                "color": "",
-                "fontFamily": "\"Times New Roman\""
+                "fontSize": "12pt"
               }
             }
-          ],
-          "text": "       "
+          ]
         },
         {
           "type": "text",
-          "text": "Columns"
+          "text": ", ",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "text": "Courier New",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "text": ", and ",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "text": "Georgia",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "text": ".",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
         }
       ]
     },
     {
       "type": "heading",
       "attrs": {
-        "textAlign": null,
-        "fontSize": "18.0pt",
-        "color": "",
-        "fontFamily": "'Calibri',sans-serif",
-        "marginLeft": "0in",
-        "textIndent": null,
-        "lineHeight": "115%",
-        "shading": null,
-        "border": null,
+        "level": 1
+      },
+      "content": [
+        {
+          "type": "text",
+          "text": "3. Alignment, Indentation and Spacing"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "type": "text",
+          "text": "This section varies paragraph-level properties only. The run properties stay constant, so any difference your parser reports should come from the paragraph formatting layer.",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "type": "text",
+          "text": "This paragraph has two sentences and is left aligned. Left alignment is the default for body text in this document.",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attrs": {
+        "textAlign": "center"
+      },
+      "content": [
+        {
+          "type": "text",
+          "text": "This paragraph has two sentences and is centered. Centering is common for titles and pull quotes.",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attrs": {
+        "textAlign": "right"
+      },
+      "content": [
+        {
+          "type": "text",
+          "text": "This paragraph has two sentences and is right aligned. Right alignment is often used for dates and signature blocks.",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attrs": {
+        "textAlign": "justify"
+      },
+      "content": [
+        {
+          "type": "text",
+          "text": "This paragraph has two sentences and is justified, so both the left and right edges line up cleanly against the margins. Justification changes the inter-word spacing on every line except the last one.",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "type": "text",
+          "text": "This paragraph has a first-line indent of half an inch, which is set through the paragraph format rather than by typing a tab character at the start of the line.",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "type": "text",
+          "text": "This paragraph is indented one inch from the left margin and half an inch from the right margin, producing a block-quote effect without using the Quote style.",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "type": "text",
+          "text": "This paragraph uses a hanging indent, so the first line starts at the margin and every subsequent line is indented. Hanging indents are typical in bibliographies and definition lists.",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "type": "text",
+          "text": "This paragraph uses double line spacing. It should be visibly taller than the single-spaced paragraphs around it.",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "type": "text",
+          "text": "This paragraph uses 1.5 line spacing with twelve points of space before and eighteen points of space after.",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "type": "text",
+          "text": "This paragraph is set to keep with the next paragraph and to keep its own lines together, which affects pagination only.",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "attrs": {
+        "level": 1
+      },
+      "content": [
+        {
+          "type": "text",
+          "text": "4. Lists"
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "attrs": {
         "level": 2
       },
       "content": [
         {
           "type": "text",
-          "marks": [
-            {
-              "type": "bold"
-            }
-          ],
-          "text": "Links"
+          "text": "4.1 Bulleted List"
         }
       ]
     },
     {
       "type": "paragraph",
-      "attrs": {
-        "textAlign": null,
-        "fontSize": "11.0pt",
-        "color": "",
-        "fontFamily": "'Calibri',sans-serif",
-        "marginLeft": "0in",
-        "textIndent": null,
-        "lineHeight": "115%",
-        "shading": null,
-        "border": null
-      },
       "content": [
         {
           "type": "text",
-          "text": "In web documents, links can point different locations on the page, different pages, or even downloadable documents, such as Word documents or PDFs:"
+          "text": "A single-level bulleted list follows. The bullet glyphs are generated by Word numbering definitions, not typed characters.",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
         }
       ]
     },
     {
       "type": "paragraph",
-      "attrs": {
-        "textAlign": null,
-        "fontSize": "11.0pt",
-        "color": "",
-        "fontFamily": "'Calibri',sans-serif",
-        "marginLeft": "0in",
-        "textIndent": null,
-        "lineHeight": "115%",
-        "shading": null,
-        "border": null
-      },
       "content": [
         {
           "type": "text",
+          "text": "First bulleted item",
           "marks": [
             {
-              "type": "link",
+              "type": "textStyle",
               "attrs": {
-                "href": "#_top",
-                "target": "_blank",
-                "rel": "noopener noreferrer nofollow",
-                "class": null,
-                "title": null
+                "fontSize": "12pt"
               }
             }
-          ],
-          "text": "Top of this Page"
-        },
-        {
-          "type": "hardBreak"
-        },
+          ]
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
         {
           "type": "text",
+          "text": "Second bulleted item",
           "marks": [
             {
-              "type": "link",
+              "type": "textStyle",
               "attrs": {
-                "href": "http://www.dhs.state.il.us/page.aspx?item=67072",
-                "target": "_blank",
-                "rel": "noopener noreferrer nofollow",
-                "class": null,
-                "title": null
+                "fontSize": "12pt"
               }
             }
-          ],
-          "text": "Sample Document"
-        },
-        {
-          "type": "hardBreak"
-        },
+          ]
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
         {
           "type": "text",
+          "text": "Third bulleted item with a noticeably longer body so that it wraps onto a second line in the rendered output",
           "marks": [
             {
-              "type": "link",
+              "type": "textStyle",
               "attrs": {
-                "href": "http://www.dhs.state.il.us/OneNetLibrary/27897/documents/Initiatives/IITAA/Sample-Document.docx",
-                "target": "_blank",
-                "rel": "noopener noreferrer nofollow",
-                "class": null,
-                "title": null
+                "fontSize": "12pt"
               }
             }
-          ],
-          "text": "Sample Document (docx)"
+          ]
         }
       ]
     },
     {
       "type": "heading",
       "attrs": {
-        "textAlign": null,
-        "fontSize": "18.0pt",
-        "color": "",
-        "fontFamily": "'Calibri',sans-serif",
-        "marginLeft": "0in",
-        "textIndent": null,
-        "lineHeight": "115%",
-        "shading": null,
-        "border": null,
         "level": 2
       },
       "content": [
         {
           "type": "text",
+          "text": "4.2 Numbered List"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "type": "text",
+          "text": "A single-level numbered list follows.",
           "marks": [
             {
-              "type": "bold"
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "orderedList",
+      "content": [
+        {
+          "type": "listItem",
+          "content": [
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Open the document in Word",
+                  "marks": [
+                    {
+                      "type": "textStyle",
+                      "attrs": {
+                        "fontSize": "12pt"
+                      }
+                    }
+                  ]
+                }
+              ]
             }
           ],
-          "text": "Images"
+          "attrs": {
+            "fontSize": "12pt"
+          }
         }
       ]
     },
     {
       "type": "paragraph",
-      "attrs": {
-        "textAlign": null,
-        "fontSize": "11.0pt",
-        "color": "",
-        "fontFamily": "'Calibri',sans-serif",
-        "marginLeft": "0in",
-        "textIndent": null,
-        "lineHeight": "115%",
-        "shading": null,
-        "border": null
-      }
-    },
-    {
-      "type": "image",
-      "attrs": {
-        "src": "data:image/png;base64,R0lGODlhjQCDAPcAAP///xgQEHtrY95jAIR7c0I5MbWllFJKQjEpIZxzSudzAM57Ib2MStaMKe+MAPelEO+cAJyUhM7GtWtjUta9c+/GUv/WOf/eUq2la//vhP/3tff379bWnAgIACEpCHOcAHulAFJzAGOMAGuUGDlSCFJzOVqMOVJ7QmOUYzljUlKUjEJreylrjJzG3ilznHutziFKYwB7xlKczjGU1imExkJ7pSl7vRhjpQhanABCexhrtRhanAAxa9be7yEpQgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAEAAAAALAAAAACNAIMAQAj+AAEIHEiwoMGDCBMqXMiwocOHEB1KmGiAAAEBEyYcKICgY4CPHTr8GEmypMmTKFOaFKmypcuXMFUKODgjhs0YCGLqbBnyR8iQAToE8DDUg9GjSJMqTdqBqNCfP33unEoSQcKbMXJQ5fnzY1ISYMOGEEGW7IcPI0ygYMHiBg4cOXDomKvjLQ4WJ058APGhrIgQgEOEBYv0KdStKRXWvBkAcdeiRsWW/VDChw8emHPsuLH5xo25NnDcsEGDNI0aGBIsYMAgggqbM2TEnj1jRmi5nk2AKCtYMImjTXtK3TozYQusMHR2bRqZBGCyJnj84JGjenUcmHdoh1ud+mcdMi7+XMgwnrx58ejFW1CggEFtGTRowI9PA66NuTdG9P0bFnhUljEFwBBWMbgEFWRgPfcBDD5Ml0Nm1Fn3oGaaaaedZ565gF8NEmjg4YceZpCBBhc4EAENM4gWnw02eMbdg5jFyAMM+wFGmFFBCReTBAy9gFVOKP3kAXNh/fVBCjFaBmOMEz542XVxvcjkhdXd0CGIIWqQwQMOPOBClRhytt0O2PEAF1wr7Mbfb0f5pKNLEzgUAw42aXWSkEclOJYI0ckokkjWyUhdgxJax92LO1TnQwQjiujoeOixdwB1iRaqaIQPnrCbjTceBmBLAjpEg010NnbnU805t+cIgvLQQav+sP6wpIzdYdagDwJYcAEGBKzQXaEQzprDZTKa0BenhQn3qUs8OnQcnTE0mBJUeepZFgyCaiVtZrNiNh2sghIKrqvdfjsjX3/5xuaQOQ431QER6TDnWy/9GRxSeu6JFrbhmputdFJhaqusMn7bIGYjqJnuYEflqCxiI4UK0XEs0AnkTssxV61Yge2p71l8gcDXXiLv51fHg60LnMPLQoxSsxHNe5fLd7rpZkhDogrZUkYFF1SODkvV8lQBWBauZUgb3UJEB8lQ8Vum0ix1xAgQGyhmMGSd9Yxc51CDCkszLfbYA931VnIoBYDAjFG+lQMLllpXcQ0vhE323Xjnrff+3nz37fffgAcOAEUVEZDRRhwh8BHLQ6sUwUITTC11T1BV/tTPQFnu6Z+Sv4sQgZ3XfOBSKTunqnPpdqy6jb2lnFRQOf8XesTGYQWwy6NvrKq+JiDJA5mFykXf8DPER6dsstVWWwyfzYCCfry1vi7slEttgEKgY+zTzxs/J8IIT1q3A6VkdqbDaDrcVoEF7LfvPvsPKDCAAhEo/17xM+iQgw6luaAbWZxS2WGoAi/FYAUmXcGXqkSAFm9JyFYxwkH5JIghuuigBY7SkpYc9SjzxC8BMSgefVhEQhvkwDPnuwEKjuWbhnkqJh1oCHJUksBU7UkE/CIWkzAFo+okykL+5QvTZ+KigxdsAEsi0oAFHOAAAtAgLvc5XwrD9CDtxIUFNepPz6ISk+sxZDE2mRaePCCZIxWsW4Iyl4QkGJcfjulBNUDiBkVUIgdMwDsShIsVNcOt6qyAhTfa4ptaYpWGHGdOMbgdSRJYlDKWwF/+GpfVeBg3RZ0nPRdoX/wGMCkmXU1WMEqBmlr4mxciECKkykqQ3ESUanmvT34aV5J+cDDqyDKSrRoWuPwlymNpkV2cmwoBICIDRBaIhtTq3p5AoKSC6XCXz9zlg6I2HR9IaCRYQ9eaAlk5d02lkKi0iyINlLmv5OtjJuAXD2opknXSylWQlE4HfCBKbQaGYS7+lJ3kYsg0GdglBtSkCuWoR7rSGfSghFEZcGJXvdmtJAAwm9g/L+bQlQhNaFzkHEsaV5KPVA1WW8MW0tjmAhnUTXAGicHT7BS6jzzpRcASFgvoZjeU2lQhL6jYSqEEt7fM4KQ3DapQh0rUohp1bBSJQAQuopGNdERxIBngIis6tWEqhKNUheFFN2evrXozqy4pYEHAeEywrtJeBxJKzobErsK0smdEwVw3serQAnzuJmgDK1pRpTFzIvSvv1Eoc6KqT4dKrCCHtAlF93kz2PmVY4Hxi1nOQtm+mOxkAfxlK1n2VZrxkyYH3KeQdjaYyJIFBCNIQVv0tz+3HGoubwn+4f1q4hYXPO8sAFyYZg0TTNxFtCBYwYFny6nMyaagVpRC4RDTx6LhoWh5N4gN8uw3KhzERwXaJIvpAumUQVLlcQhJbCK3ksxUoY6BJcBUmSR4IRTSZX80UMH74LfJATTgNVhBUXxm4Bn6oEBhAUwWFz2XELIulitjJKO1PrACB4mvinnsjIbwgwMMYPLC6rFA/NqTPNnIhz5x6d8fefNL3lIFnHclFQLd5FgFe28EWqEkH2nVGRRqyAbl4aCOyZOe+C3Awx8eYX1yMOEdrBCALewZZwO0EPGOM0g401iCyMIqb0knfLXSTIRrrAMN3UAGGsxSljhYIgbUZXgljOL+DTSTwh1AD1n57Oy0GFJMxiAYZy4GzAcm1a0eBurBQAxTl88H3x5gSYMWgAAECPAi0XwnfVP0zoX0AsASD/glvz1I9qCMZwUvsMqyvBqF9Kjl9oqph0c84odGpAEuNREun3GBEMU0vjZqhtIBBqZ3U2LVhWCFpRblnqcBAwLfQRBcMLJmsiOUR/bmkTpGPPSjIOAABlTRQhFmY3asI8pK32gol26JWBUiXmmtBCgKHMsHTsAkbCaplrYEZSUrlSgJUudKISLzlhywgOxYsd7WwXIOepnrbsIExQopJrQCOhLicows/HqVg0I98Upaigcr0DGk1HOBBwxgAMq+mjv+R5K0EZSlxEE7pZyMKUbSLnBBaZRlkoLlyYsb4MLuw4AAVuDOXzVp4jOqUZLjumsaZjq8dKLTkxve6TwzEJaZweW/Iok0f3UnABCypdYpLqNu69Y/RW+JFxviz4Ujs9PWEgG7+9WqbVWHljKPkdTbHc0cvCpGmkKyFsHdW50UZ+VJn9bN1GpDdcPSB3e/+y3jbvfF07IkIcm7btcVnHDrxK4Pedaclg554hb+tMaOkHSwDqu347JBEs+lv+7eS71zV3Z0BVVEXjBRBOau8Ppae79If6uC5VLx0rkyDzRlsgCzie99h9hnH3IbOgnU854+52RGUIIUqLNWUyW5ZUr+kLDLooy7bE156DpwdF/HlgVT2ejgd6a7BO1udfBnnUGZwjg5dw68EhWnaDN3L54pRaH+x1BLNjsuRSx503wA5VAa1RMOwzLUw3/8dzPZBxNqcxnqhDWWwSDrlIEwwAJg0zd2ARdmVTMN5y4A0jIuhS3VoTUs2Cow8DYmdVQG0QIhyHlUlYIx1S1aUx0uAFQyqDdOAxcJSBU4+BZwY3ERwgI9WFM/eFSuBRczYhc99TZxQYVHWDEmxYRNuIUQ8Rbg4YNcGIZiOIZkWIZmeIZoeFQTIQGFgxGI81RBUX5pyBBraAAGsFQX4YYH8IaK012WV1G9FjiEw1QaUQCJszj+9TeCiqgScXJVYbeIBlKCGlWCkKgTjZgQB1aJlNhVmtOJmkOJmlgS43YQERCKnbdXj7E499IU1CNXcwWKi4h5YxValYiK3EN4Afg6OBJ+vFU9sTc1CCcQ5aaItkhQpBN98weAr8M4yUeAKTYnejV4qPJ/peMbvYEyraMu+ORWhnFRhoUQZMVwU7NXsIMggWU6qvMXkrWOY9GO2biNu2hiv7gTh0UQTjZ+69dXw7ZAN2RZaGECeZECK4ACA5kX+kFZkuWOrrNQQTOPKqdptDg5g8dW5vUc/TgCJ+ArcsFc93EmdgEaMSAvOLACuuF92/R6sWN/VJEQdWYT4qg9y0H+kcPmPQyUWr+DIZVyHfwzPHNiA/YzGyF5AzRwW8WXa/n0iDohhzOkfPYik6V1QyBwAi+odXExGnBRGs1FH/BRPHTyk8nDX0IpA0dGYrvVkC6DfwZBVo6xfgq0QE93gZohRHOxP1mpXz8ZkrP1lTVhXTNQA9CTOr/kig55EoGIWFhhbjA5RtJHGVj2O0GUIemzZqVxGgzARA4gPx83AAuwAncJW58RgjjwP97GTeJHFZcIkXXyfDjTSGnHmMw2IdshaC7AIm8hA/P1PvVVPzKwmz9ZH0JJAzowltu0Mn8IE6MIXBEJQ1HWHIJRFiOggTEVaMrFIjqwArqCYbrCPpn+JD8K8AKzJUL8hQOkYQN+KXR7Z5Y7IYugdROIyRMsZo7ntW59JGrsFSaIQgEYlp8lIj/1Q130oT+QFpybIgLbJWCD+QPBiJypaXtNJxkMJFIy1iQ9JBpSBB50ZB4ddEmZFD8N4J8rUhondB83UAO4ZZSlSYELoZYMKmULhiQ69EA9J52DNhccsGMa10EcCh/zMULUuT8phEWuJ0AHWo8z+CORWEMPZ0bPZDRU6UY1dgMTVgM1qkGs1ij6xiUr8JtoRp2hcUKesQMjNppg55DL94w2WII58nnyCU8Ryi0/VJ/udT5gJm1UKiIP0ADxkQOmMZ4khB8+dCaSB2cMNY/+ZbqeYURDrNQ9VNYY0rEklmJNbEQmFFRB6HMX+CZtDwABDUAabuEWlkJB2GEh1fFm6gJXDWUgciiMh4lg8KluxhZJOfhDUWJq7nVCRaQBqgYiGaBoC6AhJ4SVakZFWoYm5kl5QaGSJjF2V3ET6Cd4ivlpsyQsAoMp9cZepjaXcVEDG5BqunoBirapcDGjUCpEsFkppBpI6OkSaIkQLVlWFgUUrIk6HwB1uNQk6yQhb/pGOyQX25qr+eat1aYDZoIfOEkllGIduFaqrIiUJfF3tcOeZ+dKrnpGuSR6lARBFdJe43MDLcCtY0YeCtBEYEJr5TNjFJIDaSKmfoisJHH+mst6E6KznE5nRnKHbBECdwJHb29xIZgxp7rKQT7GAo5ZPv8WFwLndaXKUJdHdsb0kg63OzR7bG1nMBHqQxRSsjzAAro6Rzx2mQlAKXpEb1nGbaOUZFHFsiORoKgZA3k1Vcn0cLrXL0CXLRZ3tXGBGR1io+ixHgowKdwBcKLGbVkkWA6ptgZhA8m5SOjGnGMBalcGSoxXt2KLcTu2ceLhta8JJZciIyb3dThSnGnjED5yE4u1VxL7oPAGfONScXXbHTCgb5ikYR9HLJcxUp5kK8Uajwy7SA9xAzexdGjFuGMBdQ+iutJEK3XLA/hpuZnkPvJzAHEzKIJiLJM3psr+8RDG5K6K+6zyGnpWRnHPZK8XZ2F7WwG84ivcArm/Qh28VLbcJFUwkaoEoXCKFbMttmAXuE4Es3j/MjAyAgO+Ir4TEm/rW7MxQiNBiiMnimnOYkxtK4ncqyDeG3xxV03bYrEy8iRZVy6wwqQI43qF0S6Dua4KIS+IJEaL63QP2ipzp7/Tsb+h1qj8y8IwQiMsNHTw63cPMboWg8Iu93ITDHcbiE2O2sK0Yry0InXmAgPu+767ixIua35Kt0osxqIv57jeMrcdHE3H28EwrL8x8pe5tmQH+gPHqRChccLOupzn6D3y6W7fO8PIJsQzJxW1FD5MHD3ompIQo54MQYP+KhUt5JTCD8dA3msn4HtLvYcpkUQwSGuUK+syhvs5sQVsMUvIhTyvXjwuw0K7LKF1pxcjr5IDxJfAxPnEskdMSae9KDyNKePGUQsh7ZRG1QS5MRet2AQDCYNkSbtF7YK2LkGkTbbK7UmCQoJ2kGUWGJm/WazFbBou3oJ49LTLvAyPBjeOTINI9FIvTDeNumNaDDSvKQBvD9JwRkO7dkxLPlDK1dzLOTOAksM0tIdIL3lWt1eR4MxAIpMWJ2B91pc1KwDAKXACJpddvKyN9Kd+FSW/B5F02KE9jeXN5nVOHrOOFr06paMUP2MzCh06yuoQzSdc6dfNlYeLbHJQ2Yj+0dKzkCE8qMDsMoXZELRnF5mIMZXzM+zXfoCFAMroFMxYxvQoAAxtHP90ppEoiRGNOTmdi0phGHI1HEBtEhW4xVoYMyHIWFB90xCo1JfT1csxeBAz1Rm8ge5UuzPSgXlTdlCTVZNoOQ35094YIGtzgerEILabNSyQhYETgg9MVcvSMh0NKkXTNWfNgjm0Ti9YUlUdVHVhF6Yo1z7wglcTUlyDNXj9gWU4029R04voUn20dZatgm+j2HPY0E/T1w71Ua2bLTMFhqXdEDbwNCItNYNdhcmbhDT12nuTUzQdIEXzgm4DU3GjhCrg2roNOEYINyShNlEY3EdYHc8N3TgskNvH/YMycEVmY4RRAjdXiAM/tdjVvYU0yB1P82XGHd6vDd7ovd7sTYYBAQAAOw==",
-        "alt": "Web Access Symbol",
-        "title": null,
-        "width": 141,
-        "height": 131
-      }
-    },
-    {
-      "type": "paragraph",
-      "attrs": {
-        "textAlign": null,
-        "fontSize": "11.0pt",
-        "color": "",
-        "fontFamily": "'Calibri',sans-serif",
-        "marginLeft": "0in",
-        "textIndent": null,
-        "lineHeight": "115%",
-        "shading": null,
-        "border": null
-      },
       "content": [
         {
           "type": "text",
-          "text": "Documents may contain images. For example, there is an image of the web accessibility symbol to the left of this paragraph. Its alternate text is \"Web Access Symbol\"."
+          "text": "Run the add-in from the ribbon",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
         }
       ]
     },
     {
       "type": "paragraph",
-      "attrs": {
-        "textAlign": null,
-        "fontSize": "11.0pt",
-        "color": "",
-        "fontFamily": "'Calibri',sans-serif",
-        "marginLeft": "0in",
-        "textIndent": null,
-        "lineHeight": "115%",
-        "shading": null,
-        "border": null
-      },
       "content": [
         {
           "type": "text",
-          "text": "Alt text should communicate what an image means, not how it looks."
-        }
-      ]
-    },
-    {
-      "type": "paragraph",
-      "attrs": {
-        "textAlign": null,
-        "fontSize": null,
-        "color": null,
-        "fontFamily": null,
-        "marginLeft": null,
-        "textIndent": null,
-        "lineHeight": null,
-        "shading": null,
-        "border": null
-      },
-      "content": [
-        {
-          "type": "hardBreak"
-        }
-      ]
-    },
-    {
-      "type": "paragraph",
-      "attrs": {
-        "textAlign": null,
-        "fontSize": "11.0pt",
-        "color": "",
-        "fontFamily": "'Calibri',sans-serif",
-        "marginLeft": "0in",
-        "textIndent": null,
-        "lineHeight": "115%",
-        "shading": null,
-        "border": null
-      }
-    },
-    {
-      "type": "image",
-      "attrs": {
-        "src": "~WRS%7b55216807-0593-442C-A7E1-705FC053A380%7d_files/image002.png",
-        "alt": "Chart of Screen Reader Market Share.\n(Unfortunately, there isn't a way in Word or PDF to include rich formatting, such as a table, in alternate text.)",
-        "title": null,
-        "width": 284,
-        "height": 140
-      }
-    },
-    {
-      "type": "paragraph",
-      "attrs": {
-        "textAlign": null,
-        "fontSize": null,
-        "color": null,
-        "fontFamily": null,
-        "marginLeft": null,
-        "textIndent": null,
-        "lineHeight": null,
-        "shading": null,
-        "border": null
-      },
-      "content": [
-        {
-          "type": "text",
-          "text": "Some images, such as charts or graphs, require long descriptions, but not all document types allow that. In web pages, long descriptions may be provided in several ways: on the page below the image, via a link below the image, or via a link on the image."
-        }
-      ]
-    },
-    {
-      "type": "paragraph",
-      "attrs": {
-        "textAlign": null,
-        "fontSize": "11.0pt",
-        "color": "",
-        "fontFamily": "'Calibri',sans-serif",
-        "marginLeft": "0in",
-        "textIndent": null,
-        "lineHeight": "115%",
-        "shading": null,
-        "border": null
-      },
-      "content": [
-        {
-          "type": "text",
-          "text": " "
+          "text": "Inspect the generated JSON payload",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
         }
       ]
     },
     {
       "type": "heading",
       "attrs": {
-        "textAlign": null,
-        "fontSize": "18.0pt",
-        "color": "",
-        "fontFamily": "'Calibri',sans-serif",
-        "marginLeft": "0in",
-        "textIndent": null,
-        "lineHeight": "115%",
-        "shading": null,
-        "border": null,
         "level": 2
       },
       "content": [
         {
           "type": "text",
+          "text": "4.3 Multilevel List"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "type": "text",
+          "text": "The list below uses three indent levels within a single numbering definition.",
           "marks": [
             {
-              "type": "bold"
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "orderedList",
+      "content": [
+        {
+          "type": "listItem",
+          "content": [
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Top level item one",
+                  "marks": [
+                    {
+                      "type": "textStyle",
+                      "attrs": {
+                        "fontSize": "12pt"
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "orderedList",
+              "content": [
+                {
+                  "type": "listItem",
+                  "content": [
+                    {
+                      "type": "paragraph",
+                      "content": [
+                        {
+                          "type": "text",
+                          "text": "Second level item under one",
+                          "marks": [
+                            {
+                              "type": "textStyle",
+                              "attrs": {
+                                "fontSize": "12pt"
+                              }
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "orderedList",
+                      "content": [
+                        {
+                          "type": "listItem",
+                          "content": [
+                            {
+                              "type": "paragraph",
+                              "content": [
+                                {
+                                  "type": "text",
+                                  "text": "Third level item under two",
+                                  "marks": [
+                                    {
+                                      "type": "textStyle",
+                                      "attrs": {
+                                        "fontSize": "12pt"
+                                      }
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ],
+                          "attrs": {
+                            "fontSize": "12pt"
+                          }
+                        },
+                        {
+                          "type": "listItem",
+                          "content": [
+                            {
+                              "type": "paragraph",
+                              "content": [
+                                {
+                                  "type": "text",
+                                  "text": "Another third level item",
+                                  "marks": [
+                                    {
+                                      "type": "textStyle",
+                                      "attrs": {
+                                        "fontSize": "12pt"
+                                      }
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ],
+                          "attrs": {
+                            "fontSize": "12pt"
+                          }
+                        }
+                      ],
+                      "attrs": {
+                        "listStyleType": "lower-roman"
+                      }
+                    }
+                  ],
+                  "attrs": {
+                    "fontSize": "12pt"
+                  }
+                },
+                {
+                  "type": "listItem",
+                  "content": [
+                    {
+                      "type": "paragraph",
+                      "content": [
+                        {
+                          "type": "text",
+                          "text": "Second level item, second entry",
+                          "marks": [
+                            {
+                              "type": "textStyle",
+                              "attrs": {
+                                "fontSize": "12pt"
+                              }
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ],
+                  "attrs": {
+                    "fontSize": "12pt"
+                  }
+                }
+              ],
+              "attrs": {
+                "listStyleType": "lower-alpha"
+              }
             }
           ],
-          "text": "Tables"
+          "attrs": {
+            "fontSize": "12pt"
+          }
+        },
+        {
+          "type": "listItem",
+          "content": [
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Top level item two",
+                  "marks": [
+                    {
+                      "type": "textStyle",
+                      "attrs": {
+                        "fontSize": "12pt"
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "attrs": {
+            "fontSize": "12pt"
+          }
+        }
+      ],
+      "attrs": {
+        "listStyleType": "decimal"
+      }
+    },
+    {
+      "type": "heading",
+      "attrs": {
+        "level": 1
+      },
+      "content": [
+        {
+          "type": "text",
+          "text": "5. Tables"
         }
       ]
     },
     {
       "type": "heading",
       "attrs": {
-        "textAlign": null,
-        "fontSize": "14.0pt",
-        "color": "",
-        "fontFamily": "'Calibri',sans-serif",
-        "marginLeft": "0in",
-        "textIndent": null,
-        "lineHeight": "115%",
-        "shading": null,
-        "border": null,
-        "level": 3
+        "level": 2
       },
       "content": [
         {
           "type": "text",
-          "marks": [
-            {
-              "type": "bold"
-            }
-          ],
-          "text": "Simple Tables"
+          "text": "5.1 Styled Table with Header Row"
         }
       ]
     },
     {
       "type": "paragraph",
+      "content": [
+        {
+          "type": "text",
+          "text": "The table below uses a built-in table style with banded rows and a marked header row.",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "table",
+      "content": [
+        {
+          "type": "tableRow",
+          "content": [
+            {
+              "type": "tableCell",
+              "content": [
+                {
+                  "type": "paragraph",
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "Feature",
+                      "marks": [
+                        {
+                          "type": "textStyle",
+                          "attrs": {
+                            "fontSize": "12pt"
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "tableCell",
+              "content": [
+                {
+                  "type": "paragraph",
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "Toolbar Tab",
+                      "marks": [
+                        {
+                          "type": "textStyle",
+                          "attrs": {
+                            "fontSize": "12pt"
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "tableCell",
+              "content": [
+                {
+                  "type": "paragraph",
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "OOXML Element",
+                      "marks": [
+                        {
+                          "type": "textStyle",
+                          "attrs": {
+                            "fontSize": "12pt"
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "tableCell",
+              "content": [
+                {
+                  "type": "paragraph",
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "Supported",
+                      "marks": [
+                        {
+                          "type": "textStyle",
+                          "attrs": {
+                            "fontSize": "12pt"
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "tableRow",
+          "content": [
+            {
+              "type": "tableCell",
+              "content": [
+                {
+                  "type": "paragraph",
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "Bold run",
+                      "marks": [
+                        {
+                          "type": "textStyle",
+                          "attrs": {
+                            "fontSize": "12pt"
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "tableCell",
+              "content": [
+                {
+                  "type": "paragraph",
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "Home",
+                      "marks": [
+                        {
+                          "type": "textStyle",
+                          "attrs": {
+                            "fontSize": "12pt"
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "tableCell",
+              "content": [
+                {
+                  "type": "paragraph",
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "w:b",
+                      "marks": [
+                        {
+                          "type": "textStyle",
+                          "attrs": {
+                            "fontSize": "12pt"
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "tableCell",
+              "content": [
+                {
+                  "type": "paragraph",
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "Yes",
+                      "marks": [
+                        {
+                          "type": "textStyle",
+                          "attrs": {
+                            "fontSize": "12pt"
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "tableRow",
+          "content": [
+            {
+              "type": "tableCell",
+              "content": [
+                {
+                  "type": "paragraph",
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "Bulleted list",
+                      "marks": [
+                        {
+                          "type": "textStyle",
+                          "attrs": {
+                            "fontSize": "12pt"
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "tableCell",
+              "content": [
+                {
+                  "type": "paragraph",
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "Home",
+                      "marks": [
+                        {
+                          "type": "textStyle",
+                          "attrs": {
+                            "fontSize": "12pt"
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "tableCell",
+              "content": [
+                {
+                  "type": "paragraph",
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "w:numPr",
+                      "marks": [
+                        {
+                          "type": "textStyle",
+                          "attrs": {
+                            "fontSize": "12pt"
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "tableCell",
+              "content": [
+                {
+                  "type": "paragraph",
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "Yes",
+                      "marks": [
+                        {
+                          "type": "textStyle",
+                          "attrs": {
+                            "fontSize": "12pt"
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "tableRow",
+          "content": [
+            {
+              "type": "tableCell",
+              "content": [
+                {
+                  "type": "paragraph",
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "Inline picture",
+                      "marks": [
+                        {
+                          "type": "textStyle",
+                          "attrs": {
+                            "fontSize": "12pt"
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "tableCell",
+              "content": [
+                {
+                  "type": "paragraph",
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "Insert",
+                      "marks": [
+                        {
+                          "type": "textStyle",
+                          "attrs": {
+                            "fontSize": "12pt"
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "tableCell",
+              "content": [
+                {
+                  "type": "paragraph",
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "w:drawing",
+                      "marks": [
+                        {
+                          "type": "textStyle",
+                          "attrs": {
+                            "fontSize": "12pt"
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "tableCell",
+              "content": [
+                {
+                  "type": "paragraph",
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "Partial",
+                      "marks": [
+                        {
+                          "type": "textStyle",
+                          "attrs": {
+                            "fontSize": "12pt"
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "tableRow",
+          "content": [
+            {
+              "type": "tableCell",
+              "content": [
+                {
+                  "type": "paragraph",
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "Footnote",
+                      "marks": [
+                        {
+                          "type": "textStyle",
+                          "attrs": {
+                            "fontSize": "12pt"
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "tableCell",
+              "content": [
+                {
+                  "type": "paragraph",
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "References",
+                      "marks": [
+                        {
+                          "type": "textStyle",
+                          "attrs": {
+                            "fontSize": "12pt"
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "tableCell",
+              "content": [
+                {
+                  "type": "paragraph",
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "w:footnoteReference",
+                      "marks": [
+                        {
+                          "type": "textStyle",
+                          "attrs": {
+                            "fontSize": "12pt"
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "tableCell",
+              "content": [
+                {
+                  "type": "paragraph",
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "Yes",
+                      "marks": [
+                        {
+                          "type": "textStyle",
+                          "attrs": {
+                            "fontSize": "12pt"
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "tableRow",
+          "content": [
+            {
+              "type": "tableCell",
+              "content": [
+                {
+                  "type": "paragraph",
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "Tracked change",
+                      "marks": [
+                        {
+                          "type": "textStyle",
+                          "attrs": {
+                            "fontSize": "12pt"
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "tableCell",
+              "content": [
+                {
+                  "type": "paragraph",
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "Review",
+                      "marks": [
+                        {
+                          "type": "textStyle",
+                          "attrs": {
+                            "fontSize": "12pt"
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "tableCell",
+              "content": [
+                {
+                  "type": "paragraph",
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "w:ins / w:del",
+                      "marks": [
+                        {
+                          "type": "textStyle",
+                          "attrs": {
+                            "fontSize": "12pt"
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "tableCell",
+              "content": [
+                {
+                  "type": "paragraph",
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "Partial",
+                      "marks": [
+                        {
+                          "type": "textStyle",
+                          "attrs": {
+                            "fontSize": "12pt"
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "paragraph"
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "type": "text",
+          "text": "Table 1. Feature-to-element mapping used for parser validation.",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "heading",
       "attrs": {
-        "textAlign": null,
-        "fontSize": "11.0pt",
-        "color": "",
-        "fontFamily": "'Calibri',sans-serif",
-        "marginLeft": "0in",
-        "textIndent": null,
-        "lineHeight": "115%",
-        "shading": null,
-        "border": null
+        "level": 2
       },
       "content": [
         {
           "type": "text",
-          "text": "Simple tables have a uniform number of columns and rows, without any merged cells:"
+          "text": "5.2 Plain Table with Merged Cells and Manual Shading"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "type": "text",
+          "text": "This table uses no built-in table style. The first row is a merged banner cell, individual cells carry manual shading, and column alignment varies by column.",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
         }
       ]
     },
@@ -869,70 +3132,60 @@
             {
               "type": "tableCell",
               "attrs": {
-                "colspan": 1,
-                "rowspan": 1,
-                "colwidth": null,
-                "align": null
+                "colspan": 3
               },
               "content": [
                 {
                   "type": "paragraph",
                   "attrs": {
-                    "textAlign": null,
-                    "fontSize": "11.0pt",
-                    "color": "",
-                    "fontFamily": "'Calibri',sans-serif",
-                    "marginLeft": "0in",
-                    "textIndent": null,
-                    "lineHeight": "normal",
-                    "shading": null,
-                    "border": null
+                    "textAlign": "center"
                   },
                   "content": [
                     {
                       "type": "text",
+                      "text": "Quarterly Summary",
                       "marks": [
                         {
                           "type": "bold"
+                        },
+                        {
+                          "type": "textStyle",
+                          "attrs": {
+                            "color": "#FFFFFF",
+                            "fontSize": "12pt"
+                          }
                         }
-                      ],
-                      "text": "Screen Reader"
+                      ]
                     }
                   ]
                 }
               ]
-            },
+            }
+          ]
+        },
+        {
+          "type": "tableRow",
+          "content": [
             {
               "type": "tableCell",
-              "attrs": {
-                "colspan": 1,
-                "rowspan": 1,
-                "colwidth": null,
-                "align": null
-              },
               "content": [
                 {
                   "type": "paragraph",
-                  "attrs": {
-                    "textAlign": null,
-                    "fontSize": "11.0pt",
-                    "color": "",
-                    "fontFamily": "'Calibri',sans-serif",
-                    "marginLeft": "0in",
-                    "textIndent": null,
-                    "lineHeight": "normal",
-                    "shading": null,
-                    "border": null
-                  },
                   "content": [
                     {
                       "type": "text",
+                      "text": "Quarter",
                       "marks": [
                         {
                           "type": "bold"
+                        },
+                        {
+                          "type": "textStyle",
+                          "attrs": {
+                            "fontSize": "12pt"
+                          }
                         }
-                      ],
-                      "text": "Responses"
+                      ]
                     }
                   ]
                 }
@@ -940,35 +3193,49 @@
             },
             {
               "type": "tableCell",
-              "attrs": {
-                "colspan": 1,
-                "rowspan": 1,
-                "colwidth": null,
-                "align": null
-              },
               "content": [
                 {
                   "type": "paragraph",
-                  "attrs": {
-                    "textAlign": null,
-                    "fontSize": "11.0pt",
-                    "color": "",
-                    "fontFamily": "'Calibri',sans-serif",
-                    "marginLeft": "0in",
-                    "textIndent": null,
-                    "lineHeight": "normal",
-                    "shading": null,
-                    "border": null
-                  },
                   "content": [
                     {
                       "type": "text",
+                      "text": "Documents Parsed",
                       "marks": [
                         {
                           "type": "bold"
+                        },
+                        {
+                          "type": "textStyle",
+                          "attrs": {
+                            "fontSize": "12pt"
+                          }
                         }
-                      ],
-                      "text": "Share"
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "tableCell",
+              "content": [
+                {
+                  "type": "paragraph",
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "Failure Rate",
+                      "marks": [
+                        {
+                          "type": "bold"
+                        },
+                        {
+                          "type": "textStyle",
+                          "attrs": {
+                            "fontSize": "12pt"
+                          }
+                        }
+                      ]
                     }
                   ]
                 }
@@ -981,30 +3248,21 @@
           "content": [
             {
               "type": "tableCell",
-              "attrs": {
-                "colspan": 1,
-                "rowspan": 1,
-                "colwidth": null,
-                "align": null
-              },
               "content": [
                 {
                   "type": "paragraph",
-                  "attrs": {
-                    "textAlign": null,
-                    "fontSize": "11.0pt",
-                    "color": "",
-                    "fontFamily": "'Calibri',sans-serif",
-                    "marginLeft": "0in",
-                    "textIndent": null,
-                    "lineHeight": "normal",
-                    "shading": null,
-                    "border": null
-                  },
                   "content": [
                     {
                       "type": "text",
-                      "text": "JAWS"
+                      "text": "Q1",
+                      "marks": [
+                        {
+                          "type": "textStyle",
+                          "attrs": {
+                            "fontSize": "12pt"
+                          }
+                        }
+                      ]
                     }
                   ]
                 }
@@ -1012,30 +3270,24 @@
             },
             {
               "type": "tableCell",
-              "attrs": {
-                "colspan": 1,
-                "rowspan": 1,
-                "colwidth": null,
-                "align": null
-              },
               "content": [
                 {
                   "type": "paragraph",
                   "attrs": {
-                    "textAlign": null,
-                    "fontSize": "11.0pt",
-                    "color": "",
-                    "fontFamily": "'Calibri',sans-serif",
-                    "marginLeft": "0in",
-                    "textIndent": null,
-                    "lineHeight": "normal",
-                    "shading": null,
-                    "border": null
+                    "textAlign": "center"
                   },
                   "content": [
                     {
                       "type": "text",
-                      "text": "853"
+                      "text": "1,204",
+                      "marks": [
+                        {
+                          "type": "textStyle",
+                          "attrs": {
+                            "fontSize": "12pt"
+                          }
+                        }
+                      ]
                     }
                   ]
                 }
@@ -1043,30 +3295,24 @@
             },
             {
               "type": "tableCell",
-              "attrs": {
-                "colspan": 1,
-                "rowspan": 1,
-                "colwidth": null,
-                "align": null
-              },
               "content": [
                 {
                   "type": "paragraph",
                   "attrs": {
-                    "textAlign": null,
-                    "fontSize": "11.0pt",
-                    "color": "",
-                    "fontFamily": "'Calibri',sans-serif",
-                    "marginLeft": "0in",
-                    "textIndent": null,
-                    "lineHeight": "normal",
-                    "shading": null,
-                    "border": null
+                    "textAlign": "right"
                   },
                   "content": [
                     {
                       "type": "text",
-                      "text": "49%"
+                      "text": "2.1%",
+                      "marks": [
+                        {
+                          "type": "textStyle",
+                          "attrs": {
+                            "fontSize": "12pt"
+                          }
+                        }
+                      ]
                     }
                   ]
                 }
@@ -1079,30 +3325,21 @@
           "content": [
             {
               "type": "tableCell",
-              "attrs": {
-                "colspan": 1,
-                "rowspan": 1,
-                "colwidth": null,
-                "align": null
-              },
               "content": [
                 {
                   "type": "paragraph",
-                  "attrs": {
-                    "textAlign": null,
-                    "fontSize": "11.0pt",
-                    "color": "",
-                    "fontFamily": "'Calibri',sans-serif",
-                    "marginLeft": "0in",
-                    "textIndent": null,
-                    "lineHeight": "normal",
-                    "shading": null,
-                    "border": null
-                  },
                   "content": [
                     {
                       "type": "text",
-                      "text": "NVDA"
+                      "text": "Q2",
+                      "marks": [
+                        {
+                          "type": "textStyle",
+                          "attrs": {
+                            "fontSize": "12pt"
+                          }
+                        }
+                      ]
                     }
                   ]
                 }
@@ -1110,30 +3347,24 @@
             },
             {
               "type": "tableCell",
-              "attrs": {
-                "colspan": 1,
-                "rowspan": 1,
-                "colwidth": null,
-                "align": null
-              },
               "content": [
                 {
                   "type": "paragraph",
                   "attrs": {
-                    "textAlign": null,
-                    "fontSize": "11.0pt",
-                    "color": "",
-                    "fontFamily": "'Calibri',sans-serif",
-                    "marginLeft": "0in",
-                    "textIndent": null,
-                    "lineHeight": "normal",
-                    "shading": null,
-                    "border": null
+                    "textAlign": "center"
                   },
                   "content": [
                     {
                       "type": "text",
-                      "text": "238"
+                      "text": "1,860",
+                      "marks": [
+                        {
+                          "type": "textStyle",
+                          "attrs": {
+                            "fontSize": "12pt"
+                          }
+                        }
+                      ]
                     }
                   ]
                 }
@@ -1141,30 +3372,24 @@
             },
             {
               "type": "tableCell",
-              "attrs": {
-                "colspan": 1,
-                "rowspan": 1,
-                "colwidth": null,
-                "align": null
-              },
               "content": [
                 {
                   "type": "paragraph",
                   "attrs": {
-                    "textAlign": null,
-                    "fontSize": "11.0pt",
-                    "color": "",
-                    "fontFamily": "'Calibri',sans-serif",
-                    "marginLeft": "0in",
-                    "textIndent": null,
-                    "lineHeight": "normal",
-                    "shading": null,
-                    "border": null
+                    "textAlign": "right"
                   },
                   "content": [
                     {
                       "type": "text",
-                      "text": "14%"
+                      "text": "1.4%",
+                      "marks": [
+                        {
+                          "type": "textStyle",
+                          "attrs": {
+                            "fontSize": "12pt"
+                          }
+                        }
+                      ]
                     }
                   ]
                 }
@@ -1177,30 +3402,21 @@
           "content": [
             {
               "type": "tableCell",
-              "attrs": {
-                "colspan": 1,
-                "rowspan": 1,
-                "colwidth": null,
-                "align": null
-              },
               "content": [
                 {
                   "type": "paragraph",
-                  "attrs": {
-                    "textAlign": null,
-                    "fontSize": "11.0pt",
-                    "color": "",
-                    "fontFamily": "'Calibri',sans-serif",
-                    "marginLeft": "0in",
-                    "textIndent": null,
-                    "lineHeight": "normal",
-                    "shading": null,
-                    "border": null
-                  },
                   "content": [
                     {
                       "type": "text",
-                      "text": "Window-Eyes"
+                      "text": "Q3",
+                      "marks": [
+                        {
+                          "type": "textStyle",
+                          "attrs": {
+                            "fontSize": "12pt"
+                          }
+                        }
+                      ]
                     }
                   ]
                 }
@@ -1208,30 +3424,24 @@
             },
             {
               "type": "tableCell",
-              "attrs": {
-                "colspan": 1,
-                "rowspan": 1,
-                "colwidth": null,
-                "align": null
-              },
               "content": [
                 {
                   "type": "paragraph",
                   "attrs": {
-                    "textAlign": null,
-                    "fontSize": "11.0pt",
-                    "color": "",
-                    "fontFamily": "'Calibri',sans-serif",
-                    "marginLeft": "0in",
-                    "textIndent": null,
-                    "lineHeight": "normal",
-                    "shading": null,
-                    "border": null
+                    "textAlign": "center"
                   },
                   "content": [
                     {
                       "type": "text",
-                      "text": "214"
+                      "text": "2,415",
+                      "marks": [
+                        {
+                          "type": "textStyle",
+                          "attrs": {
+                            "fontSize": "12pt"
+                          }
+                        }
+                      ]
                     }
                   ]
                 }
@@ -1239,226 +3449,24 @@
             },
             {
               "type": "tableCell",
-              "attrs": {
-                "colspan": 1,
-                "rowspan": 1,
-                "colwidth": null,
-                "align": null
-              },
               "content": [
                 {
                   "type": "paragraph",
                   "attrs": {
-                    "textAlign": null,
-                    "fontSize": "11.0pt",
-                    "color": "",
-                    "fontFamily": "'Calibri',sans-serif",
-                    "marginLeft": "0in",
-                    "textIndent": null,
-                    "lineHeight": "normal",
-                    "shading": null,
-                    "border": null
+                    "textAlign": "right"
                   },
                   "content": [
                     {
                       "type": "text",
-                      "text": "12%"
-                    }
-                  ]
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "type": "tableRow",
-          "content": [
-            {
-              "type": "tableCell",
-              "attrs": {
-                "colspan": 1,
-                "rowspan": 1,
-                "colwidth": null,
-                "align": null
-              },
-              "content": [
-                {
-                  "type": "paragraph",
-                  "attrs": {
-                    "textAlign": null,
-                    "fontSize": "11.0pt",
-                    "color": "",
-                    "fontFamily": "'Calibri',sans-serif",
-                    "marginLeft": "0in",
-                    "textIndent": null,
-                    "lineHeight": "normal",
-                    "shading": null,
-                    "border": null
-                  },
-                  "content": [
-                    {
-                      "type": "text",
-                      "text": "System Access"
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "type": "tableCell",
-              "attrs": {
-                "colspan": 1,
-                "rowspan": 1,
-                "colwidth": null,
-                "align": null
-              },
-              "content": [
-                {
-                  "type": "paragraph",
-                  "attrs": {
-                    "textAlign": null,
-                    "fontSize": "11.0pt",
-                    "color": "",
-                    "fontFamily": "'Calibri',sans-serif",
-                    "marginLeft": "0in",
-                    "textIndent": null,
-                    "lineHeight": "normal",
-                    "shading": null,
-                    "border": null
-                  },
-                  "content": [
-                    {
-                      "type": "text",
-                      "text": "181"
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "type": "tableCell",
-              "attrs": {
-                "colspan": 1,
-                "rowspan": 1,
-                "colwidth": null,
-                "align": null
-              },
-              "content": [
-                {
-                  "type": "paragraph",
-                  "attrs": {
-                    "textAlign": null,
-                    "fontSize": "11.0pt",
-                    "color": "",
-                    "fontFamily": "'Calibri',sans-serif",
-                    "marginLeft": "0in",
-                    "textIndent": null,
-                    "lineHeight": "normal",
-                    "shading": null,
-                    "border": null
-                  },
-                  "content": [
-                    {
-                      "type": "text",
-                      "text": "10%"
-                    }
-                  ]
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "type": "tableRow",
-          "content": [
-            {
-              "type": "tableCell",
-              "attrs": {
-                "colspan": 1,
-                "rowspan": 1,
-                "colwidth": null,
-                "align": null
-              },
-              "content": [
-                {
-                  "type": "paragraph",
-                  "attrs": {
-                    "textAlign": null,
-                    "fontSize": "11.0pt",
-                    "color": "",
-                    "fontFamily": "'Calibri',sans-serif",
-                    "marginLeft": "0in",
-                    "textIndent": null,
-                    "lineHeight": "normal",
-                    "shading": null,
-                    "border": null
-                  },
-                  "content": [
-                    {
-                      "type": "text",
-                      "text": "VoiceOver"
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "type": "tableCell",
-              "attrs": {
-                "colspan": 1,
-                "rowspan": 1,
-                "colwidth": null,
-                "align": null
-              },
-              "content": [
-                {
-                  "type": "paragraph",
-                  "attrs": {
-                    "textAlign": null,
-                    "fontSize": "11.0pt",
-                    "color": "",
-                    "fontFamily": "'Calibri',sans-serif",
-                    "marginLeft": "0in",
-                    "textIndent": null,
-                    "lineHeight": "normal",
-                    "shading": null,
-                    "border": null
-                  },
-                  "content": [
-                    {
-                      "type": "text",
-                      "text": "159"
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "type": "tableCell",
-              "attrs": {
-                "colspan": 1,
-                "rowspan": 1,
-                "colwidth": null,
-                "align": null
-              },
-              "content": [
-                {
-                  "type": "paragraph",
-                  "attrs": {
-                    "textAlign": null,
-                    "fontSize": "11.0pt",
-                    "color": "",
-                    "fontFamily": "'Calibri',sans-serif",
-                    "marginLeft": "0in",
-                    "textIndent": null,
-                    "lineHeight": "normal",
-                    "shading": null,
-                    "border": null
-                  },
-                  "content": [
-                    {
-                      "type": "text",
-                      "text": "9%"
+                      "text": "0.9%",
+                      "marks": [
+                        {
+                          "type": "textStyle",
+                          "attrs": {
+                            "fontSize": "12pt"
+                          }
+                        }
+                      ]
                     }
                   ]
                 }
@@ -1467,1245 +3475,192 @@
           ]
         }
       ]
+    },
+    {
+      "type": "paragraph"
     },
     {
       "type": "paragraph",
-      "attrs": {
-        "textAlign": null,
-        "fontSize": "11.0pt",
-        "color": "",
-        "fontFamily": "'Calibri',sans-serif",
-        "marginLeft": "0in",
-        "textIndent": null,
-        "lineHeight": "50%",
-        "shading": null,
-        "border": null
-      },
       "content": [
         {
           "type": "text",
-          "text": " "
-        }
-      ]
-    },
-    {
-      "type": "heading",
-      "attrs": {
-        "textAlign": null,
-        "fontSize": "14.0pt",
-        "color": "",
-        "fontFamily": "'Calibri',sans-serif",
-        "marginLeft": "0in",
-        "textIndent": null,
-        "lineHeight": "115%",
-        "shading": null,
-        "border": null,
-        "level": 3
-      },
-      "content": [
-        {
-          "type": "text",
+          "text": "Table 2. Manual cell formatting, shading and merge behaviour.",
           "marks": [
             {
-              "type": "bold"
-            }
-          ],
-          "text": "Complex Tables"
-        }
-      ]
-    },
-    {
-      "type": "paragraph",
-      "attrs": {
-        "textAlign": null,
-        "fontSize": "11.0pt",
-        "color": "",
-        "fontFamily": "'Calibri',sans-serif",
-        "marginLeft": "0in",
-        "textIndent": null,
-        "lineHeight": "115%",
-        "shading": null,
-        "border": null
-      },
-      "content": [
-        {
-          "type": "text",
-          "text": "The following is a complex table, using merged cells as headers for sections within the table. This can't be made accessible in all types of documents:"
-        }
-      ]
-    },
-    {
-      "type": "table",
-      "content": [
-        {
-          "type": "tableRow",
-          "content": [
-            {
-              "type": "tableCell",
+              "type": "textStyle",
               "attrs": {
-                "colspan": 1,
-                "rowspan": 1,
-                "colwidth": null,
-                "align": null
-              },
-              "content": [
-                {
-                  "type": "paragraph",
-                  "attrs": {
-                    "textAlign": null,
-                    "fontSize": "11.0pt",
-                    "color": "",
-                    "fontFamily": "'Calibri',sans-serif",
-                    "marginLeft": "0in",
-                    "textIndent": null,
-                    "lineHeight": "normal",
-                    "shading": null,
-                    "border": null
-                  },
-                  "content": [
-                    {
-                      "type": "text",
-                      "marks": [
-                        {
-                          "type": "bold"
-                        }
-                      ],
-                      "text": " "
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "type": "tableCell",
-              "attrs": {
-                "colspan": 2,
-                "rowspan": 1,
-                "colwidth": null,
-                "align": null
-              },
-              "content": [
-                {
-                  "type": "paragraph",
-                  "attrs": {
-                    "textAlign": null,
-                    "fontSize": "11.0pt",
-                    "color": "",
-                    "fontFamily": "'Calibri',sans-serif",
-                    "marginLeft": "0in",
-                    "textIndent": null,
-                    "lineHeight": "normal",
-                    "shading": null,
-                    "border": null
-                  },
-                  "content": [
-                    {
-                      "type": "text",
-                      "marks": [
-                        {
-                          "type": "bold"
-                        }
-                      ],
-                      "text": "May 2012"
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "type": "tableCell",
-              "attrs": {
-                "colspan": 2,
-                "rowspan": 1,
-                "colwidth": null,
-                "align": null
-              },
-              "content": [
-                {
-                  "type": "paragraph",
-                  "attrs": {
-                    "textAlign": null,
-                    "fontSize": "11.0pt",
-                    "color": "",
-                    "fontFamily": "'Calibri',sans-serif",
-                    "marginLeft": "0in",
-                    "textIndent": null,
-                    "lineHeight": "normal",
-                    "shading": null,
-                    "border": null
-                  },
-                  "content": [
-                    {
-                      "type": "text",
-                      "marks": [
-                        {
-                          "type": "bold"
-                        }
-                      ],
-                      "text": " September 2010"
-                    }
-                  ]
-                }
-              ]
+                "fontSize": "12pt"
+              }
             }
           ]
-        },
-        {
-          "type": "tableRow",
-          "content": [
-            {
-              "type": "tableCell",
-              "attrs": {
-                "colspan": 1,
-                "rowspan": 1,
-                "colwidth": null,
-                "align": null
-              },
-              "content": [
-                {
-                  "type": "paragraph",
-                  "attrs": {
-                    "textAlign": null,
-                    "fontSize": "11.0pt",
-                    "color": "",
-                    "fontFamily": "'Calibri',sans-serif",
-                    "marginLeft": "0in",
-                    "textIndent": null,
-                    "lineHeight": "normal",
-                    "shading": null,
-                    "border": null
-                  },
-                  "content": [
-                    {
-                      "type": "text",
-                      "marks": [
-                        {
-                          "type": "bold"
-                        }
-                      ],
-                      "text": "Screen Reader"
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "type": "tableCell",
-              "attrs": {
-                "colspan": 1,
-                "rowspan": 1,
-                "colwidth": null,
-                "align": null
-              },
-              "content": [
-                {
-                  "type": "paragraph",
-                  "attrs": {
-                    "textAlign": null,
-                    "fontSize": "11.0pt",
-                    "color": "",
-                    "fontFamily": "'Calibri',sans-serif",
-                    "marginLeft": "0in",
-                    "textIndent": null,
-                    "lineHeight": "normal",
-                    "shading": null,
-                    "border": null
-                  },
-                  "content": [
-                    {
-                      "type": "text",
-                      "marks": [
-                        {
-                          "type": "bold"
-                        }
-                      ],
-                      "text": "Responses"
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "type": "tableCell",
-              "attrs": {
-                "colspan": 1,
-                "rowspan": 1,
-                "colwidth": null,
-                "align": null
-              },
-              "content": [
-                {
-                  "type": "paragraph",
-                  "attrs": {
-                    "textAlign": null,
-                    "fontSize": "11.0pt",
-                    "color": "",
-                    "fontFamily": "'Calibri',sans-serif",
-                    "marginLeft": "0in",
-                    "textIndent": null,
-                    "lineHeight": "normal",
-                    "shading": null,
-                    "border": null
-                  },
-                  "content": [
-                    {
-                      "type": "text",
-                      "marks": [
-                        {
-                          "type": "bold"
-                        }
-                      ],
-                      "text": "Share"
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "type": "tableCell",
-              "attrs": {
-                "colspan": 1,
-                "rowspan": 1,
-                "colwidth": null,
-                "align": null
-              },
-              "content": [
-                {
-                  "type": "paragraph",
-                  "attrs": {
-                    "textAlign": null,
-                    "fontSize": "11.0pt",
-                    "color": "",
-                    "fontFamily": "'Calibri',sans-serif",
-                    "marginLeft": "0in",
-                    "textIndent": null,
-                    "lineHeight": "normal",
-                    "shading": null,
-                    "border": null
-                  },
-                  "content": [
-                    {
-                      "type": "text",
-                      "marks": [
-                        {
-                          "type": "bold"
-                        }
-                      ],
-                      "text": "Responses"
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "type": "tableCell",
-              "attrs": {
-                "colspan": 1,
-                "rowspan": 1,
-                "colwidth": null,
-                "align": null
-              },
-              "content": [
-                {
-                  "type": "paragraph",
-                  "attrs": {
-                    "textAlign": null,
-                    "fontSize": "11.0pt",
-                    "color": "",
-                    "fontFamily": "'Calibri',sans-serif",
-                    "marginLeft": "0in",
-                    "textIndent": null,
-                    "lineHeight": "normal",
-                    "shading": null,
-                    "border": null
-                  },
-                  "content": [
-                    {
-                      "type": "text",
-                      "marks": [
-                        {
-                          "type": "bold"
-                        }
-                      ],
-                      "text": "Share"
-                    }
-                  ]
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "type": "tableRow",
-          "content": [
-            {
-              "type": "tableCell",
-              "attrs": {
-                "colspan": 1,
-                "rowspan": 1,
-                "colwidth": null,
-                "align": null
-              },
-              "content": [
-                {
-                  "type": "paragraph",
-                  "attrs": {
-                    "textAlign": null,
-                    "fontSize": "11.0pt",
-                    "color": "",
-                    "fontFamily": "'Calibri',sans-serif",
-                    "marginLeft": "0in",
-                    "textIndent": null,
-                    "lineHeight": "normal",
-                    "shading": null,
-                    "border": null
-                  },
-                  "content": [
-                    {
-                      "type": "text",
-                      "text": "JAWS"
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "type": "tableCell",
-              "attrs": {
-                "colspan": 1,
-                "rowspan": 1,
-                "colwidth": null,
-                "align": null
-              },
-              "content": [
-                {
-                  "type": "paragraph",
-                  "attrs": {
-                    "textAlign": null,
-                    "fontSize": "11.0pt",
-                    "color": "",
-                    "fontFamily": "'Calibri',sans-serif",
-                    "marginLeft": "0in",
-                    "textIndent": null,
-                    "lineHeight": "normal",
-                    "shading": null,
-                    "border": null
-                  },
-                  "content": [
-                    {
-                      "type": "text",
-                      "text": "853"
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "type": "tableCell",
-              "attrs": {
-                "colspan": 1,
-                "rowspan": 1,
-                "colwidth": null,
-                "align": null
-              },
-              "content": [
-                {
-                  "type": "paragraph",
-                  "attrs": {
-                    "textAlign": null,
-                    "fontSize": "11.0pt",
-                    "color": "",
-                    "fontFamily": "'Calibri',sans-serif",
-                    "marginLeft": "0in",
-                    "textIndent": null,
-                    "lineHeight": "normal",
-                    "shading": null,
-                    "border": null
-                  },
-                  "content": [
-                    {
-                      "type": "text",
-                      "text": "49%"
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "type": "tableCell",
-              "attrs": {
-                "colspan": 1,
-                "rowspan": 1,
-                "colwidth": null,
-                "align": null
-              },
-              "content": [
-                {
-                  "type": "paragraph",
-                  "attrs": {
-                    "textAlign": null,
-                    "fontSize": "11.0pt",
-                    "color": "",
-                    "fontFamily": "'Calibri',sans-serif",
-                    "marginLeft": "0in",
-                    "textIndent": null,
-                    "lineHeight": "normal",
-                    "shading": null,
-                    "border": null
-                  },
-                  "content": [
-                    {
-                      "type": "text",
-                      "text": "727"
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "type": "tableCell",
-              "attrs": {
-                "colspan": 1,
-                "rowspan": 1,
-                "colwidth": null,
-                "align": null
-              },
-              "content": [
-                {
-                  "type": "paragraph",
-                  "attrs": {
-                    "textAlign": null,
-                    "fontSize": "11.0pt",
-                    "color": "",
-                    "fontFamily": "'Calibri',sans-serif",
-                    "marginLeft": "0in",
-                    "textIndent": null,
-                    "lineHeight": "normal",
-                    "shading": null,
-                    "border": null
-                  },
-                  "content": [
-                    {
-                      "type": "text",
-                      "text": "59%"
-                    }
-                  ]
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "type": "tableRow",
-          "content": [
-            {
-              "type": "tableCell",
-              "attrs": {
-                "colspan": 1,
-                "rowspan": 1,
-                "colwidth": null,
-                "align": null
-              },
-              "content": [
-                {
-                  "type": "paragraph",
-                  "attrs": {
-                    "textAlign": null,
-                    "fontSize": "11.0pt",
-                    "color": "",
-                    "fontFamily": "'Calibri',sans-serif",
-                    "marginLeft": "0in",
-                    "textIndent": null,
-                    "lineHeight": "normal",
-                    "shading": null,
-                    "border": null
-                  },
-                  "content": [
-                    {
-                      "type": "text",
-                      "text": "NVDA"
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "type": "tableCell",
-              "attrs": {
-                "colspan": 1,
-                "rowspan": 1,
-                "colwidth": null,
-                "align": null
-              },
-              "content": [
-                {
-                  "type": "paragraph",
-                  "attrs": {
-                    "textAlign": null,
-                    "fontSize": "11.0pt",
-                    "color": "",
-                    "fontFamily": "'Calibri',sans-serif",
-                    "marginLeft": "0in",
-                    "textIndent": null,
-                    "lineHeight": "normal",
-                    "shading": null,
-                    "border": null
-                  },
-                  "content": [
-                    {
-                      "type": "text",
-                      "text": "238"
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "type": "tableCell",
-              "attrs": {
-                "colspan": 1,
-                "rowspan": 1,
-                "colwidth": null,
-                "align": null
-              },
-              "content": [
-                {
-                  "type": "paragraph",
-                  "attrs": {
-                    "textAlign": null,
-                    "fontSize": "11.0pt",
-                    "color": "",
-                    "fontFamily": "'Calibri',sans-serif",
-                    "marginLeft": "0in",
-                    "textIndent": null,
-                    "lineHeight": "normal",
-                    "shading": null,
-                    "border": null
-                  },
-                  "content": [
-                    {
-                      "type": "text",
-                      "text": "14%"
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "type": "tableCell",
-              "attrs": {
-                "colspan": 1,
-                "rowspan": 1,
-                "colwidth": null,
-                "align": null
-              },
-              "content": [
-                {
-                  "type": "paragraph",
-                  "attrs": {
-                    "textAlign": null,
-                    "fontSize": "11.0pt",
-                    "color": "",
-                    "fontFamily": "'Calibri',sans-serif",
-                    "marginLeft": "0in",
-                    "textIndent": null,
-                    "lineHeight": "normal",
-                    "shading": null,
-                    "border": null
-                  },
-                  "content": [
-                    {
-                      "type": "text",
-                      "text": "105"
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "type": "tableCell",
-              "attrs": {
-                "colspan": 1,
-                "rowspan": 1,
-                "colwidth": null,
-                "align": null
-              },
-              "content": [
-                {
-                  "type": "paragraph",
-                  "attrs": {
-                    "textAlign": null,
-                    "fontSize": "11.0pt",
-                    "color": "",
-                    "fontFamily": "'Calibri',sans-serif",
-                    "marginLeft": "0in",
-                    "textIndent": null,
-                    "lineHeight": "normal",
-                    "shading": null,
-                    "border": null
-                  },
-                  "content": [
-                    {
-                      "type": "text",
-                      "text": "9%"
-                    }
-                  ]
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "type": "tableRow",
-          "content": [
-            {
-              "type": "tableCell",
-              "attrs": {
-                "colspan": 1,
-                "rowspan": 1,
-                "colwidth": null,
-                "align": null
-              },
-              "content": [
-                {
-                  "type": "paragraph",
-                  "attrs": {
-                    "textAlign": null,
-                    "fontSize": "11.0pt",
-                    "color": "",
-                    "fontFamily": "'Calibri',sans-serif",
-                    "marginLeft": "0in",
-                    "textIndent": null,
-                    "lineHeight": "normal",
-                    "shading": null,
-                    "border": null
-                  },
-                  "content": [
-                    {
-                      "type": "text",
-                      "text": "Window-Eyes"
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "type": "tableCell",
-              "attrs": {
-                "colspan": 1,
-                "rowspan": 1,
-                "colwidth": null,
-                "align": null
-              },
-              "content": [
-                {
-                  "type": "paragraph",
-                  "attrs": {
-                    "textAlign": null,
-                    "fontSize": "11.0pt",
-                    "color": "",
-                    "fontFamily": "'Calibri',sans-serif",
-                    "marginLeft": "0in",
-                    "textIndent": null,
-                    "lineHeight": "normal",
-                    "shading": null,
-                    "border": null
-                  },
-                  "content": [
-                    {
-                      "type": "text",
-                      "text": "214"
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "type": "tableCell",
-              "attrs": {
-                "colspan": 1,
-                "rowspan": 1,
-                "colwidth": null,
-                "align": null
-              },
-              "content": [
-                {
-                  "type": "paragraph",
-                  "attrs": {
-                    "textAlign": null,
-                    "fontSize": "11.0pt",
-                    "color": "",
-                    "fontFamily": "'Calibri',sans-serif",
-                    "marginLeft": "0in",
-                    "textIndent": null,
-                    "lineHeight": "normal",
-                    "shading": null,
-                    "border": null
-                  },
-                  "content": [
-                    {
-                      "type": "text",
-                      "text": "12%"
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "type": "tableCell",
-              "attrs": {
-                "colspan": 1,
-                "rowspan": 1,
-                "colwidth": null,
-                "align": null
-              },
-              "content": [
-                {
-                  "type": "paragraph",
-                  "attrs": {
-                    "textAlign": null,
-                    "fontSize": "11.0pt",
-                    "color": "",
-                    "fontFamily": "'Calibri',sans-serif",
-                    "marginLeft": "0in",
-                    "textIndent": null,
-                    "lineHeight": "normal",
-                    "shading": null,
-                    "border": null
-                  },
-                  "content": [
-                    {
-                      "type": "text",
-                      "text": "138"
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "type": "tableCell",
-              "attrs": {
-                "colspan": 1,
-                "rowspan": 1,
-                "colwidth": null,
-                "align": null
-              },
-              "content": [
-                {
-                  "type": "paragraph",
-                  "attrs": {
-                    "textAlign": null,
-                    "fontSize": "11.0pt",
-                    "color": "",
-                    "fontFamily": "'Calibri',sans-serif",
-                    "marginLeft": "0in",
-                    "textIndent": null,
-                    "lineHeight": "normal",
-                    "shading": null,
-                    "border": null
-                  },
-                  "content": [
-                    {
-                      "type": "text",
-                      "text": "11%"
-                    }
-                  ]
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "type": "tableRow",
-          "content": [
-            {
-              "type": "tableCell",
-              "attrs": {
-                "colspan": 1,
-                "rowspan": 1,
-                "colwidth": null,
-                "align": null
-              },
-              "content": [
-                {
-                  "type": "paragraph",
-                  "attrs": {
-                    "textAlign": null,
-                    "fontSize": "11.0pt",
-                    "color": "",
-                    "fontFamily": "'Calibri',sans-serif",
-                    "marginLeft": "0in",
-                    "textIndent": null,
-                    "lineHeight": "normal",
-                    "shading": null,
-                    "border": null
-                  },
-                  "content": [
-                    {
-                      "type": "text",
-                      "text": "System Access"
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "type": "tableCell",
-              "attrs": {
-                "colspan": 1,
-                "rowspan": 1,
-                "colwidth": null,
-                "align": null
-              },
-              "content": [
-                {
-                  "type": "paragraph",
-                  "attrs": {
-                    "textAlign": null,
-                    "fontSize": "11.0pt",
-                    "color": "",
-                    "fontFamily": "'Calibri',sans-serif",
-                    "marginLeft": "0in",
-                    "textIndent": null,
-                    "lineHeight": "normal",
-                    "shading": null,
-                    "border": null
-                  },
-                  "content": [
-                    {
-                      "type": "text",
-                      "text": "181"
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "type": "tableCell",
-              "attrs": {
-                "colspan": 1,
-                "rowspan": 1,
-                "colwidth": null,
-                "align": null
-              },
-              "content": [
-                {
-                  "type": "paragraph",
-                  "attrs": {
-                    "textAlign": null,
-                    "fontSize": "11.0pt",
-                    "color": "",
-                    "fontFamily": "'Calibri',sans-serif",
-                    "marginLeft": "0in",
-                    "textIndent": null,
-                    "lineHeight": "normal",
-                    "shading": null,
-                    "border": null
-                  },
-                  "content": [
-                    {
-                      "type": "text",
-                      "text": "10%"
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "type": "tableCell",
-              "attrs": {
-                "colspan": 1,
-                "rowspan": 1,
-                "colwidth": null,
-                "align": null
-              },
-              "content": [
-                {
-                  "type": "paragraph",
-                  "attrs": {
-                    "textAlign": null,
-                    "fontSize": "11.0pt",
-                    "color": "",
-                    "fontFamily": "'Calibri',sans-serif",
-                    "marginLeft": "0in",
-                    "textIndent": null,
-                    "lineHeight": "normal",
-                    "shading": null,
-                    "border": null
-                  },
-                  "content": [
-                    {
-                      "type": "text",
-                      "text": "58"
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "type": "tableCell",
-              "attrs": {
-                "colspan": 1,
-                "rowspan": 1,
-                "colwidth": null,
-                "align": null
-              },
-              "content": [
-                {
-                  "type": "paragraph",
-                  "attrs": {
-                    "textAlign": null,
-                    "fontSize": "11.0pt",
-                    "color": "",
-                    "fontFamily": "'Calibri',sans-serif",
-                    "marginLeft": "0in",
-                    "textIndent": null,
-                    "lineHeight": "normal",
-                    "shading": null,
-                    "border": null
-                  },
-                  "content": [
-                    {
-                      "type": "text",
-                      "text": "5%"
-                    }
-                  ]
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "type": "tableRow",
-          "content": [
-            {
-              "type": "tableCell",
-              "attrs": {
-                "colspan": 1,
-                "rowspan": 1,
-                "colwidth": null,
-                "align": null
-              },
-              "content": [
-                {
-                  "type": "paragraph",
-                  "attrs": {
-                    "textAlign": null,
-                    "fontSize": "11.0pt",
-                    "color": "",
-                    "fontFamily": "'Calibri',sans-serif",
-                    "marginLeft": "0in",
-                    "textIndent": null,
-                    "lineHeight": "normal",
-                    "shading": null,
-                    "border": null
-                  },
-                  "content": [
-                    {
-                      "type": "text",
-                      "text": "VoiceOver"
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "type": "tableCell",
-              "attrs": {
-                "colspan": 1,
-                "rowspan": 1,
-                "colwidth": null,
-                "align": null
-              },
-              "content": [
-                {
-                  "type": "paragraph",
-                  "attrs": {
-                    "textAlign": null,
-                    "fontSize": "11.0pt",
-                    "color": "",
-                    "fontFamily": "'Calibri',sans-serif",
-                    "marginLeft": "0in",
-                    "textIndent": null,
-                    "lineHeight": "normal",
-                    "shading": null,
-                    "border": null
-                  },
-                  "content": [
-                    {
-                      "type": "text",
-                      "text": "159"
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "type": "tableCell",
-              "attrs": {
-                "colspan": 1,
-                "rowspan": 1,
-                "colwidth": null,
-                "align": null
-              },
-              "content": [
-                {
-                  "type": "paragraph",
-                  "attrs": {
-                    "textAlign": null,
-                    "fontSize": "11.0pt",
-                    "color": "",
-                    "fontFamily": "'Calibri',sans-serif",
-                    "marginLeft": "0in",
-                    "textIndent": null,
-                    "lineHeight": "normal",
-                    "shading": null,
-                    "border": null
-                  },
-                  "content": [
-                    {
-                      "type": "text",
-                      "text": "9%"
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "type": "tableCell",
-              "attrs": {
-                "colspan": 1,
-                "rowspan": 1,
-                "colwidth": null,
-                "align": null
-              },
-              "content": [
-                {
-                  "type": "paragraph",
-                  "attrs": {
-                    "textAlign": null,
-                    "fontSize": "11.0pt",
-                    "color": "",
-                    "fontFamily": "'Calibri',sans-serif",
-                    "marginLeft": "0in",
-                    "textIndent": null,
-                    "lineHeight": "normal",
-                    "shading": null,
-                    "border": null
-                  },
-                  "content": [
-                    {
-                      "type": "text",
-                      "text": "120"
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "type": "tableCell",
-              "attrs": {
-                "colspan": 1,
-                "rowspan": 1,
-                "colwidth": null,
-                "align": null
-              },
-              "content": [
-                {
-                  "type": "paragraph",
-                  "attrs": {
-                    "textAlign": null,
-                    "fontSize": "11.0pt",
-                    "color": "",
-                    "fontFamily": "'Calibri',sans-serif",
-                    "marginLeft": "0in",
-                    "textIndent": null,
-                    "lineHeight": "normal",
-                    "shading": null,
-                    "border": null
-                  },
-                  "content": [
-                    {
-                      "type": "text",
-                      "text": "10%"
-                    }
-                  ]
-                }
-              ]
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "type": "paragraph",
-      "attrs": {
-        "textAlign": null,
-        "fontSize": "11.0pt",
-        "color": "",
-        "fontFamily": "'Calibri',sans-serif",
-        "marginLeft": "0in",
-        "textIndent": null,
-        "lineHeight": "50%",
-        "shading": null,
-        "border": null
-      },
-      "content": [
-        {
-          "type": "text",
-          "text": " "
         }
       ]
     },
     {
       "type": "heading",
       "attrs": {
-        "textAlign": null,
-        "fontSize": "18.0pt",
-        "color": "",
-        "fontFamily": "'Calibri',sans-serif",
-        "marginLeft": "0in",
-        "textIndent": null,
-        "lineHeight": "115%",
-        "shading": null,
-        "border": null,
+        "level": 1
+      },
+      "content": [
+        {
+          "type": "text",
+          "text": "6. Links, Bookmarks and Fields"
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "attrs": {
         "level": 2
       },
       "content": [
         {
           "type": "text",
-          "marks": [
-            {
-              "type": "bold"
-            }
-          ],
-          "text": "Columns"
+          "text": "6.1 Hyperlinks"
         }
       ]
     },
     {
       "type": "paragraph",
-      "attrs": {
-        "textAlign": null,
-        "fontSize": null,
-        "color": null,
-        "fontFamily": null,
-        "marginLeft": null,
-        "textIndent": null,
-        "lineHeight": null,
-        "shading": null,
-        "border": null
-      },
       "content": [
         {
-          "type": "hardBreak",
+          "type": "text",
+          "text": "An external hyperlink points to the ",
           "marks": [
             {
               "type": "textStyle",
               "attrs": {
-                "fontSize": "11.0pt",
-                "color": "",
-                "fontFamily": "\"Calibri\",sans-serif"
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "text": "Office Add-ins documentation",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            },
+            {
+              "type": "link",
+              "attrs": {
+                "href": "https://learn.microsoft.com/office/dev/add-ins/"
+              }
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "text": ", and an ",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "text": "email hyperlink",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            },
+            {
+              "type": "link",
+              "attrs": {
+                "href": "/word/mailto:test@example.com"
+              }
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "text": " opens a new message.",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "attrs": {
+        "level": 2
+      },
+      "content": [
+        {
+          "type": "text",
+          "text": "6.2 Bookmarks"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "type": "text",
+          "text": "This paragraph is the target of a bookmark named ParserAnchor, which a cross-reference field can point at.",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "attrs": {
+        "level": 2
+      },
+      "content": [
+        {
+          "type": "text",
+          "text": "6.3 Fields"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "type": "text",
+          "text": "Current date field: ",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "text": "8/9/2026",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
               }
             }
           ]
@@ -2714,50 +3669,1318 @@
     },
     {
       "type": "paragraph",
+      "content": [
+        {
+          "type": "text",
+          "text": "Page number field: ",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "text": "5",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "type": "text",
+          "text": "Total pages field: ",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "text": "5",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "type": "text",
+          "text": "Document title field: ",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "text": "Word Feature Showcase — OOXML Test Document",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "type": "text",
+          "text": "Cross-reference to bookmark: ",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "text": "This paragraph is the target of a bookmark named ParserAnchor, which a cross-reference field can point at.",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "paragraph"
+    },
+    {
+      "type": "heading",
       "attrs": {
-        "textAlign": null,
-        "fontSize": "11.0pt",
-        "color": "",
-        "fontFamily": "'Calibri',sans-serif",
-        "marginLeft": "0in",
-        "textIndent": null,
-        "lineHeight": "115%",
-        "shading": null,
-        "border": null
+        "level": 1
       },
       "content": [
         {
           "type": "text",
-          "text": "This is an example of columns. With columns, the page is split into two or more horizontal sections. Unlike tables, in which you usually read across a row and then down to the next, in columns, you read down a column and then across to the next."
+          "text": "7. Footnotes and Endnotes"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "type": "text",
+          "text": "This sentence carries a genuine footnote reference at its end.",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "text": " A second sentence in the same paragraph carries a second footnote so that numbering increments correctly.",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "type": "text",
+          "text": "This paragraph carries an endnote reference",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "text": ", which collects at the end of the document rather than the foot of the page.",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "attrs": {
+        "level": 1
+      },
+      "content": [
+        {
+          "type": "text",
+          "text": "8. Pictures, Icons and Special Characters"
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "attrs": {
+        "level": 2
+      },
+      "content": [
+        {
+          "type": "text",
+          "text": "8.1 Inline Picture"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "type": "text",
+          "text": "An inline PNG follows. In the package this becomes a w:drawing element with a relationship to a media part, so the JSON should carry an image reference rather than literal text.",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "image",
+      "attrs": {
+        "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAABgCAYAAADimHc4AAACH0lEQVR42u2d61HDMBAG7WuEVETqIQWYekJFoRL4FYZhMMiR7qXbr4DMsKu7ky0NXhZCKmft/YGn55ePygDf315XcwHVoY+UsQLeV4QAf3yOsBLg+0oQ4PtKEOD7ShDg+0oQ4PtKEOD7ShCw+EZY/b5VQAVEqgDiKID249OGqABaEAIIAhBAEIAAggAEEAQggCDAL7frhgBv+JYSELCz8m/XzUQEApxbEgIaIGtWgwB/c60GAX57TucLAmaCTwviQaz26i8pIBL8cgKiwWcGOMMvJcD6JRsCgreeMgIiw59eQHT4DGFmQO3V7yLAYjeSBb65AIsjv0zwTQX8duRXHb6ZgD0wUR+OphLQctxXdfWrC2iF0ishK3xVAUehPCohM3w1AVYws8NXE9Dzh1YbzGotSFvCDKtffQhrSZgFvsk2dLSEmeCbPYh5zYTo8E1fRYyQMOOANn0ZZ1kJGVa/uQArMFnguwjQBpQJvpuAjKCmE6AhIaNU9zPhUdCyVlSIQ/leeJnbWZhbEY9CzD5LQl1LqTiYw90LOiJhBmEhL2a1gJ2lWsLejLsD/gn6dL5M1aq+PjbDP261zf1DP1zOpQUhgCAAAQQBxQX0fhWUHN+CUgG0ICJ7pUH02w8VELEFUQV2q3+3ApBgA//PFoQEffj/zgAk6MJvGsJI0IPfvAtCgg78Q9tQJIyHvyzfjiSPhOPLcYu0e1VXl0FnIKQnn8cKAh6wnRYvAAAAAElFTkSuQmCC",
+        "alt": "Picture 1",
+        "width": 64,
+        "height": 64,
+        "align": "center"
+      }
+    },
+    {
+      "type": "paragraph",
+      "attrs": {
+        "textAlign": "center"
+      },
+      "content": [
+        {
+          "type": "text",
+          "text": "Figure 1. Inline raster image, 96 by 96 pixels.",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "image",
+      "attrs": {
+        "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAABgCAYAAADimHc4AAACH0lEQVR42u2d61HDMBAG7WuEVETqIQWYekJFoRL4FYZhMMiR7qXbr4DMsKu7ky0NXhZCKmft/YGn55ePygDf315XcwHVoY+UsQLeV4QAf3yOsBLg+0oQ4PtKEOD7ShDg+0oQ4PtKEOD7ShCw+EZY/b5VQAVEqgDiKID249OGqABaEAIIAhBAEIAAggAEEAQggCDAL7frhgBv+JYSELCz8m/XzUQEApxbEgIaIGtWgwB/c60GAX57TucLAmaCTwviQaz26i8pIBL8cgKiwWcGOMMvJcD6JRsCgreeMgIiw59eQHT4DGFmQO3V7yLAYjeSBb65AIsjv0zwTQX8duRXHb6ZgD0wUR+OphLQctxXdfWrC2iF0ishK3xVAUehPCohM3w1AVYws8NXE9Dzh1YbzGotSFvCDKtffQhrSZgFvsk2dLSEmeCbPYh5zYTo8E1fRYyQMOOANn0ZZ1kJGVa/uQArMFnguwjQBpQJvpuAjKCmE6AhIaNU9zPhUdCyVlSIQ/leeJnbWZhbEY9CzD5LQl1LqTiYw90LOiJhBmEhL2a1gJ2lWsLejLsD/gn6dL5M1aq+PjbDP261zf1DP1zOpQUhgCAAAQQBxQX0fhWUHN+CUgG0ICJ7pUH02w8VELEFUQV2q3+3ApBgA//PFoQEffj/zgAk6MJvGsJI0IPfvAtCgg78Q9tQJIyHvyzfjiSPhOPLcYu0e1VXl0FnIKQnn8cKAh6wnRYvAAAAAElFTkSuQmCC",
+        "alt": "Picture 2",
+        "width": 64,
+        "height": 64
+      }
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "type": "text",
+          "text": "A second copy of the same image is placed inline within this sentence ",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "text": " so that the picture sits between two text runs in a single paragraph.",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "attrs": {
+        "level": 2
+      },
+      "content": [
+        {
+          "type": "text",
+          "text": "8.2 Symbols and Special Characters"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "type": "text",
+          "text": "Currency and maths: € £ ¥ ¢ ± × ÷ ≈ ≠ ≤ ≥ ∞ √ ∑ ∆ π µ Ω",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "type": "text",
+          "text": "Punctuation and marks: — – … « » “ ” ‘ ’ § ¶ † ‡ • ‰ © ® ™ °",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "type": "text",
+          "text": "Arrows and shapes: ← → ↑ ↓ ↔ ",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "text": "⇒",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "text": " ",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "text": "⇔",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "text": " ",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "text": "★",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "text": " ",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "text": "☆",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "text": " ✓ ",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "text": "✗",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "text": " ",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "text": "■",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "text": " □ ",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "text": "▲",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "text": " ",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "text": "▼",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "text": " ",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "text": "◆",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "type": "text",
+          "text": "Accented and non-Latin: café, naïve, Zürich, señor, Ελλάδα, Москва, ",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "text": "日本語",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "text": ", ",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "text": "العربية",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "text": ", ",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "text": "हिन्दी",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "type": "text",
+          "text": "Emoji sequence: ",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "text": "📄",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "text": " ",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "text": "✅",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "text": " ",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "text": "⚠️",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "text": " ",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "text": "🔍",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "text": " ",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "text": "🚀",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "attrs": {
+        "level": 1
+      },
+      "content": [
+        {
+          "type": "hardBreak"
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "attrs": {
+        "level": 1
+      },
+      "content": [
+        {
+          "type": "text",
+          "text": "9. Page Layout Elements"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "type": "text",
+          "text": "This section begins on a fresh page because a manual page break precedes its heading.",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "attrs": {
+        "level": 2
+      },
+      "content": [
+        {
+          "type": "text",
+          "text": "9.1 Manual Breaks"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "type": "text",
+          "text": "This paragraph contains a manual line break after this sentence.",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
         },
         {
           "type": "hardBreak"
         },
         {
           "type": "text",
-          "text": "When columns are not created correctly, screen readers may run lines together, reading the first line of the first column, then the first line of the second column, then the second line of the first column, and so on. Obviously, that is not accessible."
+          "text": "The text after the break is still part of the same paragraph, which is a useful edge case for text extraction.",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
         }
       ]
     },
     {
       "type": "paragraph",
+      "content": [
+        {
+          "type": "text",
+          "text": "A page break paragraph follows this line.",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "paragraph"
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "type": "hardBreak"
+        }
+      ]
+    },
+    {
+      "type": "heading",
       "attrs": {
-        "textAlign": null,
-        "fontSize": "11.0pt",
-        "color": "",
-        "fontFamily": "'Calibri',sans-serif",
-        "marginLeft": "0in",
-        "textIndent": null,
-        "lineHeight": "115%",
-        "shading": null,
-        "border": null
+        "level": 2
       },
       "content": [
         {
           "type": "text",
-          "text": " "
+          "text": "9.2 Borders and Shading"
         }
       ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "type": "text",
+          "text": "This paragraph has a light grey shading applied at paragraph level, which serializes as paragraph shading rather than a highlight run property.",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "attrs": {
+        "level": 2
+      },
+      "content": [
+        {
+          "type": "text",
+          "text": "9.3 Tab Stops"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "type": "text",
+          "text": "Column A",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "text": "Column B",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "text": "Column C",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "type": "text",
+          "text": "Value 1",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "text": "Value 2",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "text": "Value 3",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "type": "text",
+          "text": "Tab characters separate the three columns above; they are literal tab characters, not table cells.",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "attrs": {
+        "level": 2
+      },
+      "content": [
+        {
+          "type": "text",
+          "text": "9.4 Section and Column Layout"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "type": "text",
+          "text": "Multi-column layout is a section-level page-setup property. The paragraphs in this document sit in a single-column section.",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "attrs": {
+        "level": 1
+      },
+      "content": [
+        {
+          "type": "text",
+          "text": "10. Review Features"
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "attrs": {
+        "level": 2
+      },
+      "content": [
+        {
+          "type": "text",
+          "text": "10.1 Comments"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "type": "text",
+          "text": "This paragraph carries a single comment anchored to the phrase ",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "text": "anchored comment text",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "text": " inside the sentence.",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "type": "text",
+          "text": "This paragraph carries a ",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "text": "comment thread with one reply",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "text": ", so the JSON should nest the reply under its parent.",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "attrs": {
+        "level": 2
+      },
+      "content": [
+        {
+          "type": "text",
+          "text": "10.2 Content Controls"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "type": "text",
+          "text": "The bracketed placeholders below are wrapped in rich-text content controls with tags and titles set.",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "type": "text",
+          "text": "Client name: ",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "type": "text",
+          "text": "Effective date: ",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "attrs": {
+        "level": 1
+      },
+      "content": [
+        {
+          "type": "text",
+          "text": "11. Tracked Changes"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "type": "text",
+          "text": "Track Changes is enabled from this point on. The paragraphs below contain a pending insertion, a pending deletion and a pending replacement, so the OOXML carries w:ins and w:del elements that a parser must reconcile against the final text.",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "type": "text",
+          "text": "The vendor shall deliver the initial report within ",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "text": " of the effective date.",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "type": "text",
+          "text": "This sentence stays.",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "type": "text",
+          "text": "A pending insertion follows this sentence.",
+          "marks": [
+            {
+              "type": "textStyle",
+              "attrs": {
+                "fontSize": "12pt"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "paragraph"
+    },
+    {
+      "type": "paragraph"
     }
   ]
 }

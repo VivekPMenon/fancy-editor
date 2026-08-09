@@ -41,6 +41,37 @@ interface ListParagraphInfo {
   fontSize?: string;
   fontFamily?: string;
   color?: string;
+  // CSS list-style-type inferred from the marker token, so an ordered list
+  // renders the same numbering Word used (I/II, a/b, i/ii, …) instead of the
+  // editor's default cycle. Only meaningful on a list's first item — that's
+  // the one buildListTree reads when it creates the <ol> — so it's derived
+  // from first-of-list marker values (1/a/A/i/I).
+  listStyleType?: string;
+}
+
+// Maps a *first-of-list* marker token to the CSS list-style-type it implies.
+// Word's ordered lists always start their first item at the format's first
+// value (decimal->1, lower-alpha->a, upper-alpha->A, lower-roman->i,
+// upper-roman->I), which makes that first marker unambiguous — a later item
+// like "II." or "b." can't be told apart by shape alone, but we never need
+// to: only the list-creating first item drives the <ol>'s style.
+function cssListStyleFromMarker(marker: string): string | undefined {
+  const token = marker.replace(/[.)]/g, '');
+  if (/^\d+$/.test(token)) {
+    return 'decimal';
+  }
+  switch (token) {
+    case 'a':
+      return 'lower-alpha';
+    case 'A':
+      return 'upper-alpha';
+    case 'i':
+      return 'lower-roman';
+    case 'I':
+      return 'upper-roman';
+    default:
+      return undefined;
+  }
 }
 
 function inchesFromCss(value: string): number {
@@ -169,6 +200,7 @@ function analyzeListParagraph(p: Element): ListParagraphInfo | null {
     element: p,
     level: detectLevel(p),
     ordered: !isBulletToken(marker, markerFontFamily),
+    listStyleType: cssListStyleFromMarker(marker),
     contentFragment,
     fontSize: p.style.fontSize || undefined,
     fontFamily: p.style.fontFamily || undefined,
@@ -223,6 +255,9 @@ function removeEmptySpans(fragment: DocumentFragment): void {
 
 function buildListTree(runInfos: ListParagraphInfo[]): HTMLElement {
   const root = document.createElement(runInfos[0].ordered ? 'ol' : 'ul');
+  if (runInfos[0].listStyleType) {
+    root.style.listStyleType = runInfos[0].listStyleType;
+  }
   const stack: { level: number; listEl: HTMLElement }[] = [{ level: runInfos[0].level, listEl: root }];
   const lastLiByLevel = new Map<number, HTMLElement>();
 
@@ -234,6 +269,9 @@ function buildListTree(runInfos: ListParagraphInfo[]): HTMLElement {
     if (info.level > stack[stack.length - 1].level) {
       const parentLi = lastLiByLevel.get(stack[stack.length - 1].level);
       const newList = document.createElement(info.ordered ? 'ol' : 'ul');
+      if (info.listStyleType) {
+        newList.style.listStyleType = info.listStyleType;
+      }
       (parentLi ?? stack[stack.length - 1].listEl).appendChild(newList);
       stack.push({ level: info.level, listEl: newList });
     }

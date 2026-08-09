@@ -52,8 +52,8 @@
         xmlns:wps="http://schemas.microsoft.com/office/word/2010/wordprocessingShape"
         mc:Ignorable="w14 w15 w16se w16cid w16 w16cex w16sdtdh w16sdtfl w16du wp14">
         <w:body>
-          <w:p w14:paraId="6FCAD825" w14:textId="77777777" w:rsidR="00150404" w:rsidRPr="00A604CD"
-            w:rsidRDefault="00150404" w:rsidP="00FE6769">
+          <w:p w14:paraId="6FCAD825" w14:textId="77777777" w:rsidR="003803D8" w:rsidRPr="00A604CD"
+            w:rsidRDefault="003803D8" w:rsidP="00FE6769">
             <w:pPr>
               <w:pStyle w:val="Heading1" />
               <w:spacing w:before="0" />
@@ -68,16 +68,18 @@
               <w:t>Sample Document</w:t>
             </w:r>
           </w:p>
-          <w:p w14:paraId="53D2FFD2" w14:textId="77777777" w:rsidR="00150404"
-            w:rsidRDefault="00150404" w:rsidP="00A604CD">
+          <w:p w14:paraId="53D2FFD2" w14:textId="07E269C1" w:rsidR="003803D8"
+            w:rsidRDefault="003803D8" w:rsidP="00982600">
             <w:r>
               <w:t>This document was created using accessibility techniques for headings, lists,
                 image alternate text, tables, and columns. It should be completely accessible using
-                assistive technologies such as screen readers.</w:t>
+                assistive technologies such as screen readers. This document should trigger the AI
+                tagging for Equities, GBP and Research. It should also trigger the Identified
+                Entities check for AAPL instrument.</w:t>
             </w:r>
           </w:p>
-          <w:p w14:paraId="60AD0935" w14:textId="77777777" w:rsidR="00150404" w:rsidRPr="00A604CD"
-            w:rsidRDefault="00150404" w:rsidP="00A604CD">
+          <w:p w14:paraId="60AD0935" w14:textId="77777777" w:rsidR="003803D8" w:rsidRPr="00A604CD"
+            w:rsidRDefault="003803D8" w:rsidP="00A604CD">
             <w:pPr>
               <w:pStyle w:val="Heading2" />
             </w:pPr>
@@ -85,8 +87,8 @@
               <w:t>Headings</w:t>
             </w:r>
           </w:p>
-          <w:p w14:paraId="04FA23DC" w14:textId="0B3E6E3D" w:rsidR="00150404"
-            w:rsidRDefault="00150404" w:rsidP="00A604CD">
+          <w:p w14:paraId="69472200" w14:textId="77777777" w:rsidR="003803D8"
+            w:rsidRDefault="003803D8" w:rsidP="00A604CD">
             <w:r>
               <w:t>There are eight section headings in this document. At the beginning, "Sample
                 Document" is a level 1 heading. The main section headings, such as "Headings" and
@@ -94,8 +96,8 @@
                 Table" and "Complex Table," which are both level 3 headings.</w:t>
             </w:r>
           </w:p>
-          <w:p w14:paraId="300477B0" w14:textId="367057B5" w:rsidR="00150404"
-            w:rsidRDefault="00150404" w:rsidP="00235F65">
+          <w:p w14:paraId="68F03B7B" w14:textId="77777777" w:rsidR="003803D8"
+            w:rsidRDefault="003803D8" w:rsidP="00235F65">
             <w:pPr>
               <w:pStyle w:val="Style1" />
             </w:pPr>
@@ -103,8 +105,8 @@
               <w:t>Lists</w:t>
             </w:r>
           </w:p>
-          <w:p w14:paraId="6326C396" w14:textId="77777777" w:rsidR="00150404"
-            w:rsidRDefault="00150404" w:rsidP="00A604CD">
+          <w:p w14:paraId="6326C396" w14:textId="77777777" w:rsidR="003803D8"
+            w:rsidRDefault="003803D8" w:rsidP="00A604CD">
             <w:r>
               <w:t xml:space="preserve">The following outline of the sections of this </w:t>
             </w:r>
@@ -119,8 +121,8 @@
                 (bulleted) list with two items.</w:t>
             </w:r>
           </w:p>
-          <w:p w14:paraId="612A2C87" w14:textId="77777777" w:rsidR="00150404"
-            w:rsidRDefault="00150404" w:rsidP="00235F65">
+          <w:p w14:paraId="612A2C87" w14:textId="77777777" w:rsidR="003803D8"
+            w:rsidRDefault="003803D8" w:rsidP="00235F65">
             <w:pPr>
               <w:pStyle w:val="ListParagraph" />
               <w:numPr>
@@ -132,8 +134,8 @@
               <w:t xml:space="preserve">Headings </w:t>
             </w:r>
           </w:p>
-          <w:p w14:paraId="29FB2B7C" w14:textId="77777777" w:rsidR="00150404"
-            w:rsidRDefault="00150404" w:rsidP="00235F65">
+          <w:p w14:paraId="29FB2B7C" w14:textId="77777777" w:rsidR="003803D8"
+            w:rsidRDefault="003803D8" w:rsidP="00235F65">
             <w:pPr>
               <w:pStyle w:val="ListParagraph" />
               <w:numPr>
@@ -145,8 +147,8 @@
               <w:t xml:space="preserve">Lists </w:t>
             </w:r>
           </w:p>
-          <w:p w14:paraId="23BFF1DD" w14:textId="77777777" w:rsidR="00150404"
-            w:rsidRDefault="00150404" w:rsidP="00235F65">
+          <w:p w14:paraId="23BFF1DD" w14:textId="77777777" w:rsidR="003803D8"
+            w:rsidRDefault="003803D8" w:rsidP="00235F65">
             <w:pPr>
               <w:pStyle w:val="ListParagraph" />
               <w:numPr>
@@ -158,8 +160,8 @@
               <w:t xml:space="preserve">Links </w:t>
             </w:r>
           </w:p>
-          <w:p w14:paraId="15AE7F82" w14:textId="77777777" w:rsidR="00150404"
-            w:rsidRDefault="00150404" w:rsidP="00235F65">
+          <w:p w14:paraId="15AE7F82" w14:textId="77777777" w:rsidR="003803D8"
+            w:rsidRDefault="003803D8" w:rsidP="00235F65">
             <w:pPr>
               <w:pStyle w:val="ListParagraph" />
               <w:numPr>
@@ -171,8 +173,8 @@
               <w:t xml:space="preserve">Images </w:t>
             </w:r>
           </w:p>
-          <w:p w14:paraId="625E57FF" w14:textId="77777777" w:rsidR="00150404"
-            w:rsidRDefault="00150404" w:rsidP="00235F65">
+          <w:p w14:paraId="625E57FF" w14:textId="77777777" w:rsidR="003803D8"
+            w:rsidRDefault="003803D8" w:rsidP="00235F65">
             <w:pPr>
               <w:pStyle w:val="ListParagraph" />
               <w:numPr>
@@ -184,8 +186,8 @@
               <w:t xml:space="preserve">Tables </w:t>
             </w:r>
           </w:p>
-          <w:p w14:paraId="5862AD33" w14:textId="77777777" w:rsidR="00150404"
-            w:rsidRDefault="00150404" w:rsidP="00235F65">
+          <w:p w14:paraId="5862AD33" w14:textId="77777777" w:rsidR="003803D8"
+            w:rsidRDefault="003803D8" w:rsidP="00235F65">
             <w:pPr>
               <w:pStyle w:val="ListParagraph" />
               <w:numPr>
@@ -197,8 +199,8 @@
               <w:t xml:space="preserve">Simple Tables </w:t>
             </w:r>
           </w:p>
-          <w:p w14:paraId="5C9B5604" w14:textId="77777777" w:rsidR="00150404"
-            w:rsidRDefault="00150404" w:rsidP="00235F65">
+          <w:p w14:paraId="5C9B5604" w14:textId="77777777" w:rsidR="003803D8"
+            w:rsidRDefault="003803D8" w:rsidP="00235F65">
             <w:pPr>
               <w:pStyle w:val="ListParagraph" />
               <w:numPr>
@@ -210,8 +212,8 @@
               <w:t xml:space="preserve">Complex Tables </w:t>
             </w:r>
           </w:p>
-          <w:p w14:paraId="4E3FC526" w14:textId="77777777" w:rsidR="00150404"
-            w:rsidRDefault="00150404" w:rsidP="00235F65">
+          <w:p w14:paraId="4E3FC526" w14:textId="77777777" w:rsidR="003803D8"
+            w:rsidRDefault="003803D8" w:rsidP="00235F65">
             <w:pPr>
               <w:pStyle w:val="ListParagraph" />
               <w:numPr>
@@ -223,8 +225,8 @@
               <w:t xml:space="preserve">Columns </w:t>
             </w:r>
           </w:p>
-          <w:p w14:paraId="7F7B19A5" w14:textId="77777777" w:rsidR="00150404"
-            w:rsidRDefault="00150404" w:rsidP="00A604CD">
+          <w:p w14:paraId="7F7B19A5" w14:textId="77777777" w:rsidR="003803D8"
+            w:rsidRDefault="003803D8" w:rsidP="00A604CD">
             <w:pPr>
               <w:pStyle w:val="Heading2" />
             </w:pPr>
@@ -232,15 +234,15 @@
               <w:t>Links</w:t>
             </w:r>
           </w:p>
-          <w:p w14:paraId="3093BCCA" w14:textId="77777777" w:rsidR="00150404"
-            w:rsidRDefault="00150404" w:rsidP="00A604CD">
+          <w:p w14:paraId="3093BCCA" w14:textId="77777777" w:rsidR="003803D8"
+            w:rsidRDefault="003803D8" w:rsidP="00A604CD">
             <w:r>
               <w:t>In web documents, links can point different locations on the page, different
                 pages, or even downloadable documents, such as Word documents or PDFs:</w:t>
             </w:r>
           </w:p>
-          <w:p w14:paraId="2EBE4FF3" w14:textId="77777777" w:rsidR="00150404"
-            w:rsidRDefault="00150404" w:rsidP="00A604CD">
+          <w:p w14:paraId="2EBE4FF3" w14:textId="77777777" w:rsidR="003803D8"
+            w:rsidRDefault="003803D8" w:rsidP="00A604CD">
             <w:hyperlink w:anchor="_top" w:history="1">
               <w:r w:rsidRPr="00A604CD">
                 <w:rPr>
@@ -272,8 +274,8 @@
               </w:r>
             </w:hyperlink>
           </w:p>
-          <w:p w14:paraId="560DEA74" w14:textId="77777777" w:rsidR="00150404"
-            w:rsidRDefault="00150404" w:rsidP="00A604CD">
+          <w:p w14:paraId="560DEA74" w14:textId="77777777" w:rsidR="003803D8"
+            w:rsidRDefault="003803D8" w:rsidP="00A604CD">
             <w:pPr>
               <w:pStyle w:val="Heading2" />
             </w:pPr>
@@ -281,18 +283,15 @@
               <w:t>Images</w:t>
             </w:r>
           </w:p>
-          <w:p w14:paraId="64C4336B" w14:textId="21FB7769" w:rsidR="00150404"
-            w:rsidRDefault="00150404" w:rsidP="00E953EE">
-            <w:pPr>
-              <w:jc w:val="center" />
-            </w:pPr>
+          <w:p w14:paraId="64C4336B" w14:textId="77777777" w:rsidR="003803D8"
+            w:rsidRDefault="003803D8" w:rsidP="00A604CD">
             <w:r>
               <w:rPr>
                 <w:noProof />
               </w:rPr>
               <w:drawing>
-                <wp:inline distT="0" distB="0" distL="0" distR="0" wp14:anchorId="4A56368F"
-                  wp14:editId="6877F6DF">
+                <wp:inline distT="0" distB="0" distL="0" distR="0" wp14:anchorId="115B42E5"
+                  wp14:editId="623F9010">
                   <wp:extent cx="1339850" cy="1243965" />
                   <wp:effectExtent l="0" t="0" r="0" b="0" />
                   <wp:docPr id="3" name="Picture 3" descr="Web Access Symbol" />
@@ -346,22 +345,22 @@
               </w:drawing>
             </w:r>
           </w:p>
-          <w:p w14:paraId="6EE8416C" w14:textId="358C5C78" w:rsidR="00150404"
-            w:rsidRDefault="00150404" w:rsidP="00A604CD">
+          <w:p w14:paraId="6EE8416C" w14:textId="358C5C78" w:rsidR="003803D8"
+            w:rsidRDefault="003803D8" w:rsidP="00A604CD">
             <w:r>
               <w:t>Documents may contain images. For example, there is an image of the web
                 accessibility symbol to the left of this paragraph. Its alternate text is "Web
                 Access Symbol".</w:t>
             </w:r>
           </w:p>
-          <w:p w14:paraId="5F22D1E8" w14:textId="77777777" w:rsidR="00150404"
-            w:rsidRDefault="00150404" w:rsidP="00A604CD">
+          <w:p w14:paraId="5F22D1E8" w14:textId="77777777" w:rsidR="003803D8"
+            w:rsidRDefault="003803D8" w:rsidP="00A604CD">
             <w:r>
               <w:t>Alt text should communicate what an image means, not how it looks.</w:t>
             </w:r>
           </w:p>
-          <w:p w14:paraId="62B9F2D4" w14:textId="3B869845" w:rsidR="00150404"
-            w:rsidRDefault="00150404" w:rsidP="0012377E">
+          <w:p w14:paraId="62B9F2D4" w14:textId="3B869845" w:rsidR="003803D8"
+            w:rsidRDefault="003803D8" w:rsidP="0012377E">
             <w:pPr>
               <w:spacing w:before="0" w:after="200" />
             </w:pPr>
@@ -450,10 +449,10 @@
                 on the image.</w:t>
             </w:r>
           </w:p>
-          <w:p w14:paraId="12A59898" w14:textId="77777777" w:rsidR="00150404"
-            w:rsidRDefault="00150404" w:rsidP="00FE6769" />
-          <w:p w14:paraId="75DBB012" w14:textId="77777777" w:rsidR="00150404"
-            w:rsidRDefault="00150404" w:rsidP="00A604CD">
+          <w:p w14:paraId="12A59898" w14:textId="77777777" w:rsidR="003803D8"
+            w:rsidRDefault="003803D8" w:rsidP="00FE6769" />
+          <w:p w14:paraId="75DBB012" w14:textId="77777777" w:rsidR="003803D8"
+            w:rsidRDefault="003803D8" w:rsidP="00A604CD">
             <w:pPr>
               <w:pStyle w:val="Heading2" />
             </w:pPr>
@@ -461,8 +460,8 @@
               <w:t>Tables</w:t>
             </w:r>
           </w:p>
-          <w:p w14:paraId="07FE8CDE" w14:textId="77777777" w:rsidR="00150404" w:rsidRPr="00A604CD"
-            w:rsidRDefault="00150404" w:rsidP="00A604CD">
+          <w:p w14:paraId="07FE8CDE" w14:textId="77777777" w:rsidR="003803D8" w:rsidRPr="00A604CD"
+            w:rsidRDefault="003803D8" w:rsidP="00A604CD">
             <w:pPr>
               <w:pStyle w:val="Heading3" />
             </w:pPr>
@@ -470,8 +469,8 @@
               <w:t>Simple Tables</w:t>
             </w:r>
           </w:p>
-          <w:p w14:paraId="4B6ECA88" w14:textId="77777777" w:rsidR="00150404"
-            w:rsidRDefault="00150404" w:rsidP="00A604CD">
+          <w:p w14:paraId="4B6ECA88" w14:textId="77777777" w:rsidR="003803D8"
+            w:rsidRDefault="003803D8" w:rsidP="00A604CD">
             <w:r>
               <w:t>Simple tables have a uniform number of columns and rows, without any merged
                 cells:</w:t>
@@ -496,7 +495,7 @@
               <w:gridCol w:w="1270" />
               <w:gridCol w:w="884" />
             </w:tblGrid>
-            <w:tr w:rsidR="00150404" w:rsidRPr="00A604CD" w14:paraId="10BF8D77"
+            <w:tr w:rsidR="003803D8" w:rsidRPr="00A604CD" w14:paraId="10BF8D77"
               w14:textId="77777777" w:rsidTr="00A604CD">
               <w:trPr>
                 <w:tblHeader />
@@ -505,8 +504,8 @@
                 <w:tcPr>
                   <w:tcW w:w="1617" w:type="dxa" />
                 </w:tcPr>
-                <w:p w14:paraId="745CB1D9" w14:textId="77777777" w:rsidR="00150404"
-                  w:rsidRPr="00A604CD" w:rsidRDefault="00150404" w:rsidP="006328F2">
+                <w:p w14:paraId="745CB1D9" w14:textId="77777777" w:rsidR="003803D8"
+                  w:rsidRPr="00A604CD" w:rsidRDefault="003803D8" w:rsidP="006328F2">
                   <w:pPr>
                     <w:spacing w:before="0" w:after="0" />
                     <w:rPr>
@@ -525,8 +524,8 @@
                 <w:tcPr>
                   <w:tcW w:w="1270" w:type="dxa" />
                 </w:tcPr>
-                <w:p w14:paraId="231FC7FF" w14:textId="77777777" w:rsidR="00150404"
-                  w:rsidRPr="00A604CD" w:rsidRDefault="00150404" w:rsidP="006328F2">
+                <w:p w14:paraId="231FC7FF" w14:textId="77777777" w:rsidR="003803D8"
+                  w:rsidRPr="00A604CD" w:rsidRDefault="003803D8" w:rsidP="006328F2">
                   <w:pPr>
                     <w:spacing w:before="0" w:after="0" />
                     <w:rPr>
@@ -545,8 +544,8 @@
                 <w:tcPr>
                   <w:tcW w:w="884" w:type="dxa" />
                 </w:tcPr>
-                <w:p w14:paraId="15484659" w14:textId="77777777" w:rsidR="00150404"
-                  w:rsidRPr="00A604CD" w:rsidRDefault="00150404" w:rsidP="006328F2">
+                <w:p w14:paraId="15484659" w14:textId="77777777" w:rsidR="003803D8"
+                  w:rsidRPr="00A604CD" w:rsidRDefault="003803D8" w:rsidP="006328F2">
                   <w:pPr>
                     <w:spacing w:before="0" w:after="0" />
                     <w:rPr>
@@ -562,7 +561,7 @@
                 </w:p>
               </w:tc>
             </w:tr>
-            <w:tr w:rsidR="00150404" w:rsidRPr="00A604CD" w14:paraId="1ACC8956"
+            <w:tr w:rsidR="003803D8" w:rsidRPr="00A604CD" w14:paraId="1ACC8956"
               w14:textId="77777777" w:rsidTr="00A604CD">
               <w:trPr>
                 <w:tblHeader />
@@ -571,8 +570,8 @@
                 <w:tcPr>
                   <w:tcW w:w="1617" w:type="dxa" />
                 </w:tcPr>
-                <w:p w14:paraId="1FA2CC80" w14:textId="77777777" w:rsidR="00150404"
-                  w:rsidRPr="00A604CD" w:rsidRDefault="00150404" w:rsidP="006328F2">
+                <w:p w14:paraId="1FA2CC80" w14:textId="77777777" w:rsidR="003803D8"
+                  w:rsidRPr="00A604CD" w:rsidRDefault="003803D8" w:rsidP="006328F2">
                   <w:pPr>
                     <w:spacing w:before="0" w:after="0" />
                   </w:pPr>
@@ -585,8 +584,8 @@
                 <w:tcPr>
                   <w:tcW w:w="1270" w:type="dxa" />
                 </w:tcPr>
-                <w:p w14:paraId="438BFBCE" w14:textId="77777777" w:rsidR="00150404"
-                  w:rsidRPr="00A604CD" w:rsidRDefault="00150404" w:rsidP="006328F2">
+                <w:p w14:paraId="438BFBCE" w14:textId="77777777" w:rsidR="003803D8"
+                  w:rsidRPr="00A604CD" w:rsidRDefault="003803D8" w:rsidP="006328F2">
                   <w:pPr>
                     <w:spacing w:before="0" w:after="0" />
                   </w:pPr>
@@ -599,8 +598,8 @@
                 <w:tcPr>
                   <w:tcW w:w="884" w:type="dxa" />
                 </w:tcPr>
-                <w:p w14:paraId="6C47D53D" w14:textId="77777777" w:rsidR="00150404"
-                  w:rsidRPr="00A604CD" w:rsidRDefault="00150404" w:rsidP="006328F2">
+                <w:p w14:paraId="6C47D53D" w14:textId="77777777" w:rsidR="003803D8"
+                  w:rsidRPr="00A604CD" w:rsidRDefault="003803D8" w:rsidP="006328F2">
                   <w:pPr>
                     <w:spacing w:before="0" w:after="0" />
                   </w:pPr>
@@ -610,7 +609,7 @@
                 </w:p>
               </w:tc>
             </w:tr>
-            <w:tr w:rsidR="00150404" w:rsidRPr="00A604CD" w14:paraId="3C62312E"
+            <w:tr w:rsidR="003803D8" w:rsidRPr="00A604CD" w14:paraId="3C62312E"
               w14:textId="77777777" w:rsidTr="00A604CD">
               <w:trPr>
                 <w:tblHeader />
@@ -619,8 +618,8 @@
                 <w:tcPr>
                   <w:tcW w:w="1617" w:type="dxa" />
                 </w:tcPr>
-                <w:p w14:paraId="33BD6B9B" w14:textId="77777777" w:rsidR="00150404"
-                  w:rsidRPr="00A604CD" w:rsidRDefault="00150404" w:rsidP="006328F2">
+                <w:p w14:paraId="33BD6B9B" w14:textId="77777777" w:rsidR="003803D8"
+                  w:rsidRPr="00A604CD" w:rsidRDefault="003803D8" w:rsidP="006328F2">
                   <w:pPr>
                     <w:spacing w:before="0" w:after="0" />
                   </w:pPr>
@@ -633,8 +632,8 @@
                 <w:tcPr>
                   <w:tcW w:w="1270" w:type="dxa" />
                 </w:tcPr>
-                <w:p w14:paraId="04D5D81A" w14:textId="77777777" w:rsidR="00150404"
-                  w:rsidRPr="00A604CD" w:rsidRDefault="00150404" w:rsidP="006328F2">
+                <w:p w14:paraId="04D5D81A" w14:textId="77777777" w:rsidR="003803D8"
+                  w:rsidRPr="00A604CD" w:rsidRDefault="003803D8" w:rsidP="006328F2">
                   <w:pPr>
                     <w:spacing w:before="0" w:after="0" />
                   </w:pPr>
@@ -647,8 +646,8 @@
                 <w:tcPr>
                   <w:tcW w:w="884" w:type="dxa" />
                 </w:tcPr>
-                <w:p w14:paraId="1AD0192A" w14:textId="77777777" w:rsidR="00150404"
-                  w:rsidRPr="00A604CD" w:rsidRDefault="00150404" w:rsidP="006328F2">
+                <w:p w14:paraId="1AD0192A" w14:textId="77777777" w:rsidR="003803D8"
+                  w:rsidRPr="00A604CD" w:rsidRDefault="003803D8" w:rsidP="006328F2">
                   <w:pPr>
                     <w:spacing w:before="0" w:after="0" />
                   </w:pPr>
@@ -658,7 +657,7 @@
                 </w:p>
               </w:tc>
             </w:tr>
-            <w:tr w:rsidR="00150404" w:rsidRPr="00A604CD" w14:paraId="04C1AF34"
+            <w:tr w:rsidR="003803D8" w:rsidRPr="00A604CD" w14:paraId="04C1AF34"
               w14:textId="77777777" w:rsidTr="00A604CD">
               <w:trPr>
                 <w:tblHeader />
@@ -667,8 +666,8 @@
                 <w:tcPr>
                   <w:tcW w:w="1617" w:type="dxa" />
                 </w:tcPr>
-                <w:p w14:paraId="1E059225" w14:textId="77777777" w:rsidR="00150404"
-                  w:rsidRPr="00A604CD" w:rsidRDefault="00150404" w:rsidP="006328F2">
+                <w:p w14:paraId="1E059225" w14:textId="77777777" w:rsidR="003803D8"
+                  w:rsidRPr="00A604CD" w:rsidRDefault="003803D8" w:rsidP="006328F2">
                   <w:pPr>
                     <w:spacing w:before="0" w:after="0" />
                   </w:pPr>
@@ -681,8 +680,8 @@
                 <w:tcPr>
                   <w:tcW w:w="1270" w:type="dxa" />
                 </w:tcPr>
-                <w:p w14:paraId="56C46683" w14:textId="77777777" w:rsidR="00150404"
-                  w:rsidRPr="00A604CD" w:rsidRDefault="00150404" w:rsidP="006328F2">
+                <w:p w14:paraId="56C46683" w14:textId="77777777" w:rsidR="003803D8"
+                  w:rsidRPr="00A604CD" w:rsidRDefault="003803D8" w:rsidP="006328F2">
                   <w:pPr>
                     <w:spacing w:before="0" w:after="0" />
                   </w:pPr>
@@ -695,8 +694,8 @@
                 <w:tcPr>
                   <w:tcW w:w="884" w:type="dxa" />
                 </w:tcPr>
-                <w:p w14:paraId="479D9DF6" w14:textId="77777777" w:rsidR="00150404"
-                  w:rsidRPr="00A604CD" w:rsidRDefault="00150404" w:rsidP="006328F2">
+                <w:p w14:paraId="479D9DF6" w14:textId="77777777" w:rsidR="003803D8"
+                  w:rsidRPr="00A604CD" w:rsidRDefault="003803D8" w:rsidP="006328F2">
                   <w:pPr>
                     <w:spacing w:before="0" w:after="0" />
                   </w:pPr>
@@ -706,7 +705,7 @@
                 </w:p>
               </w:tc>
             </w:tr>
-            <w:tr w:rsidR="00150404" w:rsidRPr="00A604CD" w14:paraId="2F589435"
+            <w:tr w:rsidR="003803D8" w:rsidRPr="00A604CD" w14:paraId="2F589435"
               w14:textId="77777777" w:rsidTr="00A604CD">
               <w:trPr>
                 <w:tblHeader />
@@ -715,8 +714,8 @@
                 <w:tcPr>
                   <w:tcW w:w="1617" w:type="dxa" />
                 </w:tcPr>
-                <w:p w14:paraId="156B0049" w14:textId="77777777" w:rsidR="00150404"
-                  w:rsidRPr="00A604CD" w:rsidRDefault="00150404" w:rsidP="006328F2">
+                <w:p w14:paraId="156B0049" w14:textId="77777777" w:rsidR="003803D8"
+                  w:rsidRPr="00A604CD" w:rsidRDefault="003803D8" w:rsidP="006328F2">
                   <w:pPr>
                     <w:spacing w:before="0" w:after="0" />
                   </w:pPr>
@@ -729,8 +728,8 @@
                 <w:tcPr>
                   <w:tcW w:w="1270" w:type="dxa" />
                 </w:tcPr>
-                <w:p w14:paraId="44F6B24E" w14:textId="77777777" w:rsidR="00150404"
-                  w:rsidRPr="00A604CD" w:rsidRDefault="00150404" w:rsidP="006328F2">
+                <w:p w14:paraId="44F6B24E" w14:textId="77777777" w:rsidR="003803D8"
+                  w:rsidRPr="00A604CD" w:rsidRDefault="003803D8" w:rsidP="006328F2">
                   <w:pPr>
                     <w:spacing w:before="0" w:after="0" />
                   </w:pPr>
@@ -743,8 +742,8 @@
                 <w:tcPr>
                   <w:tcW w:w="884" w:type="dxa" />
                 </w:tcPr>
-                <w:p w14:paraId="4723469B" w14:textId="77777777" w:rsidR="00150404"
-                  w:rsidRPr="00A604CD" w:rsidRDefault="00150404" w:rsidP="006328F2">
+                <w:p w14:paraId="4723469B" w14:textId="77777777" w:rsidR="003803D8"
+                  w:rsidRPr="00A604CD" w:rsidRDefault="003803D8" w:rsidP="006328F2">
                   <w:pPr>
                     <w:spacing w:before="0" w:after="0" />
                   </w:pPr>
@@ -754,7 +753,7 @@
                 </w:p>
               </w:tc>
             </w:tr>
-            <w:tr w:rsidR="00150404" w:rsidRPr="00A604CD" w14:paraId="09245966"
+            <w:tr w:rsidR="003803D8" w:rsidRPr="00A604CD" w14:paraId="09245966"
               w14:textId="77777777" w:rsidTr="00A604CD">
               <w:trPr>
                 <w:tblHeader />
@@ -763,8 +762,8 @@
                 <w:tcPr>
                   <w:tcW w:w="1617" w:type="dxa" />
                 </w:tcPr>
-                <w:p w14:paraId="743A7E4E" w14:textId="77777777" w:rsidR="00150404"
-                  w:rsidRPr="00A604CD" w:rsidRDefault="00150404" w:rsidP="006328F2">
+                <w:p w14:paraId="743A7E4E" w14:textId="77777777" w:rsidR="003803D8"
+                  w:rsidRPr="00A604CD" w:rsidRDefault="003803D8" w:rsidP="006328F2">
                   <w:pPr>
                     <w:spacing w:before="0" w:after="0" />
                   </w:pPr>
@@ -777,8 +776,8 @@
                 <w:tcPr>
                   <w:tcW w:w="1270" w:type="dxa" />
                 </w:tcPr>
-                <w:p w14:paraId="030C7A5D" w14:textId="77777777" w:rsidR="00150404"
-                  w:rsidRPr="00A604CD" w:rsidRDefault="00150404" w:rsidP="006328F2">
+                <w:p w14:paraId="030C7A5D" w14:textId="77777777" w:rsidR="003803D8"
+                  w:rsidRPr="00A604CD" w:rsidRDefault="003803D8" w:rsidP="006328F2">
                   <w:pPr>
                     <w:spacing w:before="0" w:after="0" />
                   </w:pPr>
@@ -791,8 +790,8 @@
                 <w:tcPr>
                   <w:tcW w:w="884" w:type="dxa" />
                 </w:tcPr>
-                <w:p w14:paraId="10BEF75D" w14:textId="77777777" w:rsidR="00150404"
-                  w:rsidRPr="00A604CD" w:rsidRDefault="00150404" w:rsidP="006328F2">
+                <w:p w14:paraId="10BEF75D" w14:textId="77777777" w:rsidR="003803D8"
+                  w:rsidRPr="00A604CD" w:rsidRDefault="003803D8" w:rsidP="006328F2">
                   <w:pPr>
                     <w:spacing w:before="0" w:after="0" />
                   </w:pPr>
@@ -803,14 +802,14 @@
               </w:tc>
             </w:tr>
           </w:tbl>
-          <w:p w14:paraId="5286416C" w14:textId="77777777" w:rsidR="00150404"
-            w:rsidRDefault="00150404" w:rsidP="00FE6769">
+          <w:p w14:paraId="5286416C" w14:textId="77777777" w:rsidR="003803D8"
+            w:rsidRDefault="003803D8" w:rsidP="00FE6769">
             <w:pPr>
               <w:spacing w:before="0" w:after="0" w:line="120" w:lineRule="auto" />
             </w:pPr>
           </w:p>
-          <w:p w14:paraId="03889BE3" w14:textId="77777777" w:rsidR="00150404"
-            w:rsidRDefault="00150404" w:rsidP="00A604CD">
+          <w:p w14:paraId="03889BE3" w14:textId="77777777" w:rsidR="003803D8"
+            w:rsidRDefault="003803D8" w:rsidP="00A604CD">
             <w:pPr>
               <w:pStyle w:val="Heading3" />
             </w:pPr>
@@ -818,8 +817,8 @@
               <w:t>Complex Tables</w:t>
             </w:r>
           </w:p>
-          <w:p w14:paraId="2AD10A2A" w14:textId="77777777" w:rsidR="00150404"
-            w:rsidRDefault="00150404" w:rsidP="00A604CD">
+          <w:p w14:paraId="2AD10A2A" w14:textId="77777777" w:rsidR="003803D8"
+            w:rsidRDefault="003803D8" w:rsidP="00A604CD">
             <w:r>
               <w:t>The following is a complex table, using merged cells as headers for sections
                 within the table. This can't be made accessible in all types of documents:</w:t>
@@ -846,14 +845,14 @@
               <w:gridCol w:w="1915" />
               <w:gridCol w:w="1916" />
             </w:tblGrid>
-            <w:tr w:rsidR="00150404" w:rsidRPr="006328F2" w14:paraId="3A6A1D52"
+            <w:tr w:rsidR="003803D8" w:rsidRPr="006328F2" w14:paraId="3A6A1D52"
               w14:textId="77777777" w:rsidTr="007515D1">
               <w:tc>
                 <w:tcPr>
                   <w:tcW w:w="1800" w:type="dxa" />
                 </w:tcPr>
-                <w:p w14:paraId="307FB7AA" w14:textId="77777777" w:rsidR="00150404"
-                  w:rsidRPr="006328F2" w:rsidRDefault="00150404" w:rsidP="006328F2">
+                <w:p w14:paraId="307FB7AA" w14:textId="77777777" w:rsidR="003803D8"
+                  w:rsidRPr="006328F2" w:rsidRDefault="003803D8" w:rsidP="006328F2">
                   <w:pPr>
                     <w:spacing w:before="0" w:after="0" />
                     <w:rPr>
@@ -867,8 +866,8 @@
                   <w:tcW w:w="3830" w:type="dxa" />
                   <w:gridSpan w:val="2" />
                 </w:tcPr>
-                <w:p w14:paraId="2EB5B665" w14:textId="77777777" w:rsidR="00150404"
-                  w:rsidRPr="006328F2" w:rsidRDefault="00150404" w:rsidP="006328F2">
+                <w:p w14:paraId="2EB5B665" w14:textId="77777777" w:rsidR="003803D8"
+                  w:rsidRPr="006328F2" w:rsidRDefault="003803D8" w:rsidP="006328F2">
                   <w:pPr>
                     <w:spacing w:before="0" w:after="0" />
                     <w:rPr>
@@ -888,8 +887,8 @@
                   <w:tcW w:w="3831" w:type="dxa" />
                   <w:gridSpan w:val="2" />
                 </w:tcPr>
-                <w:p w14:paraId="0C231F08" w14:textId="77777777" w:rsidR="00150404"
-                  w:rsidRPr="006328F2" w:rsidRDefault="00150404" w:rsidP="006328F2">
+                <w:p w14:paraId="0C231F08" w14:textId="77777777" w:rsidR="003803D8"
+                  w:rsidRPr="006328F2" w:rsidRDefault="003803D8" w:rsidP="006328F2">
                   <w:pPr>
                     <w:spacing w:before="0" w:after="0" />
                     <w:rPr>
@@ -905,14 +904,14 @@
                 </w:p>
               </w:tc>
             </w:tr>
-            <w:tr w:rsidR="00150404" w:rsidRPr="006328F2" w14:paraId="51ADD9F3"
+            <w:tr w:rsidR="003803D8" w:rsidRPr="006328F2" w14:paraId="51ADD9F3"
               w14:textId="77777777" w:rsidTr="006328F2">
               <w:tc>
                 <w:tcPr>
                   <w:tcW w:w="1800" w:type="dxa" />
                 </w:tcPr>
-                <w:p w14:paraId="13F39B19" w14:textId="77777777" w:rsidR="00150404"
-                  w:rsidRPr="006328F2" w:rsidRDefault="00150404" w:rsidP="006328F2">
+                <w:p w14:paraId="13F39B19" w14:textId="77777777" w:rsidR="003803D8"
+                  w:rsidRPr="006328F2" w:rsidRDefault="003803D8" w:rsidP="006328F2">
                   <w:pPr>
                     <w:spacing w:before="0" w:after="0" />
                     <w:rPr>
@@ -931,8 +930,8 @@
                 <w:tcPr>
                   <w:tcW w:w="1915" w:type="dxa" />
                 </w:tcPr>
-                <w:p w14:paraId="0391CC6D" w14:textId="77777777" w:rsidR="00150404"
-                  w:rsidRPr="006328F2" w:rsidRDefault="00150404" w:rsidP="006328F2">
+                <w:p w14:paraId="0391CC6D" w14:textId="77777777" w:rsidR="003803D8"
+                  w:rsidRPr="006328F2" w:rsidRDefault="003803D8" w:rsidP="006328F2">
                   <w:pPr>
                     <w:spacing w:before="0" w:after="0" />
                     <w:rPr>
@@ -951,8 +950,8 @@
                 <w:tcPr>
                   <w:tcW w:w="1915" w:type="dxa" />
                 </w:tcPr>
-                <w:p w14:paraId="0B5C29DF" w14:textId="77777777" w:rsidR="00150404"
-                  w:rsidRPr="006328F2" w:rsidRDefault="00150404" w:rsidP="006328F2">
+                <w:p w14:paraId="0B5C29DF" w14:textId="77777777" w:rsidR="003803D8"
+                  w:rsidRPr="006328F2" w:rsidRDefault="003803D8" w:rsidP="006328F2">
                   <w:pPr>
                     <w:spacing w:before="0" w:after="0" />
                     <w:rPr>
@@ -971,8 +970,8 @@
                 <w:tcPr>
                   <w:tcW w:w="1915" w:type="dxa" />
                 </w:tcPr>
-                <w:p w14:paraId="69BF134C" w14:textId="77777777" w:rsidR="00150404"
-                  w:rsidRPr="006328F2" w:rsidRDefault="00150404" w:rsidP="006328F2">
+                <w:p w14:paraId="69BF134C" w14:textId="77777777" w:rsidR="003803D8"
+                  w:rsidRPr="006328F2" w:rsidRDefault="003803D8" w:rsidP="006328F2">
                   <w:pPr>
                     <w:spacing w:before="0" w:after="0" />
                     <w:rPr>
@@ -991,8 +990,8 @@
                 <w:tcPr>
                   <w:tcW w:w="1916" w:type="dxa" />
                 </w:tcPr>
-                <w:p w14:paraId="625428CB" w14:textId="77777777" w:rsidR="00150404"
-                  w:rsidRPr="006328F2" w:rsidRDefault="00150404" w:rsidP="006328F2">
+                <w:p w14:paraId="625428CB" w14:textId="77777777" w:rsidR="003803D8"
+                  w:rsidRPr="006328F2" w:rsidRDefault="003803D8" w:rsidP="006328F2">
                   <w:pPr>
                     <w:spacing w:before="0" w:after="0" />
                     <w:rPr>
@@ -1008,14 +1007,14 @@
                 </w:p>
               </w:tc>
             </w:tr>
-            <w:tr w:rsidR="00150404" w:rsidRPr="006328F2" w14:paraId="0823D562"
+            <w:tr w:rsidR="003803D8" w:rsidRPr="006328F2" w14:paraId="0823D562"
               w14:textId="77777777" w:rsidTr="006328F2">
               <w:tc>
                 <w:tcPr>
                   <w:tcW w:w="1800" w:type="dxa" />
                 </w:tcPr>
-                <w:p w14:paraId="158F0FD4" w14:textId="77777777" w:rsidR="00150404"
-                  w:rsidRPr="006328F2" w:rsidRDefault="00150404" w:rsidP="006328F2">
+                <w:p w14:paraId="158F0FD4" w14:textId="77777777" w:rsidR="003803D8"
+                  w:rsidRPr="006328F2" w:rsidRDefault="003803D8" w:rsidP="006328F2">
                   <w:pPr>
                     <w:spacing w:before="0" w:after="0" />
                   </w:pPr>
@@ -1028,8 +1027,8 @@
                 <w:tcPr>
                   <w:tcW w:w="1915" w:type="dxa" />
                 </w:tcPr>
-                <w:p w14:paraId="2C5EF59C" w14:textId="77777777" w:rsidR="00150404"
-                  w:rsidRPr="006328F2" w:rsidRDefault="00150404" w:rsidP="006328F2">
+                <w:p w14:paraId="2C5EF59C" w14:textId="77777777" w:rsidR="003803D8"
+                  w:rsidRPr="006328F2" w:rsidRDefault="003803D8" w:rsidP="006328F2">
                   <w:pPr>
                     <w:spacing w:before="0" w:after="0" />
                   </w:pPr>
@@ -1042,8 +1041,8 @@
                 <w:tcPr>
                   <w:tcW w:w="1915" w:type="dxa" />
                 </w:tcPr>
-                <w:p w14:paraId="520120FC" w14:textId="77777777" w:rsidR="00150404"
-                  w:rsidRPr="006328F2" w:rsidRDefault="00150404" w:rsidP="006328F2">
+                <w:p w14:paraId="520120FC" w14:textId="77777777" w:rsidR="003803D8"
+                  w:rsidRPr="006328F2" w:rsidRDefault="003803D8" w:rsidP="006328F2">
                   <w:pPr>
                     <w:spacing w:before="0" w:after="0" />
                   </w:pPr>
@@ -1056,8 +1055,8 @@
                 <w:tcPr>
                   <w:tcW w:w="1915" w:type="dxa" />
                 </w:tcPr>
-                <w:p w14:paraId="105B500C" w14:textId="77777777" w:rsidR="00150404"
-                  w:rsidRPr="006328F2" w:rsidRDefault="00150404" w:rsidP="006328F2">
+                <w:p w14:paraId="105B500C" w14:textId="77777777" w:rsidR="003803D8"
+                  w:rsidRPr="006328F2" w:rsidRDefault="003803D8" w:rsidP="006328F2">
                   <w:pPr>
                     <w:spacing w:before="0" w:after="0" />
                   </w:pPr>
@@ -1070,8 +1069,8 @@
                 <w:tcPr>
                   <w:tcW w:w="1916" w:type="dxa" />
                 </w:tcPr>
-                <w:p w14:paraId="1A1A9070" w14:textId="77777777" w:rsidR="00150404"
-                  w:rsidRPr="006328F2" w:rsidRDefault="00150404" w:rsidP="006328F2">
+                <w:p w14:paraId="1A1A9070" w14:textId="77777777" w:rsidR="003803D8"
+                  w:rsidRPr="006328F2" w:rsidRDefault="003803D8" w:rsidP="006328F2">
                   <w:pPr>
                     <w:spacing w:before="0" w:after="0" />
                   </w:pPr>
@@ -1081,14 +1080,14 @@
                 </w:p>
               </w:tc>
             </w:tr>
-            <w:tr w:rsidR="00150404" w:rsidRPr="006328F2" w14:paraId="39FE6B59"
+            <w:tr w:rsidR="003803D8" w:rsidRPr="006328F2" w14:paraId="39FE6B59"
               w14:textId="77777777" w:rsidTr="006328F2">
               <w:tc>
                 <w:tcPr>
                   <w:tcW w:w="1800" w:type="dxa" />
                 </w:tcPr>
-                <w:p w14:paraId="61BDC905" w14:textId="77777777" w:rsidR="00150404"
-                  w:rsidRPr="006328F2" w:rsidRDefault="00150404" w:rsidP="006328F2">
+                <w:p w14:paraId="61BDC905" w14:textId="77777777" w:rsidR="003803D8"
+                  w:rsidRPr="006328F2" w:rsidRDefault="003803D8" w:rsidP="006328F2">
                   <w:pPr>
                     <w:spacing w:before="0" w:after="0" />
                   </w:pPr>
@@ -1101,8 +1100,8 @@
                 <w:tcPr>
                   <w:tcW w:w="1915" w:type="dxa" />
                 </w:tcPr>
-                <w:p w14:paraId="48D5BC67" w14:textId="77777777" w:rsidR="00150404"
-                  w:rsidRPr="006328F2" w:rsidRDefault="00150404" w:rsidP="006328F2">
+                <w:p w14:paraId="48D5BC67" w14:textId="77777777" w:rsidR="003803D8"
+                  w:rsidRPr="006328F2" w:rsidRDefault="003803D8" w:rsidP="006328F2">
                   <w:pPr>
                     <w:spacing w:before="0" w:after="0" />
                   </w:pPr>
@@ -1115,8 +1114,8 @@
                 <w:tcPr>
                   <w:tcW w:w="1915" w:type="dxa" />
                 </w:tcPr>
-                <w:p w14:paraId="4AA9915C" w14:textId="77777777" w:rsidR="00150404"
-                  w:rsidRPr="006328F2" w:rsidRDefault="00150404" w:rsidP="006328F2">
+                <w:p w14:paraId="4AA9915C" w14:textId="77777777" w:rsidR="003803D8"
+                  w:rsidRPr="006328F2" w:rsidRDefault="003803D8" w:rsidP="006328F2">
                   <w:pPr>
                     <w:spacing w:before="0" w:after="0" />
                   </w:pPr>
@@ -1129,8 +1128,8 @@
                 <w:tcPr>
                   <w:tcW w:w="1915" w:type="dxa" />
                 </w:tcPr>
-                <w:p w14:paraId="663A5D5F" w14:textId="77777777" w:rsidR="00150404"
-                  w:rsidRPr="006328F2" w:rsidRDefault="00150404" w:rsidP="006328F2">
+                <w:p w14:paraId="663A5D5F" w14:textId="77777777" w:rsidR="003803D8"
+                  w:rsidRPr="006328F2" w:rsidRDefault="003803D8" w:rsidP="006328F2">
                   <w:pPr>
                     <w:spacing w:before="0" w:after="0" />
                   </w:pPr>
@@ -1143,8 +1142,8 @@
                 <w:tcPr>
                   <w:tcW w:w="1916" w:type="dxa" />
                 </w:tcPr>
-                <w:p w14:paraId="681CF561" w14:textId="77777777" w:rsidR="00150404"
-                  w:rsidRPr="006328F2" w:rsidRDefault="00150404" w:rsidP="006328F2">
+                <w:p w14:paraId="681CF561" w14:textId="77777777" w:rsidR="003803D8"
+                  w:rsidRPr="006328F2" w:rsidRDefault="003803D8" w:rsidP="006328F2">
                   <w:pPr>
                     <w:spacing w:before="0" w:after="0" />
                   </w:pPr>
@@ -1154,14 +1153,14 @@
                 </w:p>
               </w:tc>
             </w:tr>
-            <w:tr w:rsidR="00150404" w:rsidRPr="006328F2" w14:paraId="1ED47D97"
+            <w:tr w:rsidR="003803D8" w:rsidRPr="006328F2" w14:paraId="1ED47D97"
               w14:textId="77777777" w:rsidTr="006328F2">
               <w:tc>
                 <w:tcPr>
                   <w:tcW w:w="1800" w:type="dxa" />
                 </w:tcPr>
-                <w:p w14:paraId="7068F864" w14:textId="77777777" w:rsidR="00150404"
-                  w:rsidRPr="006328F2" w:rsidRDefault="00150404" w:rsidP="006328F2">
+                <w:p w14:paraId="7068F864" w14:textId="77777777" w:rsidR="003803D8"
+                  w:rsidRPr="006328F2" w:rsidRDefault="003803D8" w:rsidP="006328F2">
                   <w:pPr>
                     <w:spacing w:before="0" w:after="0" />
                   </w:pPr>
@@ -1174,8 +1173,8 @@
                 <w:tcPr>
                   <w:tcW w:w="1915" w:type="dxa" />
                 </w:tcPr>
-                <w:p w14:paraId="060E03FA" w14:textId="77777777" w:rsidR="00150404"
-                  w:rsidRPr="006328F2" w:rsidRDefault="00150404" w:rsidP="006328F2">
+                <w:p w14:paraId="060E03FA" w14:textId="77777777" w:rsidR="003803D8"
+                  w:rsidRPr="006328F2" w:rsidRDefault="003803D8" w:rsidP="006328F2">
                   <w:pPr>
                     <w:spacing w:before="0" w:after="0" />
                   </w:pPr>
@@ -1188,8 +1187,8 @@
                 <w:tcPr>
                   <w:tcW w:w="1915" w:type="dxa" />
                 </w:tcPr>
-                <w:p w14:paraId="62BB33CF" w14:textId="77777777" w:rsidR="00150404"
-                  w:rsidRPr="006328F2" w:rsidRDefault="00150404" w:rsidP="006328F2">
+                <w:p w14:paraId="62BB33CF" w14:textId="77777777" w:rsidR="003803D8"
+                  w:rsidRPr="006328F2" w:rsidRDefault="003803D8" w:rsidP="006328F2">
                   <w:pPr>
                     <w:spacing w:before="0" w:after="0" />
                   </w:pPr>
@@ -1202,8 +1201,8 @@
                 <w:tcPr>
                   <w:tcW w:w="1915" w:type="dxa" />
                 </w:tcPr>
-                <w:p w14:paraId="42BF698F" w14:textId="77777777" w:rsidR="00150404"
-                  w:rsidRPr="006328F2" w:rsidRDefault="00150404" w:rsidP="006328F2">
+                <w:p w14:paraId="42BF698F" w14:textId="77777777" w:rsidR="003803D8"
+                  w:rsidRPr="006328F2" w:rsidRDefault="003803D8" w:rsidP="006328F2">
                   <w:pPr>
                     <w:spacing w:before="0" w:after="0" />
                   </w:pPr>
@@ -1216,8 +1215,8 @@
                 <w:tcPr>
                   <w:tcW w:w="1916" w:type="dxa" />
                 </w:tcPr>
-                <w:p w14:paraId="4441793A" w14:textId="77777777" w:rsidR="00150404"
-                  w:rsidRPr="006328F2" w:rsidRDefault="00150404" w:rsidP="006328F2">
+                <w:p w14:paraId="4441793A" w14:textId="77777777" w:rsidR="003803D8"
+                  w:rsidRPr="006328F2" w:rsidRDefault="003803D8" w:rsidP="006328F2">
                   <w:pPr>
                     <w:spacing w:before="0" w:after="0" />
                   </w:pPr>
@@ -1227,14 +1226,14 @@
                 </w:p>
               </w:tc>
             </w:tr>
-            <w:tr w:rsidR="00150404" w:rsidRPr="006328F2" w14:paraId="0F0A9137"
+            <w:tr w:rsidR="003803D8" w:rsidRPr="006328F2" w14:paraId="0F0A9137"
               w14:textId="77777777" w:rsidTr="006328F2">
               <w:tc>
                 <w:tcPr>
                   <w:tcW w:w="1800" w:type="dxa" />
                 </w:tcPr>
-                <w:p w14:paraId="58E2C353" w14:textId="77777777" w:rsidR="00150404"
-                  w:rsidRPr="006328F2" w:rsidRDefault="00150404" w:rsidP="006328F2">
+                <w:p w14:paraId="58E2C353" w14:textId="77777777" w:rsidR="003803D8"
+                  w:rsidRPr="006328F2" w:rsidRDefault="003803D8" w:rsidP="006328F2">
                   <w:pPr>
                     <w:spacing w:before="0" w:after="0" />
                   </w:pPr>
@@ -1247,8 +1246,8 @@
                 <w:tcPr>
                   <w:tcW w:w="1915" w:type="dxa" />
                 </w:tcPr>
-                <w:p w14:paraId="0E6C2D35" w14:textId="77777777" w:rsidR="00150404"
-                  w:rsidRPr="006328F2" w:rsidRDefault="00150404" w:rsidP="006328F2">
+                <w:p w14:paraId="0E6C2D35" w14:textId="77777777" w:rsidR="003803D8"
+                  w:rsidRPr="006328F2" w:rsidRDefault="003803D8" w:rsidP="006328F2">
                   <w:pPr>
                     <w:spacing w:before="0" w:after="0" />
                   </w:pPr>
@@ -1261,8 +1260,8 @@
                 <w:tcPr>
                   <w:tcW w:w="1915" w:type="dxa" />
                 </w:tcPr>
-                <w:p w14:paraId="670F0CDD" w14:textId="77777777" w:rsidR="00150404"
-                  w:rsidRPr="006328F2" w:rsidRDefault="00150404" w:rsidP="006328F2">
+                <w:p w14:paraId="670F0CDD" w14:textId="77777777" w:rsidR="003803D8"
+                  w:rsidRPr="006328F2" w:rsidRDefault="003803D8" w:rsidP="006328F2">
                   <w:pPr>
                     <w:spacing w:before="0" w:after="0" />
                   </w:pPr>
@@ -1275,8 +1274,8 @@
                 <w:tcPr>
                   <w:tcW w:w="1915" w:type="dxa" />
                 </w:tcPr>
-                <w:p w14:paraId="476D667B" w14:textId="77777777" w:rsidR="00150404"
-                  w:rsidRPr="006328F2" w:rsidRDefault="00150404" w:rsidP="006328F2">
+                <w:p w14:paraId="476D667B" w14:textId="77777777" w:rsidR="003803D8"
+                  w:rsidRPr="006328F2" w:rsidRDefault="003803D8" w:rsidP="006328F2">
                   <w:pPr>
                     <w:spacing w:before="0" w:after="0" />
                   </w:pPr>
@@ -1289,8 +1288,8 @@
                 <w:tcPr>
                   <w:tcW w:w="1916" w:type="dxa" />
                 </w:tcPr>
-                <w:p w14:paraId="4B01619D" w14:textId="77777777" w:rsidR="00150404"
-                  w:rsidRPr="006328F2" w:rsidRDefault="00150404" w:rsidP="006328F2">
+                <w:p w14:paraId="4B01619D" w14:textId="77777777" w:rsidR="003803D8"
+                  w:rsidRPr="006328F2" w:rsidRDefault="003803D8" w:rsidP="006328F2">
                   <w:pPr>
                     <w:spacing w:before="0" w:after="0" />
                   </w:pPr>
@@ -1300,13 +1299,13 @@
                 </w:p>
               </w:tc>
             </w:tr>
-            <w:tr w:rsidR="00150404" w14:paraId="08CF9919" w14:textId="77777777" w:rsidTr="006328F2">
+            <w:tr w:rsidR="003803D8" w14:paraId="08CF9919" w14:textId="77777777" w:rsidTr="006328F2">
               <w:tc>
                 <w:tcPr>
                   <w:tcW w:w="1800" w:type="dxa" />
                 </w:tcPr>
-                <w:p w14:paraId="2371A1E8" w14:textId="77777777" w:rsidR="00150404"
-                  w:rsidRPr="006328F2" w:rsidRDefault="00150404" w:rsidP="006328F2">
+                <w:p w14:paraId="2371A1E8" w14:textId="77777777" w:rsidR="003803D8"
+                  w:rsidRPr="006328F2" w:rsidRDefault="003803D8" w:rsidP="006328F2">
                   <w:pPr>
                     <w:spacing w:before="0" w:after="0" />
                   </w:pPr>
@@ -1319,8 +1318,8 @@
                 <w:tcPr>
                   <w:tcW w:w="1915" w:type="dxa" />
                 </w:tcPr>
-                <w:p w14:paraId="595CFA3A" w14:textId="77777777" w:rsidR="00150404"
-                  w:rsidRPr="006328F2" w:rsidRDefault="00150404" w:rsidP="006328F2">
+                <w:p w14:paraId="595CFA3A" w14:textId="77777777" w:rsidR="003803D8"
+                  w:rsidRPr="006328F2" w:rsidRDefault="003803D8" w:rsidP="006328F2">
                   <w:pPr>
                     <w:spacing w:before="0" w:after="0" />
                   </w:pPr>
@@ -1333,8 +1332,8 @@
                 <w:tcPr>
                   <w:tcW w:w="1915" w:type="dxa" />
                 </w:tcPr>
-                <w:p w14:paraId="5EF85EB5" w14:textId="77777777" w:rsidR="00150404"
-                  w:rsidRPr="006328F2" w:rsidRDefault="00150404" w:rsidP="006328F2">
+                <w:p w14:paraId="5EF85EB5" w14:textId="77777777" w:rsidR="003803D8"
+                  w:rsidRPr="006328F2" w:rsidRDefault="003803D8" w:rsidP="006328F2">
                   <w:pPr>
                     <w:spacing w:before="0" w:after="0" />
                   </w:pPr>
@@ -1347,8 +1346,8 @@
                 <w:tcPr>
                   <w:tcW w:w="1915" w:type="dxa" />
                 </w:tcPr>
-                <w:p w14:paraId="79562536" w14:textId="77777777" w:rsidR="00150404"
-                  w:rsidRPr="006328F2" w:rsidRDefault="00150404" w:rsidP="006328F2">
+                <w:p w14:paraId="79562536" w14:textId="77777777" w:rsidR="003803D8"
+                  w:rsidRPr="006328F2" w:rsidRDefault="003803D8" w:rsidP="006328F2">
                   <w:pPr>
                     <w:spacing w:before="0" w:after="0" />
                   </w:pPr>
@@ -1361,8 +1360,8 @@
                 <w:tcPr>
                   <w:tcW w:w="1916" w:type="dxa" />
                 </w:tcPr>
-                <w:p w14:paraId="78DE7230" w14:textId="77777777" w:rsidR="00150404"
-                  w:rsidRDefault="00150404" w:rsidP="006328F2">
+                <w:p w14:paraId="78DE7230" w14:textId="77777777" w:rsidR="003803D8"
+                  w:rsidRDefault="003803D8" w:rsidP="006328F2">
                   <w:pPr>
                     <w:spacing w:before="0" w:after="0" />
                   </w:pPr>
@@ -1373,8 +1372,8 @@
               </w:tc>
             </w:tr>
           </w:tbl>
-          <w:p w14:paraId="1F30F8B9" w14:textId="77777777" w:rsidR="00150404"
-            w:rsidRDefault="00150404" w:rsidP="00FE6769">
+          <w:p w14:paraId="1F30F8B9" w14:textId="77777777" w:rsidR="003803D8"
+            w:rsidRDefault="003803D8" w:rsidP="00FE6769">
             <w:pPr>
               <w:spacing w:before="0" w:after="0" w:line="120" w:lineRule="auto" />
             </w:pPr>
@@ -1382,8 +1381,8 @@
               <w:t xml:space="preserve"> </w:t>
             </w:r>
           </w:p>
-          <w:p w14:paraId="34C2A43B" w14:textId="77777777" w:rsidR="00150404"
-            w:rsidRDefault="00150404" w:rsidP="00A604CD">
+          <w:p w14:paraId="34C2A43B" w14:textId="77777777" w:rsidR="003803D8"
+            w:rsidRDefault="003803D8" w:rsidP="00A604CD">
             <w:pPr>
               <w:pStyle w:val="Heading2" />
             </w:pPr>
@@ -1391,10 +1390,10 @@
               <w:t>Columns</w:t>
             </w:r>
           </w:p>
-          <w:p w14:paraId="2A2328CD" w14:textId="77777777" w:rsidR="00150404"
-            w:rsidRDefault="00150404" w:rsidP="00A604CD">
+          <w:p w14:paraId="2A2328CD" w14:textId="77777777" w:rsidR="003803D8"
+            w:rsidRDefault="003803D8" w:rsidP="00A604CD">
             <w:pPr>
-              <w:sectPr w:rsidR="00150404" w:rsidSect="00150404">
+              <w:sectPr w:rsidR="003803D8" w:rsidSect="003803D8">
                 <w:pgSz w:w="12240" w:h="15840" />
                 <w:pgMar w:top="1440" w:right="1440" w:bottom="720" w:left="1440" w:header="720"
                   w:footer="720" w:gutter="0" />
@@ -1403,8 +1402,8 @@
               </w:sectPr>
             </w:pPr>
           </w:p>
-          <w:p w14:paraId="21E1113F" w14:textId="77777777" w:rsidR="00150404"
-            w:rsidRDefault="00150404" w:rsidP="00A604CD">
+          <w:p w14:paraId="21E1113F" w14:textId="77777777" w:rsidR="003803D8"
+            w:rsidRDefault="003803D8" w:rsidP="00A604CD">
             <w:r>
               <w:t>This is an example of columns. With columns, the page is split into two or more
                 horizontal sections. Unlike tables, in which you usually read across a row and then
@@ -1418,9 +1417,9 @@
                 accessible.</w:t>
             </w:r>
           </w:p>
-          <w:p w14:paraId="30F1A14B" w14:textId="77777777" w:rsidR="001130F0"
-            w:rsidRDefault="001130F0" />
-          <w:sectPr w:rsidR="001130F0" w:rsidSect="00150404">
+          <w:p w14:paraId="6938761F" w14:textId="77777777" w:rsidR="006B371A"
+            w:rsidRDefault="006B371A" />
+          <w:sectPr w:rsidR="006B371A" w:rsidSect="003803D8">
             <w:type w:val="continuous" />
             <w:pgSz w:w="12240" w:h="15840" />
             <w:pgMar w:top="1440" w:right="1440" w:bottom="1440" w:left="1440" w:header="720"
@@ -2010,6 +2009,7 @@
         xmlns:w16se="http://schemas.microsoft.com/office/word/2015/wordml/symex"
         xmlns:sl="http://schemas.openxmlformats.org/schemaLibrary/2006/main"
         mc:Ignorable="w14 w15 w16se w16cid w16 w16cex w16sdtdh w16sdtfl w16du">
+        <w:zoom w:percent="100" />
         <w:defaultTabStop w:val="720" />
         <w:characterSpacingControl w:val="doNotCompress" />
         <w:compat>
@@ -2034,7 +2034,6 @@
           <w:rsid w:val="00022E85" />
           <w:rsid w:val="00034F8C" />
           <w:rsid w:val="00037177" />
-          <w:rsid w:val="000514D8" />
           <w:rsid w:val="000543CF" />
           <w:rsid w:val="00057D56" />
           <w:rsid w:val="00061B96" />
@@ -2056,14 +2055,13 @@
           <w:rsid w:val="00101E6C" />
           <w:rsid w:val="00103F18" />
           <w:rsid w:val="00111D7B" />
-          <w:rsid w:val="001130F0" />
           <w:rsid w:val="00120EB8" />
           <w:rsid w:val="0012377E" />
           <w:rsid w:val="0013070C" />
           <w:rsid w:val="00140475" />
           <w:rsid w:val="0014485B" />
+          <w:rsid w:val="00145556" />
           <w:rsid w:val="00146D8D" />
-          <w:rsid w:val="00150404" />
           <w:rsid w:val="0017045B" />
           <w:rsid w:val="00171C11" />
           <w:rsid w:val="0017375A" />
@@ -2097,14 +2095,17 @@
           <w:rsid w:val="003079D1" />
           <w:rsid w:val="00311EAA" />
           <w:rsid w:val="00327BC2" />
+          <w:rsid w:val="00333881" />
           <w:rsid w:val="00333A46" />
           <w:rsid w:val="00347C2F" />
           <w:rsid w:val="0035037D" />
           <w:rsid w:val="003507B6" />
           <w:rsid w:val="0035159A" />
+          <w:rsid w:val="00366C04" />
           <w:rsid w:val="00367DCB" />
           <w:rsid w:val="00371702" />
           <w:rsid w:val="00371ACC" />
+          <w:rsid w:val="003803D8" />
           <w:rsid w:val="00382768" />
           <w:rsid w:val="0038398E" />
           <w:rsid w:val="00383B7F" />
@@ -2119,12 +2120,14 @@
           <w:rsid w:val="004433A9" />
           <w:rsid w:val="00454657" />
           <w:rsid w:val="00462E18" />
+          <w:rsid w:val="004737F2" />
           <w:rsid w:val="004773FE" />
           <w:rsid w:val="00480177" />
           <w:rsid w:val="0048054C" />
           <w:rsid w:val="00482E09" />
           <w:rsid w:val="004842FD" />
           <w:rsid w:val="00494D7A" />
+          <w:rsid w:val="004A570F" />
           <w:rsid w:val="004A5C3D" />
           <w:rsid w:val="004A6302" />
           <w:rsid w:val="004F3216" />
@@ -2162,6 +2165,7 @@
           <w:rsid w:val="00696570" />
           <w:rsid w:val="006A5737" />
           <w:rsid w:val="006B2167" />
+          <w:rsid w:val="006B371A" />
           <w:rsid w:val="006B3A59" />
           <w:rsid w:val="006C0402" />
           <w:rsid w:val="006E207A" />
@@ -2201,6 +2205,7 @@
           <w:rsid w:val="009359C9" />
           <w:rsid w:val="00951CB5" />
           <w:rsid w:val="00957B14" />
+          <w:rsid w:val="00982600" />
           <w:rsid w:val="00994A90" />
           <w:rsid w:val="009C1165" />
           <w:rsid w:val="009C5FB1" />
@@ -2214,6 +2219,7 @@
           <w:rsid w:val="00A05215" />
           <w:rsid w:val="00A121C2" />
           <w:rsid w:val="00A14575" />
+          <w:rsid w:val="00A22694" />
           <w:rsid w:val="00A22F7E" />
           <w:rsid w:val="00A31ABC" />
           <w:rsid w:val="00A372A1" />
@@ -2229,6 +2235,7 @@
           <w:rsid w:val="00AA3F75" />
           <w:rsid w:val="00AC1794" />
           <w:rsid w:val="00AE238F" />
+          <w:rsid w:val="00AE388D" />
           <w:rsid w:val="00AF0112" />
           <w:rsid w:val="00AF16DE" />
           <w:rsid w:val="00B1677C" />
@@ -2298,7 +2305,6 @@
           <w:rsid w:val="00E568C3" />
           <w:rsid w:val="00E6278A" />
           <w:rsid w:val="00E805C2" />
-          <w:rsid w:val="00E953EE" />
           <w:rsid w:val="00E95408" />
           <w:rsid w:val="00EA3A04" />
           <w:rsid w:val="00EB4372" />
@@ -2306,6 +2312,7 @@
           <w:rsid w:val="00ED05EE" />
           <w:rsid w:val="00ED300B" />
           <w:rsid w:val="00EF10FF" />
+          <w:rsid w:val="00EF42ED" />
           <w:rsid w:val="00EF69EB" />
           <w:rsid w:val="00F0162B" />
           <w:rsid w:val="00F06483" />
@@ -2420,7 +2427,7 @@
               <w:ind w:left="1440" w:hanging="360" />
             </w:pPr>
           </w:lvl>
-          <w:lvl w:ilvl="2" w:tplc="FFFFFFFF">
+          <w:lvl w:ilvl="2" w:tplc="FFFFFFFF" w:tentative="1">
             <w:start w:val="1" />
             <w:numFmt w:val="bullet" />
             <w:lvlText w:val="" />
@@ -2432,7 +2439,7 @@
               <w:rFonts w:ascii="Wingdings" w:hAnsi="Wingdings" w:hint="default" />
             </w:rPr>
           </w:lvl>
-          <w:lvl w:ilvl="3" w:tplc="FFFFFFFF">
+          <w:lvl w:ilvl="3" w:tplc="FFFFFFFF" w:tentative="1">
             <w:start w:val="1" />
             <w:numFmt w:val="bullet" />
             <w:lvlText w:val="" />
@@ -2444,7 +2451,7 @@
               <w:rFonts w:ascii="Symbol" w:hAnsi="Symbol" w:hint="default" />
             </w:rPr>
           </w:lvl>
-          <w:lvl w:ilvl="4" w:tplc="FFFFFFFF">
+          <w:lvl w:ilvl="4" w:tplc="FFFFFFFF" w:tentative="1">
             <w:start w:val="1" />
             <w:numFmt w:val="bullet" />
             <w:lvlText w:val="o" />
@@ -2713,6 +2720,155 @@
           </w:lvl>
         </w:abstractNum>
         <w:abstractNum w:abstractNumId="3" w15:restartNumberingAfterBreak="0">
+          <w:nsid w:val="62C605B7" />
+          <w:multiLevelType w:val="multilevel" />
+          <w:tmpl w:val="D2C20CEE" />
+          <w:lvl w:ilvl="0">
+            <w:start w:val="1" />
+            <w:numFmt w:val="bullet" />
+            <w:lvlText w:val="" />
+            <w:lvlJc w:val="left" />
+            <w:pPr>
+              <w:tabs>
+                <w:tab w:val="num" w:pos="720" />
+              </w:tabs>
+              <w:ind w:left="720" w:hanging="360" />
+            </w:pPr>
+            <w:rPr>
+              <w:rFonts w:ascii="Symbol" w:hAnsi="Symbol" w:hint="default" />
+              <w:sz w:val="20" />
+            </w:rPr>
+          </w:lvl>
+          <w:lvl w:ilvl="1" w:tentative="1">
+            <w:start w:val="1" />
+            <w:numFmt w:val="bullet" />
+            <w:lvlText w:val="o" />
+            <w:lvlJc w:val="left" />
+            <w:pPr>
+              <w:tabs>
+                <w:tab w:val="num" w:pos="1440" />
+              </w:tabs>
+              <w:ind w:left="1440" w:hanging="360" />
+            </w:pPr>
+            <w:rPr>
+              <w:rFonts w:ascii="Courier New" w:hAnsi="Courier New" w:hint="default" />
+              <w:sz w:val="20" />
+            </w:rPr>
+          </w:lvl>
+          <w:lvl w:ilvl="2" w:tentative="1">
+            <w:start w:val="1" />
+            <w:numFmt w:val="bullet" />
+            <w:lvlText w:val="" />
+            <w:lvlJc w:val="left" />
+            <w:pPr>
+              <w:tabs>
+                <w:tab w:val="num" w:pos="2160" />
+              </w:tabs>
+              <w:ind w:left="2160" w:hanging="360" />
+            </w:pPr>
+            <w:rPr>
+              <w:rFonts w:ascii="Wingdings" w:hAnsi="Wingdings" w:hint="default" />
+              <w:sz w:val="20" />
+            </w:rPr>
+          </w:lvl>
+          <w:lvl w:ilvl="3" w:tentative="1">
+            <w:start w:val="1" />
+            <w:numFmt w:val="bullet" />
+            <w:lvlText w:val="" />
+            <w:lvlJc w:val="left" />
+            <w:pPr>
+              <w:tabs>
+                <w:tab w:val="num" w:pos="2880" />
+              </w:tabs>
+              <w:ind w:left="2880" w:hanging="360" />
+            </w:pPr>
+            <w:rPr>
+              <w:rFonts w:ascii="Wingdings" w:hAnsi="Wingdings" w:hint="default" />
+              <w:sz w:val="20" />
+            </w:rPr>
+          </w:lvl>
+          <w:lvl w:ilvl="4" w:tentative="1">
+            <w:start w:val="1" />
+            <w:numFmt w:val="bullet" />
+            <w:lvlText w:val="" />
+            <w:lvlJc w:val="left" />
+            <w:pPr>
+              <w:tabs>
+                <w:tab w:val="num" w:pos="3600" />
+              </w:tabs>
+              <w:ind w:left="3600" w:hanging="360" />
+            </w:pPr>
+            <w:rPr>
+              <w:rFonts w:ascii="Wingdings" w:hAnsi="Wingdings" w:hint="default" />
+              <w:sz w:val="20" />
+            </w:rPr>
+          </w:lvl>
+          <w:lvl w:ilvl="5" w:tentative="1">
+            <w:start w:val="1" />
+            <w:numFmt w:val="bullet" />
+            <w:lvlText w:val="" />
+            <w:lvlJc w:val="left" />
+            <w:pPr>
+              <w:tabs>
+                <w:tab w:val="num" w:pos="4320" />
+              </w:tabs>
+              <w:ind w:left="4320" w:hanging="360" />
+            </w:pPr>
+            <w:rPr>
+              <w:rFonts w:ascii="Wingdings" w:hAnsi="Wingdings" w:hint="default" />
+              <w:sz w:val="20" />
+            </w:rPr>
+          </w:lvl>
+          <w:lvl w:ilvl="6" w:tentative="1">
+            <w:start w:val="1" />
+            <w:numFmt w:val="bullet" />
+            <w:lvlText w:val="" />
+            <w:lvlJc w:val="left" />
+            <w:pPr>
+              <w:tabs>
+                <w:tab w:val="num" w:pos="5040" />
+              </w:tabs>
+              <w:ind w:left="5040" w:hanging="360" />
+            </w:pPr>
+            <w:rPr>
+              <w:rFonts w:ascii="Wingdings" w:hAnsi="Wingdings" w:hint="default" />
+              <w:sz w:val="20" />
+            </w:rPr>
+          </w:lvl>
+          <w:lvl w:ilvl="7" w:tentative="1">
+            <w:start w:val="1" />
+            <w:numFmt w:val="bullet" />
+            <w:lvlText w:val="" />
+            <w:lvlJc w:val="left" />
+            <w:pPr>
+              <w:tabs>
+                <w:tab w:val="num" w:pos="5760" />
+              </w:tabs>
+              <w:ind w:left="5760" w:hanging="360" />
+            </w:pPr>
+            <w:rPr>
+              <w:rFonts w:ascii="Wingdings" w:hAnsi="Wingdings" w:hint="default" />
+              <w:sz w:val="20" />
+            </w:rPr>
+          </w:lvl>
+          <w:lvl w:ilvl="8" w:tentative="1">
+            <w:start w:val="1" />
+            <w:numFmt w:val="bullet" />
+            <w:lvlText w:val="" />
+            <w:lvlJc w:val="left" />
+            <w:pPr>
+              <w:tabs>
+                <w:tab w:val="num" w:pos="6480" />
+              </w:tabs>
+              <w:ind w:left="6480" w:hanging="360" />
+            </w:pPr>
+            <w:rPr>
+              <w:rFonts w:ascii="Wingdings" w:hAnsi="Wingdings" w:hint="default" />
+              <w:sz w:val="20" />
+            </w:rPr>
+          </w:lvl>
+        </w:abstractNum>
+        <w:abstractNum w:abstractNumId="4" w15:restartNumberingAfterBreak="0">
           <w:nsid w:val="75FD408C" />
           <w:multiLevelType w:val="hybridMultilevel" />
           <w:tmpl w:val="F14EEC0C" />
@@ -2828,7 +2984,7 @@
             </w:rPr>
           </w:lvl>
         </w:abstractNum>
-        <w:abstractNum w:abstractNumId="4" w15:restartNumberingAfterBreak="0">
+        <w:abstractNum w:abstractNumId="5" w15:restartNumberingAfterBreak="0">
           <w:nsid w:val="76613664" />
           <w:multiLevelType w:val="multilevel" />
           <w:tmpl w:val="B3A0A280" />
@@ -2977,7 +3133,7 @@
             </w:rPr>
           </w:lvl>
         </w:abstractNum>
-        <w:abstractNum w:abstractNumId="5" w15:restartNumberingAfterBreak="0">
+        <w:abstractNum w:abstractNumId="6" w15:restartNumberingAfterBreak="0">
           <w:nsid w:val="786758A1" />
           <w:multiLevelType w:val="hybridMultilevel" />
           <w:tmpl w:val="D1320EA2" />
@@ -3064,22 +3220,25 @@
           </w:lvl>
         </w:abstractNum>
         <w:num w:numId="1" w16cid:durableId="1856650079">
-          <w:abstractNumId w:val="5" />
+          <w:abstractNumId w:val="6" />
         </w:num>
         <w:num w:numId="2" w16cid:durableId="97722540">
           <w:abstractNumId w:val="1" />
         </w:num>
         <w:num w:numId="3" w16cid:durableId="1227450848">
-          <w:abstractNumId w:val="4" />
+          <w:abstractNumId w:val="5" />
         </w:num>
         <w:num w:numId="4" w16cid:durableId="1360619409">
-          <w:abstractNumId w:val="3" />
+          <w:abstractNumId w:val="4" />
         </w:num>
         <w:num w:numId="5" w16cid:durableId="61492482">
           <w:abstractNumId w:val="2" />
         </w:num>
         <w:num w:numId="6" w16cid:durableId="767963524">
           <w:abstractNumId w:val="0" />
+        </w:num>
+        <w:num w:numId="7" w16cid:durableId="680282023">
+          <w:abstractNumId w:val="3" />
         </w:num>
       </w:numbering>
     </pkg:xmlData>

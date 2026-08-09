@@ -102,6 +102,29 @@ extension config changes in
 [`editorExtensions.ts`](../src/core/tiptap-utils/editorExtensions.ts).
 ~10 lines of app code + 1 new dependency.
 
+**Body font-size dropped on the *OOXML* path — the same class of gap, a
+different cascade (2026-08-09).** The paste path gets body size for free
+(Word inlines the resolved `font-size:11pt` onto every span, juice-visible),
+but the OOXML converter read size only from a run's own `<w:rPr><w:sz>` — and
+body runs usually have no `rPr` at all. The 11pt lives in `docDefaults`
+(`<w:docDefaults><w:rPrDefault><w:rPr><w:sz w:val="22"/>` — half-points, so
+÷2 = 11pt), Word's document-wide default. So OOXML body text fell back to the
+editor's 16px base and read visibly larger than both the source and the paste
+import. Fix: [`styles.ts`](../src/core/tiptap-utils/ooxml/styles.ts) now
+resolves the `docDefaults` size and the converter seeds each non-heading
+paragraph's runs with it (a run's own `<w:sz>` still overrides), emitting it
+as a `fontSize` on the run's `textStyle` mark. Headings are left unseeded so
+they keep their heading-level + CSS sizing. Verified: sample-1 body runs →
+`11pt`, headings → none. List items also hoist that size onto the `<li>` node
+itself (not just their inner text), because the list marker (1., I., •)
+inherits its size from the `<li>` — otherwise the number/bullet renders at
+the editor's base size while the item text sits at 11pt, the same
+marker-inheritance gap the paste path handles in wordListReconstruction. Not
+handled: per-*paragraph-style* size overrides
+(e.g. a custom "Caption" style at 9pt) — only run-level and docDefaults are
+resolved, since these documents put body size in docDefaults; a styled
+paragraph relying on its style's own `sz` would fall back to the default.
+
 ---
 
 ## 4. List indentation lost entirely — no Tiptap extension exists for it
@@ -208,6 +231,28 @@ shift on the list node itself (`bulletList`/`orderedList` added to the Indent
 extension's types), matching how Tab moves a whole selected paragraph.
 Collapsed cursor → first-line `text-indent`; range selection → whole-block
 `margin-left`; list → nest, else block-shift.
+
+**Numbering format was being dropped — now preserved per level
+(2026-08-09).** The same nested list rendered *three different* ways: the
+Word doc used upper-roman (I, II) at level 2, the editor showed lower-alpha
+(a, b), and the Post Feed showed decimal (1, 2). Cause: both pipelines
+resolved the real format but immediately collapsed it to an `ordered`
+boolean and emitted a bare `<ol>`, so every surface fell back to CSS — and
+the editor's list-style cycle (App.css) and the Post Feed's (which had no
+nested rule at all) didn't even agree with each other. Fix: carry the real
+format through as an inline `list-style-type` on the `<ol>` via a small
+[`listStyleExtension.ts`](../src/core/tiptap-utils/listStyleExtension.ts)
+(a `listStyleType` node attribute on `orderedList`). The OOXML path maps
+numbering.xml's `numFmt` → CSS (`upperRoman`→`upper-roman`, `lowerLetter`→
+`lower-alpha`, …); the paste path infers it from the marker token, which is
+unambiguous because Word starts every ordered list at the format's first
+value (1 / a / A / i / I). Both now render the document's own markers, and
+the CSS cycles (editor + Post Feed, now matched) remain only as the fallback
+for lists authored in the editor. Verified end-to-end: sample-2 paste →
+nested `upper-roman`, sample-1 OOXML → level-1 `decimal`, level-2
+`upper-roman`. Fixed a latent OOXML quirk along the way — a child list took
+its *parent paragraph's* format; it now takes the format of the items it
+actually contains.
 
 ---
 

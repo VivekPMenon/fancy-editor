@@ -78,6 +78,27 @@ export const WordPaste = Extension.create({
   // (lists, alignment, spacing). We only ever touch `src` here.
   addProseMirrorPlugins() {
     return [
+      // Pasting a whole imported document otherwise leaves the caret — and
+      // the scroll position — at the very bottom, forcing a manual scroll
+      // back up to review what just came in. Reset the scroll container to
+      // the top once the paste has settled (deferred a frame so it wins over
+      // ProseMirror's own scroll-caret-into-view on the paste transaction).
+      new Plugin({
+        key: new PluginKey('wordPasteScrollTop'),
+        props: {
+          handleDOMEvents: {
+            paste: (view) => {
+              requestAnimationFrame(() => {
+                const scroller = view.dom.closest('.tiptap-editor');
+                if (scroller instanceof HTMLElement) {
+                  scroller.scrollTop = 0;
+                }
+              });
+              return false; // don't consume — let the paste proceed normally
+            },
+          },
+        },
+      }),
       new Plugin({
         key: new PluginKey('wordPasteImageQuality'),
         props: {

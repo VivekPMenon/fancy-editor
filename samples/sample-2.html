@@ -1,148 +1,710 @@
-
-
-
 <meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
 <meta name="Generator" content="Microsoft Word 15 (filtered)">
+
+<style id="dynCom" type="text/css">
+  <!-- 
+  -->
+</style>
+<script language="JavaScript"><!-
+function msoCommentShow(anchor_id, com_id)
+{
+if(msoBrowserCheck()) 
+{
+c = document.all(com_id);
+a = document.all(anchor_id);
+if (null != c && null == c.length && null != a && null == a.length)
+{
+var cw = c.offsetWidth;
+var ch = c.offsetHeight;
+var aw = a.offsetWidth;
+var ah = a.offsetHeight;
+var x  = a.offsetLeft;
+var y  = a.offsetTop;
+var el = a;
+while (el.tagName != "BODY") 
+{
+el = el.offsetParent;
+x = x + el.offsetLeft;
+y = y + el.offsetTop;
+}
+var bw = document.body.clientWidth;
+var bh = document.body.clientHeight;
+var bsl = document.body.scrollLeft;
+var bst = document.body.scrollTop;
+if (x + cw + ah / 2 > bw + bsl && x + aw - ah / 2 - cw >= bsl ) 
+{ c.style.left = x + aw - ah / 2 - cw; }
+else 
+{ c.style.left = x + ah / 2; }
+if (y + ch + ah / 2 > bh + bst && y + ah / 2 - ch >= bst ) 
+{ c.style.top = y + ah / 2 - ch; }
+else 
+{ c.style.top = y + ah / 2; }
+c.style.visibility = "visible";
+}	}	}
+function msoCommentHide(com_id) 
+{
+if(msoBrowserCheck())
+{
+c = document.all(com_id);
+if (null != c && null == c.length)
+{
+c.style.visibility = "hidden";
+c.style.left = -1000;
+c.style.top = -1000;
+} } 
+}
+function msoBrowserCheck()
+{
+ms = navigator.appVersion.indexOf("MSIE");
+vers = navigator.appVersion.substring(ms + 5, ms + 6);
+ie4 = (ms > 0) && (parseInt(vers) >= 4);
+return ie4;
+}
+if (msoBrowserCheck())
+{
+document.styleSheets.dynCom.addRule(".msocomanchor","background: infobackground");
+document.styleSheets.dynCom.addRule(".msocomoff","display: none");
+document.styleSheets.dynCom.addRule(".msocomtxt","visibility: hidden");
+document.styleSheets.dynCom.addRule(".msocomtxt","position: absolute");
+document.styleSheets.dynCom.addRule(".msocomtxt","top: -1000");
+document.styleSheets.dynCom.addRule(".msocomtxt","left: -1000");
+document.styleSheets.dynCom.addRule(".msocomtxt","width: 33%");
+document.styleSheets.dynCom.addRule(".msocomtxt","background: infobackground");
+document.styleSheets.dynCom.addRule(".msocomtxt","color: infotext");
+document.styleSheets.dynCom.addRule(".msocomtxt","border-top: 1pt solid threedlightshadow");
+document.styleSheets.dynCom.addRule(".msocomtxt","border-right: 2pt solid threedshadow");
+document.styleSheets.dynCom.addRule(".msocomtxt","border-bottom: 2pt solid threedshadow");
+document.styleSheets.dynCom.addRule(".msocomtxt","border-left: 1pt solid threedlightshadow");
+document.styleSheets.dynCom.addRule(".msocomtxt","padding: 3pt 3pt 3pt 3pt");
+document.styleSheets.dynCom.addRule(".msocomtxt","z-index: 100");
+}
+// --></script>
 <style>
-<!--
- /* Font Definitions */
- @font-face
-	{font-family:Wingdings;
-	panose-1:5 0 0 0 0 0 0 0 0 0;}
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-@font-face
-	{font-family:Tahoma;
-	panose-1:2 11 6 4 3 5 4 4 2 4;}
- /* Style Definitions */
- p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin-top:6.0pt;
-	margin-right:0in;
-	margin-bottom:6.0pt;
-	margin-left:0in;
-	line-height:115%;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-h1
-	{mso-style-link:"Heading 1 Char";
-	margin-top:6.0pt;
-	margin-right:0in;
-	margin-bottom:6.0pt;
-	margin-left:0in;
-	line-height:115%;
-	font-size:24.0pt;
-	font-family:"Calibri",sans-serif;
-	font-weight:bold;}
-h2
-	{mso-style-link:"Heading 2 Char";
-	margin-top:6.0pt;
-	margin-right:0in;
-	margin-bottom:6.0pt;
-	margin-left:0in;
-	line-height:115%;
-	font-size:18.0pt;
-	font-family:"Calibri",sans-serif;
-	font-weight:bold;}
-h3
-	{mso-style-link:"Heading 3 Char";
-	margin-top:6.0pt;
-	margin-right:0in;
-	margin-bottom:6.0pt;
-	margin-left:0in;
-	line-height:115%;
-	font-size:14.0pt;
-	font-family:"Calibri",sans-serif;
-	font-weight:bold;}
-a:link, span.MsoHyperlink
-	{color:blue;
-	text-decoration:underline;}
-p.MsoListParagraph, li.MsoListParagraph, div.MsoListParagraph
-	{margin-top:6.0pt;
-	margin-right:0in;
-	margin-bottom:6.0pt;
-	margin-left:.5in;
-	line-height:115%;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-p.MsoListParagraphCxSpFirst, li.MsoListParagraphCxSpFirst, div.MsoListParagraphCxSpFirst
-	{margin-top:6.0pt;
-	margin-right:0in;
-	margin-bottom:0in;
-	margin-left:.5in;
-	line-height:115%;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-p.MsoListParagraphCxSpMiddle, li.MsoListParagraphCxSpMiddle, div.MsoListParagraphCxSpMiddle
-	{margin-top:0in;
-	margin-right:0in;
-	margin-bottom:0in;
-	margin-left:.5in;
-	line-height:115%;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-p.MsoListParagraphCxSpLast, li.MsoListParagraphCxSpLast, div.MsoListParagraphCxSpLast
-	{margin-top:0in;
-	margin-right:0in;
-	margin-bottom:6.0pt;
-	margin-left:.5in;
-	line-height:115%;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-span.MsoIntenseEmphasis
-	{color:#4F81BD;
-	font-style:italic;}
-span.Heading1Char
-	{mso-style-name:"Heading 1 Char";
-	mso-style-link:"Heading 1";
-	font-weight:bold;}
-span.Heading2Char
-	{mso-style-name:"Heading 2 Char";
-	mso-style-link:"Heading 2";
-	font-weight:bold;}
-span.Heading3Char
-	{mso-style-name:"Heading 3 Char";
-	mso-style-link:"Heading 3";
-	font-weight:bold;}
-p.Style1, li.Style1, div.Style1
-	{mso-style-name:Style1;
-	mso-style-link:"Style1 Char";
-	margin-top:6.0pt;
-	margin-right:0in;
-	margin-bottom:6.0pt;
-	margin-left:0in;
-	line-height:115%;
-	font-size:18.0pt;
-	font-family:"Calibri",sans-serif;
-	font-weight:bold;}
-span.Style1Char
-	{mso-style-name:"Style1 Char";
-	mso-style-link:Style1;
-	font-weight:bold;}
-.MsoChpDefault
-	{font-family:"Calibri",sans-serif;}
-.MsoPapDefault
-	{margin-bottom:10.0pt;
-	line-height:115%;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in .5in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
-@page WordSection2
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection2
-	{page:WordSection2;}
- /* List Definitions */
- ol
-	{margin-bottom:0in;}
-ul
-	{margin-bottom:0in;}
--->
+  <!--
+  /* Font Definitions */
+  @font-face {
+    font-family: Wingdings;
+    panose-1: 5 0 0 0 0 0 0 0 0 0;
+  }
+
+  @font-face {
+    font-family: "MS Gothic";
+    panose-1: 2 11 6 9 7 2 5 8 2 4;
+  }
+
+  @font-face {
+    font-family: "Cambria Math";
+    panose-1: 2 4 5 3 5 4 6 3 2 4;
+  }
+
+  @font-face {
+    font-family: Aptos;
+  }
+
+  @font-face {
+    font-family: "Aptos Display";
+  }
+
+  @font-face {
+    font-family: "Segoe UI Emoji";
+    panose-1: 2 11 5 2 4 2 4 2 2 3;
+  }
+
+  @font-face {
+    font-family: Georgia;
+    panose-1: 2 4 5 2 5 4 5 2 3 3;
+  }
+
+  @font-face {
+    font-family: "Segoe UI Symbol";
+    panose-1: 2 11 5 2 4 2 4 2 2 3;
+  }
+
+  @font-face {
+    font-family: "Nirmala UI";
+    panose-1: 2 11 5 2 4 2 4 2 2 3;
+  }
+
+  @font-face {
+    font-family: "\@MS Gothic";
+    panose-1: 2 11 6 9 7 2 5 8 2 4;
+  }
+
+  /* Style Definitions */
+  p.MsoNormal,
+  li.MsoNormal,
+  div.MsoNormal {
+    margin-top: 0in;
+    margin-right: 0in;
+    margin-bottom: 8.0pt;
+    margin-left: 0in;
+    line-height: 115%;
+    font-size: 12.0pt;
+    font-family: "Aptos", sans-serif;
+  }
+
+  h1 {
+    mso-style-link: "Heading 1 Char";
+    margin-top: .25in;
+    margin-right: 0in;
+    margin-bottom: 4.0pt;
+    margin-left: 0in;
+    line-height: 115%;
+    page-break-after: avoid;
+    font-size: 20.0pt;
+    font-family: "Aptos Display", sans-serif;
+    color: #0F4761;
+    font-weight: normal;
+  }
+
+  h2 {
+    mso-style-link: "Heading 2 Char";
+    margin-top: 8.0pt;
+    margin-right: 0in;
+    margin-bottom: 4.0pt;
+    margin-left: 0in;
+    line-height: 115%;
+    page-break-after: avoid;
+    font-size: 16.0pt;
+    font-family: "Aptos Display", sans-serif;
+    color: #0F4761;
+    font-weight: normal;
+  }
+
+  h3 {
+    mso-style-link: "Heading 3 Char";
+    margin-top: 8.0pt;
+    margin-right: 0in;
+    margin-bottom: 4.0pt;
+    margin-left: 0in;
+    line-height: 115%;
+    page-break-after: avoid;
+    font-size: 14.0pt;
+    font-family: "Aptos", sans-serif;
+    color: #0F4761;
+    font-weight: normal;
+  }
+
+  h4 {
+    mso-style-link: "Heading 4 Char";
+    margin-top: 4.0pt;
+    margin-right: 0in;
+    margin-bottom: 2.0pt;
+    margin-left: 0in;
+    line-height: 115%;
+    page-break-after: avoid;
+    font-size: 12.0pt;
+    font-family: "Aptos", sans-serif;
+    color: #0F4761;
+    font-weight: normal;
+    font-style: italic;
+  }
+
+  h5 {
+    mso-style-link: "Heading 5 Char";
+    margin-top: 4.0pt;
+    margin-right: 0in;
+    margin-bottom: 2.0pt;
+    margin-left: 0in;
+    line-height: 115%;
+    page-break-after: avoid;
+    font-size: 12.0pt;
+    font-family: "Aptos", sans-serif;
+    color: #0F4761;
+    font-weight: normal;
+  }
+
+  h6 {
+    mso-style-link: "Heading 6 Char";
+    margin-top: 2.0pt;
+    margin-right: 0in;
+    margin-bottom: 0in;
+    margin-left: 0in;
+    line-height: 115%;
+    page-break-after: avoid;
+    font-size: 12.0pt;
+    font-family: "Aptos", sans-serif;
+    color: #595959;
+    font-weight: normal;
+    font-style: italic;
+  }
+
+  p.MsoToc1,
+  li.MsoToc1,
+  div.MsoToc1 {
+    margin-top: 0in;
+    margin-right: 0in;
+    margin-bottom: 5.0pt;
+    margin-left: 0in;
+    line-height: 115%;
+    font-size: 12.0pt;
+    font-family: "Aptos", sans-serif;
+  }
+
+  p.MsoToc2,
+  li.MsoToc2,
+  div.MsoToc2 {
+    margin-top: 0in;
+    margin-right: 0in;
+    margin-bottom: 5.0pt;
+    margin-left: 12.0pt;
+    line-height: 115%;
+    font-size: 12.0pt;
+    font-family: "Aptos", sans-serif;
+  }
+
+  p.MsoToc3,
+  li.MsoToc3,
+  div.MsoToc3 {
+    margin-top: 0in;
+    margin-right: 0in;
+    margin-bottom: 5.0pt;
+    margin-left: 24.0pt;
+    line-height: 115%;
+    font-size: 12.0pt;
+    font-family: "Aptos", sans-serif;
+  }
+
+  p.MsoFootnoteText,
+  li.MsoFootnoteText,
+  div.MsoFootnoteText {
+    mso-style-link: "Footnote Text Char";
+    margin: 0in;
+    font-size: 10.0pt;
+    font-family: "Aptos", sans-serif;
+  }
+
+  p.MsoCommentText,
+  li.MsoCommentText,
+  div.MsoCommentText {
+    mso-style-link: "Comment Text Char";
+    margin-top: 0in;
+    margin-right: 0in;
+    margin-bottom: 8.0pt;
+    margin-left: 0in;
+    font-size: 10.0pt;
+    font-family: "Aptos", sans-serif;
+  }
+
+  p.MsoCaption,
+  li.MsoCaption,
+  div.MsoCaption {
+    margin-top: 0in;
+    margin-right: 0in;
+    margin-bottom: 10.0pt;
+    margin-left: 0in;
+    font-size: 9.0pt;
+    font-family: "Aptos", sans-serif;
+    color: #0E2841;
+    font-style: italic;
+  }
+
+  span.MsoFootnoteReference {
+    vertical-align: super;
+  }
+
+  span.MsoEndnoteReference {
+    vertical-align: super;
+  }
+
+  p.MsoEndnoteText,
+  li.MsoEndnoteText,
+  div.MsoEndnoteText {
+    mso-style-link: "Endnote Text Char";
+    margin: 0in;
+    font-size: 10.0pt;
+    font-family: "Aptos", sans-serif;
+  }
+
+  p.MsoListBullet,
+  li.MsoListBullet,
+  div.MsoListBullet {
+    margin-top: 0in;
+    margin-right: 0in;
+    margin-bottom: 8.0pt;
+    margin-left: .25in;
+    text-indent: -.25in;
+    line-height: 115%;
+    font-size: 12.0pt;
+    font-family: "Aptos", sans-serif;
+  }
+
+  p.MsoListBulletCxSpFirst,
+  li.MsoListBulletCxSpFirst,
+  div.MsoListBulletCxSpFirst {
+    margin-top: 0in;
+    margin-right: 0in;
+    margin-bottom: 0in;
+    margin-left: .25in;
+    text-indent: -.25in;
+    line-height: 115%;
+    font-size: 12.0pt;
+    font-family: "Aptos", sans-serif;
+  }
+
+  p.MsoListBulletCxSpMiddle,
+  li.MsoListBulletCxSpMiddle,
+  div.MsoListBulletCxSpMiddle {
+    margin-top: 0in;
+    margin-right: 0in;
+    margin-bottom: 0in;
+    margin-left: .25in;
+    text-indent: -.25in;
+    line-height: 115%;
+    font-size: 12.0pt;
+    font-family: "Aptos", sans-serif;
+  }
+
+  p.MsoListBulletCxSpLast,
+  li.MsoListBulletCxSpLast,
+  div.MsoListBulletCxSpLast {
+    margin-top: 0in;
+    margin-right: 0in;
+    margin-bottom: 8.0pt;
+    margin-left: .25in;
+    text-indent: -.25in;
+    line-height: 115%;
+    font-size: 12.0pt;
+    font-family: "Aptos", sans-serif;
+  }
+
+  p.MsoListNumber,
+  li.MsoListNumber,
+  div.MsoListNumber {
+    margin-top: 0in;
+    margin-right: 0in;
+    margin-bottom: 8.0pt;
+    margin-left: .25in;
+    text-indent: -.25in;
+    line-height: 115%;
+    font-size: 12.0pt;
+    font-family: "Aptos", sans-serif;
+  }
+
+  p.MsoListNumberCxSpFirst,
+  li.MsoListNumberCxSpFirst,
+  div.MsoListNumberCxSpFirst {
+    margin-top: 0in;
+    margin-right: 0in;
+    margin-bottom: 0in;
+    margin-left: .25in;
+    text-indent: -.25in;
+    line-height: 115%;
+    font-size: 12.0pt;
+    font-family: "Aptos", sans-serif;
+  }
+
+  p.MsoListNumberCxSpMiddle,
+  li.MsoListNumberCxSpMiddle,
+  div.MsoListNumberCxSpMiddle {
+    margin-top: 0in;
+    margin-right: 0in;
+    margin-bottom: 0in;
+    margin-left: .25in;
+    text-indent: -.25in;
+    line-height: 115%;
+    font-size: 12.0pt;
+    font-family: "Aptos", sans-serif;
+  }
+
+  p.MsoListNumberCxSpLast,
+  li.MsoListNumberCxSpLast,
+  div.MsoListNumberCxSpLast {
+    margin-top: 0in;
+    margin-right: 0in;
+    margin-bottom: 8.0pt;
+    margin-left: .25in;
+    text-indent: -.25in;
+    line-height: 115%;
+    font-size: 12.0pt;
+    font-family: "Aptos", sans-serif;
+  }
+
+  p.MsoTitle,
+  li.MsoTitle,
+  div.MsoTitle {
+    mso-style-link: "Title Char";
+    margin-top: 0in;
+    margin-right: 0in;
+    margin-bottom: 4.0pt;
+    margin-left: 0in;
+    font-size: 28.0pt;
+    font-family: "Aptos Display", sans-serif;
+    letter-spacing: -.5pt;
+  }
+
+  p.MsoTitleCxSpFirst,
+  li.MsoTitleCxSpFirst,
+  div.MsoTitleCxSpFirst {
+    mso-style-link: "Title Char";
+    margin: 0in;
+    font-size: 28.0pt;
+    font-family: "Aptos Display", sans-serif;
+    letter-spacing: -.5pt;
+  }
+
+  p.MsoTitleCxSpMiddle,
+  li.MsoTitleCxSpMiddle,
+  div.MsoTitleCxSpMiddle {
+    mso-style-link: "Title Char";
+    margin: 0in;
+    font-size: 28.0pt;
+    font-family: "Aptos Display", sans-serif;
+    letter-spacing: -.5pt;
+  }
+
+  p.MsoTitleCxSpLast,
+  li.MsoTitleCxSpLast,
+  div.MsoTitleCxSpLast {
+    mso-style-link: "Title Char";
+    margin-top: 0in;
+    margin-right: 0in;
+    margin-bottom: 4.0pt;
+    margin-left: 0in;
+    font-size: 28.0pt;
+    font-family: "Aptos Display", sans-serif;
+    letter-spacing: -.5pt;
+  }
+
+  p.MsoSubtitle,
+  li.MsoSubtitle,
+  div.MsoSubtitle {
+    mso-style-link: "Subtitle Char";
+    margin-top: 0in;
+    margin-right: 0in;
+    margin-bottom: 8.0pt;
+    margin-left: 0in;
+    line-height: 115%;
+    font-size: 14.0pt;
+    font-family: "Aptos", sans-serif;
+    color: #595959;
+    letter-spacing: .75pt;
+  }
+
+  a:link,
+  span.MsoHyperlink {
+    color: #467886;
+    text-decoration: underline;
+  }
+
+  p.MsoNoSpacing,
+  li.MsoNoSpacing,
+  div.MsoNoSpacing {
+    margin: 0in;
+    font-size: 12.0pt;
+    font-family: "Aptos", sans-serif;
+  }
+
+  p.MsoListParagraph,
+  li.MsoListParagraph,
+  div.MsoListParagraph {
+    margin-top: 0in;
+    margin-right: 0in;
+    margin-bottom: 8.0pt;
+    margin-left: .5in;
+    line-height: 115%;
+    font-size: 12.0pt;
+    font-family: "Aptos", sans-serif;
+  }
+
+  p.MsoListParagraphCxSpFirst,
+  li.MsoListParagraphCxSpFirst,
+  div.MsoListParagraphCxSpFirst {
+    margin-top: 0in;
+    margin-right: 0in;
+    margin-bottom: 0in;
+    margin-left: .5in;
+    line-height: 115%;
+    font-size: 12.0pt;
+    font-family: "Aptos", sans-serif;
+  }
+
+  p.MsoListParagraphCxSpMiddle,
+  li.MsoListParagraphCxSpMiddle,
+  div.MsoListParagraphCxSpMiddle {
+    margin-top: 0in;
+    margin-right: 0in;
+    margin-bottom: 0in;
+    margin-left: .5in;
+    line-height: 115%;
+    font-size: 12.0pt;
+    font-family: "Aptos", sans-serif;
+  }
+
+  p.MsoListParagraphCxSpLast,
+  li.MsoListParagraphCxSpLast,
+  div.MsoListParagraphCxSpLast {
+    margin-top: 0in;
+    margin-right: 0in;
+    margin-bottom: 8.0pt;
+    margin-left: .5in;
+    line-height: 115%;
+    font-size: 12.0pt;
+    font-family: "Aptos", sans-serif;
+  }
+
+  p.MsoQuote,
+  li.MsoQuote,
+  div.MsoQuote {
+    mso-style-link: "Quote Char";
+    margin-top: 8.0pt;
+    margin-right: 0in;
+    margin-bottom: 8.0pt;
+    margin-left: 0in;
+    text-align: center;
+    line-height: 115%;
+    font-size: 12.0pt;
+    font-family: "Aptos", sans-serif;
+    color: #404040;
+    font-style: italic;
+  }
+
+  p.MsoIntenseQuote,
+  li.MsoIntenseQuote,
+  div.MsoIntenseQuote {
+    mso-style-link: "Intense Quote Char";
+    margin-top: .25in;
+    margin-right: .6in;
+    margin-bottom: .25in;
+    margin-left: .6in;
+    text-align: center;
+    line-height: 115%;
+    border: none;
+    padding: 0in;
+    font-size: 12.0pt;
+    font-family: "Aptos", sans-serif;
+    color: #0F4761;
+    font-style: italic;
+  }
+
+  span.Heading1Char {
+    mso-style-name: "Heading 1 Char";
+    mso-style-link: "Heading 1";
+    font-family: "Aptos Display", sans-serif;
+    color: #0F4761;
+  }
+
+  span.Heading2Char {
+    mso-style-name: "Heading 2 Char";
+    mso-style-link: "Heading 2";
+    font-family: "Aptos Display", sans-serif;
+    color: #0F4761;
+  }
+
+  span.Heading3Char {
+    mso-style-name: "Heading 3 Char";
+    mso-style-link: "Heading 3";
+    font-family: "Times New Roman", serif;
+    color: #0F4761;
+  }
+
+  span.Heading4Char {
+    mso-style-name: "Heading 4 Char";
+    mso-style-link: "Heading 4";
+    font-family: "Times New Roman", serif;
+    color: #0F4761;
+    font-style: italic;
+  }
+
+  span.Heading5Char {
+    mso-style-name: "Heading 5 Char";
+    mso-style-link: "Heading 5";
+    font-family: "Times New Roman", serif;
+    color: #0F4761;
+  }
+
+  span.Heading6Char {
+    mso-style-name: "Heading 6 Char";
+    mso-style-link: "Heading 6";
+    font-family: "Times New Roman", serif;
+    color: #595959;
+    font-style: italic;
+  }
+
+  span.TitleChar {
+    mso-style-name: "Title Char";
+    mso-style-link: Title;
+    font-family: "Aptos Display", sans-serif;
+    letter-spacing: -.5pt;
+  }
+
+  span.SubtitleChar {
+    mso-style-name: "Subtitle Char";
+    mso-style-link: Subtitle;
+    font-family: "Times New Roman", serif;
+    color: #595959;
+    letter-spacing: .75pt;
+  }
+
+  span.QuoteChar {
+    mso-style-name: "Quote Char";
+    mso-style-link: Quote;
+    color: #404040;
+    font-style: italic;
+  }
+
+  span.IntenseQuoteChar {
+    mso-style-name: "Intense Quote Char";
+    mso-style-link: "Intense Quote";
+    color: #0F4761;
+    font-style: italic;
+  }
+
+  span.FootnoteTextChar {
+    mso-style-name: "Footnote Text Char";
+    mso-style-link: "Footnote Text";
+  }
+
+  span.EndnoteTextChar {
+    mso-style-name: "Endnote Text Char";
+    mso-style-link: "Endnote Text";
+  }
+
+  span.CommentTextChar {
+    mso-style-name: "Comment Text Char";
+    mso-style-link: "Comment Text";
+  }
+
+  span.msoIns {
+    mso-style-name: "";
+    text-decoration: underline;
+    color: teal;
+  }
+
+  span.msoDel {
+    mso-style-name: "";
+    text-decoration: line-through;
+    color: red;
+  }
+
+  .MsoChpDefault {
+    font-family: "Aptos", sans-serif;
+  }
+
+  .MsoPapDefault {
+    margin-bottom: 8.0pt;
+    line-height: 115%;
+  }
+
+  /* Page Definitions */
+  @page WordSection1 {
+    size: 8.5in 11.0in;
+    margin: 1.0in 1.0in 1.0in 1.0in;
+  }
+
+  div.WordSection1 {
+    page: WordSection1;
+  }
+
+  /* List Definitions */
+  ol {
+    margin-bottom: 0in;
+  }
+
+  ul {
+    margin-bottom: 0in;
+  }
+  -->
 </style>
 
 
@@ -151,455 +713,971 @@ ul
 
 <div class="WordSection1">
 
-<h1 id="3AE3594D-9776-40BA-9962-4FADC8D99DCF" style="margin-top:0in"><span style="color:#C00000">Sample Document</span></h1>
+  <p id="C72C34C2-66C9-4EFB-80AD-8A3642C4FCC4" class="MsoTitle">Word Feature Showcase
+    — OOXML Test Document</p>
 
-<p id="638E7FFE-8495-48A6-9D7D-4A296032B605" class="MsoNormal">This document was
-created using accessibility techniques for headings, lists, image alternate
-text, tables, and columns. It should be completely accessible using assistive
-technologies such as screen readers.</p>
+  <p id="7A148EB0-3627-4231-A0F1-CD046B810650" class="MsoSubtitle">A structured
+    sample exercising Word toolbar features for OOXML-to-JSON conversion testing</p>
 
-<h2 id="6C00B04F-1832-4494-9F82-6F544154BB43">Headings</h2>
+  <p id="D7C6F5EE-0F06-4109-BFAB-2E3D0D0F9497" class="MsoNormal"><i><span
+        style="font-size:10.0pt;line-height:115%">Prepared by Vivek Menon · Version 1.0
+        · For add-in POC validation</span></i></p>
 
-<p id="57124BD2-E633-4710-A13C-0CA6614AE11F" class="MsoNormal">There are eight
-section headings in this document. At the beginning, "Sample
-Document" is a level 1 heading. The main section headings, such as
-"Headings" and "Lists" are level 2 headings. The Tables
-section contains two sub-headings, "Simple Table" and "Complex
-Table," which are both level 3 headings.</p>
+  <h1 id="8FD86D4B-69B7-4207-B435-5DC633527B6A"><a name="_Toc237149518">Table of
+      Contents</a></h1>
 
-<p id="1A1934CA-0851-4205-8C37-7F49C38B9F12" class="Style1">Lists</p>
+  <p id="9A4899F3-C5C2-43B3-851A-EDF580544146" class="MsoToc1"><span class="MsoHyperlink"><a href="#_Toc237149518">Table
+        of Contents<span style="color:windowtext;display:none;text-decoration:none">. </span><span
+          style="color:windowtext;display:none;text-decoration:none">1</span></a></span></p>
 
-<p id="93B0A416-87ED-4687-86EE-26C5DF7BF7CA" class="MsoNormal">The following
-outline of the sections of this <span class="MsoIntenseEmphasis">document is an
-ordered (numbered</span>) list with six items. The fifth item,
-"Tables," contains a nested unordered (bulleted) list with two items.</p>
+  <p id="C29A24C2-F325-4E9D-950E-E00A82152585" class="MsoToc1"><span class="MsoHyperlink"><a href="#_Toc237149519">1.
+        Heading Levels and Built-in
+        Paragraph Styles<span style="color:windowtext;display:none;text-decoration:
+none">. </span><span style="color:windowtext;display:none;text-decoration:none">3</span></a></span></p>
 
-<p id="037DE3B8-6C74-45B8-BF3D-E953CB5E8431" class="MsoListParagraphCxSpFirst" style="text-indent:-.25in">1.<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span>Headings </p>
+  <p id="BB2F5434-9EA7-4D9B-AA3D-94E20BDB4A6B" class="MsoToc2"><span class="MsoHyperlink"><a href="#_Toc237149520">1.1
+        Heading 2 Example<span style="color:windowtext;display:none;text-decoration:none">. </span><span
+          style="color:windowtext;display:none;text-decoration:none">3</span></a></span></p>
 
-<p id="3F40C392-A1F8-4661-A3EB-7972AC1C5079" class="MsoListParagraphCxSpMiddle" style="text-indent:-.25in">2.<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span>Lists </p>
+  <p id="A5D13C47-C61F-4DCE-A2AE-D91F69D26882" class="MsoToc3"><span class="MsoHyperlink"><a href="#_Toc237149521">1.1.1
+        Heading 3 Example<span style="color:windowtext;display:none;text-decoration:none">. </span><span
+          style="color:windowtext;display:none;text-decoration:none">3</span></a></span></p>
 
-<p id="B952EF07-F66F-4E7E-8737-0300A6470E73" class="MsoListParagraphCxSpMiddle" style="text-indent:-.25in">3.<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span>Links </p>
+  <p id="0DC659AB-42BF-4B22-9EC7-3423672A9AA7" class="MsoToc2"><span class="MsoHyperlink"><a href="#_Toc237149522">1.2
+        Other Built-in Styles<span style="color:windowtext;display:none;text-decoration:none">. </span><span
+          style="color:windowtext;display:none;text-decoration:none">3</span></a></span></p>
 
-<p id="124D8999-8BE0-4B7E-9896-B6FBFD9A30D3" class="MsoListParagraphCxSpMiddle" style="text-indent:-.25in">4.<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span>Images </p>
+  <p id="488F3FFF-D45E-490E-85F2-71308F81E053" class="MsoToc1"><span class="MsoHyperlink"><a href="#_Toc237149523">2.
+        Character Formatting<span style="color:windowtext;display:none;text-decoration:none">. </span><span
+          style="color:windowtext;display:none;text-decoration:none">3</span></a></span></p>
 
-<p id="1AEC8CEE-AB17-4C66-A4E0-4193E9C3E4D6" class="MsoListParagraphCxSpMiddle" style="text-indent:-.25in">5.<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span>Tables </p>
+  <p id="5F223DA7-F2E7-41E0-B0BE-41C185B92F89" class="MsoToc1"><span class="MsoHyperlink"><a href="#_Toc237149524">3.
+        Alignment, Indentation and
+        Spacing<span style="color:windowtext;display:none;text-decoration:none">. </span><span
+          style="color:windowtext;display:none;text-decoration:none">4</span></a></span></p>
 
-<p id="6F60623B-93A9-499F-90D4-12C8FD7BFEAB" class="MsoListParagraphCxSpMiddle" style="margin-left:1.0in;text-indent:-1.0in"><span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span>I.<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span>Simple Tables </p>
+  <p id="C642E186-A6FA-488D-BB72-B091BCB17A4B" class="MsoToc1"><span class="MsoHyperlink"><a href="#_Toc237149525">4.
+        Lists<span style="color:windowtext;
+display:none;text-decoration:none">. </span><span
+          style="color:windowtext;display:none;text-decoration:none">5</span></a></span></p>
 
-<p id="F2499026-4FA4-4678-A0B2-C96524D6AEFD" class="MsoListParagraphCxSpMiddle" style="margin-left:1.0in;text-indent:-1.0in"><span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span>II.<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span>Complex Tables </p>
+  <p id="78E9A3F2-2AD9-4BAC-B0C7-41A73E7181BA" class="MsoToc2"><span class="MsoHyperlink"><a href="#_Toc237149526">4.1
+        Bulleted List<span style="color:windowtext;display:none;text-decoration:none"> </span><span
+          style="color:windowtext;display:none;text-decoration:none">5</span></a></span></p>
 
-<p id="59B3E877-AEE7-441E-9F5F-A24F09AA9B65" class="MsoListParagraphCxSpLast" style="text-indent:-.25in">6.<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span>Columns </p>
+  <p id="F4BEBFB8-F240-47F8-9078-4341C780C3B0" class="MsoToc2"><span class="MsoHyperlink"><a href="#_Toc237149527">4.2
+        Numbered List<span style="color:windowtext;display:none;text-decoration:none"> </span><span
+          style="color:windowtext;display:none;text-decoration:none">5</span></a></span></p>
 
-<h2 id="46C17EAF-E6D0-4823-8643-2045F458B413">Links</h2>
+  <p id="75D5BD38-E909-4F8C-AC23-EAE6F6EBF6D6" class="MsoToc2"><span class="MsoHyperlink"><a href="#_Toc237149528">4.3
+        Multilevel List<span style="color:windowtext;display:none;text-decoration:none"> </span><span
+          style="color:windowtext;display:none;text-decoration:none">5</span></a></span></p>
 
-<p id="5042ED55-EE6F-4471-BB49-0023C0A65129" class="MsoNormal">In web documents,
-links can point different locations on the page, different pages, or even
-downloadable documents, such as Word documents or PDFs:</p>
+  <p id="EC6C212F-0658-4928-9155-052854E6DA55" class="MsoToc1"><span class="MsoHyperlink"><a href="#_Toc237149529">5.
+        Tables<span style="color:windowtext;
+display:none;text-decoration:none">. </span><span
+          style="color:windowtext;display:none;text-decoration:none">5</span></a></span></p>
 
-<p id="89794476-A320-447D-9314-D1AA053A8074" class="MsoNormal"><a href="#_top">Top
-of this Page</a><br>
-<a href="http://www.dhs.state.il.us/page.aspx?item=67072">Sample Document</a><br>
-<a href="http://www.dhs.state.il.us/OneNetLibrary/27897/documents/Initiatives/IITAA/Sample-Document.docx">Sample
-Document (docx)</a></p>
+  <p id="ADC46A32-67A9-4CE4-A34C-1F5621C0E5E9" class="MsoToc2"><span class="MsoHyperlink"><a href="#_Toc237149530">5.1
+        Styled Table with Header Row<span style="color:windowtext;display:none;text-decoration:none">.. </span><span
+          style="color:windowtext;display:none;text-decoration:none">5</span></a></span></p>
 
-<h2 id="985D9BC4-F0F7-4885-B78E-3390A2D3B96B">Images</h2>
+  <p id="C9E3334C-80E9-4BE7-B62B-D4AF724C158A" class="MsoToc2"><span class="MsoHyperlink"><a href="#_Toc237149531">5.2
+        Plain Table with Merged Cells
+        and Manual Shading<span style="color:windowtext;display:none;text-decoration:
+none">. </span><span style="color:windowtext;display:none;text-decoration:none">6</span></a></span></p>
 
-<p id="0F2BFA23-361D-4106-83D4-CAF86B238CE9" class="MsoNormal" align="center" style="text-align:center"><img border="0" width="141" height="131" id="Picture 3" src="data:image/png;base64,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" alt="Web Access Symbol"></p>
+  <p id="F1C8077D-1007-4FDB-9BC2-D3784EBF1558" class="MsoToc1"><span class="MsoHyperlink"><a href="#_Toc237149532">6.
+        Links, Bookmarks and Fields<span style="color:windowtext;display:none;text-decoration:none">. </span><span
+          style="color:windowtext;display:none;text-decoration:none">6</span></a></span></p>
 
-<p id="EC6FCAF1-3AC3-4B55-8190-DE32771B681C" class="MsoNormal">Documents may
-contain images. For example, there is an image of the web accessibility symbol
-to the left of this paragraph. Its alternate text is "Web Access
-Symbol".</p>
+  <p id="E6883555-229E-4F93-81DE-F7F7398688D5" class="MsoToc2"><span class="MsoHyperlink"><a href="#_Toc237149533">6.1
+        Hyperlinks<span style="color:windowtext;display:none;text-decoration:none">. </span><span
+          style="color:windowtext;display:none;text-decoration:none">6</span></a></span></p>
 
-<p id="2AF31A71-61F8-4062-8691-0BB3E7491C91" class="MsoNormal">Alt text should
-communicate what an image means, not how it looks.</p>
+  <p id="B75294EB-C697-4307-A40F-94C4ECFCB4C5" class="MsoToc2"><span class="MsoHyperlink"><a href="#_Toc237149534">6.2
+        Bookmarks<span style="color:windowtext;display:none;text-decoration:none">. </span><span
+          style="color:windowtext;display:none;text-decoration:none">6</span></a></span></p>
 
-<br clear="all" style="page-break-before:always">
+  <p id="505CCF86-AC83-45CD-AC37-BE4E1F8AD2DD" class="MsoToc2"><span class="MsoHyperlink"><a href="#_Toc237149535">6.3
+        Fields<span style="color:windowtext;
+display:none;text-decoration:none">. </span><span
+          style="color:windowtext;display:none;text-decoration:none">6</span></a></span></p>
 
-<p id="F54F2F4D-1078-48B9-BFC4-AF5FA38CBB00" class="MsoNormal" style="margin-top:
-0in;margin-right:0in;margin-bottom:10.0pt;margin-left:0in"><img width="284" height="140" src="~WRS%7b5B5172DA-216F-4263-80D7-3A0F66AE88AA%7d_files/image002.png" align="left" hspace="12" alt="Chart of Screen Reader Market Share.
-(Unfortunately, there isn't a way in Word or PDF to include rich formatting, such as a table, in alternate text.)">Some
-images, such as charts or graphs, require long descriptions, but not all
-document types allow that. In web pages, long descriptions may be provided in
-several ways: on the page below the image, via a link below the image, or via a
-link on the image.</p>
+  <p id="2386BCD9-8F66-4F64-9442-1A674AC7BBE0" class="MsoToc1"><span class="MsoHyperlink"><a href="#_Toc237149536">7.
+        Footnotes and Endnotes<span style="color:windowtext;display:none;text-decoration:none">. </span><span
+          style="color:windowtext;display:none;text-decoration:none">7</span></a></span></p>
 
-<p id="BB3ACA11-B958-4292-AD16-5B69163AAD46" class="MsoNormal">&nbsp;</p>
+  <p id="807852D4-661E-483D-9898-4E700B56BD91" class="MsoToc1"><span class="MsoHyperlink"><a href="#_Toc237149537">8.
+        Pictures, Icons and Special
+        Characters<span style="color:windowtext;display:none;text-decoration:none">. </span><span
+          style="color:windowtext;display:none;text-decoration:none">7</span></a></span></p>
 
-<h2 id="D9B6DC88-9C42-42F4-93B0-F99F06CE9B2F">Tables</h2>
+  <p id="813DDA0B-2589-4935-8111-0F443F497A74" class="MsoToc2"><span class="MsoHyperlink"><a href="#_Toc237149538">8.1
+        Inline Picture<span style="color:windowtext;display:none;text-decoration:none">. </span><span
+          style="color:windowtext;display:none;text-decoration:none">7</span></a></span></p>
 
-<h3 id="65166F07-0F08-457D-B805-B11F58CBDDA8">Simple Tables</h3>
+  <p id="F9AA9F31-4CA8-4BDB-8557-D96235EAA3D1" class="MsoToc2"><span class="MsoHyperlink"><a href="#_Toc237149539">8.2
+        Symbols and Special Characters<span style="color:windowtext;display:none;text-decoration:none">. </span><span
+          style="color:windowtext;display:none;text-decoration:none">7</span></a></span></p>
 
-<p id="B9B6832B-0587-4FC4-90BA-0F0C246AF90B" class="MsoNormal">Simple tables have a
-uniform number of columns and rows, without any merged cells:</p>
+  <p id="26F8EC4C-227B-4DC0-B02F-0835685E58D7" class="MsoToc1"><span class="MsoHyperlink"><a href="#_Toc237149540">9.
+        Page Layout Elements<span style="color:windowtext;display:none;text-decoration:none">. </span><span
+          style="color:windowtext;display:none;text-decoration:none">8</span></a></span></p>
 
-<table class="MsoTableGrid" border="1" cellspacing="0" cellpadding="0" style="margin-left:5.4pt;border-collapse:collapse;border:none">
- <thead>
-  <tr>
-   <td width="108" valign="top" style="width:80.85pt;border:solid windowtext 1.0pt;
-   padding:2.9pt 5.75pt 2.9pt 5.75pt">
-   <p id="0E9F4156-7025-4845-A3C2-753D7D803F66" class="MsoNormal" style="margin:
-   0in;line-height:normal"><b>Screen Reader</b></p>
-   </td>
-   <td width="85" valign="top" style="width:63.5pt;border:solid windowtext 1.0pt;
-   border-left:none;padding:2.9pt 5.75pt 2.9pt 5.75pt">
-   <p id="2A22C849-20E7-490C-AA64-1A2424C3F17E" class="MsoNormal" style="margin:
-   0in;line-height:normal"><b>Responses</b></p>
-   </td>
-   <td width="59" valign="top" style="width:44.2pt;border:solid windowtext 1.0pt;
-   border-left:none;padding:2.9pt 5.75pt 2.9pt 5.75pt">
-   <p id="778C47FF-40BD-4B7E-9A2E-2D7A0B6B583D" class="MsoNormal" style="margin:
-   0in;line-height:normal"><b>Share </b></p>
-   </td>
-  </tr>
-  <tr>
-   <td width="108" valign="top" style="width:80.85pt;border:solid windowtext 1.0pt;
-   border-top:none;padding:2.9pt 5.75pt 2.9pt 5.75pt">
-   <p id="97D456C5-3C37-4254-B001-F6654190EE59" class="MsoNormal" style="margin:
-   0in;line-height:normal">JAWS</p>
-   </td>
-   <td width="85" valign="top" style="width:63.5pt;border-top:none;border-left:
-   none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
-   padding:2.9pt 5.75pt 2.9pt 5.75pt">
-   <p id="B278D178-882E-4443-8E18-34463F4B966B" class="MsoNormal" style="margin:
-   0in;line-height:normal">853</p>
-   </td>
-   <td width="59" valign="top" style="width:44.2pt;border-top:none;border-left:
-   none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
-   padding:2.9pt 5.75pt 2.9pt 5.75pt">
-   <p id="6D502024-A107-417A-93B2-6E85C789FCDB" class="MsoNormal" style="margin:
-   0in;line-height:normal">49% </p>
-   </td>
-  </tr>
-  <tr>
-   <td width="108" valign="top" style="width:80.85pt;border:solid windowtext 1.0pt;
-   border-top:none;padding:2.9pt 5.75pt 2.9pt 5.75pt">
-   <p id="C80E1A02-4C37-4C6F-9129-3B2349740177" class="MsoNormal" style="margin:
-   0in;line-height:normal">NVDA</p>
-   </td>
-   <td width="85" valign="top" style="width:63.5pt;border-top:none;border-left:
-   none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
-   padding:2.9pt 5.75pt 2.9pt 5.75pt">
-   <p id="8F7397CA-90DE-49F1-99C8-275E22771976" class="MsoNormal" style="margin:
-   0in;line-height:normal">238</p>
-   </td>
-   <td width="59" valign="top" style="width:44.2pt;border-top:none;border-left:
-   none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
-   padding:2.9pt 5.75pt 2.9pt 5.75pt">
-   <p id="859FB660-E39D-4670-880D-4E9C87EEB424" class="MsoNormal" style="margin:
-   0in;line-height:normal">14% </p>
-   </td>
-  </tr>
-  <tr>
-   <td width="108" valign="top" style="width:80.85pt;border:solid windowtext 1.0pt;
-   border-top:none;padding:2.9pt 5.75pt 2.9pt 5.75pt">
-   <p id="F997F24A-92A1-4844-A7FB-CAE982261C53" class="MsoNormal" style="margin:
-   0in;line-height:normal">Window-Eyes</p>
-   </td>
-   <td width="85" valign="top" style="width:63.5pt;border-top:none;border-left:
-   none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
-   padding:2.9pt 5.75pt 2.9pt 5.75pt">
-   <p id="DDE1BEC0-1935-456B-BDB9-B29A194C9A21" class="MsoNormal" style="margin:
-   0in;line-height:normal">214</p>
-   </td>
-   <td width="59" valign="top" style="width:44.2pt;border-top:none;border-left:
-   none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
-   padding:2.9pt 5.75pt 2.9pt 5.75pt">
-   <p id="3CCA5BB7-342D-4709-815A-F4F9E100E8BF" class="MsoNormal" style="margin:
-   0in;line-height:normal">12% </p>
-   </td>
-  </tr>
-  <tr>
-   <td width="108" valign="top" style="width:80.85pt;border:solid windowtext 1.0pt;
-   border-top:none;padding:2.9pt 5.75pt 2.9pt 5.75pt">
-   <p id="602AE445-44A4-4397-9466-7F234EE143A8" class="MsoNormal" style="margin:
-   0in;line-height:normal">System Access</p>
-   </td>
-   <td width="85" valign="top" style="width:63.5pt;border-top:none;border-left:
-   none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
-   padding:2.9pt 5.75pt 2.9pt 5.75pt">
-   <p id="3C5AC098-43DC-4924-91E9-2661FB4C766F" class="MsoNormal" style="margin:
-   0in;line-height:normal">181</p>
-   </td>
-   <td width="59" valign="top" style="width:44.2pt;border-top:none;border-left:
-   none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
-   padding:2.9pt 5.75pt 2.9pt 5.75pt">
-   <p id="D6A3AA1D-C54D-489E-90E5-511B09D51C96" class="MsoNormal" style="margin:
-   0in;line-height:normal">10% </p>
-   </td>
-  </tr>
-  <tr>
-   <td width="108" valign="top" style="width:80.85pt;border:solid windowtext 1.0pt;
-   border-top:none;padding:2.9pt 5.75pt 2.9pt 5.75pt">
-   <p id="F8E302D2-AAD7-4E55-A19F-56462F552668" class="MsoNormal" style="margin:
-   0in;line-height:normal">VoiceOver</p>
-   </td>
-   <td width="85" valign="top" style="width:63.5pt;border-top:none;border-left:
-   none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
-   padding:2.9pt 5.75pt 2.9pt 5.75pt">
-   <p id="6B4417F9-19ED-4C74-A5EB-64B47CB49326" class="MsoNormal" style="margin:
-   0in;line-height:normal">159</p>
-   </td>
-   <td width="59" valign="top" style="width:44.2pt;border-top:none;border-left:
-   none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
-   padding:2.9pt 5.75pt 2.9pt 5.75pt">
-   <p id="85EF6186-F8F9-4BA4-84DD-D858B780A125" class="MsoNormal" style="margin:
-   0in;line-height:normal">9% </p>
-   </td>
-  </tr>
- </thead>
-</table>
+  <p id="001F70D0-C4FF-42CB-A62A-D2D33E5622DD" class="MsoToc2"><span class="MsoHyperlink"><a href="#_Toc237149541">9.1
+        Manual Breaks<span style="color:windowtext;display:none;text-decoration:none">. </span><span
+          style="color:windowtext;display:none;text-decoration:none">8</span></a></span></p>
 
-<p id="D3FB4488-06E1-4AC2-9CB9-31620049A5F5" class="MsoNormal" style="margin:0in;
-line-height:50%">&nbsp;</p>
+  <p id="A9A17CF0-28D5-47C8-82A8-BA798C958875" class="MsoToc2"><span class="MsoHyperlink"><a href="#_Toc237149542">9.2
+        Borders and Shading<span style="color:windowtext;display:none;text-decoration:none">. </span><span
+          style="color:windowtext;display:none;text-decoration:none">9</span></a></span></p>
 
-<h3 id="86C256FD-34AF-408B-BF85-7F91D0474848">Complex Tables</h3>
+  <p id="E56D55F4-6981-40B3-A06B-84DFD82ED12A" class="MsoToc2"><span class="MsoHyperlink"><a href="#_Toc237149543">9.3
+        Tab Stops<span style="color:windowtext;display:none;text-decoration:none">. </span><span
+          style="color:windowtext;display:none;text-decoration:none">9</span></a></span></p>
 
-<p id="A6323DEA-CA19-4B4B-A68B-DE37DD4A1164" class="MsoNormal">The following is a
-complex table, using merged cells as headers for sections within the table.
-This can't be made accessible in all types of documents:</p>
+  <p id="720A48EB-2430-41FB-9D45-7A9B29698E5F" class="MsoToc2"><span class="MsoHyperlink"><a href="#_Toc237149544">9.4
+        Section and Column Layout<span style="color:windowtext;display:none;text-decoration:none"> </span><span
+          style="color:windowtext;display:none;text-decoration:none">9</span></a></span></p>
 
-<table class="MsoTableGrid" border="1" cellspacing="0" cellpadding="0" style="margin-left:5.75pt;border-collapse:collapse;border:none">
- <tbody><tr>
-  <td width="120" valign="top" style="width:1.25in;border:solid windowtext 1.0pt;
-  padding:2.9pt 5.75pt 2.9pt 5.75pt">
-  <p id="5B37A472-C62E-4B8F-9C6C-FCF8731710E3" class="MsoNormal" style="margin:
-  0in;line-height:normal"><b>&nbsp;</b></p>
-  </td>
-  <td width="255" colspan="2" valign="top" style="width:191.5pt;border:solid windowtext 1.0pt;
-  border-left:none;padding:2.9pt 5.75pt 2.9pt 5.75pt">
-  <p id="50285FC9-FFA3-4954-994C-76E10FF202E3" class="MsoNormal" style="margin:
-  0in;line-height:normal"><b>May 2012</b></p>
-  </td>
-  <td width="255" colspan="2" valign="top" style="width:191.55pt;border:solid windowtext 1.0pt;
-  border-left:none;padding:2.9pt 5.75pt 2.9pt 5.75pt">
-  <p id="64BA4D10-E0EC-40D8-B05B-9E4C4D438E26" class="MsoNormal" style="margin:
-  0in;line-height:normal"><b>&nbsp;September 2010</b></p>
-  </td>
- </tr>
- <tr>
-  <td width="120" valign="top" style="width:1.25in;border:solid windowtext 1.0pt;
-  border-top:none;padding:2.9pt 5.75pt 2.9pt 5.75pt">
-  <p id="4E6EE737-405D-4C5C-A756-B1F7456E6F3D" class="MsoNormal" style="margin:
-  0in;line-height:normal"><b>Screen Reader</b></p>
-  </td>
-  <td width="128" valign="top" style="width:95.75pt;border-top:none;border-left:
+  <p id="755D5FBD-CC86-4023-B212-C92DBD2A9441" class="MsoToc1"><span class="MsoHyperlink"><a href="#_Toc237149545">10.
+        Review Features<span style="color:windowtext;display:none;text-decoration:none">. </span><span
+          style="color:windowtext;display:none;text-decoration:none">9</span></a></span></p>
+
+  <p id="8FF81E86-6ADA-40B8-AFCB-C0EC52346B6E" class="MsoToc2"><span class="MsoHyperlink"><a href="#_Toc237149546">10.1
+        Comments<span style="color:windowtext;display:none;text-decoration:none">. </span><span
+          style="color:windowtext;display:none;text-decoration:none">9</span></a></span></p>
+
+  <p id="A0019124-699E-4D5D-B300-A7D201DC9028" class="MsoToc2"><span class="MsoHyperlink"><a href="#_Toc237149547">10.2
+        Content Controls<span style="color:windowtext;display:none;text-decoration:none">. </span><span
+          style="color:windowtext;display:none;text-decoration:none">9</span></a></span></p>
+
+  <p id="97648AF5-41D4-4147-9C1B-1BFCC9D94DF4" class="MsoToc1"><span class="MsoHyperlink"><a href="#_Toc237149548">11.
+        Tracked Changes<span style="color:windowtext;display:none;text-decoration:none">. </span><span
+          style="color:windowtext;display:none;text-decoration:none">9</span></a></span></p>
+
+  <p id="A25C62E1-346D-4681-A3F7-FA27606BC03D" class="MsoNormal">&nbsp;</p>
+
+  <p id="97085CEE-5125-4F09-AA68-8D5A6822EF64" class="MsoNormal">&nbsp;</p>
+
+  <span style="font-size:1.0pt;line-height:8%;font-family:&quot;Aptos&quot;,sans-serif"><br clear="all"
+      style="page-break-before:always">
+  </span>
+
+  <p id="D3D7B374-74FD-4108-BDF5-B5D500E85025" class="MsoNormal" style="margin-bottom:
+0in;line-height:8%"><span style="font-size:1.0pt;line-height:8%">&nbsp;</span></p>
+
+  <h1 id="2E5A3C47-2E94-40FF-A878-EFC433ED56D2"><a name="_Toc237149519">1. Heading
+      Levels and Built-in Paragraph Styles</a></h1>
+
+  <p id="DA4F48D1-8942-4939-9049-059295139086" class="MsoNormal">This section
+    demonstrates the built-in style hierarchy. Each heading below uses a genuine
+    Word heading style, so it appears in the Table of Contents and in the document
+    navigation pane.</p>
+
+  <h2 id="26FC3B16-09EF-48F9-B9E8-90A2FC24A2D9"><a name="_Toc237149520">1.1 Heading
+      2 Example</a></h2>
+
+  <p id="2E24E6F8-9A43-423F-88EA-4BBA3A94DAAF" class="MsoNormal">This paragraph sits
+    under a Heading 2. It has two sentences and uses the default body font at 12
+    points.</p>
+
+  <h3 id="9DD4D348-BA5E-47B1-8447-6A41658ED089"><a name="_Toc237149521">1.1.1
+      Heading 3 Example</a></h3>
+
+  <p id="E40E11BF-ECEB-4443-BEE5-D71F90D69D2B" class="MsoNormal">This paragraph sits
+    under a Heading 3 and is left aligned by default.</p>
+
+  <h4 id="FCD3E15C-8E23-49D0-AB52-FA97FA18EB65">Heading 4 Example</h4>
+
+  <p id="85507B39-4E0A-4958-8DC4-7CBEA0E0AC0D" class="MsoNormal">Heading 4 through
+    Heading 6 are typically excluded from a three-level table of contents.</p>
+
+  <h5 id="898F2348-4CAD-4D23-80DC-DE5C86CEEC82">Heading 5 Example</h5>
+
+  <h6 id="520377DD-31A4-4CAE-B972-91FCB8637669">Heading 6 Example</h6>
+
+  <h2 id="90E17967-5644-4F2B-9389-63CF4C0F58A2"><a name="_Toc237149522">1.2 Other
+      Built-in Styles</a></h2>
+
+  <p id="CE6E29E4-6BFB-4519-9BCD-0E45ADA50330" class="MsoNormal">The paragraphs below
+    use Quote, Intense Quote, and No Spacing styles respectively.</p>
+
+  <p id="885B350B-5665-4F47-B334-7F2C55CD6C08" class="MsoQuote">A quote style
+    paragraph renders with distinct indentation and italics in most themes.</p>
+
+  <div style="border-top:solid #0F4761 1.0pt;border-left:none;border-bottom:solid #0F4761 1.0pt;
+border-right:none;padding:10.0pt 0in 10.0pt 0in;margin-left:.6in;margin-right:
+.6in">
+
+    <p id="D70A048A-5613-4BCE-A1C5-7C9CA8A3D838" class="MsoIntenseQuote"
+      style="margin-top:.25in;margin-right:0in;margin-bottom:.25in;margin-left:0in">An
+      intense quote is visually stronger, usually with rules above and below it.</p>
+
+  </div>
+
+  <p id="324CCA47-26B8-4DB2-9B93-812DCE2628E0" class="MsoNoSpacing">This paragraph
+    uses the No Spacing style, which removes space before and after.</p>
+
+  <p id="A46ADDCD-D106-4AA9-BDB7-A039FB0FBC4A" class="MsoCaption">This is a caption
+    style paragraph, normally used beneath a figure or table.</p>
+
+  <h1 id="CF07DC2C-40B6-4E31-BAC5-EFEDE5C5A661"><a name="_Toc237149523">2.
+      Character Formatting</a></h1>
+
+  <p id="4B551488-2578-49DC-A06D-76314C0AE287" class="MsoNormal">This section
+    exercises inline run properties. Each labelled item below carries a different
+    set of run-level attributes, so a run-splitting parser should produce one
+    distinct run per item.</p>
+
+  <p id="D5773099-A6C3-4E54-B0F3-CF29246023E5" class="MsoNormal"><b>Bold text.</b> <i>Italic
+      text.</i> <u>Underlined text.</u> <b><i><u>Bold italic underlined text.</u></i></b></p>
+
+  <p id="74C97B84-7D0A-4979-94FA-C0A57E35015B" class="MsoNormal"><u>Double underline.</u>
+    <u>Dotted underline.</u> <u>Wavy underline.</u> <s>Strikethrough text.</s> <s>Double
+      strikethrough.</s>
+  </p>
+
+  <p id="B3B13AD8-5A47-43B5-9C70-A2B4EE26A570" class="MsoNormal">Superscript in E =
+    mc<sup>2</sup>, subscript in H<sub>2</sub>O, plus <span style="font-variant:
+small-caps">small caps</span> and a hidden-style variant.</p>
+
+  <p id="4BF8BACB-23B2-4CEB-B8ED-64C330BA10AD" class="MsoNormal"><span style="color:#C00000">Red text</span>, <span
+      style="color:#0070C0">blue text</span>,
+    <span style="color:#00B050">green text</span>, and text with <span style="background:yellow">a yellow
+      highlight</span>, <span style="background:
+lime">a green highlight</span>, and <span style="background:aqua">a turquoise
+      highlight</span>.
+  </p>
+
+  <p id="87F11A53-637B-4082-A9FD-EFA4B44B3498" class="MsoNormal"><span style="font-size:8.0pt;line-height:115%">Eight
+      point text</span>, <span style="font-size:14.0pt;line-height:115%">fourteen point text</span>, <span
+      style="font-size:20.0pt;line-height:115%">twenty point text</span>, <span
+      style="font-family:&quot;Times New Roman&quot;,serif">Times New Roman</span>, <span
+      style="font-family:&quot;Courier New&quot;">Courier New</span>, and <span
+      style="font-family:&quot;Georgia&quot;,serif">Georgia</span>.</p>
+
+  <h1 id="D69F3F73-B02C-40F6-A603-42307A63250B"><a name="_Toc237149524">3.
+      Alignment, Indentation and Spacing</a></h1>
+
+  <p id="AB451084-4EE3-44CC-8456-4ED2DB543FF5" class="MsoNormal">This section varies
+    paragraph-level properties only. The run properties stay constant, so any
+    difference your parser reports should come from the paragraph formatting layer.</p>
+
+  <p id="3CF9F38E-631C-49F6-B6B6-9602BBB7DDB6" class="MsoNormal">This paragraph has
+    two sentences and is left aligned. Left alignment is the default for body text
+    in this document.</p>
+
+  <p id="CB1AE913-A1C7-4D08-9E09-55C9A8A85387" class="MsoNormal" align="center" style="text-align:center">This paragraph
+    has two sentences and is centered.
+    Centering is common for titles and pull quotes.</p>
+
+  <p id="DE47ECE8-CD7D-4649-B6F6-4D9A6DEDF9EB" class="MsoNormal" align="right" style="text-align:right">This paragraph
+    has two sentences and is right aligned.
+    Right alignment is often used for dates and signature blocks.</p>
+
+  <p id="67610832-B77D-489B-943C-FFBFA835F8B4" class="MsoNormal" style="text-align:
+justify">This paragraph has two sentences and is justified, so both the left
+    and right edges line up cleanly against the margins. Justification changes the
+    inter-word spacing on every line except the last one.</p>
+
+  <p id="912CCD82-5CEE-4CE2-B468-5F4D0B8DB763" class="MsoNormal" style="text-indent:
+.5in">This paragraph has a first-line indent of half an inch, which is set
+    through the paragraph format rather than by typing a tab character at the start
+    of the line.</p>
+
+  <p id="D66DB44E-5E64-4885-B79D-FC37ED32B412" class="MsoNormal" style="margin-top:
+0in;margin-right:.5in;margin-bottom:8.0pt;margin-left:1.0in">This paragraph is
+    indented one inch from the left margin and half an inch from the right margin,
+    producing a block-quote effect without using the Quote style.</p>
+
+  <p id="C736C3A1-A849-48B8-81B6-FB423E1D6EF5" class="MsoNormal" style="margin-left:
+.5in;text-indent:-.5in">This paragraph uses a hanging indent, so the first line
+    starts at the margin and every subsequent line is indented. Hanging indents are
+    typical in bibliographies and definition lists.</p>
+
+  <p id="3F1469F9-C21E-41BB-888B-4BFFE1744E4F" class="MsoNormal" style="line-height:
+200%">This paragraph uses double line spacing. It should be visibly taller than
+    the single-spaced paragraphs around it.</p>
+
+  <p id="4EB237AE-523A-486D-906C-196F6596E33F" class="MsoNormal" style="margin-top:
+12.0pt;margin-right:0in;margin-bottom:.25in;margin-left:0in;line-height:150%">This
+    paragraph uses 1.5 line spacing with twelve points of space before and eighteen
+    points of space after.</p>
+
+  <p id="6B978449-01AE-4086-9033-397ADD9CB763" class="MsoNormal">This paragraph is
+    set to keep with the next paragraph and to keep its own lines together, which
+    affects pagination only.</p>
+
+  <h1 id="DD776B7E-39C2-4AA1-97A0-933659EE92D2"><a name="_Toc237149525">4. Lists</a></h1>
+
+  <h2 id="06BE58D1-F800-4892-9CAB-6A24A06B6CB8"><a name="_Toc237149526">4.1
+      Bulleted List</a></h2>
+
+  <p id="88B56432-6163-4230-A617-AC87E5D066FC" class="MsoNormal">A single-level
+    bulleted list follows. The bullet glyphs are generated by Word numbering
+    definitions, not typed characters.</p>
+
+  <p id="4BD25674-F17D-44E8-9092-C4C930B6D996" class="MsoListBulletCxSpFirst"><span style="font-family:Symbol">·<span
+        style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      </span></span>First bulleted item</p>
+
+  <p id="0CB5AB8C-EC66-4C92-8FB0-B10D17320290" class="MsoListBulletCxSpMiddle"><span style="font-family:Symbol">·<span
+        style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      </span></span>Second bulleted item</p>
+
+  <p id="9F10D08E-8929-4AC3-92D3-1B4B07CA0455" class="MsoListBulletCxSpLast"><span style="font-family:Symbol">·<span
+        style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      </span></span>Third bulleted item with a noticeably longer body so that it
+    wraps onto a second line in the rendered output</p>
+
+  <h2 id="7A687E02-8330-4432-A48D-FE8BF42F382E"><a name="_Toc237149527">4.2
+      Numbered List</a></h2>
+
+  <p id="A6F9FAEC-6D2A-493A-A1C4-3730A0E21B35" class="MsoNormal">A single-level
+    numbered list follows.</p>
+
+  <p id="7B2B8473-0BA1-45D6-81A5-8FDE8FC9068F" class="MsoListNumberCxSpFirst">1.<span
+      style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>Open
+    the document in Word</p>
+
+  <p id="A40D5FF9-FE73-4BC8-BB9E-95D60B14B460" class="MsoListNumberCxSpMiddle">2.<span
+      style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>Run
+    the add-in from the ribbon</p>
+
+  <p id="57DFF8F9-AD90-4BEA-900F-6AE2EA02EE8C" class="MsoListNumberCxSpLast">3.<span
+      style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>Inspect
+    the generated JSON payload</p>
+
+  <h2 id="1D6D87DE-6006-4822-9B87-2756183FEE7A"><a name="_Toc237149528">4.3
+      Multilevel List</a></h2>
+
+  <p id="224A6B7A-942D-49FF-A60A-6D994EC0B8A6" class="MsoNormal">The list below uses
+    three indent levels within a single numbering definition.</p>
+
+  <p id="3B5CE44A-0151-405E-8C7E-F776EBD332FB" class="MsoListParagraphCxSpFirst"
+    style="margin-left:.25in;text-indent:-.25in">1.<span
+      style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    </span>Top level item one</p>
+
+  <p id="9B9BF559-61F8-4551-9B1A-0DCCFD83570A" class="MsoListParagraphCxSpMiddle"
+    style="margin-left:.75in;text-indent:-.25in">a)<span
+      style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    </span>Second level item under one</p>
+
+  <p id="55A00395-8A7A-4CE8-9B5D-699FAD04CC7B" class="MsoListParagraphCxSpMiddle"
+    style="margin-left:1.25in;text-indent:-.25in">i.<span
+      style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    </span>Third level item under two</p>
+
+  <p id="7A21A6AE-FAB6-41E9-9E9C-80DE986F26EE" class="MsoListParagraphCxSpMiddle"
+    style="margin-left:1.25in;text-indent:-.25in">ii.<span
+      style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    </span>Another third level item</p>
+
+  <p id="2B49C209-CF28-4388-80A1-FC06192DC21A" class="MsoListParagraphCxSpMiddle"
+    style="margin-left:.75in;text-indent:-.25in">b)<span
+      style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;
+    </span>Second level item, second entry</p>
+
+  <p id="D55EB54D-7936-41CE-BB3F-17751F74DB45" class="MsoListParagraphCxSpLast"
+    style="margin-left:.25in;text-indent:-.25in">2.<span
+      style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    </span>Top level item two</p>
+
+  <h1 id="C5F93C5F-549A-4913-AA32-A111389A6D8B"><a name="_Toc237149529">5. Tables</a></h1>
+
+  <h2 id="9E96CB73-D7A7-4D09-9533-176E275A8799"><a name="_Toc237149530">5.1 Styled
+      Table with Header Row</a></h2>
+
+  <p id="CD5B2C5D-3FC7-4058-AE2B-703A643782DA" class="MsoNormal">The table below uses
+    a built-in table style with banded rows and a marked header row.</p>
+
+  <table class="MsoTable15Grid4Accent1" border="1" cellspacing="0" cellpadding="0"
+    style="border-collapse:collapse;border:none">
+    <tbody>
+      <tr>
+        <td width="156" valign="top" style="width:116.85pt;border:solid #156082 1.0pt;
+  border-right:none;background:#156082;padding:0in 5.4pt 0in 5.4pt">
+          <p id="47612CB8-FCAF-4144-9B53-84B218EA3BD4" class="MsoNormal" style="margin-bottom:
+  0in;line-height:normal"><b><span style="color:white">Feature</span></b></p>
+        </td>
+        <td width="156" valign="top" style="width:116.85pt;border-top:solid #156082 1.0pt;
+  border-left:none;border-bottom:solid #156082 1.0pt;border-right:none;
+  background:#156082;padding:0in 5.4pt 0in 5.4pt">
+          <p id="F1525E19-62B0-4FFA-92DC-CE4114286C52" class="MsoNormal" style="margin-bottom:
+  0in;line-height:normal"><b><span style="color:white">Toolbar Tab</span></b></p>
+        </td>
+        <td width="156" valign="top" style="width:116.9pt;border-top:solid #156082 1.0pt;
+  border-left:none;border-bottom:solid #156082 1.0pt;border-right:none;
+  background:#156082;padding:0in 5.4pt 0in 5.4pt">
+          <p id="45E19CEA-A30E-4A2A-ABCF-5F883D94911D" class="MsoNormal" style="margin-bottom:
+  0in;line-height:normal"><b><span style="color:white">OOXML Element</span></b></p>
+        </td>
+        <td width="156" valign="top" style="width:116.9pt;border:solid #156082 1.0pt;
+  border-left:none;background:#156082;padding:0in 5.4pt 0in 5.4pt">
+          <p id="36801522-0F50-4177-8B0E-5FC35D84B53E" class="MsoNormal" style="margin-bottom:
+  0in;line-height:normal"><b><span style="color:white">Supported</span></b></p>
+        </td>
+      </tr>
+      <tr>
+        <td width="156" valign="top" style="width:116.85pt;border:solid #45B0E1 1.0pt;
+  border-top:none;background:#C1E4F5;padding:0in 5.4pt 0in 5.4pt">
+          <p id="32EE3786-C5A9-465D-9B02-985814B784CC" class="MsoNormal" style="margin-bottom:
+  0in;line-height:normal"><b><span style="color:black">Bold run</span></b></p>
+        </td>
+        <td width="156" valign="top" style="width:116.85pt;border-top:none;border-left:
+  none;border-bottom:solid #45B0E1 1.0pt;border-right:solid #45B0E1 1.0pt;
+  background:#C1E4F5;padding:0in 5.4pt 0in 5.4pt">
+          <p id="19CE0288-346A-4ED3-9DEF-B452795D2E8A" class="MsoNormal" style="margin-bottom:
+  0in;line-height:normal"><span style="color:black">Home</span></p>
+        </td>
+        <td width="156" valign="top" style="width:116.9pt;border-top:none;border-left:
+  none;border-bottom:solid #45B0E1 1.0pt;border-right:solid #45B0E1 1.0pt;
+  background:#C1E4F5;padding:0in 5.4pt 0in 5.4pt">
+          <p id="77C4716E-8862-4B80-9C18-FD386A9EC10F" class="MsoNormal" style="margin-bottom:
+  0in;line-height:normal"><span style="color:black">w:b</span></p>
+        </td>
+        <td width="156" valign="top" style="width:116.9pt;border-top:none;border-left:
+  none;border-bottom:solid #45B0E1 1.0pt;border-right:solid #45B0E1 1.0pt;
+  background:#C1E4F5;padding:0in 5.4pt 0in 5.4pt">
+          <p id="3D4BAFB0-62EB-48F2-B6E8-6CE768AF1D17" class="MsoNormal" style="margin-bottom:
+  0in;line-height:normal"><span style="color:black">Yes</span></p>
+        </td>
+      </tr>
+      <tr>
+        <td width="156" valign="top" style="width:116.85pt;border:solid #45B0E1 1.0pt;
+  border-top:none;padding:0in 5.4pt 0in 5.4pt">
+          <p id="BC82962B-6952-4618-AD94-C9A1E82D0E63" class="MsoNormal" style="margin-bottom:
+  0in;line-height:normal"><b>Bulleted list</b></p>
+        </td>
+        <td width="156" valign="top" style="width:116.85pt;border-top:none;border-left:
+  none;border-bottom:solid #45B0E1 1.0pt;border-right:solid #45B0E1 1.0pt;
+  padding:0in 5.4pt 0in 5.4pt">
+          <p id="7AABB765-2532-4519-8810-BDB5384939E0" class="MsoNormal" style="margin-bottom:
+  0in;line-height:normal">Home</p>
+        </td>
+        <td width="156" valign="top" style="width:116.9pt;border-top:none;border-left:
+  none;border-bottom:solid #45B0E1 1.0pt;border-right:solid #45B0E1 1.0pt;
+  padding:0in 5.4pt 0in 5.4pt">
+          <p id="D5BB405D-7990-45A7-82E1-0C05B83DC6F1" class="MsoNormal" style="margin-bottom:
+  0in;line-height:normal">w:numPr</p>
+        </td>
+        <td width="156" valign="top" style="width:116.9pt;border-top:none;border-left:
+  none;border-bottom:solid #45B0E1 1.0pt;border-right:solid #45B0E1 1.0pt;
+  padding:0in 5.4pt 0in 5.4pt">
+          <p id="6A39957E-E45D-4552-A1C4-5643237DE448" class="MsoNormal" style="margin-bottom:
+  0in;line-height:normal">Yes</p>
+        </td>
+      </tr>
+      <tr>
+        <td width="156" valign="top" style="width:116.85pt;border:solid #45B0E1 1.0pt;
+  border-top:none;background:#C1E4F5;padding:0in 5.4pt 0in 5.4pt">
+          <p id="8904BF0B-3F5F-416A-A90C-9B2224CBB9C8" class="MsoNormal" style="margin-bottom:
+  0in;line-height:normal"><b><span style="color:black">Inline picture</span></b></p>
+        </td>
+        <td width="156" valign="top" style="width:116.85pt;border-top:none;border-left:
+  none;border-bottom:solid #45B0E1 1.0pt;border-right:solid #45B0E1 1.0pt;
+  background:#C1E4F5;padding:0in 5.4pt 0in 5.4pt">
+          <p id="980DAE92-8D41-4925-B0AF-03475F980EBA" class="MsoNormal" style="margin-bottom:
+  0in;line-height:normal"><span style="color:black">Insert</span></p>
+        </td>
+        <td width="156" valign="top" style="width:116.9pt;border-top:none;border-left:
+  none;border-bottom:solid #45B0E1 1.0pt;border-right:solid #45B0E1 1.0pt;
+  background:#C1E4F5;padding:0in 5.4pt 0in 5.4pt">
+          <p id="4A7D961C-5803-41F8-B071-EAED1BF107C4" class="MsoNormal" style="margin-bottom:
+  0in;line-height:normal"><span style="color:black">w:drawing</span></p>
+        </td>
+        <td width="156" valign="top" style="width:116.9pt;border-top:none;border-left:
+  none;border-bottom:solid #45B0E1 1.0pt;border-right:solid #45B0E1 1.0pt;
+  background:#C1E4F5;padding:0in 5.4pt 0in 5.4pt">
+          <p id="D8224C44-4969-4F23-BA18-CD2E422AC2E0" class="MsoNormal" style="margin-bottom:
+  0in;line-height:normal"><span style="color:black">Partial</span></p>
+        </td>
+      </tr>
+      <tr>
+        <td width="156" valign="top" style="width:116.85pt;border:solid #45B0E1 1.0pt;
+  border-top:none;padding:0in 5.4pt 0in 5.4pt">
+          <p id="CA122425-9733-4523-833B-33D178B29743" class="MsoNormal" style="margin-bottom:
+  0in;line-height:normal"><b>Footnote</b></p>
+        </td>
+        <td width="156" valign="top" style="width:116.85pt;border-top:none;border-left:
+  none;border-bottom:solid #45B0E1 1.0pt;border-right:solid #45B0E1 1.0pt;
+  padding:0in 5.4pt 0in 5.4pt">
+          <p id="31DA7669-8915-442B-A2DA-E99D44B1615A" class="MsoNormal" style="margin-bottom:
+  0in;line-height:normal">References</p>
+        </td>
+        <td width="156" valign="top" style="width:116.9pt;border-top:none;border-left:
+  none;border-bottom:solid #45B0E1 1.0pt;border-right:solid #45B0E1 1.0pt;
+  padding:0in 5.4pt 0in 5.4pt">
+          <p id="29020D01-A088-40D2-8AB3-C5CB426A5273" class="MsoNormal" style="margin-bottom:
+  0in;line-height:normal">w:footnoteReference</p>
+        </td>
+        <td width="156" valign="top" style="width:116.9pt;border-top:none;border-left:
+  none;border-bottom:solid #45B0E1 1.0pt;border-right:solid #45B0E1 1.0pt;
+  padding:0in 5.4pt 0in 5.4pt">
+          <p id="0CDEAE24-53EE-4E9C-B0FB-86F9F48A4534" class="MsoNormal" style="margin-bottom:
+  0in;line-height:normal">Yes</p>
+        </td>
+      </tr>
+      <tr>
+        <td width="156" valign="top" style="width:116.85pt;border:solid #45B0E1 1.0pt;
+  border-top:none;background:#C1E4F5;padding:0in 5.4pt 0in 5.4pt">
+          <p id="210F8B70-0F98-4D44-B8DD-3B405908DF64" class="MsoNormal" style="margin-bottom:
+  0in;line-height:normal"><b><span style="color:black">Tracked change</span></b></p>
+        </td>
+        <td width="156" valign="top" style="width:116.85pt;border-top:none;border-left:
+  none;border-bottom:solid #45B0E1 1.0pt;border-right:solid #45B0E1 1.0pt;
+  background:#C1E4F5;padding:0in 5.4pt 0in 5.4pt">
+          <p id="557CE129-1AAA-46D2-A25F-C646B5C68724" class="MsoNormal" style="margin-bottom:
+  0in;line-height:normal"><span style="color:black">Review</span></p>
+        </td>
+        <td width="156" valign="top" style="width:116.9pt;border-top:none;border-left:
+  none;border-bottom:solid #45B0E1 1.0pt;border-right:solid #45B0E1 1.0pt;
+  background:#C1E4F5;padding:0in 5.4pt 0in 5.4pt">
+          <p id="183A1F99-C8DD-43BF-B724-485C5B5185EE" class="MsoNormal" style="margin-bottom:
+  0in;line-height:normal"><span style="color:black">w:ins / w:del</span></p>
+        </td>
+        <td width="156" valign="top" style="width:116.9pt;border-top:none;border-left:
+  none;border-bottom:solid #45B0E1 1.0pt;border-right:solid #45B0E1 1.0pt;
+  background:#C1E4F5;padding:0in 5.4pt 0in 5.4pt">
+          <p id="AD6A25F3-39E3-48C7-9656-3E9BAF5527F9" class="MsoNormal" style="margin-bottom:
+  0in;line-height:normal"><span style="color:black">Partial</span></p>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p id="A8F74D01-AF91-4C82-B1DF-E0441E696C41" class="MsoNormal">&nbsp;</p>
+
+  <p id="51436DC3-5611-4F83-BDE2-941227C4B9D1" class="MsoCaption">Table 1.
+    Feature-to-element mapping used for parser validation.</p>
+
+  <h2 id="B3846A60-4925-49C1-9ADC-35232CC34CE7"><a name="_Toc237149531">5.2 Plain
+      Table with Merged Cells and Manual Shading</a></h2>
+
+  <p id="F11B8A89-AB4D-4FE9-8A8E-22818651A541" class="MsoNormal">This table uses no
+    built-in table style. The first row is a merged banner cell, individual cells
+    carry manual shading, and column alignment varies by column.</p>
+
+  <table class="MsoTableGrid" border="1" cellspacing="0" cellpadding="0" style="border-collapse:collapse;border:none">
+    <tbody>
+      <tr>
+        <td width="623" colspan="3" valign="top" style="width:467.5pt;border:solid windowtext 1.0pt;
+  background:#1F4E79;padding:0in 5.4pt 0in 5.4pt">
+          <p id="4A6797B4-60B6-425D-B3EA-F9282C5D6BB3" class="MsoNormal" align="center"
+            style="margin-bottom:0in;text-align:center;line-height:normal"><b><span style="color:white">Quarterly
+                Summary</span></b></p>
+        </td>
+      </tr>
+      <tr>
+        <td width="208" valign="top" style="width:155.8pt;border:solid windowtext 1.0pt;
+  border-top:none;background:#DCE6F1;padding:0in 5.4pt 0in 5.4pt">
+          <p id="52125579-8DAD-44DF-A3BE-898E848DF46D" class="MsoNormal" style="margin-bottom:
+  0in;line-height:normal"><b><span style="color:black">Quarter</span></b></p>
+        </td>
+        <td width="208" valign="top" style="width:155.85pt;border-top:none;border-left:
   none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
-  padding:2.9pt 5.75pt 2.9pt 5.75pt">
-  <p id="D6CEA54F-FCE4-4F04-AACA-FF3761EF5146" class="MsoNormal" style="margin:
-  0in;line-height:normal"><b>Responses</b></p>
-  </td>
-  <td width="128" valign="top" style="width:95.75pt;border-top:none;border-left:
+  background:#DCE6F1;padding:0in 5.4pt 0in 5.4pt">
+          <p id="BDBBBA4B-9B22-4716-A1C6-BB94E36B4FA6" class="MsoNormal" style="margin-bottom:
+  0in;line-height:normal"><b><span style="color:black">Documents Parsed</span></b></p>
+        </td>
+        <td width="208" valign="top" style="width:155.85pt;border-top:none;border-left:
   none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
-  padding:2.9pt 5.75pt 2.9pt 5.75pt">
-  <p id="C83556D2-D78F-4D3D-BCBF-546BF61A2C74" class="MsoNormal" style="margin:
-  0in;line-height:normal"><b>Share</b></p>
-  </td>
-  <td width="128" valign="top" style="width:95.75pt;border-top:none;border-left:
+  background:#DCE6F1;padding:0in 5.4pt 0in 5.4pt">
+          <p id="2FAC1826-084E-4768-B97C-DA5BA6D2AD1E" class="MsoNormal" style="margin-bottom:
+  0in;line-height:normal"><b><span style="color:black">Failure Rate</span></b></p>
+        </td>
+      </tr>
+      <tr>
+        <td width="208" valign="top" style="width:155.8pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:0in 5.4pt 0in 5.4pt">
+          <p id="AE210DAB-9B97-4CE5-8FF2-65010C7EA0B2" class="MsoNormal" style="margin-bottom:
+  0in;line-height:normal">Q1</p>
+        </td>
+        <td width="208" valign="top" style="width:155.85pt;border-top:none;border-left:
   none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
-  padding:2.9pt 5.75pt 2.9pt 5.75pt">
-  <p id="6CE11916-0F86-40CD-B0B4-811576499C6A" class="MsoNormal" style="margin:
-  0in;line-height:normal"><b>Responses</b></p>
-  </td>
-  <td width="128" valign="top" style="width:95.8pt;border-top:none;border-left:
+  padding:0in 5.4pt 0in 5.4pt">
+          <p id="129D8773-9CC0-47DA-AD05-AABCD87FEC22" class="MsoNormal" align="center"
+            style="margin-bottom:0in;text-align:center;line-height:normal">1,204</p>
+        </td>
+        <td width="208" valign="top" style="width:155.85pt;border-top:none;border-left:
   none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
-  padding:2.9pt 5.75pt 2.9pt 5.75pt">
-  <p id="07A22699-EBB7-491D-B98F-EB41A36B6E1A" class="MsoNormal" style="margin:
-  0in;line-height:normal"><b>Share </b></p>
-  </td>
- </tr>
- <tr>
-  <td width="120" valign="top" style="width:1.25in;border:solid windowtext 1.0pt;
-  border-top:none;padding:2.9pt 5.75pt 2.9pt 5.75pt">
-  <p id="811BF2FC-8016-42F1-A364-F6DB6548F3A5" class="MsoNormal" style="margin:
-  0in;line-height:normal">JAWS</p>
-  </td>
-  <td width="128" valign="top" style="width:95.75pt;border-top:none;border-left:
+  padding:0in 5.4pt 0in 5.4pt">
+          <p id="F64EBDD6-6C51-4FA8-8C11-C2F885075AEF" class="MsoNormal" align="right"
+            style="margin-bottom:0in;text-align:right;line-height:normal">2.1%</p>
+        </td>
+      </tr>
+      <tr>
+        <td width="208" valign="top" style="width:155.8pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:0in 5.4pt 0in 5.4pt">
+          <p id="2CBD7B76-5FE1-4715-AE89-74EE6736086F" class="MsoNormal" style="margin-bottom:
+  0in;line-height:normal">Q2</p>
+        </td>
+        <td width="208" valign="top" style="width:155.85pt;border-top:none;border-left:
   none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
-  padding:2.9pt 5.75pt 2.9pt 5.75pt">
-  <p id="F7E6EB61-8550-421D-96E7-A60B8F75D4CA" class="MsoNormal" style="margin:
-  0in;line-height:normal">853</p>
-  </td>
-  <td width="128" valign="top" style="width:95.75pt;border-top:none;border-left:
+  padding:0in 5.4pt 0in 5.4pt">
+          <p id="99275805-499F-4EC5-A1D7-93A1C2E3DB57" class="MsoNormal" align="center"
+            style="margin-bottom:0in;text-align:center;line-height:normal">1,860</p>
+        </td>
+        <td width="208" valign="top" style="width:155.85pt;border-top:none;border-left:
   none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
-  padding:2.9pt 5.75pt 2.9pt 5.75pt">
-  <p id="C44D77F5-0947-48ED-9790-0C925453953A" class="MsoNormal" style="margin:
-  0in;line-height:normal">49%</p>
-  </td>
-  <td width="128" valign="top" style="width:95.75pt;border-top:none;border-left:
+  padding:0in 5.4pt 0in 5.4pt">
+          <p id="F1C863CD-3DC8-41C8-ADBA-4425A04DB334" class="MsoNormal" align="right"
+            style="margin-bottom:0in;text-align:right;line-height:normal">1.4%</p>
+        </td>
+      </tr>
+      <tr>
+        <td width="208" valign="top" style="width:155.8pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:0in 5.4pt 0in 5.4pt">
+          <p id="5679C59E-E5AE-448C-ACBA-BD5F536C5204" class="MsoNormal" style="margin-bottom:
+  0in;line-height:normal">Q3</p>
+        </td>
+        <td width="208" valign="top" style="width:155.85pt;border-top:none;border-left:
   none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
-  padding:2.9pt 5.75pt 2.9pt 5.75pt">
-  <p id="17D4412F-9EAD-4718-B19D-8283DE87994B" class="MsoNormal" style="margin:
-  0in;line-height:normal">727</p>
-  </td>
-  <td width="128" valign="top" style="width:95.8pt;border-top:none;border-left:
+  padding:0in 5.4pt 0in 5.4pt">
+          <p id="C6CD6B87-6C7D-494A-8C4F-C4724FDA03EB" class="MsoNormal" align="center"
+            style="margin-bottom:0in;text-align:center;line-height:normal">2,415</p>
+        </td>
+        <td width="208" valign="top" style="width:155.85pt;border-top:none;border-left:
   none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
-  padding:2.9pt 5.75pt 2.9pt 5.75pt">
-  <p id="3B3374C2-B565-4B02-AA00-161448296DB4" class="MsoNormal" style="margin:
-  0in;line-height:normal">59% </p>
-  </td>
- </tr>
- <tr>
-  <td width="120" valign="top" style="width:1.25in;border:solid windowtext 1.0pt;
-  border-top:none;padding:2.9pt 5.75pt 2.9pt 5.75pt">
-  <p id="1833E96E-5A25-43A3-9B0D-A6C586B011D4" class="MsoNormal" style="margin:
-  0in;line-height:normal">NVDA</p>
-  </td>
-  <td width="128" valign="top" style="width:95.75pt;border-top:none;border-left:
-  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
-  padding:2.9pt 5.75pt 2.9pt 5.75pt">
-  <p id="196E13E4-1590-4624-92E3-304A107A203C" class="MsoNormal" style="margin:
-  0in;line-height:normal">238</p>
-  </td>
-  <td width="128" valign="top" style="width:95.75pt;border-top:none;border-left:
-  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
-  padding:2.9pt 5.75pt 2.9pt 5.75pt">
-  <p id="3452B6BC-7B20-4859-B810-2373914FEBAC" class="MsoNormal" style="margin:
-  0in;line-height:normal">14%</p>
-  </td>
-  <td width="128" valign="top" style="width:95.75pt;border-top:none;border-left:
-  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
-  padding:2.9pt 5.75pt 2.9pt 5.75pt">
-  <p id="99B9A942-657B-4A89-A24C-EF6AFBFFF763" class="MsoNormal" style="margin:
-  0in;line-height:normal">105</p>
-  </td>
-  <td width="128" valign="top" style="width:95.8pt;border-top:none;border-left:
-  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
-  padding:2.9pt 5.75pt 2.9pt 5.75pt">
-  <p id="437BF62D-7E2F-4592-B66F-A867E5800889" class="MsoNormal" style="margin:
-  0in;line-height:normal">9% </p>
-  </td>
- </tr>
- <tr>
-  <td width="120" valign="top" style="width:1.25in;border:solid windowtext 1.0pt;
-  border-top:none;padding:2.9pt 5.75pt 2.9pt 5.75pt">
-  <p id="7155F485-8E05-49B1-B960-6AA785F9796C" class="MsoNormal" style="margin:
-  0in;line-height:normal">Window-Eyes</p>
-  </td>
-  <td width="128" valign="top" style="width:95.75pt;border-top:none;border-left:
-  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
-  padding:2.9pt 5.75pt 2.9pt 5.75pt">
-  <p id="36488B12-BBE9-46A7-B902-64BF3EE654C1" class="MsoNormal" style="margin:
-  0in;line-height:normal">214</p>
-  </td>
-  <td width="128" valign="top" style="width:95.75pt;border-top:none;border-left:
-  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
-  padding:2.9pt 5.75pt 2.9pt 5.75pt">
-  <p id="3573FAFB-FBB4-49AC-8E70-D8037A64BB79" class="MsoNormal" style="margin:
-  0in;line-height:normal">12%</p>
-  </td>
-  <td width="128" valign="top" style="width:95.75pt;border-top:none;border-left:
-  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
-  padding:2.9pt 5.75pt 2.9pt 5.75pt">
-  <p id="64FC011B-2A79-40B4-B8C2-1CA6530E034D" class="MsoNormal" style="margin:
-  0in;line-height:normal">138</p>
-  </td>
-  <td width="128" valign="top" style="width:95.8pt;border-top:none;border-left:
-  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
-  padding:2.9pt 5.75pt 2.9pt 5.75pt">
-  <p id="4A70FB94-B57C-4718-8ECE-47DA6A6350E6" class="MsoNormal" style="margin:
-  0in;line-height:normal">11% </p>
-  </td>
- </tr>
- <tr>
-  <td width="120" valign="top" style="width:1.25in;border:solid windowtext 1.0pt;
-  border-top:none;padding:2.9pt 5.75pt 2.9pt 5.75pt">
-  <p id="8F98DD13-5092-41E0-9498-E238B849089B" class="MsoNormal" style="margin:
-  0in;line-height:normal">System Access</p>
-  </td>
-  <td width="128" valign="top" style="width:95.75pt;border-top:none;border-left:
-  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
-  padding:2.9pt 5.75pt 2.9pt 5.75pt">
-  <p id="EFE8AB01-DB99-4E54-B4FE-144F34AA9E57" class="MsoNormal" style="margin:
-  0in;line-height:normal">181</p>
-  </td>
-  <td width="128" valign="top" style="width:95.75pt;border-top:none;border-left:
-  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
-  padding:2.9pt 5.75pt 2.9pt 5.75pt">
-  <p id="E05DDC0E-E829-41BA-B066-45BEFDBA6C83" class="MsoNormal" style="margin:
-  0in;line-height:normal">10%</p>
-  </td>
-  <td width="128" valign="top" style="width:95.75pt;border-top:none;border-left:
-  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
-  padding:2.9pt 5.75pt 2.9pt 5.75pt">
-  <p id="165EB4E3-0F18-4A5C-AC03-35697663C467" class="MsoNormal" style="margin:
-  0in;line-height:normal">58</p>
-  </td>
-  <td width="128" valign="top" style="width:95.8pt;border-top:none;border-left:
-  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
-  padding:2.9pt 5.75pt 2.9pt 5.75pt">
-  <p id="AB2E8665-09CA-4EF2-864A-4FF2177E38DF" class="MsoNormal" style="margin:
-  0in;line-height:normal">5% </p>
-  </td>
- </tr>
- <tr>
-  <td width="120" valign="top" style="width:1.25in;border:solid windowtext 1.0pt;
-  border-top:none;padding:2.9pt 5.75pt 2.9pt 5.75pt">
-  <p id="E1E1FA51-144B-4562-831F-03AC0152D1BC" class="MsoNormal" style="margin:
-  0in;line-height:normal">VoiceOver</p>
-  </td>
-  <td width="128" valign="top" style="width:95.75pt;border-top:none;border-left:
-  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
-  padding:2.9pt 5.75pt 2.9pt 5.75pt">
-  <p id="DBE96C1D-2010-494A-B972-5E020E54AE70" class="MsoNormal" style="margin:
-  0in;line-height:normal">159</p>
-  </td>
-  <td width="128" valign="top" style="width:95.75pt;border-top:none;border-left:
-  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
-  padding:2.9pt 5.75pt 2.9pt 5.75pt">
-  <p id="FA10009F-CB31-42F1-9D76-0ACF92E156D6" class="MsoNormal" style="margin:
-  0in;line-height:normal">9%</p>
-  </td>
-  <td width="128" valign="top" style="width:95.75pt;border-top:none;border-left:
-  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
-  padding:2.9pt 5.75pt 2.9pt 5.75pt">
-  <p id="F90063D0-76D9-411B-8440-DCA2D327A575" class="MsoNormal" style="margin:
-  0in;line-height:normal">120</p>
-  </td>
-  <td width="128" valign="top" style="width:95.8pt;border-top:none;border-left:
-  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
-  padding:2.9pt 5.75pt 2.9pt 5.75pt">
-  <p id="C4FADEFD-A3E4-4338-BD37-F85261C67868" class="MsoNormal" style="margin:
-  0in;line-height:normal">10%</p>
-  </td>
- </tr>
-</tbody></table>
+  background:#C6EFCE;padding:0in 5.4pt 0in 5.4pt">
+          <p id="E99A3D70-E4E3-47F1-9F54-D98499C7A732" class="MsoNormal" align="right"
+            style="margin-bottom:0in;text-align:right;line-height:normal"><span style="color:black">0.9%</span></p>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 
-<p id="F493A6C7-F621-4E04-9DC7-5E388A0E55BA" class="MsoNormal" style="margin:0in;
-line-height:50%">&nbsp;</p>
+  <p id="60669330-FC7B-493D-9A6C-53022A57732A" class="MsoNormal">&nbsp;</p>
 
-<h2 id="50965942-C20D-4A8B-A07A-505EA7812EA5">Columns</h2>
+  <p id="0CAC50BE-861B-41D2-82D6-A238E7B0F447" class="MsoCaption">Table 2. Manual
+    cell formatting, shading and merge behaviour.</p>
+
+  <h1 id="78D4F190-DD8B-4FD9-8BBE-665E17527F3B"><a name="_Toc237149532">6. Links,
+      Bookmarks and Fields</a></h1>
+
+  <h2 id="B4981950-79FF-4DDC-BA47-86A704750826"><a name="_Toc237149533">6.1
+      Hyperlinks</a></h2>
+
+  <p id="60AA8B57-EFA4-4FD6-9947-5BE9656AD323" class="MsoNormal">An external
+    hyperlink points to the <a href="https://learn.microsoft.com/office/dev/add-ins/">Office Add-ins
+      documentation</a>, and an <a href="mailto:test@example.com">email hyperlink</a>
+    opens a new message.</p>
+
+  <h2 id="2E96C314-6A36-4318-A83C-703A53C1785A"><a name="_Toc237149534">6.2
+      Bookmarks</a></h2>
+
+  <p id="99F11FB2-D0C7-4319-ABB9-9801E134A155" class="MsoNormal"><a name="ParserAnchor">This paragraph is the target of
+      a bookmark named
+      ParserAnchor, which a cross-reference field can point at.</a></p>
+
+  <h2 id="0B2CDD08-C991-46D2-A6B5-C0E2BC5587EF"><a name="_Toc237149535">6.3 Fields</a></h2>
+
+  <p id="3DA1277D-3ED2-459A-B934-C5E90942C2A9" class="MsoNormal">Current date field: 8/9/2026</p>
+
+  <p id="3652C69A-6612-4E99-9446-8D3ED5FCF93D" class="MsoNormal">Page number field: 5</p>
+
+  <p id="6767312F-5CA1-4417-B140-378659534843" class="MsoNormal">Total pages field: 5</p>
+
+  <p id="D1FCE25F-2FC2-4FBE-B2D4-4958F38577B8" class="MsoNormal">Document title
+    field: Word Feature Showcase — OOXML Test Document</p>
+
+  <p id="6BC20A1A-64BC-4DF0-8EBE-0E87863FC9EE" class="MsoNormal">Cross-reference to
+    bookmark: This paragraph is the target of a bookmark named ParserAnchor, which
+    a cross-reference field can point at.</p>
+
+  <p id="2CCB30EE-0C17-4929-990F-775436E68643" class="MsoNormal">&nbsp;</p>
+
+  <h1 id="07E55539-CA32-4301-BA97-102699A258DA"><a name="_Toc237149536">7.
+      Footnotes and Endnotes</a></h1>
+
+  <p id="E18C5D90-ED86-4F79-A97B-FC9061ACC680" class="MsoNormal">This sentence
+    carries a genuine footnote reference at its end.<a href="#_ftn1" name="_ftnref1" title=""><span
+        class="MsoFootnoteReference"><span class="MsoFootnoteReference"><span
+            style="font-size:12.0pt;line-height:115%;font-family:&quot;Aptos&quot;,sans-serif">[1]</span></span></span></a>
+    A second sentence in the same paragraph carries a second footnote so that
+    numbering increments correctly.<a href="#_ftn2" name="_ftnref2" title=""><span class="MsoFootnoteReference"><span
+          class="MsoFootnoteReference"><span
+            style="font-size:12.0pt;line-height:115%;font-family:&quot;Aptos&quot;,sans-serif">[2]</span></span></span></a>
+  </p>
+
+  <p id="9A71C136-F3DC-4394-93EB-416695DF233D" class="MsoNormal">This paragraph
+    carries an endnote reference<a href="#_edn1" name="_ednref1" title=""><span class="MsoEndnoteReference"><span
+          class="MsoEndnoteReference"><span
+            style="font-size:12.0pt;line-height:115%;font-family:&quot;Aptos&quot;,sans-serif">[i]</span></span></span></a>,
+    which collects at the end of the document rather than the foot of the page.</p>
+
+  <h1 id="A380B063-3347-49A0-98EF-A6CAF9FF168D"><a name="_Toc237149537">8.
+      Pictures, Icons and Special Characters</a></h1>
+
+  <h2 id="0F37D32E-94FF-4861-B76E-F65566FF0FB1"><a name="_Toc237149538">8.1 Inline
+      Picture</a></h2>
+
+  <p id="91BD0E16-2908-4FBC-B2D5-675309B07394" class="MsoNormal">An inline PNG
+    follows. In the package this becomes a w:drawing element with a relationship to
+    a media part, so the JSON should carry an image reference rather than literal
+    text.</p>
+
+  <p id="4AB52CA5-A8C8-4B6C-A832-F49465BE87A6" class="MsoNormal" align="center" style="text-align:center"><img
+      border="0" width="64" height="64" id="Picture 1"
+      src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAABgCAYAAADimHc4AAACH0lEQVR42u2d61HDMBAG7WuEVETqIQWYekJFoRL4FYZhMMiR7qXbr4DMsKu7ky0NXhZCKmft/YGn55ePygDf315XcwHVoY+UsQLeV4QAf3yOsBLg+0oQ4PtKEOD7ShDg+0oQ4PtKEOD7ShCw+EZY/b5VQAVEqgDiKID249OGqABaEAIIAhBAEIAAggAEEAQggCDAL7frhgBv+JYSELCz8m/XzUQEApxbEgIaIGtWgwB/c60GAX57TucLAmaCTwviQaz26i8pIBL8cgKiwWcGOMMvJcD6JRsCgreeMgIiw59eQHT4DGFmQO3V7yLAYjeSBb65AIsjv0zwTQX8duRXHb6ZgD0wUR+OphLQctxXdfWrC2iF0ishK3xVAUehPCohM3w1AVYws8NXE9Dzh1YbzGotSFvCDKtffQhrSZgFvsk2dLSEmeCbPYh5zYTo8E1fRYyQMOOANn0ZZ1kJGVa/uQArMFnguwjQBpQJvpuAjKCmE6AhIaNU9zPhUdCyVlSIQ/leeJnbWZhbEY9CzD5LQl1LqTiYw90LOiJhBmEhL2a1gJ2lWsLejLsD/gn6dL5M1aq+PjbDP261zf1DP1zOpQUhgCAAAQQBxQX0fhWUHN+CUgG0ICJ7pUH02w8VELEFUQV2q3+3ApBgA//PFoQEffj/zgAk6MJvGsJI0IPfvAtCgg78Q9tQJIyHvyzfjiSPhOPLcYu0e1VXl0FnIKQnn8cKAh6wnRYvAAAAAElFTkSuQmCC">
+  </p>
+
+  <p id="2E786630-251D-4C8D-9889-2BDAD32E8053" class="MsoCaption" align="center" style="text-align:center">Figure 1.
+    Inline raster image, 96 by 96 pixels.</p>
+
+  <p id="84F5443E-F0E5-47E1-80CC-AEA6E2D1E3C4" class="MsoNormal">A second copy of the
+    same image is placed inline within this sentence <img border="0" width="64" height="64" id="Picture 2"
+      src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAABgCAYAAADimHc4AAACH0lEQVR42u2d61HDMBAG7WuEVETqIQWYekJFoRL4FYZhMMiR7qXbr4DMsKu7ky0NXhZCKmft/YGn55ePygDf315XcwHVoY+UsQLeV4QAf3yOsBLg+0oQ4PtKEOD7ShDg+0oQ4PtKEOD7ShCw+EZY/b5VQAVEqgDiKID249OGqABaEAIIAhBAEIAAggAEEAQggCDAL7frhgBv+JYSELCz8m/XzUQEApxbEgIaIGtWgwB/c60GAX57TucLAmaCTwviQaz26i8pIBL8cgKiwWcGOMMvJcD6JRsCgreeMgIiw59eQHT4DGFmQO3V7yLAYjeSBb65AIsjv0zwTQX8duRXHb6ZgD0wUR+OphLQctxXdfWrC2iF0ishK3xVAUehPCohM3w1AVYws8NXE9Dzh1YbzGotSFvCDKtffQhrSZgFvsk2dLSEmeCbPYh5zYTo8E1fRYyQMOOANn0ZZ1kJGVa/uQArMFnguwjQBpQJvpuAjKCmE6AhIaNU9zPhUdCyVlSIQ/leeJnbWZhbEY9CzD5LQl1LqTiYw90LOiJhBmEhL2a1gJ2lWsLejLsD/gn6dL5M1aq+PjbDP261zf1DP1zOpQUhgCAAAQQBxQX0fhWUHN+CUgG0ICJ7pUH02w8VELEFUQV2q3+3ApBgA//PFoQEffj/zgAk6MJvGsJI0IPfvAtCgg78Q9tQJIyHvyzfjiSPhOPLcYu0e1VXl0FnIKQnn8cKAh6wnRYvAAAAAElFTkSuQmCC">&nbsp;so
+    that the picture sits between two text runs in a single paragraph.</p>
+
+  <h2 id="326AF68F-81A5-4814-8D71-548B0D286B0E"><a name="_Toc237149539">8.2 Symbols
+      and Special Characters</a></h2>
+
+  <p id="2EF3793F-CF40-4B9C-8DBD-73CC4389FBEB" class="MsoNormal">Currency and maths:
+    € £ ¥ ¢ ± × ÷ ≈ ≠ ≤ ≥ ∞ √ ∑ ∆
+    π µ Ω</p>
+
+  <p id="6872E19E-3A5C-4AE5-AD5D-276751633793" class="MsoNormal">Punctuation and
+    marks: — – … « » “ ” ‘ ’ § ¶ † ‡ • ‰ © ® ™ °</p>
+
+  <p id="A80C58DF-81C1-4057-B4C6-E2404A70466D" class="MsoNormal">Arrows and shapes:
+    ← → ↑ ↓ ↔ <span style="font-family:&quot;Cambria Math&quot;,serif">⇒</span>
+    <span style="font-family:&quot;Cambria Math&quot;,serif">⇔</span> <span
+      style="font-family:&quot;Segoe UI Symbol&quot;,sans-serif">★</span> <span
+      style="font-family:&quot;Segoe UI Symbol&quot;,sans-serif">☆</span> ✓ <span
+      style="font-family:&quot;Segoe UI Symbol&quot;,sans-serif">✗</span> <span
+      style="font-family:&quot;Arial&quot;,sans-serif">■</span> □ <span
+      style="font-family:&quot;Arial&quot;,sans-serif">▲</span> <span style="font-family:
+&quot;Arial&quot;,sans-serif">▼</span> <span style="font-family:&quot;Cambria Math&quot;,serif">◆</span>
+  </p>
+
+  <p id="942220FA-928A-4981-8571-218726511CF6" class="MsoNormal">Accented and
+    non-Latin: café, naïve, Zürich, señor, Ελλάδα,
+    Москва, <span style="font-family:&quot;MS Gothic&quot;">日本語</span>,
+    <span style="font-family:&quot;Arial&quot;,sans-serif">العربية</span>,
+    <span style="font-family:&quot;Nirmala UI&quot;,sans-serif">हिन्दी</span>
+  </p>
+
+  <p id="E8F38ABC-B422-4D1B-B81C-E4CC2B6D041F" class="MsoNormal">Emoji sequence: <span
+      style="font-family:&quot;Segoe UI Emoji&quot;,sans-serif">📄</span> <span
+      style="font-family:&quot;Segoe UI Emoji&quot;,sans-serif">✅</span> <span
+      style="font-family:&quot;Segoe UI Emoji&quot;,sans-serif">⚠️</span> <span
+      style="font-family:&quot;Segoe UI Emoji&quot;,sans-serif">🔍</span> <span
+      style="font-family:&quot;Segoe UI Emoji&quot;,sans-serif">🚀</span></p>
+
+  <span style="font-size:1.0pt;line-height:8%;font-family:&quot;Aptos Display&quot;,sans-serif;
+color:#0F4761"><br clear="all" style="page-break-before:always">
+  </span>
+
+  <h1 id="2D8E36E2-1AB4-4087-8DD7-4A6058117025" style="margin:0in;line-height:8%"><span
+      style="font-size:1.0pt;line-height:8%">&nbsp;</span></h1>
+
+  <h1 id="3B026EBB-69B7-41AA-BD52-E4B8B95EDCA1"><a name="_Toc237149540">9. Page
+      Layout Elements</a></h1>
+
+  <p id="B3F9C714-1FE1-4921-A4B9-392542A157BA" class="MsoNormal">This section begins
+    on a fresh page because a manual page break precedes its heading.</p>
+
+  <h2 id="6BAA9C22-8FFC-4A1F-B658-32FC8C22C46E"><a name="_Toc237149541">9.1 Manual
+      Breaks</a></h2>
+
+  <p id="8F90384B-7FF5-4F34-BC65-4DE0B1026C15" class="MsoNormal">This paragraph
+    contains a manual line break after this sentence.<br>
+    The text after the break is still part of the same paragraph, which is a useful
+    edge case for text extraction.</p>
+
+  <p id="B92B4EE2-1E0A-4DF5-B370-F6DBB30F5FE1" class="MsoNormal">A page break
+    paragraph follows this line.</p>
+
+  <p id="6BC32C8F-D542-43DE-966C-8EB01DDA8013" class="MsoNormal">&nbsp;</p>
+
+  <span style="font-size:1.0pt;line-height:8%;font-family:&quot;Aptos&quot;,sans-serif"><br clear="all"
+      style="page-break-before:always">
+  </span>
+
+  <p id="6D27EF41-4CCD-4F87-86E4-8FDC935EF913" class="MsoNormal" style="margin-bottom:
+0in;line-height:8%"><span style="font-size:1.0pt;line-height:8%">&nbsp;</span></p>
+
+  <h2 id="56E3ABAE-5555-4C3A-A92C-A3BA489BCAE9"><a name="_Toc237149542">9.2 Borders
+      and Shading</a></h2>
+
+  <p id="17317386-3B99-438B-84D4-0FFB8084BB28" class="MsoNormal" style="margin-top:
+6.0pt;margin-right:.25in;margin-bottom:6.0pt;margin-left:.25in">This paragraph
+    has a light grey shading applied at paragraph level, which serializes as
+    paragraph shading rather than a highlight run property.</p>
+
+  <h2 id="04EF316C-2C23-489C-888E-29A4E074D762"><a name="_Toc237149543">9.3 Tab
+      Stops</a></h2>
+
+  <p id="DEFC4FAE-511D-46E6-88FB-2758EC8E8F2E" class="MsoNormal">Column
+    A&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Column
+    B&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Column C</p>
+
+  <p id="9FB24FCE-A62A-4574-B275-7D189B6E77A4" class="MsoNormal">Value
+    1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Value
+    2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Value 3</p>
+
+  <p id="186986F1-F936-44F1-B859-286CF7E5CEA5" class="MsoNormal">Tab characters
+    separate the three columns above; they are literal tab characters, not table
+    cells.</p>
+
+  <h2 id="62EBE482-DA64-41A6-9B11-3A11C0641763"><a name="_Toc237149544">9.4 Section
+      and Column Layout</a></h2>
+
+  <p id="2C177F53-6D9B-42DE-BAC0-4272623D2689" class="MsoNormal">Multi-column layout
+    is a section-level page-setup property. The paragraphs in this document sit in
+    a single-column section.</p>
+
+  <h1 id="4E7637CC-0295-4837-9C79-7D54F9C738E3"><a name="_Toc237149545">10. Review
+      Features</a></h1>
+
+  <h2 id="DAEA5A39-C52B-4150-9301-BA50CFD77AD2"><a name="_Toc237149546">10.1
+      Comments</a></h2>
+
+  <p id="9BB9B004-1ABD-4802-8E3B-55156DA6BDBE" class="MsoNormal">This paragraph
+    carries a single comment anchored to the phrase <a>anchored comment text</a><span class="MsoCommentReference"><span
+        style="line-height:115%"><a class="msocomanchor" id="_anchor_1"
+          onmouseover="msoCommentShow('_anchor_1','_com_1')" onmouseout="msoCommentHide('_com_1')" href="#_msocom_1"
+          language="JavaScript" name="_msoanchor_1">[VM1]</a>&nbsp;</span></span> inside the sentence.</p>
+
+  <p id="77E4C67B-A2F3-404A-BCFF-A052AAF6712E" class="MsoNormal">This paragraph
+    carries a <a></a><a>comment thread with one reply</a><span class="MsoCommentReference"><span
+        style="line-height:115%"><a class="msocomanchor" id="_anchor_2"
+          onmouseover="msoCommentShow('_anchor_2','_com_2')" onmouseout="msoCommentHide('_com_2')" href="#_msocom_2"
+          language="JavaScript" name="_msoanchor_2">[VM2]</a>&nbsp;</span></span><span class="MsoCommentReference"><span
+        style="line-height:115%"><a class="msocomanchor" id="_anchor_3"
+          onmouseover="msoCommentShow('_anchor_3','_com_3')" onmouseout="msoCommentHide('_com_3')" href="#_msocom_3"
+          language="JavaScript" name="_msoanchor_3">[VM3]</a>&nbsp;</span></span>, so the JSON should nest the
+    reply under its parent.</p>
+
+  <h2 id="B4E52FB3-6EA4-460E-83F8-6FEDFBF69ADF"><a name="_Toc237149547">10.2
+      Content Controls</a></h2>
+
+  <p id="BABA92BA-B3B1-445C-AEE8-D4921D59BD9D" class="MsoNormal">The bracketed
+    placeholders below are wrapped in rich-text content controls with tags and
+    titles set.</p>
+
+  <p id="D52C26E5-FAB2-4600-B248-412E8CED669E" class="MsoNormal">Client name: [CLIENT
+    NAME]</p>
+
+  <p id="44EEE1E3-6A4F-4269-A819-B059625D0CBF" class="MsoNormal">Effective date: [EFFECTIVE
+    DATE]</p>
+
+  <h1 id="863AC567-9467-48B3-BA6D-849227F007BE"><a name="_Toc237149548">11. Tracked
+      Changes</a></h1>
+
+  <p id="266E7E27-95D7-44CF-A927-38093BC72A72" class="MsoNormal">Track Changes is
+    enabled from this point on. The paragraphs below contain a pending insertion, a
+    pending deletion and a pending replacement, so the OOXML carries w:ins and
+    w:del elements that a parser must reconcile against the final text.</p>
+
+  <p id="85AD6488-8EF5-48D6-A22B-6FD82ABB7397" class="MsoNormal">The vendor shall
+    deliver the initial report within <span class="msoIns"><ins cite="mailto:Vivek%20Menon"
+        datetime="2026-08-09T06:29">forty-five (45) days</ins></span><span class="msoDel"><del
+        cite="mailto:Vivek%20Menon" datetime="2026-08-09T06:29">thirty
+        days</del></span> of the effective date.</p>
+
+  <p id="958F12CE-3A3B-4B1A-BFDB-23BC281B3EEA" class="MsoNormal"><span class="msoDel"><del cite="mailto:Vivek%20Menon"
+        datetime="2026-08-09T06:29">This sentence will be
+        deleted entirely as a pending revision. </del></span>This sentence stays.</p>
+
+  <p id="CEEDEA6A-AA48-4502-B39C-19939F1BC0D5" class="MsoNormal">A pending insertion
+    follows this sentence.<span class="msoIns"><ins cite="mailto:Vivek%20Menon" datetime="2026-08-09T06:29"> This whole
+        sentence is a tracked insertion added
+        after the fact.</ins></span></p>
+
+  <p id="B560C7AA-B324-4B3C-9302-8C97518D6BDA" class="MsoNormal">&nbsp;</p>
+
+  <p id="D17FB385-6388-40D3-9800-4C20DC842672" class="MsoNormal">&nbsp;</p>
 
 </div>
 
-<span style="font-size:11.0pt;line-height:115%;font-family:&quot;Calibri&quot;,sans-serif"><br clear="all" style="page-break-before:auto">
-</span>
+<div><br clear="all">
 
-<div class="WordSection2">
+  <hr align="left" size="1" width="33%">
 
-<p id="C4A6ED94-2360-4E21-97E2-9A9489B116EF" class="MsoNormal">This is an example
-of columns. With columns, the page is split into two or more horizontal
-sections. Unlike tables, in which you usually read across a row and then down
-to the next, in columns, you read down a column and then across to the next.<br clear="all">
-When columns are not created correctly, screen readers may run lines together,
-reading the first line of the first column, then the first line of the second
-column, then the second line of the first column, and so on. Obviously, that is
-not accessible.</p>
+  <div id="ftn1">
 
-<p id="FE227A8E-4448-4AAA-88BA-AC68BADA7075" class="MsoNormal">&nbsp;</p>
+    <p id="5E190CB2-CC53-45D4-ACD4-2E8BBD207DE3" class="MsoFootnoteText"><a href="#_ftnref1" name="_ftn1" title=""><span
+          class="MsoFootnoteReference"><span class="MsoFootnoteReference"><span style="font-size:10.0pt;line-height:115%;
+font-family:&quot;Aptos&quot;,sans-serif">[1]</span></span></span></a> Footnote one:
+      verify that the reference mark and the note body are linked in the JSON output.</p>
+
+  </div>
+
+  <div id="ftn2">
+
+    <p id="4E6E3B6D-3E9E-4992-9948-523220B75936" class="MsoFootnoteText"><a href="#_ftnref2" name="_ftn2" title=""><span
+          class="MsoFootnoteReference"><span class="MsoFootnoteReference"><span style="font-size:10.0pt;line-height:115%;
+font-family:&quot;Aptos&quot;,sans-serif">[2]</span></span></span></a> Footnote two: this
+      note contains a hyperlink target and a bold word for run-level testing.</p>
+
+  </div>
 
 </div>
 
+<div><br clear="all">
 
+  <hr align="left" size="1" width="33%">
 
+  <div id="edn1">
 
+    <p id="E66EA494-5DB5-4BD0-99CB-621C2F72B641" class="MsoEndnoteText"><a href="#_ednref1" name="_edn1" title=""><span
+          class="MsoEndnoteReference"><span class="MsoEndnoteReference"><span style="font-size:10.0pt;line-height:115%;
+font-family:&quot;Aptos&quot;,sans-serif">[i]</span></span></span></a> Endnote one:
+      endnotes live in a separate part of the OOXML package from footnotes.</p>
+
+  </div>
+
+</div>
+
+<div>
+
+  <hr class="msocomoff" align="left" size="1" width="33%">
+
+  <div>
+
+    <div id="_com_1" class="msocomtxt" language="JavaScript" onmouseover="msoCommentShow('_anchor_1','_com_1')"
+      onmouseout="msoCommentHide('_com_1')"><a name="_msocom_1"></a>
+
+      <p id="B76945DD-7826-45B2-9BC1-9F9B8165E659" class="MsoCommentText"><span class="MsoCommentReference"><span
+            style="font-size:8.0pt">&nbsp;<a href="#_msoanchor_1" class="msocomoff">[VM1]</a></span></span>Single
+        top-level
+        comment anchored to a sub-range of the paragraph.</p>
+
+    </div>
+
+  </div>
+
+  <div>
+
+    <div id="_com_2" class="msocomtxt" language="JavaScript" onmouseover="msoCommentShow('_anchor_2','_com_2')"
+      onmouseout="msoCommentHide('_com_2')"><a name="_msocom_2"></a>
+
+      <p id="9D2B585E-AC09-4C88-A211-445AEDEDD8F0" class="MsoCommentText"><span class="MsoCommentReference"><span
+            style="font-size:8.0pt">&nbsp;<a href="#_msoanchor_2" class="msocomoff">[VM2]</a></span></span>Parent
+        comment:
+        does the parser preserve thread structure?</p>
+
+    </div>
+
+  </div>
+
+  <div>
+
+    <div id="_com_3" class="msocomtxt" language="JavaScript" onmouseover="msoCommentShow('_anchor_3','_com_3')"
+      onmouseout="msoCommentHide('_com_3')"><a name="_msocom_3"></a>
+
+      <p id="8D9E65C5-43D8-4884-AB72-DC54270A6E80" class="MsoCommentText"><span class="MsoCommentReference"><span
+            style="font-size:8.0pt">&nbsp;<a href="#_msoanchor_3" class="msocomoff">[VM3]</a></span></span>Reply
+        comment: this
+        is a nested reply in the same thread.</p>
+
+    </div>
+
+  </div>
+
+</div>

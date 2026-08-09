@@ -2,6 +2,17 @@ import type { Editor } from '@tiptap/react';
 import type { DocumentAdapter } from '../core/types';
 
 export function createTiptapAdapter(editor: Editor): DocumentAdapter {
+  // Loading an article (or a blank doc) should show its top, not wherever the
+  // caret happens to land — focus('start') puts the caret at the document
+  // start and scrolls it into view, and this resets the scroll container
+  // outright as a belt-and-suspenders against any late scroll-into-view.
+  function scrollEditorToTop() {
+    const scroller = editor.view.dom.closest('.tiptap-editor');
+    if (scroller instanceof HTMLElement) {
+      scroller.scrollTop = 0;
+    }
+  }
+
   return {
     async getContentHtml() {
       return editor.getHTML();
@@ -21,13 +32,15 @@ export function createTiptapAdapter(editor: Editor): DocumentAdapter {
     },
 
     async setContentHtml(html) {
-      editor.chain().focus().setContent(html).run();
+      editor.chain().setContent(html).focus('start').run();
+      scrollEditorToTop();
     },
 
     async setContentJson(json) {
       // Tiptap consumes JSON natively — no HTML round-trip needed here,
       // unlike setContentHtml.
-      editor.chain().focus().setContent(json).run();
+      editor.chain().setContent(json).focus('start').run();
+      scrollEditorToTop();
     },
 
     onContentChange(callback) {

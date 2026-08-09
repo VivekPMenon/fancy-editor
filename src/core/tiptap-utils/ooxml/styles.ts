@@ -21,6 +21,26 @@ const HEADING_STYLE_LEVELS: Record<string, number> = {
 
 export interface StylesResolver {
   resolveHeadingLevel(styleId: string): number | undefined;
+  // The document's default run font size (docDefaults -> rPrDefault), as a CSS
+  // pt string like "11pt". This is where Word puts the body text size when a
+  // run carries no explicit <w:sz> of its own — most body paragraphs. Without
+  // it the OOXML path dropped size entirely and text fell back to the
+  // editor's 16px base, reading noticeably larger than the source document
+  // (and larger than the paste path, which sees the size inlined on spans).
+  defaultFontSize?: string;
+}
+
+// Word stores font sizes in half-points (<w:sz w:val="22"/> = 11pt).
+export function halfPointsToPt(val: string | null | undefined): string | undefined {
+  if (!val) {
+    return undefined;
+  }
+  const halfPoints = Number(val);
+  if (!Number.isFinite(halfPoints)) {
+    return undefined;
+  }
+  const pt = halfPoints / 2;
+  return `${Number.isInteger(pt) ? pt : pt.toFixed(1)}pt`;
 }
 
 function tag(namespaceURI: string, localName: string, root: Element): Element[] {
@@ -44,7 +64,13 @@ export function parseStyles(stylesRoot: Element): StylesResolver {
     }
   }
 
+  const docDefaultsEl = firstTag(OOXML_NS.w, 'docDefaults', stylesRoot);
+  const rPrDefaultEl = docDefaultsEl ? firstTag(OOXML_NS.w, 'rPrDefault', docDefaultsEl) : undefined;
+  const defaultSzEl = rPrDefaultEl ? firstTag(OOXML_NS.w, 'sz', rPrDefaultEl) : undefined;
+  const defaultFontSize = defaultSzEl ? halfPointsToPt(wAttr(defaultSzEl, 'val')) : undefined;
+
   return {
+    defaultFontSize,
     resolveHeadingLevel(styleId) {
       let current: string | undefined = styleId;
       // Cycle guard — a malformed styles.xml could in principle have a
