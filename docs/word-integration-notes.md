@@ -885,6 +885,69 @@ attempted) before relying on it for arbitrary documents at scale.
 
 ---
 
+## 16. OOXML fidelity pass — style resolution, character/paragraph formatting, tables, TOC (2026-08-09)
+
+Stress-tested the OOXML→JSON path with a document exercising most of Word's
+formatting surface. Seven gaps surfaced; six were fixed (the seventh, truly
+inline mid-sentence images, is left as a known limitation — our `image` node
+is block-level, so an inline image is hoisted out of its sentence; fixing it
+needs an inline-image schema node).
+
+**The one fundamental loophole behind most of them: we weren't resolving
+styles.** The converter only pulled *heading level* and *docDefaults font
+size* out of `styles.xml`. Everything else a paragraph/character **style**
+contributes — numbering, indentation, spacing, italics, color, size — was
+invisible unless written directly on the run/paragraph. Real Word documents
+lean heavily on styles, so this alone broke lists, the built-in paragraph
+styles, and most indentation/spacing.
+
+**Fix — a proper style-props resolver** ([`styles.ts`](../src/core/tiptap-utils/ooxml/styles.ts)):
+`parseStyles` now reads each style's own `pPr`/`rPr` plus `docDefaults`, and
+`styleProps(styleId)` returns the *effective* paragraph + run properties
+merged along the `basedOn` chain over docDefaults. The converter computes each
+paragraph's effective props (`style ∪ direct`) and each run's
+(`style ∪ paragraph-mark ∪ direct`), so style-only formatting finally reaches
+the output. This is the backbone the rest build on.
+
+What that unlocked, verified end-to-end (convert → real editor schema →
+serialize):
+
+- **Lists (issue 5)** — a `ListBullet`/`ListNumber` item carries its `<w:numPr>`
+  on the *style*, not the paragraph, so membership was missed and items fell
+  through to plain paragraphs. Membership is now read from effective para
+  props, so style-based lists reconstruct correctly.
+- **Built-in styles (issue 2)** — Quote / Intense Quote / Caption / No Spacing
+  now render their style's italics, color, size, indent, alignment and
+  spacing (e.g. Intense Quote → centered, indented both sides, blue italic).
+- **Indentation + spacing (issue 4)** — `<w:ind>` → `marginLeft` / `marginRight`
+  / `textIndent` (first-line positive, hanging negative), `<w:spacing>` →
+  `line-height` + top/bottom margins. Spacing is emitted **only when it
+  differs from docDefaults**, so it doesn't fight the CSS baseline or
+  re-loosen tight list items. Added `marginRight` to the Indent extension and
+  `marginTop`/`marginBottom` to ParagraphStyle.
+- **Character formatting (issue 3)** — `<w:highlight>` was never read at all
+  (now mapped, named color → CSS); underline collapsed to a boolean (now
+  keeps `dotted`/`wavy`/`double` via `text-decoration-style`); `<w:dstrike>`
+  (double strike) and `<w:smallCaps>` (font-variant) added. New global-
+  attribute extensions in [`ooxmlFormattingExtensions.ts`](../src/core/tiptap-utils/ooxmlFormattingExtensions.ts)
+  give the underline/strike/textStyle marks somewhere to carry these.
+- **Table shading (issue 6)** — `<w:shd w:fill>` was dropped, which not only
+  lost banner/cell colors but hid **white-on-fill header text** (white text on
+  the default white cell → invisible). Added a `backgroundColor` attribute to
+  table cells and read the fill into it.
+- **TOC (issue 1)** — a dedicated `tocEntry` node ([`tocEntryExtension.ts`](../src/core/tiptap-utils/tocEntryExtension.ts))
+  lays out entry text, a dotted leader (a CSS dotted border, *not* real tab
+  stops — appearance only, per the ask), and the right-aligned page number
+  read from the entry's trailing numeric run. The TOC field itself is not
+  reproduced (no live page recalculation).
+
+**Known limitation deliberately left:** inline mid-sentence images (block-only
+image node), Word field semantics beyond TOC layout (`PAGEREF`, cross-refs),
+per-side paragraph borders (Intense Quote's top/bottom rules render as no box
+rather than an approximated one), and `<w:caps>` all-caps.
+
+---
+
 ## Running summary (for the deck)
 
 | # | Issue | Root cause | Fixable in our code? | Extra effort |
@@ -908,6 +971,7 @@ attempted) before relying on it for arbitrary documents at scale.
 | 13c | Resizing an aligned image snapped back to full size on mouse-up | Resize node view wholesale-overwrites the `style` attribute on every attr update; alignment's inline `style` collided with resize's own imperative width/height | Yes | moved ~25 lines CSS out of the attribute system, net neutral |
 | 14 | Floating/wrapped images (revisited, paste/import path): §2 called this a dead end — turns out it isn't | §2 was about `Word.Shape`/Office.js, now retired; via HTML the wrap direction survives as a plain `align=` on Word's own `<img>` fallback | Yes — reversed course again (like §4) | ~45 lines, verified via real captured markup and live paste |
 | 15 | Pasted images (esp. charts/OLE objects) looked blurry — worse than the source | HTML's `<img>` fallback is a legacy low-res format (confirmed: 430×216px GIF for one real chart); `text/rtf`, read separately, carries the real embedded bytes (confirmed: a 102KB JPEG for the same chart) | Yes | ~90 lines, no new dependency; heuristic-based multi-image correlation, capped at 5 |
+| 16 | OOXML→JSON dropped style-based formatting wholesale — lists broke, built-in styles (Quote/Caption…) flattened, indent/spacing/highlight/underline-style/small-caps/table-shading/TOC all lost | We resolved only heading level + default size from `styles.xml`; anything a paragraph/character **style** contributed (numbering, indent, italics, …) was invisible | Yes — built an effective style-props resolver + a handful of small attribute extensions | style resolver ~180 lines; ~5 small extensions; TOC node. Inline mid-sentence image left as known limit (needs inline-image schema) |
 
 **Direction change (§10):** we're dropping the live Word add-in as the
 authoring surface — every unfixable limitation above (§2, §9b) and the

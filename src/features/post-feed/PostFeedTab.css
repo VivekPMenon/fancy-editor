@@ -201,6 +201,32 @@
   list-style-type: lower-roman;
 }
 
+/* Table-of-Contents lines — mirrors the editor (App.css .toc-entry): entry
+   text, a dotted leader, page number flush right. */
+.feed-post-body .toc-entry {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+  margin: 0 0 4px;
+}
+
+.feed-post-body .toc-entry-text {
+  flex: 0 1 auto;
+}
+
+.feed-post-body .toc-entry-leader {
+  flex: 1 1 0;
+  align-self: flex-end;
+  min-width: 24px;
+  margin-bottom: 4px;
+  border-bottom: 1px dotted currentColor;
+  opacity: 0.5;
+}
+
+.feed-post-body .toc-entry-page {
+  flex: 0 0 auto;
+}
+
 /* Same as the editor (App.css): each <li>'s wrapping <p> otherwise carries
    the full paragraph bottom-margin, making list items read looser than
    Word's — zero it so item spacing stays tight. */

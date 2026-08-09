@@ -45,6 +45,20 @@ export const ParagraphStyle = Extension.create<ParagraphStyleOptions>({
               return { style: `line-height: ${attributes.lineHeight}` };
             },
           },
+          // Space before/after a paragraph (Word's <w:spacing before/after>),
+          // as top/bottom margins. Kept separate from the global p-margin CSS
+          // so an imported paragraph's own spacing wins where present.
+          marginTop: {
+            default: null,
+            parseHTML: (element) => element.style.marginTop || null,
+            renderHTML: (attributes) => (attributes.marginTop ? { style: `margin-top: ${attributes.marginTop}` } : {}),
+          },
+          marginBottom: {
+            default: null,
+            parseHTML: (element) => element.style.marginBottom || null,
+            renderHTML: (attributes) =>
+              attributes.marginBottom ? { style: `margin-bottom: ${attributes.marginBottom}` } : {},
+          },
           shading: {
             default: null,
             parseHTML: (element) => element.style.backgroundColor || null,

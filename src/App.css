@@ -335,6 +335,34 @@
     list-style-type: lower-roman;
   }
 
+  /* Table-of-Contents lines (tocEntryExtension) — entry text, a dotted
+     leader filling the gap, and the page number flush right. We render the
+     leader as a dotted bottom border rather than reproducing Word's tab
+     stops, since the goal is only that it reads like a TOC. */
+  .ProseMirror .toc-entry {
+    display: flex;
+    align-items: baseline;
+    gap: 4px;
+    margin: 0 0 4px;
+  }
+
+  .ProseMirror .toc-entry-text {
+    flex: 0 1 auto;
+  }
+
+  .ProseMirror .toc-entry-leader {
+    flex: 1 1 0;
+    align-self: flex-end;
+    min-width: 24px;
+    margin-bottom: 4px;
+    border-bottom: 1px dotted currentColor;
+    opacity: 0.5;
+  }
+
+  .ProseMirror .toc-entry-page {
+    flex: 0 0 auto;
+  }
+
   /* "Show/hide formatting marks" — toggled by adding this class directly to
      editor.view.dom (which *is* the .ProseMirror element). Simplified to
      paragraph-end pilcrows only; space/tab marks aren't rendered. */

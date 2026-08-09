@@ -78,6 +78,19 @@ export const Indent = Extension.create<IndentOptions>({
               return { style: `text-indent: ${attributes.textIndent}` };
             },
           },
+          // Right indent, from Word's <w:ind w:right>. Paired with marginLeft
+          // to reproduce a paragraph indented from both margins (block quote
+          // effect) without the Quote style.
+          marginRight: {
+            default: null,
+            parseHTML: (element) => element.style.marginRight || null,
+            renderHTML: (attributes) => {
+              if (!attributes.marginRight) {
+                return {};
+              }
+              return { style: `margin-right: ${attributes.marginRight}` };
+            },
+          },
         },
       },
     ];

@@ -21,6 +21,13 @@ import { ImageAlignment } from './imageAlignmentExtension';
 import { ImageSpacing } from './imageSpacingExtension';
 import { ColumnLayout } from './columnLayoutExtension';
 import { ListStyle } from './listStyleExtension';
+import { TocEntry } from './tocEntryExtension';
+import {
+  UnderlineStyle,
+  StrikeStyle,
+  FontVariant,
+  TableCellBackground,
+} from './ooxmlFormattingExtensions';
 
 // Single source of truth for the editor's schema, shared by the live Tiptap
 // editor (FancyEditorTab) and the HTML<->JSON conversion utilities. They
@@ -74,6 +81,11 @@ export const EDITOR_EXTENSIONS = [
   ImageSpacing,
   ColumnLayout,
   ListStyle,
+  TocEntry,
+  UnderlineStyle,
+  StrikeStyle,
+  FontVariant,
+  TableCellBackground,
   // bulletList/orderedList included so a whole-list selection can be shifted
   // right as a block (margin-left) when Tab can't nest it — selecting a list
   // that includes its first item has no preceding sibling to nest under, so

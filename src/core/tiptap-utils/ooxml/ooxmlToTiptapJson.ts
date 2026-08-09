@@ -1,7 +1,14 @@
 import type { JSONContent } from '@tiptap/react';
 import { OOXML_NS, parseFlatOpcPackage, type OoxmlPackage } from './flatOpcPackage';
 import { parseNumbering, type NumberingResolver } from './numbering';
-import { parseStyles, halfPointsToPt, type StylesResolver } from './styles';
+import {
+  parseStyles,
+  parseRunProps,
+  parseParaProps,
+  type StylesResolver,
+  type RunProps,
+  type ParaProps,
+} from './styles';
 
 function tag(namespaceURI: string, localName: string, root: Element): Element[] {
   return Array.from(root.getElementsByTagNameNS(namespaceURI, localName));
@@ -44,87 +51,76 @@ const NUMFMT_TO_CSS: Record<string, string> = {
 // content to flow across.
 const COLUMN_BREAK_TYPE = '__columnBreak__';
 
-interface RunMarks {
-  bold?: boolean;
-  italic?: boolean;
-  underline?: boolean;
-  strike?: boolean;
-  color?: string;
-  fontSize?: string;
-  highlight?: string;
-  vertAlign?: 'subscript' | 'superscript';
-  linkHref?: string;
+// Word highlight names -> CSS. Most Word names are also valid CSS color
+// keywords (yellow/green/cyan/red/blue/magenta/…); only the "dark*"/gray
+// variants need explicit hex.
+const HIGHLIGHT_CSS: Record<string, string> = {
+  darkYellow: '#808000',
+  darkBlue: '#000080',
+  darkCyan: '#008080',
+  darkGreen: '#008000',
+  darkMagenta: '#800080',
+  darkRed: '#800000',
+  darkGray: '#a9a9a9',
+  lightGray: '#d3d3d3',
+};
+function highlightCss(name: string): string {
+  return HIGHLIGHT_CSS[name] ?? name;
 }
 
-function marksFromRunMarks(m: RunMarks): NonNullable<JSONContent['marks']> {
+// Word <w:u w:val> -> CSS text-decoration-style (undefined = a plain solid
+// single underline, the default the <u> tag already draws).
+function underlineDecorationStyle(val: string): string | undefined {
+  if (val === 'double') return 'double';
+  if (/dotted/i.test(val)) return 'dotted';
+  if (/dash/i.test(val)) return 'dashed';
+  if (/wave|wavy/i.test(val)) return 'wavy';
+  return undefined;
+}
+
+// Builds Tiptap marks from resolved run properties. color+fontSize+smallCaps
+// share one textStyle mark (same-type marks can't coexist in ProseMirror);
+// dstrike and strike both map to the strike mark, so only one is emitted.
+function marksFromRunProps(p: RunProps, linkHref?: string): NonNullable<JSONContent['marks']> {
   const marks: NonNullable<JSONContent['marks']> = [];
-  if (m.bold) marks.push({ type: 'bold' });
-  if (m.italic) marks.push({ type: 'italic' });
-  if (m.underline) marks.push({ type: 'underline' });
-  if (m.strike) marks.push({ type: 'strike' });
-  // color and fontSize both live on the textStyle mark — a run can't carry
-  // two textStyle marks (same-type marks don't coexist in ProseMirror), so
-  // they must be merged into one set of attrs.
-  if (m.color || m.fontSize) {
-    marks.push({
-      type: 'textStyle',
-      attrs: { ...(m.color ? { color: m.color } : {}), ...(m.fontSize ? { fontSize: m.fontSize } : {}) },
-    });
+  if (p.bold) marks.push({ type: 'bold' });
+  if (p.italic) marks.push({ type: 'italic' });
+  if (p.underline && p.underline !== 'none') {
+    const style = underlineDecorationStyle(p.underline);
+    marks.push(style ? { type: 'underline', attrs: { underlineStyle: style } } : { type: 'underline' });
   }
-  if (m.highlight) marks.push({ type: 'highlight', attrs: { color: m.highlight } });
-  if (m.vertAlign === 'subscript') marks.push({ type: 'subscript' });
-  if (m.vertAlign === 'superscript') marks.push({ type: 'superscript' });
-  if (m.linkHref) marks.push({ type: 'link', attrs: { href: m.linkHref } });
+  if (p.dstrike) {
+    marks.push({ type: 'strike', attrs: { strikeStyle: 'double' } });
+  } else if (p.strike) {
+    marks.push({ type: 'strike' });
+  }
+  const ts: Record<string, string> = {};
+  if (p.color) ts.color = `#${p.color}`;
+  if (p.fontSizePt) ts.fontSize = p.fontSizePt;
+  if (p.smallCaps) ts.fontVariant = 'small-caps';
+  if (Object.keys(ts).length) marks.push({ type: 'textStyle', attrs: ts });
+  if (p.highlight) marks.push({ type: 'highlight', attrs: { color: highlightCss(p.highlight) } });
+  if (p.vertAlign === 'subscript') marks.push({ type: 'subscript' });
+  if (p.vertAlign === 'superscript') marks.push({ type: 'superscript' });
+  if (linkHref) marks.push({ type: 'link', attrs: { href: linkHref } });
   return marks;
-}
-
-// <w:color w:val="C00000"/> is already a hex triplet (or "auto") — just
-// needs the leading '#' CSS expects.
-function resolveColorAttr(rPr: Element): string | undefined {
-  const colorEl = firstTag(OOXML_NS.w, 'color', rPr);
-  const val = colorEl ? wAttr(colorEl, 'val') : null;
-  if (!val || val === 'auto') {
-    return undefined;
-  }
-  return `#${val}`;
-}
-
-function runMarksFromRPr(rPr: Element | undefined, inherited: RunMarks): RunMarks {
-  if (!rPr) {
-    return inherited;
-  }
-  const vertAlignEl = firstTag(OOXML_NS.w, 'vertAlign', rPr);
-  const vertAlignVal = vertAlignEl ? wAttr(vertAlignEl, 'val') : null;
-  const szEl = firstTag(OOXML_NS.w, 'sz', rPr);
-  return {
-    ...inherited,
-    // Run-level size wins over whatever the paragraph seeded (docDefaults /
-    // style default), matching Word's rPr-overrides-default cascade.
-    fontSize: (szEl ? halfPointsToPt(wAttr(szEl, 'val')) : undefined) ?? inherited.fontSize,
-    bold: firstTag(OOXML_NS.w, 'b', rPr) ? wAttr(firstTag(OOXML_NS.w, 'b', rPr)!, 'val') !== '0' : inherited.bold,
-    italic: firstTag(OOXML_NS.w, 'i', rPr) ? wAttr(firstTag(OOXML_NS.w, 'i', rPr)!, 'val') !== '0' : inherited.italic,
-    underline: firstTag(OOXML_NS.w, 'u', rPr) ? wAttr(firstTag(OOXML_NS.w, 'u', rPr)!, 'val') !== 'none' : inherited.underline,
-    strike: firstTag(OOXML_NS.w, 'strike', rPr) ? wAttr(firstTag(OOXML_NS.w, 'strike', rPr)!, 'val') !== '0' : inherited.strike,
-    color: resolveColorAttr(rPr) ?? inherited.color,
-    vertAlign:
-      vertAlignVal === 'subscript' || vertAlignVal === 'superscript' ? vertAlignVal : inherited.vertAlign,
-  };
 }
 
 // Converts one <w:r> (a run) into zero or more inline JSONContent nodes —
 // usually one text node, but a run can contain a line break (<w:br/>) or a
 // drawing (image), and <w:t> could in principle be absent (formatting-only
 // runs produce nothing visible).
-function convertRun(runEl: Element, inheritedMarks: RunMarks, ctx: ConvertContext): JSONContent[] {
+function convertRun(runEl: Element, baseProps: RunProps, linkHref: string | undefined, ctx: ConvertContext): JSONContent[] {
   const rPr = firstTag(OOXML_NS.w, 'rPr', runEl);
-  const marks = runMarksFromRPr(rPr, inheritedMarks);
+  // Run's own properties override whatever the paragraph/style seeded.
+  const effective: RunProps = { ...baseProps, ...parseRunProps(rPr) };
   const nodes: JSONContent[] = [];
 
   for (const child of Array.from(runEl.children)) {
     if (isEl(child, OOXML_NS.w, 't')) {
       const text = child.textContent ?? '';
       if (text) {
-        const m = marksFromRunMarks(marks);
+        const m = marksFromRunProps(effective, linkHref);
         nodes.push(m.length ? { type: 'text', text, marks: m } : { type: 'text', text });
       }
     } else if (isEl(child, OOXML_NS.w, 'br')) {
@@ -155,19 +151,16 @@ function convertRun(runEl: Element, inheritedMarks: RunMarks, ctx: ConvertContex
 // relationships). w:anchor (internal bookmark links) isn't resolved to
 // anything Tiptap's link mark can represent, so those runs come through
 // as plain unlinked text — a real, documented gap, not silently wrong.
-function convertParagraphInlineContent(pEl: Element, ctx: ConvertContext): JSONContent[] {
+function convertParagraphInlineContent(pEl: Element, baseRunProps: RunProps, ctx: ConvertContext): JSONContent[] {
   const nodes: JSONContent[] = [];
-  // Seed every run with the paragraph's default size (if any) so runs with no
-  // explicit <w:sz> still carry the body size; a run's own size overrides it.
-  const baseMarks: RunMarks = ctx.currentParagraphFontSize ? { fontSize: ctx.currentParagraphFontSize } : {};
   for (const child of Array.from(pEl.children)) {
     if (isEl(child, OOXML_NS.w, 'r')) {
-      nodes.push(...convertRun(child, { ...baseMarks }, ctx));
+      nodes.push(...convertRun(child, baseRunProps, undefined, ctx));
     } else if (isEl(child, OOXML_NS.w, 'hyperlink')) {
       const rId = child.getAttributeNS(OOXML_NS.r, 'id') ?? child.getAttribute('r:id');
       const href = rId ? ctx.pkg.resolveRelationship('/word/document.xml', rId) : undefined;
       for (const runEl of tag(OOXML_NS.w, 'r', child)) {
-        nodes.push(...convertRun(runEl, { ...baseMarks, ...(href ? { linkHref: href } : {}) }, ctx));
+        nodes.push(...convertRun(runEl, baseRunProps, href, ctx));
       }
     }
   }
@@ -182,26 +175,99 @@ interface ListMembership {
   listStyleType?: string;
 }
 
-function listMembershipFor(pPr: Element | undefined, numbering: NumberingResolver): ListMembership | undefined {
-  const numPr = pPr && firstTag(OOXML_NS.w, 'numPr', pPr);
-  if (!numPr) {
+function paragraphStyleId(pPr: Element | undefined): string | null {
+  const pStyleEl = pPr && firstTag(OOXML_NS.w, 'pStyle', pPr);
+  return pStyleEl ? wAttr(pStyleEl, 'val') : null;
+}
+
+// Effective paragraph properties = the style's resolved pPr (basedOn chain +
+// docDefaults) with the paragraph's own direct pPr layered on top. Crucially
+// this is where numbering that lives on a *style* (ListBullet/ListNumber,
+// whose items carry no direct <w:numPr>) becomes visible.
+function effectiveParaProps(pPr: Element | undefined, styleId: string | null, styles: StylesResolver): ParaProps {
+  const stylePara = styleId ? styles.styleProps(styleId).para : styles.defaults.para;
+  return { ...stylePara, ...parseParaProps(pPr) };
+}
+
+// numId "0" is Word's "explicitly no numbering" sentinel — treat as not a list.
+function membershipFromPara(para: ParaProps, numbering: NumberingResolver): ListMembership | undefined {
+  if (!para.numId || para.numId === '0') {
     return undefined;
   }
-  const numIdEl = firstTag(OOXML_NS.w, 'numId', numPr);
-  const ilvlEl = firstTag(OOXML_NS.w, 'ilvl', numPr);
-  const numId = numIdEl ? wAttr(numIdEl, 'val') : null;
-  const ilvl = ilvlEl ? Number(wAttr(ilvlEl, 'val') ?? '0') : 0;
-  if (!numId) {
-    return undefined;
-  }
-  const format = numbering.getLevelFormat(numId, ilvl);
+  const ilvl = para.ilvl ?? 0;
+  const format = numbering.getLevelFormat(para.numId, ilvl);
   const ordered = format ? ORDERED_FORMATS.has(format) : true;
   return {
-    numId,
+    numId: para.numId,
     ilvl,
     ordered,
     listStyleType: ordered && format ? NUMFMT_TO_CSS[format] : undefined,
   };
+}
+
+// Twips (1/1440 inch) -> px string. 1440 twips/in, 96px/in => px = twips/15.
+function twipsToPx(twips: number | undefined): string | undefined {
+  if (!twips) {
+    return undefined;
+  }
+  return `${Math.round(twips / 15)}px`;
+}
+
+// <w:spacing line/lineRule> -> CSS line-height. "auto" is 240ths of a single
+// line (a unitless multiple); "exact"/"atLeast" are twips (an absolute px).
+function lineHeightFrom(para: ParaProps): string | undefined {
+  if (para.lineValue === undefined) {
+    return undefined;
+  }
+  if (!para.lineRule || para.lineRule === 'auto') {
+    const mult = para.lineValue / 240;
+    return `${Number.isInteger(mult) ? mult : Number(mult.toFixed(2))}`;
+  }
+  return `${Math.round(para.lineValue / 15)}px`;
+}
+
+// px string that keeps an explicit 0 (so e.g. No Spacing's 0-after becomes a
+// real margin-bottom:0, overriding the CSS baseline).
+function twipsToPxWithZero(twips: number): string {
+  return `${Math.round(twips / 15)}px`;
+}
+
+// Turns resolved paragraph properties into Tiptap node attrs. Headings get
+// only alignment (their size/spacing stay CSS-driven); body paragraphs also
+// get indentation, spacing, and shading. Spacing (line-height, space
+// before/after) is only emitted when it *differs* from docDefaults — the
+// stylesheet baseline (App.css / PostFeedTab.css) already covers the default,
+// so emitting it on every paragraph would be noise and would fight that CSS
+// (e.g. re-loosening tight list items).
+function paragraphAttrs(para: ParaProps, isHeading: boolean, defaults: ParaProps): Record<string, unknown> {
+  const attrs: Record<string, unknown> = {};
+  const align =
+    para.jc === 'both' ? 'justify' : para.jc === 'center' || para.jc === 'right' ? para.jc : undefined;
+  if (align) attrs.textAlign = align;
+  if (isHeading) {
+    return attrs;
+  }
+  const left = twipsToPx(para.indLeftTwips);
+  if (left) attrs.marginLeft = left;
+  const right = twipsToPx(para.indRightTwips);
+  if (right) attrs.marginRight = right;
+  if (para.indFirstLineTwips) {
+    attrs.textIndent = twipsToPx(para.indFirstLineTwips);
+  } else if (para.indHangingTwips) {
+    attrs.textIndent = `-${twipsToPx(para.indHangingTwips)}`;
+  }
+  if (para.lineValue !== undefined && (para.lineValue !== defaults.lineValue || para.lineRule !== defaults.lineRule)) {
+    const lineHeight = lineHeightFrom(para);
+    if (lineHeight) attrs.lineHeight = lineHeight;
+  }
+  if (para.spaceBeforeTwips !== undefined && para.spaceBeforeTwips !== defaults.spaceBeforeTwips) {
+    attrs.marginTop = twipsToPxWithZero(para.spaceBeforeTwips);
+  }
+  if (para.spaceAfterTwips !== undefined && para.spaceAfterTwips !== defaults.spaceAfterTwips) {
+    attrs.marginBottom = twipsToPxWithZero(para.spaceAfterTwips);
+  }
+  if (para.shadingFill) attrs.shading = `#${para.shadingFill}`;
+  return attrs;
 }
 
 interface ConvertContext {
@@ -225,12 +291,6 @@ interface ConvertContext {
   // anchor's own position/wrap data (inferFloatFromAnchor), which takes
   // priority.
   currentParagraphJc?: 'center' | 'right';
-  // The size a run should default to when it carries no explicit <w:sz> — the
-  // document's docDefaults size, seeded per (non-heading) paragraph so body
-  // text renders at the source document's point size instead of the editor's
-  // 16px base. Headings leave this unset so they keep their heading-level +
-  // CSS sizing (App.css / PostFeedTab.css), same as before.
-  currentParagraphFontSize?: string;
 }
 
 // Returns an array, not a single node — usually length 1, but a
@@ -238,21 +298,40 @@ interface ConvertContext {
 // into multiple paragraph/heading nodes, one per column-break segment.
 function convertParagraph(pEl: Element, ctx: ConvertContext): JSONContent[] {
   const pPr = firstTag(OOXML_NS.w, 'pPr', pEl);
-  const pStyleEl = pPr && firstTag(OOXML_NS.w, 'pStyle', pPr);
-  const styleId = pStyleEl ? wAttr(pStyleEl, 'val') : null;
+  const styleId = paragraphStyleId(pPr);
   const headingLevel = styleId ? ctx.styles.resolveHeadingLevel(styleId) : undefined;
+  const styleProps = styleId ? ctx.styles.styleProps(styleId) : ctx.styles.defaults;
+  const effPara = { ...styleProps.para, ...parseParaProps(pPr) };
 
-  const jcEl = pPr && firstTag(OOXML_NS.w, 'jc', pPr);
-  const jc = jcEl ? wAttr(jcEl, 'val') : null;
-  const textAlign = jc === 'center' || jc === 'right' || jc === 'both' ? (jc === 'both' ? 'justify' : jc) : undefined;
+  // Run baseline for this paragraph: the style's resolved run props, refined
+  // by the paragraph-mark rPr (pPr/rPr). Headings drop the size so their
+  // heading-level + CSS sizing wins (unchanged behavior); other run props
+  // (e.g. a heading style's color) still flow through.
+  const pMarkRpr = pPr ? Array.from(pPr.children).find((c) => isEl(c, OOXML_NS.w, 'rPr')) : undefined;
+  let baseRun: RunProps = { ...styleProps.run, ...parseRunProps(pMarkRpr) };
+  if (headingLevel) {
+    baseRun = { ...baseRun, fontSizePt: undefined };
+  }
 
-  ctx.currentParagraphJc = jc === 'center' || jc === 'right' ? jc : undefined;
-  // Headings size themselves via their level + CSS; only body paragraphs
-  // inherit the document default size.
-  ctx.currentParagraphFontSize = headingLevel ? undefined : ctx.styles.defaultFontSize;
-  const content = convertParagraphInlineContent(pEl, ctx);
+  ctx.currentParagraphJc = effPara.jc === 'center' || effPara.jc === 'right' ? effPara.jc : undefined;
+  const content = convertParagraphInlineContent(pEl, baseRun, ctx);
   ctx.currentParagraphJc = undefined;
-  ctx.currentParagraphFontSize = undefined;
+
+  // Table-of-Contents lines (TOC1/TOC2/… styles) render as a dedicated node
+  // that lays out entry text, a dotted leader, and the page number — see
+  // tocEntryExtension. The trailing numeric run is the page number.
+  const tocMatch = styleId ? /^TOC(\d+)$/.exec(styleId) : null;
+  if (tocMatch && content.length) {
+    const level = Number(tocMatch[1]) || 1;
+    let page = '';
+    const inline = [...content];
+    const last = inline[inline.length - 1];
+    if (last && last.type === 'text' && /^\d+$/.test((last.text ?? '').trim())) {
+      page = (last.text ?? '').trim();
+      inline.pop();
+    }
+    return [{ type: 'tocEntry', attrs: { level, page }, content: inline }];
+  }
 
   const segments: JSONContent[][] = [[]];
   for (const node of content) {
@@ -263,17 +342,18 @@ function convertParagraph(pEl: Element, ctx: ConvertContext): JSONContent[] {
     }
   }
 
+  const attrs = paragraphAttrs(effPara, Boolean(headingLevel), ctx.styles.defaults.para);
   return segments.map((seg) => {
     if (headingLevel) {
       return {
         type: 'heading',
-        attrs: { level: headingLevel, ...(textAlign ? { textAlign } : {}) },
+        attrs: { level: headingLevel, ...attrs },
         ...(seg.length ? { content: seg } : {}),
       };
     }
     return {
       type: 'paragraph',
-      ...(textAlign ? { attrs: { textAlign } } : {}),
+      ...(Object.keys(attrs).length ? { attrs } : {}),
       ...(seg.length ? { content: seg } : {}),
     };
   });
@@ -361,13 +441,23 @@ function convertTable(tblEl: Element, ctx: ConvertContext): JSONContent {
       const tcPr = firstTag(OOXML_NS.w, 'tcPr', tcEl);
       const gridSpanEl = tcPr && firstTag(OOXML_NS.w, 'gridSpan', tcPr);
       const colspan = gridSpanEl ? Number(wAttr(gridSpanEl, 'val') ?? '1') : 1;
+      // Cell shading (<w:shd w:fill>) — dropping it not only lost the banner
+      // color but hid white-on-fill header text entirely (white text on the
+      // default white cell). "auto" means no fill.
+      const shdEl = tcPr && firstTag(OOXML_NS.w, 'shd', tcPr);
+      const fill = shdEl ? wAttr(shdEl, 'fill') : null;
+      const backgroundColor = fill && fill !== 'auto' ? `#${fill}` : undefined;
       const cellContent = tag(OOXML_NS.w, 'p', tcEl)
         .filter((p) => p.parentElement === tcEl) // direct children only — a nested table's <w:p>s shouldn't merge in
         .flatMap((p) => convertParagraph(p, ctx)) // usually 1 node per <w:p>, more if a column break split it
         .map((p) => (p.content ? p : { ...p, content: [] })); // paragraph node must have `content` even if empty for table cells to render sensibly
+      const cellAttrs = {
+        ...(colspan > 1 ? { colspan } : {}),
+        ...(backgroundColor ? { backgroundColor } : {}),
+      };
       cells.push({
         type: 'tableCell',
-        ...(colspan > 1 ? { attrs: { colspan } } : {}),
+        ...(Object.keys(cellAttrs).length ? { attrs: cellAttrs } : {}),
         content: cellContent.length ? cellContent : [{ type: 'paragraph' }],
       });
     }
@@ -475,7 +565,12 @@ export function convertOoxmlToTiptapJson(pkg: OoxmlPackage): JSONContent {
   const numberingRoot = pkg.getPart('/word/numbering.xml')?.root;
   const numbering = numberingRoot ? parseNumbering(numberingRoot) : { getLevelFormat: () => undefined };
   const stylesRoot = pkg.getPart('/word/styles.xml')?.root;
-  const styles = stylesRoot ? parseStyles(stylesRoot) : { resolveHeadingLevel: () => undefined };
+  const emptyStyles: StylesResolver = {
+    resolveHeadingLevel: () => undefined,
+    styleProps: () => ({ para: {}, run: {} }),
+    defaults: { para: {}, run: {} },
+  };
+  const styles = stylesRoot ? parseStyles(stylesRoot) : emptyStyles;
   const ctx: ConvertContext = { pkg, numbering, styles, pendingImages: [] };
 
   const blocks: JSONContent[] = [];
@@ -513,7 +608,10 @@ export function convertOoxmlToTiptapJson(pkg: OoxmlPackage): JSONContent {
   for (const child of Array.from(bodyEl.children)) {
     if (isEl(child, OOXML_NS.w, 'p')) {
       const pPr = firstTag(OOXML_NS.w, 'pPr', child);
-      const membership = listMembershipFor(pPr, numbering);
+      // List membership is read from the *effective* paragraph props, so items
+      // whose numbering lives on their style (ListBullet/ListNumber) — with no
+      // direct <w:numPr> — are still recognized as list items.
+      const membership = membershipFromPara(effectiveParaProps(pPr, paragraphStyleId(pPr), styles), numbering);
       ctx.pendingImages = [];
       const nodes = convertParagraph(child, ctx);
       const hasImages = ctx.pendingImages.length > 0;
