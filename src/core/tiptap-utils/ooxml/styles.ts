@@ -11,6 +11,13 @@ import { OOXML_NS } from './flatOpcPackage';
 // resolveHeadingLevel() walks the basedOn chain so those resolve too,
 // instead of silently falling through to a plain paragraph.
 const HEADING_STYLE_LEVELS: Record<string, number> = {
+  // Word's Title/Subtitle export as <p class=MsoTitle> on the paste path, not
+  // a heading tag — the paste path promotes them to h1/h2 by class
+  // (wordTitleReconstruction). Mapping them here keeps the OOXML path
+  // consistent: a Title paragraph becomes a real heading rather than a large
+  // plain paragraph, so both import routes render the document title the same.
+  Title: 1,
+  Subtitle: 2,
   Heading1: 1,
   Heading2: 2,
   Heading3: 3,

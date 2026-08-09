@@ -3,6 +3,7 @@ import { resolveWordVideoEmbeds } from './wordVideoEmbed';
 import { reconstructWordLists } from './wordListReconstruction';
 import { resolveWordImageAlignment } from './wordImageAlignment';
 import { reconstructWordColumns } from './wordColumnReconstruction';
+import { reconstructWordTitles } from './wordTitleReconstruction';
 
 // Shared by htmlJsonConversion.ts (save/load) and wordPasteExtension.ts
 // (live paste) — kept in its own file, independent of editorExtensions.ts,
@@ -17,5 +18,10 @@ import { reconstructWordColumns } from './wordColumnReconstruction';
 // just needs to run within the pass.
 export function preprocessWordHtml(html: string): string {
   const resolved = juice(resolveWordVideoEmbeds(html));
-  return reconstructWordColumns(reconstructWordLists(resolveWordImageAlignment(resolved)));
+  // reconstructWordTitles runs after juice so that when the <style> block IS
+  // present, the inlined Title size is carried onto the promoted heading; when
+  // it isn't, the class-based promotion still gives the title heading styling.
+  return reconstructWordColumns(
+    reconstructWordLists(reconstructWordTitles(resolveWordImageAlignment(resolved))),
+  );
 }

@@ -78,22 +78,34 @@ export const WordPaste = Extension.create({
   // (lists, alignment, spacing). We only ever touch `src` here.
   addProseMirrorPlugins() {
     return [
-      // Pasting a whole imported document otherwise leaves the caret — and
-      // the scroll position — at the very bottom, forcing a manual scroll
-      // back up to review what just came in. Reset the scroll container to
-      // the top once the paste has settled (deferred a frame so it wins over
-      // ProseMirror's own scroll-caret-into-view on the paste transaction).
+      // Pasting a whole imported document leaves the caret — and the scroll
+      // position — at the very bottom, forcing a manual scroll back up to
+      // review what just came in; reset to the top once the paste settles
+      // (deferred a frame so it wins over ProseMirror's own scroll-caret-
+      // into-view). But ONLY for a genuine document import: an in-editor
+      // copy-paste of a small chunk shouldn't yank the view to the top.
+      // ProseMirror tags its own clipboard HTML with data-pm-slice, which
+      // reliably identifies an internal paste; and we additionally require the
+      // paste to actually be large (a Word document, or a lot of text), since
+      // a small paste won't have jumped the view anyway.
       new Plugin({
         key: new PluginKey('wordPasteScrollTop'),
         props: {
           handleDOMEvents: {
-            paste: (view) => {
-              requestAnimationFrame(() => {
-                const scroller = view.dom.closest('.tiptap-editor');
-                if (scroller instanceof HTMLElement) {
-                  scroller.scrollTop = 0;
-                }
-              });
+            paste: (view, event) => {
+              const html = event.clipboardData?.getData('text/html') ?? '';
+              const text = event.clipboardData?.getData('text/plain') ?? '';
+              const isInternalPaste = html.includes('data-pm-slice');
+              const isDocumentImport =
+                /mso-|urn:schemas-microsoft|class=["']?Mso/i.test(html) || text.length > 1200;
+              if (!isInternalPaste && isDocumentImport) {
+                requestAnimationFrame(() => {
+                  const scroller = view.dom.closest('.tiptap-editor');
+                  if (scroller instanceof HTMLElement) {
+                    scroller.scrollTop = 0;
+                  }
+                });
+              }
               return false; // don't consume — let the paste proceed normally
             },
           },

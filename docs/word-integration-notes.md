@@ -946,6 +946,21 @@ image node), Word field semantics beyond TOC layout (`PAGEREF`, cross-refs),
 per-side paragraph borders (Intense Quote's top/bottom rules render as no box
 rather than an approximated one), and `<w:caps>` all-caps.
 
+**Title/Subtitle styles — lost on the paste path when the `<style>` block
+didn't survive the clipboard (2026-08-09).** Unlike Heading 1–6 (which Word
+exports as real `<h1>`–`<h6>`), the Title and Subtitle styles export as
+`<p class=MsoTitle>` with their size living *only* in the stylesheet's
+`p.MsoTitle { font-size: 28pt }` rule. That size reaches the output solely via
+juice inlining that rule — so a pasted payload without (or with a stripped)
+`<style>` block loses it and the document title collapses to body size
+(confirmed: stripping the block drops the inlined size to `""`). The class on
+the element always survives, so [`wordTitleReconstruction.ts`](../src/core/tiptap-utils/wordTitleReconstruction.ts)
+promotes `MsoTitle`→`<h1>` / `MsoSubtitle`→`<h2>` by class (after juice, so an
+inlined size still wins where present). The OOXML path maps `Title`/`Subtitle`
+to heading levels in the same spirit ([`styles.ts`](../src/core/tiptap-utils/ooxml/styles.ts)),
+so both import routes render the document title the same way rather than one
+as a heading and the other as a large plain paragraph.
+
 ---
 
 ## Running summary (for the deck)
