@@ -985,6 +985,33 @@ as a heading and the other as a large plain paragraph.
 
 ---
 
+## 17. Floating an image left nowhere to type beside it (2026-08-09)
+
+**Symptom:** paste a small image into a fresh doc, set Wrap Text = float
+left, and there's no way to type to its right — the caret only goes above or
+below, never beside it, even though there's clearly room.
+
+**Cause — a known ProseMirror hard spot, not a CSS bug.** Our image is a
+*block* node. CSS float *would* wrap following text beside it, but a floated
+block image (frequently the last node in the doc) has **no paragraph after it
+for a text cursor to live in**. The empty space beside a float isn't a real
+editing position — you can't click into it — so there's nowhere to put the
+wrapping text. This is why Word feels different: Word *anchors* the image and
+the surrounding text is independent, whereas HTML float needs a *following*
+paragraph in document order to flow around it.
+
+**Fix:** the `setImageAlign` command
+([`imageAlignmentExtension.ts`](../src/core/tiptap-utils/imageAlignmentExtension.ts))
+now, on `float-left`/`float-right`, ensures a paragraph immediately follows
+the image (inserting an empty one if needed) and drops the caret into it. So
+the moment you pick Wrap Text, the cursor is already sitting in a paragraph
+that renders beside the image — you just start typing. Non-float alignments
+(left/center/right, remove-wrap) are unchanged. Verified: a doc that is *only*
+an image becomes `[image(float-left), paragraph]` with the caret inside the
+paragraph. ~35 lines, no schema change.
+
+---
+
 ## Running summary (for the deck)
 
 | # | Issue | Root cause | Fixable in our code? | Extra effort |

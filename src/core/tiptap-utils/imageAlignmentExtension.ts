@@ -1,4 +1,6 @@
 import { Extension } from '@tiptap/core';
+import { NodeSelection, TextSelection } from '@tiptap/pm/state';
+import type { Node as ProseMirrorNode } from '@tiptap/pm/model';
 
 // 'left'/'center'/'right' position the image as its own block (no text
 // wrap — same as Word's simple, non-wrapping picture alignment, §11/§12).
@@ -46,8 +48,53 @@ export const ImageAlignment = Extension.create({
     return {
       setImageAlign:
         (align: ImageAlign | null) =>
-        ({ commands }) =>
-          commands.updateAttributes('image', { align }),
+        ({ state, tr, dispatch }) => {
+          const imageType = state.schema.nodes.image;
+          const paragraphType = state.schema.nodes.paragraph;
+
+          // Locate the image this command targets — a NodeSelection on it, or
+          // the first image within the current selection range.
+          let found: { pos: number; node: ProseMirrorNode } | null = null;
+          const { selection } = state;
+          if (selection instanceof NodeSelection && selection.node.type === imageType) {
+            found = { pos: selection.from, node: selection.node };
+          } else {
+            state.doc.nodesBetween(selection.from, selection.to, (node, pos) => {
+              if (!found && node.type === imageType) {
+                found = { pos, node };
+              }
+            });
+          }
+          if (!found) {
+            return false;
+          }
+          const imagePos = found.pos;
+          const imageNode = found.node;
+
+          tr.setNodeMarkup(imagePos, undefined, { ...imageNode.attrs, align });
+
+          // For a text-wrap float, make sure a paragraph follows the image and
+          // drop the cursor into it. A block image (often the last node) other-
+          // wise leaves nowhere to type beside it — CSS float would wrap text
+          // there, but there's no text position for the caret, so the wrap
+          // "works" visually yet you can't add the wrapping content. See
+          // docs/word-integration-notes.md §17.
+          if (align === 'float-left' || align === 'float-right') {
+            const afterPos = imagePos + imageNode.nodeSize;
+            const nodeAfter = tr.doc.resolve(afterPos).nodeAfter;
+            if (!nodeAfter || nodeAfter.type !== paragraphType) {
+              tr.insert(afterPos, paragraphType.create());
+            }
+            // afterPos + 1 lands inside that (new or existing) paragraph.
+            tr.setSelection(TextSelection.create(tr.doc, afterPos + 1));
+            tr.scrollIntoView();
+          }
+
+          if (dispatch) {
+            dispatch(tr);
+          }
+          return true;
+        },
     };
   },
   addGlobalAttributes() {
