@@ -4,6 +4,10 @@ Living log for the team presentation. Updated as we build. Each entry: what
 Word/Office.js/Tiptap does out of the box, what breaks, what we had to add,
 and what it costs.
 
+> **At-a-glance coverage matrix:** [`word-integration-coverage.html`](./word-integration-coverage.html)
+> — a standalone, self-contained page (open it directly in a browser) summarizing
+> what the OOXML→JSON import supports vs. the gaps, with feasibility. Handy for the deck.
+
 ---
 
 ## 1. Images: default HTML export is broken
