@@ -14,6 +14,10 @@ export const OOXML_NS = {
   wp: 'http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing',
   a: 'http://schemas.openxmlformats.org/drawingml/2006/main',
   pic: 'http://schemas.openxmlformats.org/drawingml/2006/picture',
+  // Word 2012 drawing extensions — carries <wp15:webVideoPr> for an
+  // Insert -> Online Video, whose embeddedHtml attribute holds the real embed
+  // <iframe> (exact video URL), not just a poster image.
+  wp15: 'http://schemas.microsoft.com/office/word/2012/wordprocessingDrawing',
 } as const;
 
 export interface OoxmlPart {

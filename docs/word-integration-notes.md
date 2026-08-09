@@ -376,6 +376,24 @@ that flow the same way, or whether it rasterizes to a flat, unlinked image
 with nothing recoverable. Needs a real captured sample to confirm before
 building — blocked on internal network access, to be tested later.
 
+**OOXML path (add-in) is strictly better than the paste heuristic
+(2026-08-09).** On the `getOoxml()` route the video is *not* a guessed
+pattern — Word stores it explicitly as `<wp15:webVideoPr embeddedHtml="…">`
+inside the `<w:drawing>`, and `embeddedHtml` holds the **literal embed
+`<iframe>`** (exact `src`, dimensions, sandbox attrs), alongside the poster
+`<a:blip>` and a title. So there's a real "this is a video" marker and the
+URL is authoritative, not inferred. [`convertDrawing`](../src/core/tiptap-utils/ooxml/ooxmlToTiptapJson.ts)
+now checks for `webVideoPr` first, pulls `src` out of `embeddedHtml`, and
+emits the *same* `youtube` node the paste path produces (so both render
+identically) — verified against a real captured `sample-3.xml`
+(→ `youtube` node, `embed/1V1yblnnLy8`, 480×360), and the node round-trips
+through the editor schema to a live `<iframe>`. This also de-risks the
+enterprise-player open question above on the OOXML route specifically:
+`embeddedHtml` is a full iframe for *any* provider, so a non-YouTube embed is
+recoverable there (we currently still scope the emitted node to YouTube and
+fall back to the poster image otherwise — generalizing is now a
+node-support question, not a capture one).
+
 ---
 
 ## 9. Icons render as broken images; Shapes can't be captured at all

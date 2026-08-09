@@ -385,12 +385,52 @@ function inferFloatFromAnchor(anchorEl: Element): 'float-left' | 'float-right' {
   return 'float-left';
 }
 
+// An Insert -> Online Video: <wp15:webVideoPr embeddedHtml="<iframe ... src=
+// 'https://www.youtube.com/embed/ID?...' ...>"> carries the real embed. The
+// embeddedHtml attribute value is XML-decoded by the parser, so it's a plain
+// iframe string we can pull the src out of — far better than the paste path's
+// pattern-match, since the URL is explicit. We emit the same `youtube` node
+// the paste path does (via the Youtube extension), so both render identically.
+// Non-YouTube players fall through to the poster image (best we can do).
+function youtubeNodeFromWebVideo(
+  drawingEl: Element,
+  width: number | undefined,
+  height: number | undefined,
+): JSONContent | undefined {
+  const webVideoEl = firstTag(OOXML_NS.wp15, 'webVideoPr', drawingEl);
+  const embeddedHtml = webVideoEl?.getAttribute('embeddedHtml') ?? '';
+  const src = /src="([^"]+)"/i.exec(embeddedHtml)?.[1];
+  const youtubeId = src ? /(?:youtube(?:-nocookie)?\.com)\/embed\/([\w-]+)/i.exec(src)?.[1] : undefined;
+  if (!youtubeId) {
+    return undefined;
+  }
+  return {
+    type: 'youtube',
+    attrs: {
+      src: `https://www.youtube.com/embed/${youtubeId}`,
+      ...(width ? { width } : {}),
+      ...(height ? { height } : {}),
+    },
+  };
+}
+
 function convertDrawing(drawingEl: Element, ctx: ConvertContext): JSONContent | undefined {
   const inlineEl = firstTag(OOXML_NS.wp, 'inline', drawingEl);
   const anchorEl = firstTag(OOXML_NS.wp, 'anchor', drawingEl);
   const container = inlineEl ?? anchorEl;
   if (!container) {
     return undefined;
+  }
+
+  const extentEl = firstTag(OOXML_NS.wp, 'extent', container);
+  // EMUs (English Metric Units) -> px, 914400 EMU per inch, 96px per inch.
+  const width = extentEl ? Math.round((Number(extentEl.getAttribute('cx')) / 914400) * 96) : undefined;
+  const height = extentEl ? Math.round((Number(extentEl.getAttribute('cy')) / 914400) * 96) : undefined;
+
+  // Online video takes priority over the poster image it also carries.
+  const youtube = youtubeNodeFromWebVideo(drawingEl, width, height);
+  if (youtube) {
+    return youtube;
   }
 
   const blipEl = firstTag(OOXML_NS.a, 'blip', container);
@@ -405,11 +445,6 @@ function convertDrawing(drawingEl: Element, ctx: ConvertContext): JSONContent | 
 
   const docPrEl = firstTag(OOXML_NS.wp, 'docPr', container);
   const alt = docPrEl?.getAttribute('descr') ?? docPrEl?.getAttribute('name') ?? undefined;
-
-  const extentEl = firstTag(OOXML_NS.wp, 'extent', container);
-  // EMUs (English Metric Units) -> px, 914400 EMU per inch, 96px per inch.
-  const width = extentEl ? Math.round(Number(extentEl.getAttribute('cx')) / 914400 * 96) : undefined;
-  const height = extentEl ? Math.round(Number(extentEl.getAttribute('cy')) / 914400 * 96) : undefined;
 
   const align = anchorEl ? inferFloatFromAnchor(anchorEl) : ctx.currentParagraphJc;
 
