@@ -135,7 +135,9 @@
 /* Shared structural baseline for the rendered HTML body — applies to both
    formats as a fallback for tags without their own overrides below. */
 .feed-post-body {
-  font-size: 16px;
+  /* 14px base, matching the editor (App.css) — imported content carries its
+     own explicit size, so this only affects text without one. */
+  font-size: 14px;
   line-height: 1.6;
   color: #000000;
   text-align: left;
@@ -181,7 +183,9 @@
 .feed-post-body ul,
 .feed-post-body ol {
   margin: 0 0 10px;
-  padding-left: 22px;
+  /* Matches the editor (App.css) — ~0.4in per level, close to Word's 0.5in
+     list indent; 22px sat too far left of where Word places the list. */
+  padding-left: 40px;
 }
 
 /* Fallback numbering cycle for editor-authored lists (which carry no

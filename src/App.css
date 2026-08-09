@@ -77,8 +77,10 @@
   /* Document content shouldn't inherit the 18px page-chrome base font from
      :root — that's meant for UI text (buttons, panel labels), not authored
      content. Headings inside .ProseMirror use browser-default em sizing, so
-     this also fixes their absolute size, not just body text. */
-  font-size: 16px;
+     this also fixes their absolute size, not just body text. 14px base for
+     editor-authored text (imported Word content carries its own explicit
+     size, e.g. 11pt, so this only affects text without one). */
+  font-size: 14px;
 
   .ProseMirror {
     /* Roughly a US Letter page width at typical zoom — narrower than the
@@ -168,9 +170,14 @@
     font-size: 14px;
   }
 
+  /* ~0.4in of left indent per nesting level, close to Word's default 0.5in
+     list indent — the old 22px left the whole list sitting too far left of
+     where Word places it (the list structure/nesting itself is correct; this
+     is only the horizontal offset the markers hang from). Applies per level,
+     so nested lists step in cumulatively like Word's do. */
   .ProseMirror ul,
   .ProseMirror ol {
-    padding-left: 22px;
+    padding-left: 40px;
   }
 
   .ProseMirror li {
