@@ -304,13 +304,17 @@ function convertParagraph(pEl: Element, ctx: ConvertContext): JSONContent[] {
   const effPara = { ...styleProps.para, ...parseParaProps(pPr) };
 
   // Run baseline for this paragraph: the style's resolved run props, refined
-  // by the paragraph-mark rPr (pPr/rPr). Headings drop the size so their
-  // heading-level + CSS sizing wins (unchanged behavior); other run props
-  // (e.g. a heading style's color) still flow through.
+  // by the paragraph-mark rPr (pPr/rPr). Headings drop the style's size AND
+  // bold — those are already expressed by the heading level + our heading CSS
+  // (font-weight 600, per-level sizes); applying the heading style's own
+  // <w:b>/<w:sz> on top double-weights the text (a <strong> at 700 over the
+  // CSS 600) and oversizes it. Other run props (e.g. a themed heading color)
+  // still flow through, and a *directly* bold run still comes through via
+  // convertRun's own rPr merge.
   const pMarkRpr = pPr ? Array.from(pPr.children).find((c) => isEl(c, OOXML_NS.w, 'rPr')) : undefined;
   let baseRun: RunProps = { ...styleProps.run, ...parseRunProps(pMarkRpr) };
   if (headingLevel) {
-    baseRun = { ...baseRun, fontSizePt: undefined };
+    baseRun = { ...baseRun, bold: undefined, fontSizePt: undefined };
   }
 
   ctx.currentParagraphJc = effPara.jc === 'center' || effPara.jc === 'right' ? effPara.jc : undefined;
@@ -541,6 +545,16 @@ function buildListNode(paragraphs: { node: JSONContent; membership: ListMembersh
       if (membership.listStyleType) {
         parentList.attrs = { ...(parentList.attrs ?? {}), listStyleType: membership.listStyleType };
       }
+    }
+    // A list item's indent and vertical spacing come from the list structure
+    // (nesting) + list CSS. The list paragraph's OWN margins/indent — which it
+    // inherits from the list style's <w:ind>/<w:spacing> (e.g. ListParagraph's
+    // left:0.5in) — would stack on top of that: the marker sits at the list's
+    // padding while the text is pushed a further ~48px right, opening a
+    // "1.&nbsp;&nbsp;&nbsp;&nbsp;text" gap, and the before/after spacing loosens
+    // the items. Strip those from the inner paragraph and keep only alignment.
+    if (node.attrs) {
+      node.attrs = node.attrs.textAlign ? { textAlign: node.attrs.textAlign } : undefined;
     }
     const listItem: JSONContent = { type: 'listItem', content: [node] };
     // Put the item's own font-size on the <li> too, not just its inner text —
