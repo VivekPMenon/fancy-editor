@@ -80,7 +80,7 @@
      this also fixes their absolute size, not just body text. 14px base for
      editor-authored text (imported Word content carries its own explicit
      size, e.g. 11pt, so this only affects text without one). */
-  font-size: 14px;
+  font-size: 15px;
 
   .ProseMirror {
     /* Roughly a US Letter page width at typical zoom — narrower than the
@@ -167,7 +167,7 @@
     font-size: 16px;
   }
   .ProseMirror h6 {
-    font-size: 14px;
+    font-size: 15px;
   }
 
   /* ~0.4in of left indent per nesting level, close to Word's default 0.5in

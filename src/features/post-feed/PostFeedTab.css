@@ -137,7 +137,7 @@
 .feed-post-body {
   /* 14px base, matching the editor (App.css) — imported content carries its
      own explicit size, so this only affects text without one. */
-  font-size: 14px;
+  font-size: 15px;
   line-height: 1.6;
   color: #000000;
   text-align: left;

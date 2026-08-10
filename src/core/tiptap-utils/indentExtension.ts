@@ -188,6 +188,38 @@ export const Indent = Extension.create<IndentOptions>({
       });
     };
 
+    // Word-style autoformat: pressing Tab right after a bare list marker in an
+    // otherwise-empty paragraph ("1." / "1)" / "-" / "*" / "•") turns it into a
+    // real list — the same conversion typing the marker + a space already does
+    // via StarterKit's input rules, just triggered by Tab too (Word accepts
+    // both). Without this, "1." + Tab only *looked* like a list (literal text
+    // that happened to read "1.", plus a first-line indent), so pressing Enter
+    // didn't continue the numbering. Deliberately narrow: only fires when the
+    // whole paragraph is exactly the marker and the caret sits right after it.
+    const tryMarkerToList = (): boolean => {
+      const { editor } = this;
+      const { selection } = editor.state;
+      if (!selection.empty) {
+        return false;
+      }
+      const { $from } = selection;
+      if ($from.parent.type.name !== 'paragraph') {
+        return false;
+      }
+      const text = $from.parent.textContent;
+      if ($from.parentOffset !== text.length) {
+        return false; // caret must be at the end — nothing typed after the marker
+      }
+      const ordered = /^\d+[.)]$/.test(text);
+      const bullet = /^[-*+•]$/.test(text);
+      if (!ordered && !bullet) {
+        return false;
+      }
+      const start = $from.start();
+      const chain = editor.chain().deleteRange({ from: start, to: start + text.length });
+      return ordered ? chain.toggleOrderedList().run() : chain.toggleBulletList().run();
+    };
+
     // Tab/Shift-Tab return true (swallow the key) in every editable context
     // we own, so focus can never escape to the next form control — even when
     // the step itself is a no-op (e.g. Tab on the first item of a list, which
@@ -197,6 +229,10 @@ export const Indent = Extension.create<IndentOptions>({
       const { editor } = this;
       if (editor.isActive('tableCell') || editor.isActive('tableHeader') || editor.isActive('codeBlock')) {
         return false;
+      }
+      // Turn "1."/"-"/… + Tab into a real list before any indent handling.
+      if (direction === 1 && tryMarkerToList()) {
+        return true;
       }
       // List item: nest / un-nest. sinkListItem/liftListItem return false
       // when the move isn't possible (the first item has no sibling to nest
