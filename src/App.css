@@ -81,6 +81,15 @@
      editor-authored text (imported Word content carries its own explicit
      size, e.g. 11pt, so this only affects text without one). */
   font-size: 15px;
+  /* Crisp default document font. Segoe UI (not Calibri) on purpose: Calibri's
+     small x-height makes it render visually smaller than its px size — 15px
+     Calibri reads like ~13px Segoe UI — which looked "too small" next to the
+     UI. Segoe UI's px size matches its visual size, so 15px reads as a true
+     15px. It's on every Windows/Office machine; the fallbacks cover other
+     platforms. Imported OOXML content carries no font-family of its own (we
+     don't read <w:rFonts>), so it adopts this too — uniform with typed text.
+     The toolbar's "Segoe UI (default)" entry surfaces this. */
+  font-family: 'Segoe UI', system-ui, -apple-system, Roboto, sans-serif;
 
   .ProseMirror {
     /* Roughly a US Letter page width at typical zoom — narrower than the

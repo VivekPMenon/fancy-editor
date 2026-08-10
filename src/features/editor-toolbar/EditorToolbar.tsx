@@ -49,16 +49,33 @@ interface EditorToolbarProps {
   editor: Editor;
 }
 
+// Deliberately a short, curated list — no need for a big font menu. The empty
+// value means "no font-family mark", i.e. the editor's CSS default; that
+// default IS Segoe UI (see App.css .tiptap-editor), so it's labelled as such
+// so the applied default is clear rather than a vague "Default font".
 const FONT_FAMILIES = [
-  { label: 'Default font', value: '' },
+  { label: 'Segoe UI (default)', value: '' },
+  { label: 'Calibri', value: 'Calibri' },
   { label: 'Arial', value: 'Arial' },
   { label: 'Georgia', value: 'Georgia' },
   { label: 'Times New Roman', value: "'Times New Roman', serif" },
-  { label: 'Courier New', value: "'Courier New', monospace" },
-  { label: 'Verdana', value: 'Verdana' },
 ];
 
-const FONT_SIZES = ['8', '9', '10', '10.5', '11', '12', '14', '16', '18', '20', '22', '24', '26', '28', '36', '48', '72'];
+const FONT_SIZES = ['8', '9', '10', '10.5', '11', '12', '14', '15', '16', '18', '20', '22', '24', '26', '28', '36', '48', '72'];
+
+// The editor's base font size (App.css .tiptap-editor) — shown in the toolbar
+// when a run has no size of its own, so the applied default is clear.
+const EDITOR_DEFAULT_FONT_SIZE = 15;
+
+// Imported OOXML sizes are in points ("11pt"); the toolbar works in px. Strip
+// either unit so an imported size still lines up with the dropdown / stepper.
+function fontSizeNumber(value: string | undefined): number | undefined {
+  if (!value) {
+    return undefined;
+  }
+  const n = Number(value.replace(/px|pt/i, ''));
+  return Number.isFinite(n) ? n : undefined;
+}
 
 // Cosmetic only — this POC implements the Home tab; the rest are inert, same
 // as a real ribbon has tabs you're not currently on. Tab strip JSX below is
@@ -163,7 +180,7 @@ export function EditorToolbar({ editor }: EditorToolbarProps) {
 
   const headingValue = ([1, 2, 3, 4] as const).find((level) => editor.isActive('heading', { level }));
   const activeBlockType = headingValue ? 'heading' : 'paragraph';
-  const currentFontSize = Number(editor.getAttributes('textStyle').fontSize?.replace('px', '')) || 18;
+  const currentFontSize = fontSizeNumber(editor.getAttributes('textStyle').fontSize) ?? EDITOR_DEFAULT_FONT_SIZE;
   const currentColor = editor.getAttributes('textStyle').color || '#000000';
   const currentHighlight = editor.getAttributes('highlight').color || '#ffff00';
   const currentShading = editor.getAttributes(activeBlockType).shading || '#ffffff';
@@ -297,7 +314,7 @@ export function EditorToolbar({ editor }: EditorToolbarProps) {
               <select
                 className="editor-toolbar-select editor-toolbar-select-size"
                 title="Font size"
-                value={editor.getAttributes('textStyle').fontSize?.replace('px', '') ?? '18'}
+                value={String(fontSizeNumber(editor.getAttributes('textStyle').fontSize) ?? EDITOR_DEFAULT_FONT_SIZE)}
                 onChange={(event) => handleFontSizeChange(event.target.value)}
               >
                 <option value="">--</option>
