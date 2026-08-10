@@ -386,6 +386,17 @@ function inferFloatFromAnchor(anchorEl: Element): 'float-left' | 'float-right' {
   if (wrapText === 'left') return 'float-right';
   if (wrapText === 'right') return 'float-left';
 
+  // A manually-dragged image has no named align — just an absolute horizontal
+  // offset (<wp:posOffset>, EMU). A left edge already well into the column
+  // (past ~2in) means it's sitting on the right. Confirmed against a real UBS
+  // doc (offset 2695575 EMU ≈ 2.95in → right); sample-1's anchored image has
+  // offset 0 → left, so this doesn't regress it.
+  const posOffsetEl = positionH && firstTag(OOXML_NS.wp, 'posOffset', positionH);
+  const posOffset = posOffsetEl ? Number(posOffsetEl.textContent) : NaN;
+  if (Number.isFinite(posOffset) && posOffset > 1828800) {
+    return 'float-right';
+  }
+
   return 'float-left';
 }
 
@@ -688,18 +699,28 @@ export function convertOoxmlToTiptapJson(pkg: OoxmlPackage): JSONContent {
         // becomes the list item's content if one somehow occurred.
         currentListRun.push({ node: nodes[0], membership });
       } else {
-        flushListRun();
-        sectionBlocks.push(...ctx.pendingImages);
-        // A paragraph whose only content is a <w:sectPr> (section break
-        // marker) or is otherwise genuinely empty is skipped rather than
-        // emitted as a stray blank paragraph, matching how Word itself
-        // treats it as a break, not visible content — UNLESS its only
-        // content was the image(s) just pushed above (covered by
-        // hasImages/nodes[0].content, same check as before), or a column
-        // break split it into more than one segment, in which case all of
-        // them are kept rather than arbitrarily dropping one.
-        if (!isBareSectionMarker && (nodes.length > 1 || !hasImages || nodes[0].content)) {
-          sectionBlocks.push(...nodes);
+        // An empty spacer paragraph *between* list items must NOT break the
+        // list: Word keeps one continuous numbering (same numId) across blank
+        // lines, so flushing the run here is exactly what turned "1, 2, 3"
+        // into "1, 1, 1" — each item became its own single-item list. While a
+        // list run is open, skip a genuinely empty, non-section paragraph
+        // (it was just Word's inter-item spacing) instead of flushing and
+        // emitting it, so the items stay one list. A paragraph with real
+        // content still ends the list, as before.
+        const isEmptySpacer = !hasImages && nodes.length === 1 && !nodes[0].content && !sectPrEl;
+        if (isEmptySpacer && currentListRun.length > 0) {
+          // hold the open list run; drop the blank
+        } else {
+          flushListRun();
+          sectionBlocks.push(...ctx.pendingImages);
+          // A paragraph whose only content is a <w:sectPr> (section break
+          // marker) or is otherwise genuinely empty is skipped rather than
+          // emitted as a stray blank paragraph — UNLESS its only content was
+          // the image(s) just pushed above, or a column break split it into
+          // more than one segment (then all segments are kept).
+          if (!isBareSectionMarker && (nodes.length > 1 || !hasImages || nodes[0].content)) {
+            sectionBlocks.push(...nodes);
+          }
         }
       }
 
