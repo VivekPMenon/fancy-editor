@@ -28,6 +28,8 @@
       --feas-hard: #b0710f;
       --feas-no: #79828f;
 
+      --feed-tint: #f4f8fb;
+
       --shadow: 0 1px 2px rgba(20, 32, 48, 0.06), 0 12px 30px -18px rgba(20, 32, 48, 0.35);
       --sans: 'Segoe UI', system-ui, -apple-system, Roboto, sans-serif;
     }
@@ -38,6 +40,7 @@
         --line: #263039; --line-strong: #33404d; --brand: #7fb0da; --brand-soft: #17222e;
         --good: #57c795; --good-bg: #14261e; --warn: #d7a24a; --warn-bg: #2a2214; --idle: #93a1b4; --idle-bg: #1c242e;
         --feas-easy: #52c193; --feas-med: #6ea6de; --feas-hard: #d7a24a; --feas-no: #8b95a3;
+        --feed-tint: #131b24;
         --shadow: 0 1px 2px rgba(0, 0, 0, 0.4), 0 18px 40px -22px rgba(0, 0, 0, 0.7);
       }
     }
@@ -47,6 +50,7 @@
       --line: #dde4ee; --line-strong: #c7d2e0; --brand: #234c6b; --brand-soft: #eaf1f8;
       --good: #16794f; --good-bg: #e5f2ea; --warn: #9a6a0d; --warn-bg: #f7edd6; --idle: #5a6a80; --idle-bg: #eaeef4;
       --feas-easy: #1f9468; --feas-med: #2f6fb0; --feas-hard: #b0710f; --feas-no: #79828f;
+      --feed-tint: #f4f8fb;
       --shadow: 0 1px 2px rgba(20, 32, 48, 0.06), 0 12px 30px -18px rgba(20, 32, 48, 0.35);
     }
     :root[data-theme='dark'] {
@@ -54,6 +58,7 @@
       --line: #263039; --line-strong: #33404d; --brand: #7fb0da; --brand-soft: #17222e;
       --good: #57c795; --good-bg: #14261e; --warn: #d7a24a; --warn-bg: #2a2214; --idle: #93a1b4; --idle-bg: #1c242e;
       --feas-easy: #52c193; --feas-med: #6ea6de; --feas-hard: #d7a24a; --feas-no: #8b95a3;
+      --feed-tint: #131b24;
       --shadow: 0 1px 2px rgba(0, 0, 0, 0.4), 0 18px 40px -22px rgba(0, 0, 0, 0.7);
     }
 
@@ -70,7 +75,7 @@
     }
 
     .sheet {
-      max-width: 1000px;
+      max-width: 1080px;
       margin: 0 auto;
       background: var(--paper);
       border: 1px solid var(--line);
@@ -127,14 +132,16 @@
       margin: 10px 0 0;
       color: var(--muted);
       font-size: 14.5px;
-      max-width: 64ch;
+      max-width: 68ch;
     }
+    .sub strong { color: var(--ink); font-weight: 650; }
 
     .legend {
       display: flex;
       flex-wrap: wrap;
-      gap: 8px 18px;
-      padding: 16px 34px;
+      align-items: center;
+      gap: 8px 16px;
+      padding: 14px 34px;
       border-bottom: 1px solid var(--line);
       background: var(--surface-2);
       font-size: 12.5px;
@@ -181,7 +188,7 @@
 
     .tbl-scroll { overflow-x: auto; }
 
-    table { width: 100%; border-collapse: collapse; font-size: 14px; }
+    table { width: 100%; border-collapse: collapse; font-size: 14px; min-width: 720px; }
 
     th {
       text-align: left;
@@ -192,9 +199,13 @@
       font-weight: 600;
       padding: 0 12px 8px;
       border-bottom: 1px solid var(--line-strong);
+      vertical-align: bottom;
     }
-    th.c-feat { width: 42%; }
-    th.c-stat { width: 20%; }
+    th.c-feat { width: 32%; }
+    th.c-stat { width: 12%; }
+    th.c-editor { width: 28%; }
+    th.c-feed { width: 28%; }
+    th .sublabel { display: block; text-transform: none; letter-spacing: 0; font-weight: 500; font-size: 10.5px; color: var(--muted); opacity: 0.85; margin-top: 2px; }
 
     td {
       padding: 10px 12px;
@@ -204,8 +215,13 @@
     tr:last-child td { border-bottom: none; }
     tbody tr:hover td { background: var(--surface); }
 
+    /* The feed / render-only column, visually set apart. */
+    .col-feed { border-left: 1px solid var(--line); background: var(--feed-tint); }
+    tbody tr:hover td.col-feed { background: var(--surface-2); }
+
     .feat { font-weight: 550; color: var(--ink); }
-    .note { color: var(--muted); font-size: 13px; }
+    .note { color: var(--muted); font-size: 12.5px; }
+    .ditto { color: var(--muted); opacity: 0.7; }
     code { font-family: 'Cascadia Code', 'Consolas', ui-monospace, monospace; font-size: 12.5px; background: var(--surface-2); padding: 1px 5px; border-radius: 4px; }
 
     .feas {
@@ -217,6 +233,7 @@
       letter-spacing: 0.03em;
       text-transform: uppercase;
       color: var(--muted);
+      white-space: nowrap;
     }
     .feas::before { content: ''; width: 8px; height: 8px; border-radius: 2px; background: var(--dot, var(--feas-no)); }
     .feas.easy { --dot: var(--feas-easy); }
@@ -226,7 +243,8 @@
     .feas.shipped { color: var(--good); }
     .feas.shipped::before { background: var(--good); border-radius: 50%; }
 
-    .feas-row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+    .feas-row { display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; }
+    .win { color: var(--feas-easy); font-weight: 600; }
 
     footer.foot {
       padding: 20px 34px 26px;
@@ -251,64 +269,67 @@
       <header class="top">
         <p class="eyebrow">Word Add-in POC · Import Fidelity</p>
         <h1>Word&nbsp;→&nbsp;OOXML&nbsp;→&nbsp;JSON: Feature Coverage</h1>
-        <p class="sub">What the one-way OOXML import pipeline reliably transposes into our JSON / HTML today,
-          and where the gaps are. Status is verified against real captured documents; feasibility marks the
-          cost of closing each gap. The hard boundary is small and specific — vector shapes and live fields —
-          because it's an HTML-representation limit, not a capture limit.</p>
+        <p class="sub">What the one-way OOXML import pipeline reliably transposes into our JSON / HTML today, and
+          where the gaps are. Two effort lenses per feature: <strong>to support in the editor</strong> (fully
+          editable) versus <strong>to render in the feed</strong> (read-only). Read-only rendering has fewer
+          constraints, so several things that are hard to make editable are much cheaper to simply display —
+          worth knowing when a feature only needs to be seen, not edited.</p>
       </header>
 
       <div class="legend">
-        <span class="grp"><span class="pill good">Supported</span> proven on real docs</span>
-        <span class="grp"><span class="pill warn">Partial</span> comes through, not full-fidelity</span>
-        <span class="grp"><span class="pill idle">Not&nbsp;yet</span> dropped today</span>
+        <span class="grp"><span class="pill good">Supported</span></span>
+        <span class="grp"><span class="pill warn">Partial</span></span>
+        <span class="grp"><span class="pill idle">Not&nbsp;yet</span></span>
         <span class="sep"></span>
         <span class="grp"><span class="feas easy">Easy</span></span>
         <span class="grp"><span class="feas med">Medium</span></span>
         <span class="grp"><span class="feas hard">Hard</span></span>
         <span class="grp"><span class="feas no">Infeasible</span></span>
+        <span class="sep"></span>
+        <span class="grp"><span class="ditto">—</span>&nbsp;already renders with support</span>
       </div>
 
       <section class="grp">
         <div class="grp-head"><h2>Character formatting</h2><span class="count">8 supported · 2 open</span></div>
         <div class="tbl-scroll">
           <table>
-            <thead><tr><th class="c-feat">Feature</th><th class="c-stat">Status</th><th>Feasibility &amp; note</th></tr></thead>
+            <thead><tr><th class="c-feat">Feature</th><th class="c-stat">Status</th><th class="c-editor">To support <span class="sublabel">editor · editable</span></th><th class="c-feed">To render <span class="sublabel">feed · read-only</span></th></tr></thead>
             <tbody>
-              <tr><td class="feat">Bold · italic · underline · strikethrough</td><td><span class="pill good">Supported</span></td><td><span class="feas shipped">Shipped</span></td></tr>
-              <tr><td class="feat">Underline styles — dotted / wavy / double</td><td><span class="pill good">Supported</span></td><td><span class="feas shipped">Shipped</span></td></tr>
-              <tr><td class="feat">Double strikethrough</td><td><span class="pill good">Supported</span></td><td><span class="feas shipped">Shipped</span></td></tr>
-              <tr><td class="feat">Small caps</td><td><span class="pill good">Supported</span></td><td><span class="feas shipped">Shipped</span></td></tr>
-              <tr><td class="feat">Subscript · superscript</td><td><span class="pill good">Supported</span></td><td><span class="feas shipped">Shipped</span></td></tr>
-              <tr><td class="feat">Font color</td><td><span class="pill good">Supported</span></td><td><span class="feas shipped">Shipped</span></td></tr>
-              <tr><td class="feat">Font size (incl. document default)</td><td><span class="pill good">Supported</span></td><td><span class="feas shipped">Shipped</span></td></tr>
-              <tr><td class="feat">Text highlight</td><td><span class="pill good">Supported</span></td><td><span class="feas shipped">Shipped</span></td></tr>
-              <tr><td class="feat">Font family</td><td><span class="pill idle">Not yet</span></td><td><span class="feas-row"><span class="feas easy">Easy</span><span class="note">read <code>w:rFonts</code> — text uses editor font today</span></span></td></tr>
-              <tr><td class="feat">All caps</td><td><span class="pill idle">Not yet</span></td><td><span class="feas-row"><span class="feas easy">Easy</span><span class="note">CSS <code>text-transform</code></span></span></td></tr>
+              <tr><td class="feat">Bold · italic · underline · strikethrough</td><td><span class="pill good">Supported</span></td><td><span class="feas shipped">Shipped</span></td><td class="col-feed"><span class="ditto">—</span></td></tr>
+              <tr><td class="feat">Underline styles — dotted / wavy / double</td><td><span class="pill good">Supported</span></td><td><span class="feas shipped">Shipped</span></td><td class="col-feed"><span class="ditto">—</span></td></tr>
+              <tr><td class="feat">Double strikethrough</td><td><span class="pill good">Supported</span></td><td><span class="feas shipped">Shipped</span></td><td class="col-feed"><span class="ditto">—</span></td></tr>
+              <tr><td class="feat">Small caps</td><td><span class="pill good">Supported</span></td><td><span class="feas shipped">Shipped</span></td><td class="col-feed"><span class="ditto">—</span></td></tr>
+              <tr><td class="feat">Subscript · superscript</td><td><span class="pill good">Supported</span></td><td><span class="feas shipped">Shipped</span></td><td class="col-feed"><span class="ditto">—</span></td></tr>
+              <tr><td class="feat">Font color</td><td><span class="pill good">Supported</span></td><td><span class="feas shipped">Shipped</span></td><td class="col-feed"><span class="ditto">—</span></td></tr>
+              <tr><td class="feat">Font size (incl. document default)</td><td><span class="pill good">Supported</span></td><td><span class="feas shipped">Shipped</span></td><td class="col-feed"><span class="ditto">—</span></td></tr>
+              <tr><td class="feat">Text highlight</td><td><span class="pill good">Supported</span></td><td><span class="feas shipped">Shipped</span></td><td class="col-feed"><span class="ditto">—</span></td></tr>
+              <tr><td class="feat">Font family</td><td><span class="pill idle">Not yet</span></td><td><span class="feas-row"><span class="feas easy">Easy</span><span class="note">read <code>w:rFonts</code></span></span></td><td class="col-feed"><span class="feas easy">Easy</span></td></tr>
+              <tr><td class="feat">All caps</td><td><span class="pill idle">Not yet</span></td><td><span class="feas easy">Easy</span></td><td class="col-feed"><span class="feas easy">Easy</span></td></tr>
             </tbody>
           </table>
         </div>
       </section>
 
       <section class="grp">
-        <div class="grp-head"><h2>Paragraph &amp; structure</h2><span class="count">12 supported · 3 open</span></div>
+        <div class="grp-head"><h2>Paragraph &amp; structure</h2><span class="count">12 supported · 2 open</span></div>
         <div class="tbl-scroll">
           <table>
-            <thead><tr><th class="c-feat">Feature</th><th class="c-stat">Status</th><th>Feasibility &amp; note</th></tr></thead>
+            <thead><tr><th class="c-feat">Feature</th><th class="c-stat">Status</th><th class="c-editor">To support <span class="sublabel">editor · editable</span></th><th class="c-feed">To render <span class="sublabel">feed · read-only</span></th></tr></thead>
             <tbody>
-              <tr><td class="feat">Alignment — left / center / right / justify</td><td><span class="pill good">Supported</span></td><td><span class="feas shipped">Shipped</span></td></tr>
-              <tr><td class="feat">Indentation — left / right / first-line / hanging</td><td><span class="pill good">Supported</span></td><td><span class="feas shipped">Shipped</span></td></tr>
-              <tr><td class="feat">Line spacing · space before &amp; after</td><td><span class="pill good">Supported</span></td><td><span class="feas shipped">Shipped</span></td></tr>
-              <tr><td class="feat">Paragraph shading</td><td><span class="pill good">Supported</span></td><td><span class="feas shipped">Shipped</span></td></tr>
-              <tr><td class="feat">Headings H1–H6</td><td><span class="pill good">Supported</span></td><td><span class="feas shipped">Shipped</span></td></tr>
-              <tr><td class="feat">Title · Subtitle</td><td><span class="pill good">Supported</span></td><td><span class="feas shipped">Shipped</span></td></tr>
-              <tr><td class="feat">Built-in styles — Quote · Intense Quote · Caption · No Spacing</td><td><span class="pill good">Supported</span></td><td><span class="feas shipped">Shipped</span></td></tr>
-              <tr><td class="feat">Lists — bullet &amp; ordered, nested, real numbering (I / a / 1)</td><td><span class="pill good">Supported</span></td><td><span class="feas shipped">Shipped</span></td></tr>
-              <tr><td class="feat">Style-based list membership (List Bullet / List Number)</td><td><span class="pill good">Supported</span></td><td><span class="feas shipped">Shipped</span></td></tr>
-              <tr><td class="feat">Multi-column layout &amp; column breaks</td><td><span class="pill good">Supported</span></td><td><span class="feas shipped">Shipped</span></td></tr>
-              <tr><td class="feat">Hyperlinks (external)</td><td><span class="pill good">Supported</span></td><td><span class="feas shipped">Shipped</span></td></tr>
-              <tr><td class="feat">Table of contents (visual)</td><td><span class="pill good">Supported</span></td><td><span class="note">leader + page number; static, not a live field</span></td></tr>
-              <tr><td class="feat">Paragraph borders (per-side rules)</td><td><span class="pill warn">Partial</span></td><td><span class="feas-row"><span class="feas med">Medium</span><span class="note">detected, not yet rendered</span></span></td></tr>
-              <tr><td class="feat">Bookmarks / internal anchor links</td><td><span class="pill idle">Not yet</span></td><td><span class="feas med">Medium</span></td></tr>
+              <tr><td class="feat">Alignment — left / center / right / justify</td><td><span class="pill good">Supported</span></td><td><span class="feas shipped">Shipped</span></td><td class="col-feed"><span class="ditto">—</span></td></tr>
+              <tr><td class="feat">Indentation — left / right / first-line / hanging</td><td><span class="pill good">Supported</span></td><td><span class="feas shipped">Shipped</span></td><td class="col-feed"><span class="ditto">—</span></td></tr>
+              <tr><td class="feat">Line spacing · space before &amp; after</td><td><span class="pill good">Supported</span></td><td><span class="feas shipped">Shipped</span></td><td class="col-feed"><span class="ditto">—</span></td></tr>
+              <tr><td class="feat">Paragraph shading</td><td><span class="pill good">Supported</span></td><td><span class="feas shipped">Shipped</span></td><td class="col-feed"><span class="ditto">—</span></td></tr>
+              <tr><td class="feat">Headings H1–H6</td><td><span class="pill good">Supported</span></td><td><span class="feas shipped">Shipped</span></td><td class="col-feed"><span class="ditto">—</span></td></tr>
+              <tr><td class="feat">Title · Subtitle</td><td><span class="pill good">Supported</span></td><td><span class="feas shipped">Shipped</span></td><td class="col-feed"><span class="ditto">—</span></td></tr>
+              <tr><td class="feat">Built-in styles — Quote · Intense Quote · Caption · No Spacing</td><td><span class="pill good">Supported</span></td><td><span class="feas shipped">Shipped</span></td><td class="col-feed"><span class="ditto">—</span></td></tr>
+              <tr><td class="feat">Lists — bullet &amp; ordered, nested, real numbering (I / a / 1)</td><td><span class="pill good">Supported</span></td><td><span class="feas shipped">Shipped</span></td><td class="col-feed"><span class="ditto">—</span></td></tr>
+              <tr><td class="feat">Style-based list membership (List Bullet / List Number)</td><td><span class="pill good">Supported</span></td><td><span class="feas shipped">Shipped</span></td><td class="col-feed"><span class="ditto">—</span></td></tr>
+              <tr><td class="feat">Multi-column layout &amp; column breaks</td><td><span class="pill good">Supported</span></td><td><span class="feas shipped">Shipped</span></td><td class="col-feed"><span class="ditto">—</span></td></tr>
+              <tr><td class="feat">Hyperlinks (external)</td><td><span class="pill good">Supported</span></td><td><span class="feas shipped">Shipped</span></td><td class="col-feed"><span class="ditto">—</span></td></tr>
+              <tr><td class="feat">Table of contents (visual)</td><td><span class="pill good">Supported</span></td><td><span class="note">leader + page number; static</span></td><td class="col-feed"><span class="ditto">—</span></td></tr>
+              <tr><td class="feat">Paragraph borders (per-side rules)</td><td><span class="pill warn">Partial</span></td><td><span class="feas-row"><span class="feas med">Medium</span><span class="note">detected, not rendered</span></span></td><td class="col-feed"><span class="feas-row"><span class="feas easy">Easy</span><span class="win">static CSS</span></span></td></tr>
+              <tr><td class="feat">Bookmarks / internal anchor links</td><td><span class="pill idle">Not yet</span></td><td><span class="feas med">Medium</span></td><td class="col-feed"><span class="feas-row"><span class="feas easy">Easy</span><span class="win">static anchors</span></span></td></tr>
             </tbody>
           </table>
         </div>
@@ -318,14 +339,14 @@
         <div class="grp-head"><h2>Tables</h2><span class="count">3 supported · 3 partial/open</span></div>
         <div class="tbl-scroll">
           <table>
-            <thead><tr><th class="c-feat">Feature</th><th class="c-stat">Status</th><th>Feasibility &amp; note</th></tr></thead>
+            <thead><tr><th class="c-feat">Feature</th><th class="c-stat">Status</th><th class="c-editor">To support <span class="sublabel">editor · editable</span></th><th class="c-feed">To render <span class="sublabel">feed · read-only</span></th></tr></thead>
             <tbody>
-              <tr><td class="feat">Tables · rows · cells</td><td><span class="pill good">Supported</span></td><td><span class="feas shipped">Shipped</span></td></tr>
-              <tr><td class="feat">Horizontal merge (gridSpan → colspan)</td><td><span class="pill good">Supported</span></td><td><span class="feas shipped">Shipped</span></td></tr>
-              <tr><td class="feat">Cell shading / background</td><td><span class="pill good">Supported</span></td><td><span class="feas shipped">Shipped</span></td></tr>
-              <tr><td class="feat">Vertical merge (vMerge → rowspan)</td><td><span class="pill idle">Not yet</span></td><td><span class="feas med">Medium</span></td></tr>
-              <tr><td class="feat">Cell borders / vertical alignment</td><td><span class="pill warn">Partial</span></td><td><span class="note">default table CSS only</span></td></tr>
-              <tr><td class="feat">Nested tables</td><td><span class="pill warn">Partial</span></td><td><span class="note">limited</span></td></tr>
+              <tr><td class="feat">Tables · rows · cells</td><td><span class="pill good">Supported</span></td><td><span class="feas shipped">Shipped</span></td><td class="col-feed"><span class="ditto">—</span></td></tr>
+              <tr><td class="feat">Horizontal merge (gridSpan → colspan)</td><td><span class="pill good">Supported</span></td><td><span class="feas shipped">Shipped</span></td><td class="col-feed"><span class="ditto">—</span></td></tr>
+              <tr><td class="feat">Cell shading / background</td><td><span class="pill good">Supported</span></td><td><span class="feas shipped">Shipped</span></td><td class="col-feed"><span class="ditto">—</span></td></tr>
+              <tr><td class="feat">Vertical merge (vMerge → rowspan)</td><td><span class="pill idle">Not yet</span></td><td><span class="feas med">Medium</span></td><td class="col-feed"><span class="feas-row"><span class="feas med">Medium</span><span class="note">emit rowspan</span></span></td></tr>
+              <tr><td class="feat">Cell borders / vertical alignment</td><td><span class="pill warn">Partial</span></td><td><span class="note">default table CSS</span></td><td class="col-feed"><span class="feas-row"><span class="feas easy">Easy</span><span class="win">static CSS</span></span></td></tr>
+              <tr><td class="feat">Nested tables</td><td><span class="pill warn">Partial</span></td><td><span class="feas med">Medium</span></td><td class="col-feed"><span class="feas-row"><span class="feas med">Medium</span><span class="note">static nesting</span></span></td></tr>
             </tbody>
           </table>
         </div>
@@ -335,15 +356,15 @@
         <div class="grp-head"><h2>Media</h2><span class="count">4 supported · 3 open</span></div>
         <div class="tbl-scroll">
           <table>
-            <thead><tr><th class="c-feat">Feature</th><th class="c-stat">Status</th><th>Feasibility &amp; note</th></tr></thead>
+            <thead><tr><th class="c-feat">Feature</th><th class="c-stat">Status</th><th class="c-editor">To support <span class="sublabel">editor · editable</span></th><th class="c-feed">To render <span class="sublabel">feed · read-only</span></th></tr></thead>
             <tbody>
-              <tr><td class="feat">Inline images (as block)</td><td><span class="pill good">Supported</span></td><td><span class="feas shipped">Shipped</span></td></tr>
-              <tr><td class="feat">Floating / anchored images (text wrap)</td><td><span class="pill good">Supported</span></td><td><span class="note">wrap direction via heuristic</span></td></tr>
-              <tr><td class="feat">Image alt text &amp; sizing (EMU → px)</td><td><span class="pill good">Supported</span></td><td><span class="feas shipped">Shipped</span></td></tr>
-              <tr><td class="feat">Online video — YouTube embed</td><td><span class="pill good">Supported</span></td><td><span class="note">OOXML carries the real embed iframe (<code>webVideoPr</code>) — exact URL, not a guess</span></td></tr>
-              <tr><td class="feat">Inline mid-sentence image</td><td><span class="pill idle">Not yet</span></td><td><span class="feas-row"><span class="feas med">Medium</span><span class="note">needs an inline image node</span></span></td></tr>
-              <tr><td class="feat">Charts</td><td><span class="pill idle">Not yet</span></td><td><span class="feas-row"><span class="feas hard">Hard</span><span class="note">only via the cached raster Word embeds</span></span></td></tr>
-              <tr><td class="feat">Shapes · text boxes · WordArt</td><td><span class="pill idle">Not yet</span></td><td><span class="feas-row"><span class="feas no">Infeasible</span><span class="note">DrawingML vector, no raster — HTML can't draw it</span></span></td></tr>
+              <tr><td class="feat">Inline images (as block)</td><td><span class="pill good">Supported</span></td><td><span class="feas shipped">Shipped</span></td><td class="col-feed"><span class="ditto">—</span></td></tr>
+              <tr><td class="feat">Floating / anchored images (text wrap)</td><td><span class="pill good">Supported</span></td><td><span class="note">wrap direction via heuristic</span></td><td class="col-feed"><span class="ditto">—</span></td></tr>
+              <tr><td class="feat">Image alt text &amp; sizing (EMU → px)</td><td><span class="pill good">Supported</span></td><td><span class="feas shipped">Shipped</span></td><td class="col-feed"><span class="ditto">—</span></td></tr>
+              <tr><td class="feat">Online video — YouTube embed</td><td><span class="pill good">Supported</span></td><td><span class="note">real embed URL from <code>webVideoPr</code></span></td><td class="col-feed"><span class="ditto">—</span></td></tr>
+              <tr><td class="feat">Inline mid-sentence image</td><td><span class="pill idle">Not yet</span></td><td><span class="feas-row"><span class="feas med">Medium</span><span class="note">needs inline image node</span></span></td><td class="col-feed"><span class="feas-row"><span class="feas easy">Easy</span><span class="win">inline <code>&lt;img&gt;</code></span></span></td></tr>
+              <tr><td class="feat">Charts</td><td><span class="pill idle">Not yet</span></td><td><span class="feas hard">Hard</span></td><td class="col-feed"><span class="feas-row"><span class="feas med">Medium</span><span class="win">cached raster as image</span></span></td></tr>
+              <tr><td class="feat">Shapes · text boxes · WordArt</td><td><span class="pill idle">Not yet</span></td><td><span class="feas-row"><span class="feas no">Infeasible</span><span class="note">vector, no editable form</span></span></td><td class="col-feed"><span class="feas-row"><span class="feas hard">Hard</span><span class="note">only if a raster fallback exists</span></span></td></tr>
             </tbody>
           </table>
         </div>
@@ -353,24 +374,25 @@
         <div class="grp-head"><h2>Word-specific &amp; advanced</h2><span class="count">1 partial · 6 open</span></div>
         <div class="tbl-scroll">
           <table>
-            <thead><tr><th class="c-feat">Feature</th><th class="c-stat">Status</th><th>Feasibility &amp; note</th></tr></thead>
+            <thead><tr><th class="c-feat">Feature</th><th class="c-stat">Status</th><th class="c-editor">To support <span class="sublabel">editor · editable</span></th><th class="c-feed">To render <span class="sublabel">feed · read-only</span></th></tr></thead>
             <tbody>
-              <tr><td class="feat">Fields — page # · cross-reference · PAGEREF</td><td><span class="pill warn">Partial</span></td><td><span class="feas-row"><span class="feas no">Live: infeasible</span><span class="note">last-computed text comes through</span></span></td></tr>
-              <tr><td class="feat">Footnotes / endnotes</td><td><span class="pill idle">Not yet</span></td><td><span class="feas med">Medium</span></td></tr>
-              <tr><td class="feat">Comments</td><td><span class="pill idle">Not yet</span></td><td><span class="feas-row"><span class="feas med">Medium</span><span class="note">or deliberately drop</span></span></td></tr>
-              <tr><td class="feat">Tracked changes (insertions / deletions)</td><td><span class="pill idle">Not yet</span></td><td><span class="feas-row"><span class="feas med">Medium</span><span class="note">accept-final, or render markup</span></span></td></tr>
-              <tr><td class="feat">Equations (OMML math)</td><td><span class="pill idle">Not yet</span></td><td><span class="feas-row"><span class="feas hard">Hard</span><span class="note">MathML / MathJax</span></span></td></tr>
-              <tr><td class="feat">Headers / footers</td><td><span class="pill idle">Not yet</span></td><td><span class="feas-row"><span class="feas no">Usually drop</span><span class="note">body-only today</span></span></td></tr>
-              <tr><td class="feat">Page setup — margins / orientation</td><td><span class="pill idle">Not yet</span></td><td><span class="feas-row"><span class="feas no">N/A</span><span class="note">not meaningful for a web article</span></span></td></tr>
+              <tr><td class="feat">Fields — page # · cross-reference · PAGEREF</td><td><span class="pill warn">Partial</span></td><td><span class="feas-row"><span class="feas no">Live: infeasible</span></span></td><td class="col-feed"><span class="feas-row"><span class="feas easy">Easy</span><span class="win">static text already shows</span></span></td></tr>
+              <tr><td class="feat">Footnotes / endnotes</td><td><span class="pill idle">Not yet</span></td><td><span class="feas med">Medium</span></td><td class="col-feed"><span class="feas-row"><span class="feas easy">Easy</span><span class="win">refs + notes list</span></span></td></tr>
+              <tr><td class="feat">Comments</td><td><span class="pill idle">Not yet</span></td><td><span class="feas-row"><span class="feas med">Medium</span><span class="note">or drop</span></span></td><td class="col-feed"><span class="feas-row"><span class="feas med">Medium</span><span class="note">read-only annotations</span></span></td></tr>
+              <tr><td class="feat">Tracked changes (insertions / deletions)</td><td><span class="pill idle">Not yet</span></td><td><span class="feas med">Medium</span></td><td class="col-feed"><span class="feas-row"><span class="feas easy">Easy</span><span class="win">styled ins/del spans</span></span></td></tr>
+              <tr><td class="feat">Equations (OMML math)</td><td><span class="pill idle">Not yet</span></td><td><span class="feas hard">Hard</span></td><td class="col-feed"><span class="feas-row"><span class="feas med">Medium</span><span class="win">MathML / image</span></span></td></tr>
+              <tr><td class="feat">Headers / footers</td><td><span class="pill idle">Not yet</span></td><td><span class="feas no">Usually drop</span></td><td class="col-feed"><span class="feas no">Usually drop</span></td></tr>
+              <tr><td class="feat">Page setup — margins / orientation</td><td><span class="pill idle">Not yet</span></td><td><span class="feas no">N/A</span></td><td class="col-feed"><span class="feas no">N/A</span></td></tr>
             </tbody>
           </table>
         </div>
       </section>
 
       <footer class="foot">
-        <strong>Reading the boundary:</strong> everything that is a picture, text run, paragraph, list, or table
-        is proven. The truly <em>infeasible</em> set is narrow — genuine vector shapes and live fields — and those
-        are HTML-representation limits, not capture limits. Charts and equations are hard-but-possible.
+        <strong>The feed lens changes the math.</strong> When a feature only needs to be <em>seen</em>, not edited,
+        several "hard for the editor" items drop a tier — charts and equations Hard&nbsp;→&nbsp;Medium (render the
+        cached raster / MathML), tracked changes and footnotes Medium&nbsp;→&nbsp;Easy (static styled markup). Only
+        genuine vector shapes stay expensive, and live fields stay infeasible either way.
         &nbsp;·&nbsp; Direction: <strong>one-way import</strong> (Word authors, we publish); no full round-trip back
         into Word.
       </footer>
