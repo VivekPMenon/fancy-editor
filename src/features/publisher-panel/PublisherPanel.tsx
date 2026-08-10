@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import type { DocumentAdapter } from '../../core/types';
 import type { Article } from './articles';
 import { ARTICLES } from './articles';
@@ -6,8 +6,12 @@ import { generateMockSummary } from './summary';
 // import { fancifyText } from './transforms';
 import { detectEntities } from './entities';
 import { detectTags } from './tags';
-import { convertOoxmlStringToTiptapJson } from '../../core/tiptap-utils/ooxml/ooxmlToTiptapJson';
-import { publishArticleToFeed } from '../../core/articleStore';
+import {
+  convertOoxmlStringToTiptapJson,
+  convertOoxmlToTiptapJson,
+} from '../../core/tiptap-utils/ooxml/ooxmlToTiptapJson';
+import { parseDocxPackage } from '../../core/tiptap-utils/ooxml/docxPackage';
+import { publishArticleToFeed, setCurrentArticleId } from '../../core/articleStore';
 import './PublisherPanel.css';
 
 interface PublisherPanelProps {
@@ -35,6 +39,8 @@ export function PublisherPanel({ adapter }: PublisherPanelProps) {
   // Word host only: JSON (default) publishes via the OOXML->Tiptap-JSON
   // route, HTML via getHtml(), OOXML as the raw captured XML.
   const [dataFormat, setDataFormat] = useState<DataFormat>('json');
+
+  const docxInputRef = useRef<HTMLInputElement | null>(null);
 
   useEffect(() => adapter.onContentChange(setLiveText), [adapter]);
 
@@ -118,6 +124,36 @@ export function PublisherPanel({ adapter }: PublisherPanelProps) {
     const html = await adapter.getContentHtml();
     const post = publishArticleToFeed(json, html);
     setStatus(`Published "${post.title}" to the Article Feed.`);
+  }
+
+  // Interim ingestion without the Word add-in: a user uploads a .docx, and we
+  // run it through the exact same OOXML->Tiptap-JSON pipeline the add-in uses
+  // (a .docx is just the zipped form of what getOoxml() returns) — then load it
+  // into the editor AND publish it to the in-memory feed. See
+  // docs/word-integration-notes.md §18.
+  async function handleDocxUpload(event: React.ChangeEvent<HTMLInputElement>) {
+    const file = event.target.files?.[0];
+    event.target.value = ''; // let the same file be picked again later
+    if (!file) {
+      return;
+    }
+    setStatus(`Importing ${file.name}…`);
+    try {
+      const bytes = new Uint8Array(await file.arrayBuffer());
+      const json = convertOoxmlToTiptapJson(parseDocxPackage(bytes));
+      if (adapter.setContentJson) {
+        await adapter.setContentJson(json);
+      }
+      // Publish as a new article so it also shows on the Article Feed tab.
+      setCurrentArticleId(null);
+      const html = await adapter.getContentHtml();
+      const post = publishArticleToFeed(json, html);
+      setCurrentArticleId(post.id);
+      setLastPublishedAt(new Date().toISOString());
+      setStatus(`Imported "${file.name}" — loaded into the editor and published "${post.title}" to the feed.`);
+    } catch (err) {
+      setStatus(`Couldn't import ${file.name}: ${(err as Error).message}`);
+    }
   }
 
   async function copyToClipboard(text: string, successMessage: string) {
@@ -303,6 +339,25 @@ export function PublisherPanel({ adapter }: PublisherPanelProps) {
         <button type="button" className="publisher-panel-publish" onClick={handlePublish}>
           Publish Article
         </button>
+
+        {!isWordHost && (
+          <>
+            <input
+              ref={docxInputRef}
+              type="file"
+              accept=".docx"
+              style={{ display: 'none' }}
+              onChange={handleDocxUpload}
+            />
+            <button
+              type="button"
+              className="publisher-panel-upload"
+              onClick={() => docxInputRef.current?.click()}
+            >
+              Upload a .docx file
+            </button>
+          </>
+        )}
 
         <button type="button" onClick={handleScanFlaggedTerms}>
           Scan for flagged terms

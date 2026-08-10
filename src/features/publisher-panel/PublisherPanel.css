@@ -253,6 +253,20 @@
   font-weight: 600;
 }
 
+/* Secondary "import" action — a dashed outline reads as upload/bring-in and
+   sets it apart from the primary red Publish button. */
+.publisher-panel-upload {
+  color: #444444;
+  background: #ffffff;
+  border: 2px dashed #c7c7c7;
+  font-weight: 500;
+}
+
+.publisher-panel-upload:hover {
+  border-color: #919191;
+  color: #1a1a1a;
+}
+
 .publisher-panel-meta,
 .publisher-panel-status {
   font-size: 13px;

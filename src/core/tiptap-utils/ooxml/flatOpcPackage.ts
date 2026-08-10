@@ -71,6 +71,14 @@ export function parseFlatOpcPackage(flatOpcXml: string): OoxmlPackage {
     });
   }
 
+  return makePackage(parts);
+}
+
+// Builds the addressable OoxmlPackage from an already-unpacked parts map. The
+// part-lookup and relationship-resolution logic is identical regardless of how
+// the parts were unpacked (flat-OPC XML from getOoxml(), or a real zipped
+// .docx — see docxPackage.ts), so it lives here and both entry points share it.
+export function makePackage(parts: Map<string, OoxmlPart>): OoxmlPackage {
   function getPart(name: string) {
     return parts.get(name);
   }
@@ -99,9 +107,8 @@ export function parseFlatOpcPackage(flatOpcXml: string): OoxmlPackage {
     if (!relsPart?.root) {
       return undefined;
     }
-    // relsPart.root IS the <Relationships> element itself (that's the
-    // xmlData's direct child) — its <Relationship> children are its
-    // descendants, so a plain namespaced search within it finds them.
+    // relsPart.root IS the <Relationships> element itself — its <Relationship>
+    // children are its descendants, so a plain namespaced search finds them.
     const relEls = tag(OOXML_NS.rel, 'Relationship', relsPart.root);
     const match = relEls.find((el) => el.getAttribute('Id') === relationshipId);
     if (!match) {

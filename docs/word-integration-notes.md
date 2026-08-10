@@ -1012,6 +1012,44 @@ paragraph. ~35 lines, no schema change.
 
 ---
 
+## 18. DOCX upload — the add-in pipeline without the add-in (2026-08-10)
+
+**Why:** the Word add-in needs a permission grant that's slow to approve in
+the enterprise, which blocks demoing. So we added a second ingestion path that
+needs no add-in at all: the user uploads a `.docx` on the web page and we run
+it through the **exact same** OOXML→JSON pipeline.
+
+**Why it was nearly free — the package abstraction paid off.** The converter
+never depended on `getOoxml()`; it consumes an `OoxmlPackage` (parts + media +
+relationships, [flatOpcPackage.ts](../src/core/tiptap-utils/ooxml/flatOpcPackage.ts)).
+A `.docx` is the *same parts*, just delivered as a ZIP instead of flattened
+into one flat-OPC XML. So all that was needed is a new unpacker,
+[`docxPackage.ts`](../src/core/tiptap-utils/ooxml/docxPackage.ts): unzip
+(via `fflate`), key the parts by their `/word/...` paths, `DOMParser` the XML
+parts, base64 the media — then hand the identical `OoxmlPackage` to
+`convertOoxmlToTiptapJson`. The whole conversion layer (styles, numbering,
+lists, tables, images, **video**) is reused unchanged. Extracted a shared
+`makePackage(parts)` so both entry points build the package the same way.
+
+**Verified:** built a real `.docx` (zip) from `sample-1`'s parts and converted
+it — the JSON is **byte-for-byte identical** to the flat-OPC path (same 28
+blocks, media round-trips through base64). So the demo fidelity is exactly what
+the add-in would produce.
+
+**UI:** an "Upload a .docx file" button (web host only) under Publish Article
+runs the conversion, loads the result into the editor, and publishes it to the
+in-memory feed — so it appears on the Article Feed tab too.
+
+**Bonus:** this isn't only a stopgap. It needs no add-in install, no Office.js,
+no permissions, and it sidesteps `getOoxml()`'s known bugs (e.g. the
+large-image failure office-js#998) by reading the saved file directly. It can
+stay as a permanent second ingestion path. The one difference from the add-in:
+`getOoxml()` captures the *live in-session* document (unsaved edits included);
+an upload is the *saved* file — a non-issue for the demo (save in Word, then
+upload). New dependency: `fflate` (~30 KB) for the unzip.
+
+---
+
 ## Running summary (for the deck)
 
 | # | Issue | Root cause | Fixable in our code? | Extra effort |
