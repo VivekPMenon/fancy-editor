@@ -1050,6 +1050,61 @@ upload). New dependency: `fflate` (~30 KB) for the unzip.
 
 ---
 
+## 19. Two fidelity fixes from a real UBS doc (2026-08-10)
+
+Surfaced by uploading a real document (numbered list, one item carrying a
+manually-placed floating image).
+
+**`1, 2, 3` came out as `1, 1, 1`.** The list items all shared `numId=1` (one
+continuous Word list) but had **empty spacer paragraphs between them**. Our
+body-walker flushed the open list run on *any* non-list paragraph, so each
+blank split the list into a separate single-item list — and each restarts at
+1. Fix ([ooxmlToTiptapJson.ts](../src/core/tiptap-utils/ooxml/ooxmlToTiptapJson.ts)):
+while a list run is open, a genuinely empty, non-section paragraph is skipped
+(it was just Word's inter-item spacing) instead of flushing and emitting it, so
+the items stay one list. Real content still ends the list as before. Verified
+against the doc (→ one `orderedList`, 3 items) and sample-1 (no regression).
+
+**Manually-positioned floating image floated the wrong way.** The anchor had
+no named `<wp:align>` — just an absolute `<wp:posOffset>` (EMU). `inferFloatFromAnchor`
+only handled named alignment + `wrapText`, so it defaulted to `float-left`
+while the image sat on the right in Word. Fix: read `posOffset` — a left edge
+past ~2in into the column means it's on the right (`float-right`). Confirmed
+(offset 2695575 EMU ≈ 2.95in → right); sample-1's offset-0 image stays
+`float-left`. Still a heuristic (no page geometry), consistent with the rest of
+the float inference.
+
+---
+
+## 20. Body font-size normalized to the editor's base (2026-08-10)
+
+**Problem:** the OOXML converter seeds the document's default body size (e.g.
+`11pt`/`12pt`) onto *every* run (§3, so imported text matched Word). But once
+the doc is in our editor as the authoring surface, text the user types fresh
+has no explicit size and falls to the editor's CSS base (`14px`) — so imported
+body text and new content render at different sizes.
+
+**Decision:** treat our app as the typographic authority (consistent with the
+one-way-import direction). In `convertRun`, drop a run's font-size **when it
+equals the document's docDefaults size** — that size is inherited, not
+intentional, so the run falls back to the editor base. A size that *differs*
+(a deliberately resized run, a caption, a callout) is intentional and kept;
+bold/italic are separate marks and untouched. Net: imported body text and
+newly-typed text share one base size, consistent across every article.
+Verified: sample-1/2 body runs carry no size (→ base), while sample-2's
+explicit 8/9/10/14/20-pt runs are preserved.
+
+**Trade-off (a partial reversal of §3):** imported body renders at the app's
+size, not Word's exact point size. Chosen deliberately — the app is the
+editing/publishing surface, and cohesive typography across articles beats
+per-document point-size fidelity. The alternative (auto-set the editor base to
+each doc's size) was rejected: it makes the base font vary per article
+(inconsistent feed) and needs per-doc state in both editor and feed. Scoped to
+the OOXML path (the add-in/upload case); the paste path has its own size
+handling.
+
+---
+
 ## Running summary (for the deck)
 
 | # | Issue | Root cause | Fixable in our code? | Extra effort |

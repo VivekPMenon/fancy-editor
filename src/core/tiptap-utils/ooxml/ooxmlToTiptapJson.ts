@@ -114,6 +114,20 @@ function convertRun(runEl: Element, baseProps: RunProps, linkHref: string | unde
   const rPr = firstTag(OOXML_NS.w, 'rPr', runEl);
   // Run's own properties override whatever the paragraph/style seeded.
   const effective: RunProps = { ...baseProps, ...parseRunProps(rPr) };
+
+  // Normalize body text to the editor's own base font: a run whose size is
+  // just the document's default body size (docDefaults) carries no real
+  // intent — it only got that size because we seed the default onto every run
+  // — so drop it and let the editor's CSS size apply. That keeps imported body
+  // text uniform with content the user types fresh (which has no size). A size
+  // that DIFFERS from the body default (a deliberately resized run, a caption
+  // style, a callout) is intentional and kept as-is; bold/italic are separate
+  // marks and untouched. Trade-off: imported body renders at the app's size,
+  // not Word's exact point size — see docs/word-integration-notes.md §20.
+  if (effective.fontSizePt && effective.fontSizePt === ctx.styles.defaults.run.fontSizePt) {
+    effective.fontSizePt = undefined;
+  }
+
   const nodes: JSONContent[] = [];
 
   for (const child of Array.from(runEl.children)) {
