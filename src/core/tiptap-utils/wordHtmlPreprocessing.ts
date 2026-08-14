@@ -4,6 +4,7 @@ import { reconstructWordLists } from './wordListReconstruction';
 import { resolveWordImageAlignment } from './wordImageAlignment';
 import { reconstructWordColumns } from './wordColumnReconstruction';
 import { reconstructWordTitles } from './wordTitleReconstruction';
+import { normalizeWordTypography } from './wordTypographyNormalization';
 
 // Shared by htmlJsonConversion.ts (save/load) and wordPasteExtension.ts
 // (live paste) — kept in its own file, independent of editorExtensions.ts,
@@ -21,7 +22,14 @@ export function preprocessWordHtml(html: string): string {
   // reconstructWordTitles runs after juice so that when the <style> block IS
   // present, the inlined Title size is carried onto the promoted heading; when
   // it isn't, the class-based promotion still gives the title heading styling.
-  return reconstructWordColumns(
-    reconstructWordLists(reconstructWordTitles(resolveWordImageAlignment(resolved))),
+  // normalizeWordTypography runs LAST so it also strips the font/size/spacing
+  // the title/list/column steps carry onto their own elements — leaving pasted
+  // content on the editor's base font, size, line-height and paragraph rhythm,
+  // uniform with newly-typed text (mirrors the OOXML path's convertRun /
+  // convertParagraph normalization).
+  return normalizeWordTypography(
+    reconstructWordColumns(
+      reconstructWordLists(reconstructWordTitles(resolveWordImageAlignment(resolved))),
+    ),
   );
 }

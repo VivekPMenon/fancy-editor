@@ -484,27 +484,31 @@ highlighting, base64 images) already applied to pasted content automatically
 — those aren't tied to `htmlToTiptapJson()` specifically, they're just part
 of the editor's schema, active regardless of how content enters it.
 
-**Known gap — genuine non-picture Shapes (and comment anchors) can silently
-kill an entire paste — confirmed, unfixable.** Tested live: copying a
-selection that included a *drawn* Shape (an arrow — a real vector shape, not
-a picture) and a comment anchor caused the *whole* paste to lose all
-formatting — no headings, no bold/italic, no table structure, nothing —
-with zero console errors. Traced the cause in `prosemirror-view`'s own
-source (`parseFromClipboard`, `dist/index.js`): it only calls our
-`transformPastedHTML` hook when the clipboard actually has an `html` string;
-if `html` is empty, it takes the plain-text path entirely instead
-(`asText = !!text && (plainText || inCode || !html)`). So the browser
-received *no* `text/html` at all for that paste — Word failed to populate it.
+**Known gap — a genuine drawn/vector Shape can silently kill an entire paste —
+narrow, unfixable.** Tested live: copying a selection that included a *drawn*
+Shape (an arrow — a real vector shape, not a picture) caused the *whole* paste
+to lose all formatting — no headings, no bold/italic, no table structure —
+with zero console errors. Traced the cause in `prosemirror-view`'s own source
+(`parseFromClipboard`, `dist/index.js`): it only calls our `transformPastedHTML`
+hook when the clipboard actually has an `html` string; if `html` is empty it
+takes the plain-text path entirely (`asText = !!text && (plainText || inCode ||
+!html)`). So the browser received *no* `text/html` — Word failed to populate it.
+Nothing to fix in our code: if there's no HTML, our preprocessing never runs.
 
-**Correction, since this was originally stated too broadly:** this was
-first attributed to "floating shapes" generally, by analogy to
-officeAdapter's `Word.Shape` gap (§2/§9b) — but that conflated genuine
-drawn Shapes with floating *pictures*, which are a different thing. §14
-later tested floating pictures (including an embedded chart) specifically
-on the clipboard path and found they populate `text/html` completely fine
-— align info, real image bytes, all of it. So this gap is narrower than
-first described: it's specific to actual vector Shapes (arrows, text boxes,
-WordArt) and comment anchors, not floating/anchored pictures in general.
+**Corrections — what does NOT trigger it (both walked back after testing):**
+- **Floating/anchored *pictures*** (Square/Tight wrap, incl. an embedded chart)
+  populate `text/html` completely fine — align info, real bytes, all of it
+  (§14). The original conflation of "floating shape" with pictures came by
+  analogy to officeAdapter's `Word.Shape` gap (§2/§9b); it was wrong.
+- **Comment anchors** do NOT trigger it either (verified 2026-08-14): pasting a
+  selection containing a comment *and* a floating image retained full
+  formatting. Comments were implicated earlier only because the original
+  failing selection *also* contained a drawn Shape — guilt by association.
+  Isolating the variables clears them.
+
+So the trigger is **specifically genuine drawn vector Shapes** (arrows, text
+boxes, WordArt) — not comments, not floating pictures. Much narrower, and much
+less likely to bite a normal document than the note first implied.
 Still no code-level fix possible for the narrower case — if the clipboard
 never had HTML, there's nothing to transform. Practical mitigation for
 authors: paste in smaller sections, and avoid including drawn shapes or
@@ -1099,9 +1103,34 @@ size, not Word's exact point size. Chosen deliberately — the app is the
 editing/publishing surface, and cohesive typography across articles beats
 per-document point-size fidelity. The alternative (auto-set the editor base to
 each doc's size) was rejected: it makes the base font vary per article
-(inconsistent feed) and needs per-doc state in both editor and feed. Scoped to
-the OOXML path (the add-in/upload case); the paste path has its own size
-handling.
+(inconsistent feed) and needs per-doc state in both editor and feed.
+
+**Extended to the paste path (2026-08-14).** Originally this normalization was
+OOXML-only — pasted content kept Word's explicit sizes *and* font-family
+(Calibri/Aptos), so a paste rendered in Word's typography while imported/typed
+text rendered in the app's (Segoe UI / 15px). We now mirror the same decision on
+the paste side with `normalizeWordFonts` (`wordFontNormalization.ts`), wired as
+the **last** step of `preprocessWordHtml` so it also cleans font-family/size that
+the title/list/column reconstruction steps add. It does two things the OOXML
+converter does structurally:
+
+- **Strips all inline `font-family`** — everything adopts the editor base font.
+  The OOXML path never captured font-family at all (we don't read `<w:rFonts>`),
+  so this simply brings paste to parity.
+- **Strips the body-default `font-size`** — the dominant inline size (voted by
+  each element's *direct* text length, so a big body of copy outweighs the odd
+  callout; that's Word's `MsoNormal` size juice inlined onto the runs), plus any
+  heading's inline size (the tag + our CSS own heading sizing). Sizes that
+  *differ* from the body default — deliberate callouts, captions, a resized run —
+  are intentional and kept, exactly as `convertRun` keeps a run whose size ≠ the
+  docDefaults size.
+
+Net: pasted body text and pasted headings now render in the editor's own
+Segoe UI / 15px, uniform with newly-typed text and with add-in/upload imports;
+intentional per-run sizes survive on both routes. Verified against sample-2.html
+via the ssrLoadModule harness: 0 elements retained inline font-family, 0 headings
+retained inline font-size, and only the deliberately-different 8/9/10/14/20-pt
+runs survived.
 
 ---
 
@@ -1120,7 +1149,7 @@ handling.
 | 9a | Icons render as broken images | Base64 payload is SVG, mislabeled `image/png` | Yes | ~15 lines |
 | 9b | Shapes can't be captured | Word's export has no vector/shape semantics — `Word.Shape` has no byte-extraction API | **No — same as §2** | Author workaround only (Save as Picture); optional warning reuses §2's code |
 | 10a | Paste-from-Word bypassed all fixes above | Tiptap's default paste path skips our HTML preprocessing entirely | Yes | ~10 lines, reuses existing code |
-| 10b | Genuine non-picture Shape (or comment anchor) in selection kills entire paste's formatting — narrower than first stated, see §14 | Word fails to populate clipboard `text/html` at all for these — confirmed in prosemirror-view source; floating *pictures* were later confirmed NOT to have this problem (§14) | **No** | Author workaround only (paste smaller sections, avoid drawn shapes/comments) |
+| 10b | A genuine drawn vector Shape (arrow/text box/WordArt) in the selection can kill the entire paste's formatting | Word fails to populate clipboard `text/html` at all for a drawn Shape — traced in prosemirror-view source. Floating *pictures* (§14) and *comment anchors* (verified 2026-08-14) do NOT trigger it — both retain full formatting | **No** (nothing to preprocess when there's no HTML) | Author workaround only — avoid drawn Shapes in the copied range, or paste in sections |
 | 11 | Centered/right-aligned standalone images lost their alignment | Alignment lives on the wrapping paragraph, not the image; our Image node is block-level so it can't inherit it | Yes | ~75 lines, no new dependency |
 | 12 | Couldn't set image alignment while editing; couldn't type a space next to an image | No editing-time command existed for §11's attribute; block-level image has no text content, so no paragraph nearby means nowhere to type | Yes | ~70 lines, no new dependency |
 | 13a | Resize handles present but invisible/unclickable | `ResizableNodeView` ships handles unstyled by design; simplified `Image.configure({resize})` surface has no className passthrough | Yes | ~20 lines CSS |
@@ -1138,14 +1167,14 @@ format via copy-paste, not a connected host. That's a net simplification:
 no manifest, no `WordApi`/`WordApiDesktop` requirement-set management, no
 Office.js runtime risk — those go away entirely, not just get mitigated.
 
-**Bottom line for the team:** with the add-in gone, genuine drawn Shapes
-(and comment anchors) follow us into the paste world too, and worse than
-expected — a Shape anywhere in a copied selection can silently blank out
-formatting for the *whole* paste, confirmed live (§10b), not just fail to
-render itself (§2/§9b). Practical guidance for authors: paste in smaller
-sections and keep drawn shapes/comments out of the selection when
-formatting matters. **This is specifically about genuine vector Shapes —
-floating/anchored pictures are a different case, and are fully handled**
+**Bottom line for the team:** with the add-in gone, one paste hazard remains —
+a *genuine drawn vector Shape* (arrow/text box/WordArt) anywhere in a copied
+selection can make Word omit `text/html`, silently blanking formatting for the
+*whole* paste (§10b), not just failing to render itself (§2/§9b). Practical
+guidance for authors: keep drawn Shapes out of the selection, or paste in
+sections, when formatting matters. **Everything else is fine — floating/
+anchored pictures AND comment anchors both retain full formatting on paste
+(§14, and verified 2026-08-14); only genuine vector Shapes are the exception**
 (§14 for correct positioning, §15 for full-fidelity image quality via
 `text/rtf`, both confirmed against live paste, not just Save-As-HTML).
 Everything else in this doc costs real but modest extra code (roughly 250
