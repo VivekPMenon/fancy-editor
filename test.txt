@@ -1,0 +1,10 @@
+git checkout release/phase-2
+
+git filter-branch --env-filter '
+if git merge-base --is-ancestor $GIT_COMMIT main 2>/dev/null; then
+  : # commit already exists on main, leave dates alone
+else
+  export GIT_AUTHOR_DATE="$(date)"
+  export GIT_COMMITTER_DATE="$(date)"
+fi
+' -- main..release/phase-2
