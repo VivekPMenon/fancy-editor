@@ -1,0 +1,22 @@
+.article-status-badge {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 3px 9px;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+.article-status-badge--draft {
+  background: rgba(145, 145, 145, 0.16);
+  color: #6b6b6b;
+}
+
+.article-status-badge--published {
+  background: rgba(30, 126, 52, 0.12);
+  color: #1e7e34;
+}

@@ -1,6 +1,8 @@
 import type { JSONContent } from '@tiptap/react';
 import { htmlToTiptapJson } from './tiptap-utils/htmlJsonConversion';
 
+export type ArticleStatus = 'draft' | 'published';
+
 export interface FeedPost {
   id: string;
   title: string;
@@ -9,6 +11,12 @@ export interface FeedPost {
   category: string;
   html: string;
   json: JSONContent;
+  status: ArticleStatus;
+  /** Author at creation time — doesn't change on later edits (unlike lastUpdatedBy). */
+  createdBy: string;
+  lastUpdatedBy: string;
+  /** ISO timestamp of the most recent save (draft or publish). */
+  lastUpdatedAt: string;
 }
 
 // Placeholder bodies below approximate what Word's `getHtml()` export tends to
@@ -3006,6 +3014,10 @@ export const MOCK_POSTS: FeedPost[] = [
     author: 'Priya Nair',
     publishedAt: '2026-07-28',
     category: 'Trade',
+    status: 'published',
+    createdBy: 'Priya Nair',
+    lastUpdatedBy: 'Priya Nair',
+    lastUpdatedAt: '2026-07-28T09:15:00Z',
     html: post1Html,
     json: {
       "type": "doc",
@@ -4873,6 +4885,10 @@ export const MOCK_POSTS: FeedPost[] = [
     author: 'Daniel Osei',
     publishedAt: '2026-07-25',
     category: 'Energy',
+    status: 'published',
+    createdBy: 'Daniel Osei',
+    lastUpdatedBy: 'Daniel Osei',
+    lastUpdatedAt: '2026-07-25T11:40:00Z',
     html: post2Html,
     json: {
       "type": "doc",
@@ -10098,6 +10114,10 @@ export const MOCK_POSTS: FeedPost[] = [
     author: 'Marta Kowalski',
     publishedAt: '2026-07-21',
     category: 'Rates',
+    status: 'published',
+    createdBy: 'Marta Kowalski',
+    lastUpdatedBy: 'Marta Kowalski',
+    lastUpdatedAt: '2026-07-21T14:05:00Z',
     html: post3Html,
     json:{
   "type": "doc",
@@ -10290,6 +10310,10 @@ export const MOCK_POSTS: FeedPost[] = [
     author: 'Kenji Watanabe',
     publishedAt: '2026-07-18',
     category: 'Policy',
+    status: 'draft',
+    createdBy: 'Kenji Watanabe',
+    lastUpdatedBy: 'Kenji Watanabe',
+    lastUpdatedAt: '2026-07-18T08:30:00Z',
     html: post4Html,
     json: htmlToTiptapJson(post4Html),
   },
@@ -10299,6 +10323,10 @@ export const MOCK_POSTS: FeedPost[] = [
     author: 'Sofia Bianchi',
     publishedAt: '2026-07-14',
     category: 'Technology',
+    status: 'published',
+    createdBy: 'Sofia Bianchi',
+    lastUpdatedBy: 'Sofia Bianchi',
+    lastUpdatedAt: '2026-07-14T16:50:00Z',
     html: post5Html,
     json: htmlToTiptapJson(post5Html),
   },

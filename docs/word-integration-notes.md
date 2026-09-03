@@ -1105,32 +1105,44 @@ per-document point-size fidelity. The alternative (auto-set the editor base to
 each doc's size) was rejected: it makes the base font vary per article
 (inconsistent feed) and needs per-doc state in both editor and feed.
 
-**Extended to the paste path (2026-08-14).** Originally this normalization was
-OOXML-only — pasted content kept Word's explicit sizes *and* font-family
-(Calibri/Aptos), so a paste rendered in Word's typography while imported/typed
-text rendered in the app's (Segoe UI / 15px). We now mirror the same decision on
-the paste side with `normalizeWordFonts` (`wordFontNormalization.ts`), wired as
-the **last** step of `preprocessWordHtml` so it also cleans font-family/size that
-the title/list/column reconstruction steps add. It does two things the OOXML
-converter does structurally:
+**Extended to the paste path — font *and* vertical rhythm (2026-08-14).**
+Originally this normalization was OOXML-only — pasted content kept Word's
+explicit sizes, font-family (Calibri/Aptos), line spacing *and* paragraph
+spacing, so a paste rendered in Word's whole typography while imported/typed text
+rendered in the app's (Segoe UI / 15px / the editor's own line-height and
+`margin: 0 0 10px` block rhythm). We now mirror the same "app owns typography"
+decision on the paste side with `normalizeWordTypography`
+(`wordTypographyNormalization.ts`), wired as the **last** step of
+`preprocessWordHtml` so it also cleans the values the title/list/column
+reconstruction steps add. It strips the *inherited MsoNormal body defaults* and
+keeps only values that deliberately DIFFER from them — the same principle
+`convertRun`/`convertParagraph` apply structurally on the OOXML side:
 
-- **Strips all inline `font-family`** — everything adopts the editor base font.
-  The OOXML path never captured font-family at all (we don't read `<w:rFonts>`),
-  so this simply brings paste to parity.
-- **Strips the body-default `font-size`** — the dominant inline size (voted by
-  each element's *direct* text length, so a big body of copy outweighs the odd
-  callout; that's Word's `MsoNormal` size juice inlined onto the runs), plus any
-  heading's inline size (the tag + our CSS own heading sizing). Sizes that
-  *differ* from the body default — deliberate callouts, captions, a resized run —
-  are intentional and kept, exactly as `convertRun` keeps a run whose size ≠ the
-  docDefaults size.
+- **`font-family`** — stripped everywhere; everything adopts the editor base
+  font. The OOXML path never captured font-family at all (we don't read
+  `<w:rFonts>`), so this brings paste to parity.
+- **`font-size`** — strip the dominant inline size (the `MsoNormal` body size,
+  voted by each element's *direct* text length so a big body of copy outweighs
+  the odd callout) plus any heading's inline size (tag + CSS own heading sizing).
+  A size that differs — a caption, a deliberate callout — is kept.
+- **`line-height`** — same treatment. Word inlines `line-height: 115%` (≈1.15,
+  tighter than the editor's spacing) onto every paragraph, which was the visible
+  "pasted lines look cramped" symptom. Strip the body-default (and any heading's);
+  a paragraph deliberately set to different spacing is kept.
+- **paragraph `margin-top`/`margin-bottom`** — Word's `margin: 6pt/8pt 0`
+  spacing-before/after, redundant with and conflicting against the editor's own
+  `margin: 0 0 10px` block rhythm. Strip the body-default top/bottom (and all of
+  it on headings). Left/right margin is *indent* (owned by `indentExtension`) and
+  is left untouched, so genuinely indented paragraphs keep their indent.
 
-Net: pasted body text and pasted headings now render in the editor's own
-Segoe UI / 15px, uniform with newly-typed text and with add-in/upload imports;
-intentional per-run sizes survive on both routes. Verified against sample-2.html
-via the ssrLoadModule harness: 0 elements retained inline font-family, 0 headings
-retained inline font-size, and only the deliberately-different 8/9/10/14/20-pt
-runs survived.
+Net: pasted body text, headings, line spacing and paragraph spacing now match the
+editor's own rhythm, uniform with newly-typed text and with add-in/upload
+imports; intentional per-run/per-paragraph deviations survive on both routes.
+Verified in a jsdom harness against the real longhand-margin form Word/juice
+emits: headings shed all inline typography; body paragraphs shed
+`line-height: 115%` + `margin-top/bottom: 8pt` (→ editor rhythm); a deliberate
+`line-height: 200%` / 12pt-margin / .5in-indent callout and an 8pt caption both
+kept their intentional values.
 
 ---
 

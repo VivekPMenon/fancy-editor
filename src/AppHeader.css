@@ -1,0 +1,135 @@
+.app-top-header {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 24px;
+  background: #ffffff;
+  border-bottom: 1px solid #e5e5e5;
+  font-family: system-ui, 'Segoe UI', Roboto, sans-serif;
+}
+
+.app-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.app-brand-logo {
+  width: 26px;
+  height: 26px;
+}
+
+.app-brand-name {
+  font-size: 16px;
+  font-weight: 700;
+  color: #000000;
+  letter-spacing: -0.01em;
+}
+
+.app-profile {
+  position: relative;
+}
+
+.app-profile-trigger {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 10px 4px 4px;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  background: transparent;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.app-profile-trigger:hover {
+  border-color: #e5e5e5;
+  background: #f5f5f5;
+}
+
+.app-profile-avatar {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: #e60000;
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.app-profile-avatar--large {
+  width: 40px;
+  height: 40px;
+  font-size: 14px;
+}
+
+.app-profile-name {
+  font-size: 13px;
+  font-weight: 600;
+  color: #000000;
+}
+
+.app-profile-backdrop {
+  position: fixed;
+  inset: 0;
+  border: none;
+  background: transparent;
+  padding: 0;
+  cursor: default;
+  z-index: 40;
+}
+
+.app-profile-menu {
+  position: absolute;
+  right: 0;
+  top: calc(100% + 8px);
+  width: 240px;
+  background: #ffffff;
+  border: 1px solid #e5e5e5;
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+  padding: 12px;
+  z-index: 41;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.app-profile-menu-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 4px 4px 12px;
+  margin-bottom: 4px;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.app-profile-menu-name {
+  margin: 0;
+  font-size: 13px;
+  font-weight: 600;
+  color: #000000;
+}
+
+.app-profile-menu-email {
+  margin: 2px 0 0;
+  font-size: 12px;
+  color: #919191;
+}
+
+.app-profile-menu-item {
+  text-align: left;
+  font-size: 13px;
+  padding: 8px;
+  border-radius: 5px;
+  border: none;
+  background: transparent;
+  color: #444444;
+  cursor: not-allowed;
+  font-family: inherit;
+}

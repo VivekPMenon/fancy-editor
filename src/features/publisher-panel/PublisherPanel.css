@@ -253,6 +253,20 @@
   font-weight: 600;
 }
 
+/* Secondary action, right below the primary red Publish button — solid
+   outline (vs. Upload's dashed one below) reads as "save, not import". */
+.publisher-panel-draft {
+  color: #444444;
+  background: #ffffff;
+  border: 2px solid #d7d7d7;
+  font-weight: 600;
+}
+
+.publisher-panel-draft:hover {
+  border-color: #919191;
+  color: #1a1a1a;
+}
+
 /* Secondary "import" action — a dashed outline reads as upload/bring-in and
    sets it apart from the primary red Publish button. */
 .publisher-panel-upload {

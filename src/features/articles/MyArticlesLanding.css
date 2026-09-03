@@ -1,0 +1,133 @@
+.my-articles-landing {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+  gap: 20px;
+  padding: 20px;
+  box-sizing: border-box;
+  overflow-y: auto;
+  text-align: left;
+  font-family: system-ui, 'Segoe UI', Roboto, sans-serif;
+}
+
+.my-articles-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.my-articles-search {
+  flex: 1;
+  max-width: 420px;
+  font-size: 14px;
+  padding: 10px 14px;
+  border-radius: 6px;
+  border: 1px solid #d7d7d7;
+  background: #ffffff;
+  color: #000000;
+  font-family: inherit;
+}
+
+.my-articles-search:focus {
+  outline: none;
+  border-color: #e60000;
+  box-shadow: 0 0 0 3px rgba(230, 0, 0, 0.1);
+}
+
+.my-articles-create {
+  flex-shrink: 0;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 10px 16px;
+  border-radius: 6px;
+  border: 2px solid transparent;
+  color: #ffffff;
+  background: #e60000;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.my-articles-create:hover {
+  background: #c40000;
+}
+
+.my-articles-empty {
+  font-size: 14px;
+  color: #919191;
+  font-style: italic;
+}
+
+.my-articles-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.my-articles-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: #ffffff;
+  border: 1px solid #e5e5e5;
+  border-radius: 8px;
+  padding: 4px;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.my-articles-card:hover {
+  border-color: #c7c7c7;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+}
+
+.my-articles-card-open {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  text-align: left;
+  padding: 12px 14px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.my-articles-card-top {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.my-articles-card-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: #000000;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.my-articles-card-meta {
+  margin: 0;
+  font-size: 12px;
+  color: #919191;
+}
+
+.my-articles-history {
+  flex-shrink: 0;
+  margin-right: 10px;
+  font-size: 12px;
+  font-weight: 500;
+  padding: 7px 12px;
+  border-radius: 5px;
+  border: 1px solid #d7d7d7;
+  background: #ffffff;
+  color: #919191;
+  cursor: not-allowed;
+  font-family: inherit;
+}

@@ -66,6 +66,63 @@
   border-radius: 6px;
 }
 
+/* Sits right above the toolbar — status/title/last-updated context so it's
+   always clear which article is currently open, plus a way back to My
+   Articles without hunting for a browser-back equivalent. */
+.article-info-bar {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  margin-bottom: 10px;
+  background: #ffffff;
+  border: 1px solid #e5e5e5;
+  border-radius: 6px;
+  font-family: system-ui, 'Segoe UI', Roboto, sans-serif;
+}
+
+.article-info-back {
+  flex-shrink: 0;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 6px 10px;
+  border-radius: 5px;
+  border: none;
+  background: transparent;
+  color: #e60000;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.article-info-back:hover {
+  background: rgba(230, 0, 0, 0.08);
+}
+
+.article-info-divider {
+  flex-shrink: 0;
+  width: 1px;
+  align-self: stretch;
+  background: #e5e5e5;
+}
+
+.article-info-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: #000000;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.article-info-meta {
+  margin-left: auto;
+  flex-shrink: 0;
+  font-size: 12px;
+  color: #919191;
+  white-space: nowrap;
+}
+
 .tiptap-editor {
   flex: 1;
   overflow-y: auto;

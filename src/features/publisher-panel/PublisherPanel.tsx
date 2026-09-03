@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import type { DocumentAdapter } from '../../core/types';
+import type { FeedPost } from '../../core/mockPosts';
 import type { Article } from './articles';
 import { ARTICLES } from './articles';
 import { generateMockSummary } from './summary';
@@ -11,11 +12,12 @@ import {
   convertOoxmlToTiptapJson,
 } from '../../core/tiptap-utils/ooxml/ooxmlToTiptapJson';
 import { parseDocxPackage } from '../../core/tiptap-utils/ooxml/docxPackage';
-import { publishArticleToFeed, setCurrentArticleId } from '../../core/articleStore';
+import { publishArticleToFeed, saveArticleAsDraft, setCurrentArticleId } from '../../core/articleStore';
 import './PublisherPanel.css';
 
 interface PublisherPanelProps {
   adapter: DocumentAdapter;
+  onArticleSaved?: (post: FeedPost) => void;
 }
 
 // Word exposes getOoxml(); the Tiptap web adapter doesn't. That single
@@ -24,7 +26,7 @@ interface PublisherPanelProps {
 // edited article straight into the in-memory feed.
 type DataFormat = 'html' | 'ooxml' | 'json';
 
-export function PublisherPanel({ adapter }: PublisherPanelProps) {
+export function PublisherPanel({ adapter, onArticleSaved }: PublisherPanelProps) {
   const isWordHost = Boolean(adapter.getContentOoxml);
 
   const [status, setStatus] = useState('');
@@ -123,7 +125,27 @@ export function PublisherPanel({ adapter }: PublisherPanelProps) {
     }
     const html = await adapter.getContentHtml();
     const post = publishArticleToFeed(json, html);
+    onArticleSaved?.(post);
     setStatus(`Published "${post.title}" to the Article Feed.`);
+  }
+
+  // Web only, mirrors publishFromWeb — same content capture, but saved with
+  // status 'draft' instead of 'published' so it shows up in My Articles
+  // without going live on the Article Feed's published view.
+  async function handleSaveAsDraft() {
+    try {
+      const json = adapter.getContentJson ? await adapter.getContentJson() : undefined;
+      if (!json) {
+        setStatus('Save as Draft is only available in the web editor for now.');
+        return;
+      }
+      const html = await adapter.getContentHtml();
+      const post = saveArticleAsDraft(json, html);
+      onArticleSaved?.(post);
+      setStatus(`Saved "${post.title}" as a draft.`);
+    } catch (err) {
+      setStatus(`Save as Draft failed: ${(err as Error).message}`);
+    }
   }
 
   // Interim ingestion without the Word add-in: a user uploads a .docx, and we
@@ -149,6 +171,7 @@ export function PublisherPanel({ adapter }: PublisherPanelProps) {
       const html = await adapter.getContentHtml();
       const post = publishArticleToFeed(json, html);
       setCurrentArticleId(post.id);
+      onArticleSaved?.(post);
       setLastPublishedAt(new Date().toISOString());
       setStatus(`Imported "${file.name}" — loaded into the editor and published "${post.title}" to the feed.`);
     } catch (err) {
@@ -336,9 +359,15 @@ export function PublisherPanel({ adapter }: PublisherPanelProps) {
           </div>
         )}
 
-        <button type="button" className="publisher-panel-publish" onClick={handlePublish}>
+        <button type="button" className="publisher-panel-generate publisher-panel-publish" onClick={handlePublish}>
           Publish Article
         </button>
+
+        {!isWordHost && (
+          <button type="button" className="publisher-panel-draft" onClick={handleSaveAsDraft}>
+            Save as Draft
+          </button>
+        )}
 
         {!isWordHost && (
           <>
