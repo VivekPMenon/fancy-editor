@@ -15,6 +15,7 @@ import {
 } from '@fluentui/react-icons';
 import { SlashCommandList } from '../../features/fancy-editor/SlashCommandList';
 import type { SlashCommandListRef } from '../../features/fancy-editor/SlashCommandList';
+import { TEMPLATE_SECTION_TYPES } from './templateSectionTypes';
 
 export interface SlashCommandItem {
   title: string;
@@ -73,6 +74,16 @@ const SLASH_COMMAND_ITEMS: SlashCommandItem[] = [
     icon: ArrowTrendingRegular,
     action: (editor, range) => editor.chain().focus().deleteRange(range).insertTickerCard('AAPL').run(),
   },
+  // One entry per article-section template (see templateSectionTypes.ts) —
+  // same insertTemplateSection command the "+" gutter menu's tile grid uses,
+  // just triggered by typing instead of clicking.
+  ...TEMPLATE_SECTION_TYPES.map((config) => ({
+    title: config.label,
+    description: `Insert a ${config.label} section`,
+    icon: config.icon,
+    action: (editor: Editor, range: Range) =>
+      editor.chain().focus().deleteRange(range).insertTemplateSection(config.type).run(),
+  })),
 ];
 
 // Notion-style "/" command palette — proves Tiptap can support entirely new

@@ -1,0 +1,89 @@
+.template-section-view {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 10px 0;
+  padding: 12px 14px;
+  background: #fafafa;
+  border: 1px solid #e5e5e5;
+  border-left: 3px solid #e60000;
+  border-radius: 6px;
+}
+
+.template-section-view.selected {
+  border-color: #e60000;
+  box-shadow: 0 0 0 2px rgba(230, 0, 0, 0.12);
+}
+
+.template-section-view-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.template-section-view-icon {
+  flex-shrink: 0;
+  color: #e60000;
+  font-size: 16px;
+}
+
+.template-section-view-label {
+  flex-shrink: 0;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #6b6b6b;
+}
+
+.template-section-view-remove {
+  margin-left: auto;
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  padding: 0;
+  border-radius: 5px;
+  border: none;
+  background: transparent;
+  color: #919191;
+  cursor: pointer;
+}
+
+.template-section-view-remove:hover {
+  background: rgba(230, 0, 0, 0.08);
+  color: #e60000;
+}
+
+.template-section-view-body {
+  background: #ffffff;
+  border: 1px solid #eeeeee;
+  border-radius: 5px;
+  padding: 8px 10px;
+  min-height: 32px;
+}
+
+.template-section-view-body p {
+  margin: 0;
+}
+
+/* Static (non-editor) fallback — Post Feed News format, plain HTML export. */
+.template-section-static {
+  margin: 10px 0;
+  padding: 10px 12px;
+  background: #fafafa;
+  border-left: 3px solid #e60000;
+  border-radius: 6px;
+}
+
+.template-section-static-header {
+  margin: 0 0 6px;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #6b6b6b;
+}

@@ -1,7 +1,23 @@
 import type { JSONContent } from '@tiptap/react';
 import { htmlToTiptapJson } from './tiptap-utils/htmlJsonConversion';
+import type { TemplateSectionType } from './tiptap-utils/templateSectionTypes';
 
 export type ArticleStatus = 'draft' | 'published';
+
+// One entry per templateSection node found in the article's `json` (see
+// deriveSections in articleStore.ts). This is a DERIVED, denormalized view
+// for anything that wants to query/filter/list an article's sections without
+// walking the document tree (search, analytics, a future "sections" rail on
+// My Articles, …) — `json` stays the single source of truth for editing and
+// rendering; this array is recomputed from it on every save, never
+// hand-edited, so the two can't drift apart.
+export interface ArticleSection {
+  templateType: TemplateSectionType;
+  /** The chosen ticker/country/sector/etc. value — '' if none picked yet. */
+  selection: string;
+  /** Tiptap JSON of the section's editable body (its block content). */
+  templateJson: JSONContent[];
+}
 
 export interface FeedPost {
   id: string;
@@ -11,6 +27,7 @@ export interface FeedPost {
   category: string;
   html: string;
   json: JSONContent;
+  sections: ArticleSection[];
   status: ArticleStatus;
   /** Author at creation time — doesn't change on later edits (unlike lastUpdatedBy). */
   createdBy: string;
@@ -3018,6 +3035,7 @@ export const MOCK_POSTS: FeedPost[] = [
     createdBy: 'Priya Nair',
     lastUpdatedBy: 'Priya Nair',
     lastUpdatedAt: '2026-07-28T09:15:00Z',
+    sections: [],
     html: post1Html,
     json: {
       "type": "doc",
@@ -4889,6 +4907,7 @@ export const MOCK_POSTS: FeedPost[] = [
     createdBy: 'Daniel Osei',
     lastUpdatedBy: 'Daniel Osei',
     lastUpdatedAt: '2026-07-25T11:40:00Z',
+    sections: [],
     html: post2Html,
     json: {
       "type": "doc",
@@ -10118,6 +10137,7 @@ export const MOCK_POSTS: FeedPost[] = [
     createdBy: 'Marta Kowalski',
     lastUpdatedBy: 'Marta Kowalski',
     lastUpdatedAt: '2026-07-21T14:05:00Z',
+    sections: [],
     html: post3Html,
     json:{
   "type": "doc",
@@ -10314,6 +10334,7 @@ export const MOCK_POSTS: FeedPost[] = [
     createdBy: 'Kenji Watanabe',
     lastUpdatedBy: 'Kenji Watanabe',
     lastUpdatedAt: '2026-07-18T08:30:00Z',
+    sections: [],
     html: post4Html,
     json: htmlToTiptapJson(post4Html),
   },
@@ -10327,6 +10348,7 @@ export const MOCK_POSTS: FeedPost[] = [
     createdBy: 'Sofia Bianchi',
     lastUpdatedBy: 'Sofia Bianchi',
     lastUpdatedAt: '2026-07-14T16:50:00Z',
+    sections: [],
     html: post5Html,
     json: htmlToTiptapJson(post5Html),
   },

@@ -22,6 +22,7 @@ import { ImageSpacing } from './imageSpacingExtension';
 import { ColumnLayout } from './columnLayoutExtension';
 import { ListStyle } from './listStyleExtension';
 import { TocEntry } from './tocEntryExtension';
+import { TemplateSection } from './templateSectionExtension';
 import {
   UnderlineStyle,
   StrikeStyle,
@@ -104,4 +105,5 @@ export const EDITOR_EXTENSIONS = [
   SlashCommand,
   MentionExtension,
   TickerCard,
+  TemplateSection,
 ];

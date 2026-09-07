@@ -5,6 +5,7 @@ import { PublisherPlugin } from '../publisher-panel/PublisherPlugin';
 import { createTiptapAdapter } from '../../adapters/tiptapAdapter';
 import { EditorToolbar } from '../editor-toolbar/EditorToolbar';
 import { EditorContextMenu } from '../editor-toolbar/EditorContextMenu';
+import { SectionInsertMenu } from './SectionInsertMenu';
 import { BLANK_ARTICLE_HTML } from '../articles/ArticlesPanel';
 import { ArticleStatusBadge } from '../articles/ArticleStatusBadge';
 import type { ArticleStatus, FeedPost } from '../../core/mockPosts';
@@ -68,6 +69,7 @@ export function FancyEditorTab({ article, onBack }: FancyEditorTabProps) {
           </span>
         </div>
         <EditorToolbar editor={editor} />
+        <SectionInsertMenu editor={editor} />
         <EditorContent className="tiptap-editor" editor={editor} />
         <EditorContextMenu editor={editor} />
       </div>

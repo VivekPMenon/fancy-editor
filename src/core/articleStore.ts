@@ -1,6 +1,7 @@
 import type { JSONContent } from '@tiptap/react';
-import { MOCK_POSTS, type ArticleStatus, type FeedPost } from './mockPosts';
+import { MOCK_POSTS, type ArticleStatus, type ArticleSection, type FeedPost } from './mockPosts';
 import { CURRENT_USER } from './currentUser';
+import type { TemplateSectionType } from './tiptap-utils/templateSectionTypes';
 
 // Demo-only, in-memory article store. Tracks which post the editor is
 // currently working on (set by ArticlesPanel/MyArticlesLanding when an
@@ -40,6 +41,27 @@ function deriveTitle(json: JSONContent): string {
   return text.length > 80 ? `${text.slice(0, 80)}…` : text;
 }
 
+// Walks the whole document (not just top-level children — a templateSection
+// could in principle end up nested, e.g. inside a column) collecting one
+// ArticleSection per templateSection node found, in document order. This is
+// how `sections` on FeedPost gets populated — always recomputed from `json`
+// on save, never hand-maintained, so it can't drift from the actual document.
+function deriveSections(json: JSONContent): ArticleSection[] {
+  const sections: ArticleSection[] = [];
+  function walk(node: JSONContent) {
+    if (node.type === 'templateSection') {
+      sections.push({
+        templateType: (node.attrs?.sectionType as TemplateSectionType) ?? 'richText',
+        selection: (node.attrs?.selection as string) ?? '',
+        templateJson: node.content ?? [],
+      });
+    }
+    (node.content ?? []).forEach(walk);
+  }
+  (json.content ?? []).forEach(walk);
+  return sections;
+}
+
 // Saves the editor's current content into MOCK_POSTS at the given status.
 // Updates the post currently being edited if one is loaded; otherwise
 // creates a new one (the "Create Article" workflow) and makes it the
@@ -54,6 +76,7 @@ function saveArticle(json: JSONContent, html: string, status: ArticleStatus): Fe
     existing.json = json;
     existing.html = html;
     existing.title = deriveTitle(json);
+    existing.sections = deriveSections(json);
     existing.status = status;
     existing.lastUpdatedBy = CURRENT_USER.name;
     existing.lastUpdatedAt = now;
@@ -68,6 +91,7 @@ function saveArticle(json: JSONContent, html: string, status: ArticleStatus): Fe
     category: 'General',
     html,
     json,
+    sections: deriveSections(json),
     status,
     createdBy: CURRENT_USER.name,
     lastUpdatedBy: CURRENT_USER.name,
