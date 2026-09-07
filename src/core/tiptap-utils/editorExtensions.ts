@@ -5,7 +5,7 @@ import { TextStyle, FontSize } from '@tiptap/extension-text-style';
 import { Color } from '@tiptap/extension-color';
 import { FontFamily } from '@tiptap/extension-font-family';
 import { Youtube } from '@tiptap/extension-youtube';
-import { Image } from '@tiptap/extension-image';
+import { ResolvingImage, ImageUpload, PasteImageFile } from './imageUploadExtension';
 import { Subscript } from '@tiptap/extension-subscript';
 import { Superscript } from '@tiptap/extension-superscript';
 import { Highlight } from '@tiptap/extension-highlight';
@@ -62,10 +62,12 @@ export const EDITOR_EXTENSIONS = [
   Color.configure({ types: ['textStyle', 'heading', 'paragraph', 'listItem'] }),
   FontFamily.configure({ types: ['textStyle', 'heading', 'paragraph', 'listItem'] }),
   Youtube.configure({ width: 480, height: 270 }),
-  Image.configure({
+  ResolvingImage.configure({
     // allowBase64 defaults to false, which silently drops <img src="data:...">
     // tags during generateJSON parsing — exactly what Word's captured images
-    // are, once inlineImageSources() patches them in.
+    // are, once inlineImageSources() patches them in (and what a fresh paste
+    // looks like before imageUploadExtension.ts's ImageUpload sweep uploads
+    // it and swaps in a real URL).
     allowBase64: true,
     // Built into the official extension itself (just disabled by default) —
     // no third-party package or custom node view needed. Locks aspect ratio
@@ -78,6 +80,8 @@ export const EDITOR_EXTENSIONS = [
       alwaysPreserveAspectRatio: true,
     },
   }),
+  ImageUpload,
+  PasteImageFile,
   ImageAlignment,
   ImageSpacing,
   ColumnLayout,
